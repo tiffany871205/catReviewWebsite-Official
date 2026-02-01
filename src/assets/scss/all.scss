@@ -1,0 +1,20 @@
+// Bootstrap 導入
+@import "bootstrap/scss/functions";
+
+@import "./helper/variables";
+@import "./helper/variables-dark";
+
+@import "bootstrap/scss/bootstrap";
+
+@import "./utilities";
+@import "bootstrap/scss/utilities/api";
+
+// 自訂樣式
+@import "./base/base";
+
+// 頁首頁尾
+@import "./layout/header";
+@import "./layout/footer";
+
+//頁面
+@import "./pages/index";

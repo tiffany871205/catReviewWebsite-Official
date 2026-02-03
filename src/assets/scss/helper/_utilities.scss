@@ -1,0 +1,42 @@
+// CSS Utilities（CSS 工具類/實用類）是一種以「功能優先」(Utility-First) 的 CSS 設計模式
+// 透過提供大量單一功能的預定義 Class（如 flex、pt-4、text-center）
+// 直接在 HTML 中組合應用樣式，無須編寫傳統 CSS
+// 具有開發速度快、維護容易、一致性高及產出檔案小等優點
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "font-size": map-merge(
+        map-get($utilities, "font-size"),
+        (
+          responsive: true,
+        )
+      ),
+  )
+);
+
+//
+
+.border-radius-xxs {
+  border-radius: 8px;
+}
+
+.border-radius-xs {
+  border-radius: 12px;
+}
+
+.rounded-xxs {
+  border-radius: 8px;
+}
+
+.rounded-xs {
+  border-radius: 12px;
+}
+
+.rounded-4 {
+  border-radius: 48px;
+}
+
+.rounded-5 {
+  border-radius: 200px;
+}

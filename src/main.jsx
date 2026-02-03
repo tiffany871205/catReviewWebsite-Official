@@ -1,7 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import App from "./App";
+import { createRoot } from "react-dom/client";
+
+import { createHashRouter, RouterProvider } from "react-router";
+import routes from "./routers/router.jsx";
+const router = createHashRouter(routes);
 
 import "./assets/scss/all.scss";
 
@@ -15,8 +17,4 @@ document.addEventListener("DOMContentLoaded", () => {
   [...popoverTriggerList].map((popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl));
 });
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-);
+createRoot(document.getElementById("root")).render(<RouterProvider router={router} />);

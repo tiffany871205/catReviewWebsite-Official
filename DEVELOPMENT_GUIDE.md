@@ -1,6 +1,5 @@
 ---
 title: 喵皇御膳房 - 開發規範文件
-
 ---
 
 # 喵皇御膳房 - 開發規範文件
@@ -28,13 +27,13 @@ title: 喵皇御膳房 - 開發規範文件
 
 ### 1.3 主要頁面
 
-| 頁面 | 路由 | 說明 |
-|------|------|------|
-| 首頁 | `/` | 網站首頁 |
-| 膳食探索 | `/food` | 貓食產品列表與篩選 |
-| 喵皇學堂 | `/knowledge` | 知識文章專區 |
-| 我要投稿 | `/contrib` | 使用者投稿功能 |
-| 會員中心 | `/member` | 會員個人資料與收藏 |
+| 頁面     | 路由         | 說明               |
+| -------- | ------------ | ------------------ |
+| 首頁     | `/`          | 網站首頁           |
+| 膳食探索 | `/food`      | 貓食產品列表與篩選 |
+| 喵皇學堂 | `/knowledge` | 知識文章專區       |
+| 我要投稿 | `/contrib`   | 使用者投稿功能     |
+| 會員中心 | `/member`    | 會員個人資料與收藏 |
 
 ---
 
@@ -73,6 +72,7 @@ npm install react-router-dom react-quill
 ### 2.3 設定 SCSS
 
 1. **建立 SCSS 檔案結構**
+
 ```
 src/
 └── assets/
@@ -95,6 +95,7 @@ src/
    - 從 `node_modules/bootstrap/scss/` 複製 `_variables.scss` 和 `_variables-dark.scss` 到 `src/assets/scss/`
 
 3. **在 `all.scss` 引入**
+
 ```scss
 // Bootstrap Functions
 @import "bootstrap/scss/functions";
@@ -116,33 +117,36 @@ src/
 ```
 
 4. **在 `main.jsx` 引入 SCSS**
-```jsx
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App.jsx';
-import './assets/scss/all.scss';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+```jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./assets/scss/all.scss";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
 );
 ```
 
 ### 2.4 設定 GitHub Pages 部署
 
 1. **修改 `vite.config.js`**
+
 ```javascript
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  base: '/catReviewWebsite-Official/',  // GitHub repo 名稱
+  base: "/catReviewWebsite-Official/", // GitHub repo 名稱
 });
 ```
 
 2. **在 `package.json` 加入部署指令**
+
 ```json
 {
   "scripts": {
@@ -155,11 +159,13 @@ export default defineConfig({
 ```
 
 3. **安裝 gh-pages**
+
 ```bash
 npm install --save-dev gh-pages
 ```
 
 4. **初始化 Git 並推送**
+
 ```bash
 git init
 git remote add origin https://github.com/你的帳號/catReviewWebsite-Official.git
@@ -169,6 +175,7 @@ git push -u origin main
 ```
 
 5. **部署到 GitHub Pages**
+
 ```bash
 # 編譯專案
 npm run build
@@ -214,6 +221,9 @@ catReviewWebsite-Official/
 │   │   ├── contrib/           # 投稿頁面元件
 │   │   └── member/            # 會員頁面元件
 │   │
+│   ├── routers/                # 路由配置目錄
+│   │   └── router.jsx          # 路由定義文件
+│   │
 │   ├── pages/                 # 頁面元件
 │   │   ├── Index.jsx
 │   │   ├── Food.jsx
@@ -239,14 +249,14 @@ catReviewWebsite-Official/
 
 ### 3.2 資料夾說明
 
-| 資料夾 | 用途 |
-|--------|------|
-| `public/` | 靜態資源，不經過編譯直接複製到 dist |
-| `src/assets/scss/` | SCSS 樣式檔案 |
-| `src/components/` | 可重複使用的 React 元件 |
-| `src/pages/` | 頁面級別的元件 |
-| `src/api/` | API 請求相關函式 |
-| `src/utils/` | 工具函式 |
+| 資料夾             | 用途                                |
+| ------------------ | ----------------------------------- |
+| `public/`          | 靜態資源，不經過編譯直接複製到 dist |
+| `src/assets/scss/` | SCSS 樣式檔案                       |
+| `src/components/`  | 可重複使用的 React 元件             |
+| `src/pages/`       | 頁面級別的元件                      |
+| `src/api/`         | API 請求相關函式                    |
+| `src/utils/`       | 工具函式                            |
 
 ---
 
@@ -281,12 +291,12 @@ catReviewWebsite-Official/
 
 ```jsx
 // ✅ 正確
-FoodListCard.jsx
-KnowledgeArticle.jsx
+FoodListCard.jsx;
+KnowledgeArticle.jsx;
 
 // ❌ 錯誤
-foodListCard.jsx
-food-list-card.jsx
+foodListCard.jsx;
+food - list - card.jsx;
 ```
 
 #### b. 共用元件命名
@@ -296,13 +306,13 @@ food-list-card.jsx
 
 ```jsx
 // ✅ 正確
-submitBtn.jsx
-searchBar.jsx
-searchBtn.jsx
+submitBtn.jsx;
+searchBar.jsx;
+searchBtn.jsx;
 
 // ❌ 錯誤
-SubmitBtn.jsx
-submit-btn.jsx
+SubmitBtn.jsx;
+submit - btn.jsx;
 ```
 
 #### c. JavaScript/工具檔案命名
@@ -311,13 +321,13 @@ submit-btn.jsx
 
 ```javascript
 // ✅ 正確
-foodApi.js
-helpers.js
-formValidation.js
+foodApi.js;
+helpers.js;
+formValidation.js;
 
 // ❌ 錯誤
-FoodApi.js
-food-api.js
+FoodApi.js;
+food - api.js;
 ```
 
 #### d. SCSS 檔案命名
@@ -348,8 +358,8 @@ _FoodList.scss
 
 ```jsx
 // FoodListCard.jsx
-import React from 'react';
-import './FoodListCard.scss';
+import React from "react";
+import "./FoodListCard.scss";
 
 const FoodListCard = ({ title, price, image }) => {
   return (
@@ -422,18 +432,18 @@ git push origin feature-food
 
 #### Type 類型
 
-| Type | 說明 | 範例 |
-|------|------|------|
-| `feat` | 新增功能 | `feat: 新增食品篩選功能` |
-| `fix` | 修復 Bug | `fix: 修復搜尋欄位驗證問題` |
-| `docs` | 文件更新 | `docs: 更新 README 安裝說明` |
-| `style` | 程式碼格式調整（不影響邏輯） | `style: 調整縮排和空格` |
-| `refactor` | 重構程式碼 | `refactor: 優化 API 請求邏輯` |
-| `test` | 測試相關 | `test: 新增食品卡片單元測試` |
-| `chore` | 雜項工作 | `chore: 更新依賴套件版本` |
-| `build` | 建置相關 | `build: 修改 vite 設定` |
-| `perf` | 效能優化 | `perf: 優化圖片載入速度` |
-| `revert` | 回退提交 | `revert: 回退上次的重構` |
+| Type       | 說明                         | 範例                          |
+| ---------- | ---------------------------- | ----------------------------- |
+| `feat`     | 新增功能                     | `feat: 新增食品篩選功能`      |
+| `fix`      | 修復 Bug                     | `fix: 修復搜尋欄位驗證問題`   |
+| `docs`     | 文件更新                     | `docs: 更新 README 安裝說明`  |
+| `style`    | 程式碼格式調整（不影響邏輯） | `style: 調整縮排和空格`       |
+| `refactor` | 重構程式碼                   | `refactor: 優化 API 請求邏輯` |
+| `test`     | 測試相關                     | `test: 新增食品卡片單元測試`  |
+| `chore`    | 雜項工作                     | `chore: 更新依賴套件版本`     |
+| `build`    | 建置相關                     | `build: 修改 vite 設定`       |
+| `perf`     | 效能優化                     | `perf: 優化圖片載入速度`      |
+| `revert`   | 回退提交                     | `revert: 回退上次的重構`      |
 
 #### 範例
 
@@ -459,17 +469,17 @@ git commit -m "123"
 
 ```jsx
 // 1. React 相關方法
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
 // 2. 第三方套件
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from "react-router-dom";
 
 // 3. 元件引入
-import App from './App.jsx';
+import App from "./App.jsx";
 
 // 4. 樣式引入
-import './assets/scss/all.scss';
+import "./assets/scss/all.scss";
 
 // 5. 其他資源
 ```
@@ -478,24 +488,24 @@ import './assets/scss/all.scss';
 
 ```jsx
 // 1. React 相關
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 // 2. 第三方套件
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // 3. API 引入
-import { getFoodList } from '../api/foodApi';
+import { getFoodList } from "../api/foodApi";
 
 // 4. 元件引入
-import FoodListCard from '../components/food/FoodListCard';
-import searchBar from '../components/common/searchBar';
+import FoodListCard from "../components/food/FoodListCard";
+import searchBar from "../components/common/searchBar";
 
 // 5. 樣式引入
-import './Food.scss';
+import "./Food.scss";
 
 // 6. 資料/常數引入
-import { FOOD_CATEGORIES } from '../data/constants';
+import { FOOD_CATEGORIES } from "../data/constants";
 ```
 
 #### all.scss
@@ -531,29 +541,32 @@ import { FOOD_CATEGORIES } from '../data/constants';
 ### 6.2 開發注意事項
 
 #### 1. 圖片資源
+
 - 圖片放在 `public/images/` 下
 - 使用相對路徑引入：`/images/food/product1.jpg`
 - 記得壓縮圖片以提升載入速度
 
 #### 2. API 請求
+
 ```jsx
 // api/foodApi.js
-import axios from 'axios';
+import axios from "axios";
 
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = "http://localhost:3000";
 
 export const getFoodList = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}/foods`);
     return response.data;
   } catch (error) {
-    console.error('獲取食品列表失敗:', error);
+    console.error("獲取食品列表失敗:", error);
     throw error;
   }
 };
 ```
 
 #### 3. 環境變數
+
 - 建立 `.env` 檔案（不要提交到 Git）
 - 使用 `VITE_` 前綴
 

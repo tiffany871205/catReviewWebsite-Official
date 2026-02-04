@@ -7,7 +7,8 @@ function signUp() {
     .post("http://localhost:3000/signup", {
       email: "test123@gmail.com",
       password: "password123",
-      nickname: "testuser",
+      nickname: "貓奴一號",
+      tel: "0912345678",
     })
     .then((response) => {
       console.log("註冊成功:", response.data);

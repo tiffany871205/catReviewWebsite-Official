@@ -1,6 +1,8 @@
 import { Outlet, Link } from "react-router";
 import axios from "axios";
 
+import signUp from "./utils/signUp.jsx";
+
 function App() {
   return (
     <>
@@ -10,6 +12,7 @@ function App() {
         <Link to="/knowledge">知識</Link> |<Link to="/contrib">投稿</Link> |
         <Link to="/member">會員</Link>
       </nav>
+      <button onClick={signUp}>註冊</button>
       <hr />
       <Outlet />
       <h1>這個是外層</h1>

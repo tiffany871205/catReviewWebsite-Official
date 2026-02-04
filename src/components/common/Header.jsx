@@ -1,6 +1,46 @@
 import { Link } from "react-router";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
 function Header() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [isAuth, setIsAuth] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const onSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await axios.post(`http://localhost:3000/login`, formData);
+      const { token, expired } = response.data;
+      document.cookie = `catToken=${token};expires=${new Date(expired)};`;
+      axios.defaults.headers.common["Authorization"] = token;
+
+      setIsAuth(true);
+      console.log("登入成功:", response.data);
+    } catch (error) {
+      console.log(error.response);
+      console.log("登入失敗");
+    }
+  };
+
   return (
     <>
       <nav>
@@ -73,6 +113,7 @@ function Header() {
                   </Link>
                 </li>
               </ul>
+
               {/* <!-- 註冊登入 --> */}
               <a
                 className="nav-link header-log p-lg-1 d-flex justify-content-center mt-auto py-6"
@@ -84,11 +125,11 @@ function Header() {
                 註冊 / 登入
               </a>
 
-              {/* <!-- Modal --> */}
+              {/* <!-- 登入Modal --> */}
               <div
                 className="modal fade"
                 id="loginModal"
-                tabindex="-1"
+                tabIndex="-1"
                 aria-labelledby="loginModalLabel"
                 aria-hidden="true"
               >
@@ -111,36 +152,50 @@ function Header() {
                       </h2>
                     </div>
                     <div className="modal-body p-0 mb-11">
-                      <div className="form-floating mb-3">
-                        <input
-                          type="email"
-                          className="form-control py-2 px-6"
-                          id="loginfloatingInput"
-                          name="loginfloatingInput"
-                          placeholder="name@example.com"
-                        />
-                        <label className="text-neutral-500 fs-7" htmlFor="loginfloatingInput">
-                          <i className="bi bi-search text-white"></i>輸入電子信箱
-                        </label>
-                      </div>
-                      <div className="form-floating">
-                        <input
-                          type="password"
-                          className="form-control py-2 px-6"
-                          id="loginfloatingPassword"
-                          name="loginfloatingPassword"
-                          placeholder="Password"
-                        />
-                        <label className="text-neutral-500" htmlFor="loginfloatingPassword">
-                          輸入密碼
-                        </label>
-                      </div>
-                      <button
-                        type="submit"
-                        className="btn btn-primary-500 mt-8 text-white w-100 py-1"
-                      >
-                        會員登入
-                      </button>
+                      <form onSubmit={(e) => onSubmit(e)}>
+                        <div className="form-floating">
+                          <input
+                            type="email"
+                            className="form-control py-2 px-6"
+                            id="loginfloatingInput"
+                            name="loginfloatingInput"
+                            placeholder="name@example.com"
+                            value={formData.email}
+                            {...register("email", { required: "這個欄位是必填" })}
+                            onChange={(e) => handleInputChange(e)}
+                          />
+                          <span className="ms-1" style={{ fontSize: "8pt", color: "red" }}>
+                            {errors.email ? errors.email.message : ""}
+                          </span>
+                          <label className="text-neutral-500 fs-7" htmlFor="loginfloatingInput">
+                            <i className="bi bi-search text-white"></i>輸入電子信箱
+                          </label>
+                        </div>
+                        <div className="form-floating">
+                          <input
+                            type="password"
+                            className="form-control py-2 px-6"
+                            id="loginfloatingPassword"
+                            name="loginfloatingPassword"
+                            placeholder="Password"
+                            value={formData.password}
+                            {...register("password", { required: "這個欄位是必填" })}
+                            onChange={(e) => handleInputChange(e)}
+                          />
+                          <span className="ms-1" style={{ fontSize: "8pt", color: "red" }}>
+                            {errors.password ? errors.password.message : ""}
+                          </span>
+                          <label className="text-neutral-500" htmlFor="loginfloatingPassword">
+                            輸入密碼
+                          </label>
+                        </div>
+                        <button
+                          type="submit"
+                          className="btn btn-primary-500 mt-8 text-white w-100 py-1"
+                        >
+                          會員登入
+                        </button>
+                      </form>
                     </div>
                     <div className="modal-footer border-0 d-flex justify-content-center">
                       <p className="text-neutral-600">還沒有帳戶?</p>
@@ -155,7 +210,7 @@ function Header() {
           </div>
         </div>
         {/* <!-- 漸層線條 --> */}
-        <div class="header-liner"></div>
+        <div className="header-liner"></div>
       </nav>
     </>
   );

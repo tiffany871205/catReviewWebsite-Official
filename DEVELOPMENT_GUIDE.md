@@ -578,3 +578,17 @@ VITE_API_BASE_URL=http://localhost:3000
 // 使用環境變數
 const apiUrl = import.meta.env.VITE_API_BASE_URL;
 ```
+
+### 3. 啟動 JSON server 終端指令
+
+使用 `npx json-server-auth db.json` 來 JSON server
+
+**版本跟說明**
+
+本專案使用 `json-server@0.17.1` 和 `json-server-auth@2.1.0`。
+
+依照目前官方 [json-server-auth](https://github.com/jeremyben/json-server-auth) 的安裝（`npm install -D json-server json-server-auth`），在預設上 json-server 會去安裝最新的版本（目前是 1.0.0-beta.3），這個新版本的核心架構已經拔除原先的 Node Express。
+
+而 json-server-auth 已經有四年沒有更新，當初這個套件是基於 json-server v0.17.x 搭配 Express 的核心架構來製作的，所以目前會跟移除 Express 的 json-server v1.x 版本不相容。
+
+---

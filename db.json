@@ -1,16 +1,11 @@
 {
   "users": [
     {
-      "email": "test@gmail.com",
-      "password": "$2a$10$CC37ptvm2.I0//4.iAojRex2P/9E3SiQ6d8BhaydHTz9booqk2iWq",
-      "username": "testuser",
-      "id": 1
-    },
-    {
       "email": "test123@gmail.com",
-      "password": "$2a$10$2UovyvAX8UboEhPiSJ.QOO5qyMijtqlYzrH6fibpVOIDQexSp8sFu",
-      "username": "testuser",
-      "id": 2
+      "password": "$2a$10$s0a/BGWLDGa0sddQQiOL7ezPh5xV/HcTBN64e5nPTT7N32FWzkWyi",
+      "nickname": "貓奴一號",
+      "tel": "0912345678",
+      "id": 1
     }
   ],
   "posts": []

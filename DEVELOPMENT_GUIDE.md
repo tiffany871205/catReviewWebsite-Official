@@ -127,7 +127,7 @@ import "./assets/scss/all.scss";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
 ```
 
@@ -592,3 +592,77 @@ const apiUrl = import.meta.env.VITE_API_BASE_URL;
 而 json-server-auth 已經有四年沒有更新，當初這個套件是基於 json-server v0.17.x 搭配 Express 的核心架構來製作的，所以目前會跟移除 Express 的 json-server v1.x 版本不相容。
 
 ---
+
+---
+
+### 4.Mock API 資料使用規範（json-server / json-server-auth）
+
+本專案使用 **json-server / json-server-auth** 作為假 API 進行前後端開發與測試，資料檔案請依照以下規範使用。
+
+---
+
+### 📄 資料檔案說明（專案根目錄）
+
+```
+/
+├─ db.json        # 個人本機測試用（不納入版控）
+├─ db.seed.json   # 專案共用示範資料（納入版控）
+```
+
+---
+
+### `db.json`（個人使用）
+
+- 僅供 **個人本機測試**
+- 可自由新增 / 修改 / 刪除資料
+- 每位開發者內容皆不同
+- **不納入 Git 版控**
+
+📌 請自行由 `db.seed.json` 複製一份建立：
+
+```bash
+cp db.seed.json db.json
+```
+
+---
+
+### `db.seed.json`（共用資料）
+
+- 為 **專案共用的示範資料**
+- 用來呈現：
+  - 使用者資料
+  - 功能關聯（如留言、文章、關聯 ID）
+  - API 測試範例狀態
+- **納入 Git 版控**
+- 用於讓所有人能在相同資料狀態下開發與測試
+
+📌 請勿直接將個人測試用的 `db.json` 整份覆蓋到 `db.seed.json`。
+
+---
+
+### 🛠 更新 `db.seed.json` 的建議流程
+
+1. 於本機 `db.json` 中進行功能測試（例如留言、關聯操作）
+2. 確認哪些資料具有代表性或教學價值
+3. **手動整理、重建資料**
+4. 再更新至 `db.seed.json`
+
+👉 請確保 `db.seed.json` 保持乾淨、結構清楚、資料數量適中。
+
+---
+
+### 🚫 注意事項
+
+- 請勿在 PR 中提交 `db.json`
+- 請勿將測試過程中產生的大量資料直接提交至 `db.seed.json`
+- `db.seed.json` 僅作為 **示範與重現狀態使用**
+
+---
+
+### 📌 Git 設定建議
+
+請於 `.gitignore` 中加入：
+
+```
+db.json
+```

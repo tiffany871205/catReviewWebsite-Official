@@ -324,9 +324,8 @@
     ]
   },
 
-  "knowledge": [
+  "knowledge": 
     {
-      "articles": [
         {
           "id": 1,
           "title": "如何判斷貓咪是否生氣？",
@@ -426,9 +425,7 @@
           "createdAt": "2026-01-09",
           "updatedAt": "2026-01-09"
         }
-      ]
-    }
-  ],
+    },
 
   "knowledgeDetail": [
     {

@@ -2,6 +2,7 @@
 function closeModal(modalId) {
   try {
     const modalElement = document.getElementById(modalId);
+
     if (!modalElement) {
       console.log(`找不到 ID 為 ${modalId} 的 Modal`);
       return;
@@ -18,6 +19,7 @@ function closeModal(modalId) {
       document.querySelector(".modal-backdrop")?.remove();
       document.body.classList.remove("modal-open");
       document.body.style.removeProperty("padding-right");
+      document.body.classList.add("overflow-auto");
     }
   } catch (err) {
     console.log(`關閉 Modal (${modalId}) 時發生錯誤:`, err);

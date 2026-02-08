@@ -1,5 +1,4 @@
-import { Outlet, Link } from "react-router";
-import axios from "axios";
+import { Outlet } from "react-router";
 
 import signUp from "./utils/signUp.js";
 import Header from "./components/common/Header.jsx";
@@ -9,8 +8,8 @@ function App() {
   return (
     <>
       <Header />
-      <button onClick={signUp}>註冊</button>
-      <hr />
+      {/* <button onClick={signUp}>註冊</button>
+      <hr /> */}
       <Outlet />
       <Footer />
     </>

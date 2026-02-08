@@ -127,7 +127,7 @@ import "./assets/scss/all.scss";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
 );
 ```
 
@@ -582,6 +582,9 @@ const apiUrl = import.meta.env.VITE_API_BASE_URL;
 ### 3. 啟動 JSON server 終端指令
 
 使用 `npx json-server-auth db.json` 來 JSON server
+快捷：
+`npm run api:dev` : 跑db.json
+`npm run api:seed` : 跑db.seed.json
 
 **版本跟說明**
 

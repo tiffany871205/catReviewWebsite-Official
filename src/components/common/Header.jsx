@@ -218,13 +218,12 @@
 
 // export default Header;
 
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 function Header() {
-  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loginError, setLoginError] = useState("");
 
@@ -253,8 +252,7 @@ function Header() {
           }
         } catch (error) {
           // Token 無效,清除所有登入資訊
-          document.cookie =
-            "catToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+          document.cookie = "catToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
           localStorage.removeItem("user");
           setUser(null);
         }
@@ -321,8 +319,7 @@ function Header() {
 
         // 如果有使用 Bootstrap Modal instance,也要 dispose
         if (window.bootstrap && window.bootstrap.Modal) {
-          const modalInstance =
-            window.bootstrap.Modal.getInstance(modalElement);
+          const modalInstance = window.bootstrap.Modal.getInstance(modalElement);
           if (modalInstance) {
             modalInstance.dispose();
           }
@@ -360,6 +357,15 @@ function Header() {
     // 導向首頁
     navigate("/index");
   };
+
+  // 手機版點擊後收起選單
+  function closeNavbarOnMobile() {
+    const navbarCollapse = document.getElementById("navbarNav");
+
+    if (navbarCollapse && window.innerWidth < 992) {
+      navbarCollapse.classList.remove("show");
+    }
+  }
 
   return (
     <>
@@ -402,12 +408,7 @@ function Header() {
                     className="nav-link d-flex justify-content-center"
                     to="/food"
                     onClick={() => {
-                      // 手機版點擊後收起選單
-                      const navbarCollapse =
-                        document.getElementById("navbarNav");
-                      if (navbarCollapse && window.innerWidth < 992) {
-                        navbarCollapse.classList.remove("show");
-                      }
+                      closeNavbarOnMobile();
                     }}
                   >
                     <div className="header-food-btn me-1 d-none d-lg-block"></div>
@@ -425,12 +426,7 @@ function Header() {
                     className="nav-link d-flex justify-content-center"
                     to="/knowledge"
                     onClick={() => {
-                      // 手機版點擊後收起選單
-                      const navbarCollapse =
-                        document.getElementById("navbarNav");
-                      if (navbarCollapse && window.innerWidth < 992) {
-                        navbarCollapse.classList.remove("show");
-                      }
+                      closeNavbarOnMobile();
                     }}
                   >
                     <div className="header-knowledge-btn me-1 d-none d-lg-block"></div>
@@ -448,12 +444,7 @@ function Header() {
                     className="nav-link d-flex justify-content-center"
                     to="/contrib"
                     onClick={() => {
-                      // 手機版點擊後收起選單
-                      const navbarCollapse =
-                        document.getElementById("navbarNav");
-                      if (navbarCollapse && window.innerWidth < 992) {
-                        navbarCollapse.classList.remove("show");
-                      }
+                      closeNavbarOnMobile();
                     }}
                   >
                     <div className="header-post-btn me-1 d-none d-lg-block"></div>
@@ -473,12 +464,7 @@ function Header() {
                       className="nav-link d-flex justify-content-center"
                       to="/member"
                       onClick={() => {
-                        // 手機版點擊後收起選單
-                        const navbarCollapse =
-                          document.getElementById("navbarNav");
-                        if (navbarCollapse && window.innerWidth < 992) {
-                          navbarCollapse.classList.remove("show");
-                        }
+                        closeNavbarOnMobile();
                       }}
                     >
                       <img
@@ -509,28 +495,24 @@ function Header() {
                     <div className="mobile-user-menu">
                       {/* 使用者資訊區塊 */}
                       <div className="text-center py-4 border-bottom">
-                        <p className="mb-1 text-neutral-800 fw-bold">
-                          {user.nickname || "使用者"}
-                        </p>
-                        <p className="mb-0 text-neutral-600 fs-7">
-                          {user.email}
-                        </p>
+                        <p className="mb-1 text-neutral-800 fw-bold">{user.nickname || "使用者"}</p>
+                        <p className="mb-0 text-neutral-600 fs-7">{user.email}</p>
                       </div>
 
                       {/* 登出 */}
-                      <a
+                      <Link
                         className="nav-link d-flex align-items-center justify-content-center py-4"
                         href="#"
+                        to="/index"
                         onClick={(e) => {
                           e.preventDefault();
                           handleLogout();
+                          closeNavbarOnMobile();
                         }}
                       >
-                        <span className="material-symbols-outlined me-2">
-                          logout
-                        </span>
+                        <span className="material-symbols-outlined me-2">logout</span>
                         登出
-                      </a>
+                      </Link>
                     </div>
                   )}
                 </li>
@@ -585,11 +567,7 @@ function Header() {
                         className="dropdown-item d-flex align-items-center p-3 pe-12"
                         to="/member"
                       >
-                        <img
-                          src="./images/member/history.png"
-                          alt="history"
-                          className="me-3"
-                        />
+                        <img src="./images/member/history.png" alt="history" className="me-3" />
                         會員紀錄
                       </Link>
                     </li>
@@ -604,11 +582,7 @@ function Header() {
                           handleLogout();
                         }}
                       >
-                        <img
-                          src="./images/member/logout.png"
-                          alt="logout"
-                          className="me-3"
-                        />
+                        <img src="./images/member/logout.png" alt="logout" className="me-3" />
                         登出
                       </Link>
                       {/* <!-- Modal --> */}
@@ -688,16 +662,10 @@ function Header() {
                               required: "這個欄位是必填",
                             })}
                           />
-                          <span
-                            className="ms-1"
-                            style={{ fontSize: "8pt", color: "red" }}
-                          >
+                          <span className="ms-1" style={{ fontSize: "8pt", color: "red" }}>
                             {errors.email ? errors.email.message : ""}
                           </span>
-                          <label
-                            className="text-neutral-500 fs-7"
-                            htmlFor="loginfloatingInput"
-                          >
+                          <label className="text-neutral-500 fs-7" htmlFor="loginfloatingInput">
                             <i className="bi bi-search text-white"></i>
                             輸入電子信箱
                           </label>
@@ -713,16 +681,10 @@ function Header() {
                               required: "這個欄位是必填",
                             })}
                           />
-                          <span
-                            className="ms-1"
-                            style={{ fontSize: "8pt", color: "red" }}
-                          >
+                          <span className="ms-1" style={{ fontSize: "8pt", color: "red" }}>
                             {errors.password ? errors.password.message : ""}
                           </span>
-                          <label
-                            className="text-neutral-500"
-                            htmlFor="loginfloatingPassword"
-                          >
+                          <label className="text-neutral-500" htmlFor="loginfloatingPassword">
                             輸入密碼
                           </label>
                         </div>

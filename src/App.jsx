@@ -7,7 +7,6 @@ import Header from "./components/common/Header.jsx";
 function App() {
   return (
     <>
-      <h1>這個是外層</h1>
       <Header />
       <button onClick={signUp}>註冊</button>
       <hr />

@@ -226,6 +226,7 @@ import axios from "axios";
 function Header() {
   const [user, setUser] = useState(null);
   const [loginError, setLoginError] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const {
     register,
@@ -276,7 +277,7 @@ function Header() {
 
       const { accessToken, user: userData } = response.data;
 
-      // 設定 cookie(7天後過期)
+      // 設定 cookie（7天後過期）
       const expireDate = new Date();
       expireDate.setDate(expireDate.getDate() + 7);
       document.cookie = `catToken=${accessToken};expires=${expireDate.toUTCString()};path=/`;
@@ -296,34 +297,29 @@ function Header() {
       console.log("登入成功:", response.data);
       console.log("使用者資訊已儲存:", userData);
 
-      // 關閉 Modal
-      const modalElement = document.getElementById("loginModal");
-      if (modalElement) {
-        // 移除 modal 相關的 class 和元素
-        modalElement.classList.remove("show");
-        modalElement.style.display = "none";
-        modalElement.setAttribute("aria-hidden", "true");
-        modalElement.removeAttribute("aria-modal");
-        modalElement.removeAttribute("role");
-
-        // 移除 backdrop
-        const backdrop = document.querySelector(".modal-backdrop");
-        if (backdrop) {
-          backdrop.remove();
-        }
-
-        // 恢復 body 的狀態
-        document.body.classList.remove("modal-open");
-        document.body.style.overflow = "";
-        document.body.style.paddingRight = "";
-
-        // 如果有使用 Bootstrap Modal instance,也要 dispose
+      // 關閉 Modal（使用 try-catch 避免錯誤）
+      try {
+        const modalElement = document.getElementById("loginModal");
         if (window.bootstrap && window.bootstrap.Modal) {
-          const modalInstance = window.bootstrap.Modal.getInstance(modalElement);
-          if (modalInstance) {
-            modalInstance.dispose();
+          const modal = window.bootstrap.Modal.getInstance(modalElement);
+          if (modal) {
+            modal.hide();
           }
+        } else {
+          modalElement.classList.remove("show");
+          document.querySelector(".modal-backdrop")?.remove();
+          document.body.classList.remove("modal-open");
+          document.body.style.removeProperty("padding-right");
         }
+      } catch (err) {
+        console.log("關閉 Modal 時發生錯誤（不影響登入）:", err);
+      }
+
+      // 關閉手機版漢堡選單
+      try {
+        closeNavbarOnMobile();
+      } catch (err) {
+        console.log("關閉漢堡選單時發生錯誤（不影響登入）:", err);
       }
     } catch (error) {
       console.error("登入錯誤:", error);
@@ -335,7 +331,7 @@ function Header() {
       } else if (error.response?.data?.message) {
         setLoginError(error.response.data.message);
       } else {
-        setLoginError("登入失敗,請稍後再試");
+        setLoginError("登入失敗，請稍後再試");
       }
     }
   };
@@ -358,12 +354,42 @@ function Header() {
     navigate("/index");
   };
 
+  //定義手機板寬度判斷
+  function isMobile() {
+    return window.innerWidth < 992;
+  }
+
+  // 手機版點擊後收起選單
+  // 手機版點擊後收起選單
   // 手機版點擊後收起選單
   function closeNavbarOnMobile() {
     const navbarCollapse = document.getElementById("navbarNav");
 
-    if (navbarCollapse && window.innerWidth < 992) {
+    if (navbarCollapse && isMobile() && navbarCollapse.classList.contains("show")) {
       navbarCollapse.classList.remove("show");
+
+      // 如果有 Bootstrap JS，也用 Bootstrap 的方法關閉
+      if (window.bootstrap && window.bootstrap.Collapse) {
+        const bsCollapse = window.bootstrap.Collapse.getInstance(navbarCollapse);
+        if (bsCollapse) {
+          bsCollapse.hide();
+        }
+      }
+    }
+  } // 手機版點擊後收起選單
+  function closeNavbarOnMobile() {
+    const navbarCollapse = document.getElementById("navbarNav");
+
+    if (navbarCollapse && isMobile() && navbarCollapse.classList.contains("show")) {
+      navbarCollapse.classList.remove("show");
+
+      // 如果有 Bootstrap JS，也用 Bootstrap 的方法關閉
+      if (window.bootstrap && window.bootstrap.Collapse) {
+        const bsCollapse = window.bootstrap.Collapse.getInstance(navbarCollapse);
+        if (bsCollapse) {
+          bsCollapse.hide();
+        }
+      }
     }
   }
 
@@ -510,7 +536,7 @@ function Header() {
                           closeNavbarOnMobile();
                         }}
                       >
-                        <span className="material-symbols-outlined me-2">logout</span>
+                        <img src="./images/member/logout.png" alt="logout" className="me-3" />
                         登出
                       </Link>
                     </div>
@@ -691,6 +717,9 @@ function Header() {
                         <button
                           type="submit"
                           className="btn btn-primary-500 mt-8 text-white w-100 py-1"
+                          onClick={() => {
+                            closeNavbarOnMobile();
+                          }}
                         >
                           會員登入
                         </button>

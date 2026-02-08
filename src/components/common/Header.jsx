@@ -218,12 +218,13 @@
 
 // export default Header;
 
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 function Header() {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [loginError, setLoginError] = useState("");
 
@@ -251,8 +252,9 @@ function Header() {
             axios.defaults.headers.common["Authorization"] = token;
           }
         } catch (error) {
-          // Token 無效，清除所有登入資訊
-          document.cookie = "catToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
+          // Token 無效,清除所有登入資訊
+          document.cookie =
+            "catToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
           localStorage.removeItem("user");
           setUser(null);
         }
@@ -276,7 +278,7 @@ function Header() {
 
       const { accessToken, user: userData } = response.data;
 
-      // 設定 cookie（7天後過期）
+      // 設定 cookie(7天後過期)
       const expireDate = new Date();
       expireDate.setDate(expireDate.getDate() + 7);
       document.cookie = `catToken=${accessToken};expires=${expireDate.toUTCString()};path=/`;
@@ -296,23 +298,35 @@ function Header() {
       console.log("登入成功:", response.data);
       console.log("使用者資訊已儲存:", userData);
 
-      // 關閉 Modal（使用 try-catch 避免錯誤）
-      try {
-        const modalElement = document.getElementById("loginModal");
-        if (window.bootstrap && window.bootstrap.Modal) {
-          const modal = window.bootstrap.Modal.getInstance(modalElement);
-          if (modal) {
-            modal.hide();
-          }
-        } else {
-          // 如果 Bootstrap JS 沒載入，手動移除 modal 的 class
-          modalElement.classList.remove("show");
-          document.querySelector(".modal-backdrop")?.remove();
-          document.body.classList.remove("modal-open");
-          document.body.style.removeProperty("padding-right");
+      // 關閉 Modal
+      const modalElement = document.getElementById("loginModal");
+      if (modalElement) {
+        // 移除 modal 相關的 class 和元素
+        modalElement.classList.remove("show");
+        modalElement.style.display = "none";
+        modalElement.setAttribute("aria-hidden", "true");
+        modalElement.removeAttribute("aria-modal");
+        modalElement.removeAttribute("role");
+
+        // 移除 backdrop
+        const backdrop = document.querySelector(".modal-backdrop");
+        if (backdrop) {
+          backdrop.remove();
         }
-      } catch (err) {
-        console.log("關閉 Modal 時發生錯誤（不影響登入）:", err);
+
+        // 恢復 body 的狀態
+        document.body.classList.remove("modal-open");
+        document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
+
+        // 如果有使用 Bootstrap Modal instance,也要 dispose
+        if (window.bootstrap && window.bootstrap.Modal) {
+          const modalInstance =
+            window.bootstrap.Modal.getInstance(modalElement);
+          if (modalInstance) {
+            modalInstance.dispose();
+          }
+        }
       }
     } catch (error) {
       console.error("登入錯誤:", error);
@@ -324,7 +338,7 @@ function Header() {
       } else if (error.response?.data?.message) {
         setLoginError(error.response.data.message);
       } else {
-        setLoginError("登入失敗，請稍後再試");
+        setLoginError("登入失敗,請稍後再試");
       }
     }
   };
@@ -342,6 +356,9 @@ function Header() {
 
     // 清除使用者狀態
     setUser(null);
+
+    // 導向首頁
+    navigate("/index");
   };
 
   return (
@@ -378,10 +395,21 @@ function Header() {
               className="collapse navbar-collapse justify-content-between mt-11 mt-lg-0"
               id="navbarNav"
             >
-              <ul className="header-navbar-nav navbar-nav">
+              <ul className="header-navbar-nav navbar-nav w-100">
                 {/* <!-- 膳食探索 --> */}
                 <li className="nav-item me-lg-10 mb-10 mb-lg-0">
-                  <Link className="nav-link d-flex justify-content-center" to="/food">
+                  <Link
+                    className="nav-link d-flex justify-content-center"
+                    to="/food"
+                    onClick={() => {
+                      // 手機版點擊後收起選單
+                      const navbarCollapse =
+                        document.getElementById("navbarNav");
+                      if (navbarCollapse && window.innerWidth < 992) {
+                        navbarCollapse.classList.remove("show");
+                      }
+                    }}
+                  >
                     <div className="header-food-btn me-1 d-none d-lg-block"></div>
                     <img
                       src="./images/decoration.png"
@@ -393,7 +421,18 @@ function Header() {
                 </li>
                 {/* <!-- 喵皇學堂 --> */}
                 <li className="nav-item me-lg-10 mb-10 mb-lg-0">
-                  <Link className="nav-link d-flex justify-content-center" to="/knowledge">
+                  <Link
+                    className="nav-link d-flex justify-content-center"
+                    to="/knowledge"
+                    onClick={() => {
+                      // 手機版點擊後收起選單
+                      const navbarCollapse =
+                        document.getElementById("navbarNav");
+                      if (navbarCollapse && window.innerWidth < 992) {
+                        navbarCollapse.classList.remove("show");
+                      }
+                    }}
+                  >
                     <div className="header-knowledge-btn me-1 d-none d-lg-block"></div>
                     <img
                       src="./images/decoration.png"
@@ -404,8 +443,19 @@ function Header() {
                   </Link>
                 </li>
                 {/* <!-- 我要投稿 --> */}
-                <li className="nav-item">
-                  <Link className="nav-link d-flex justify-content-center" to="/contrib">
+                <li className="nav-item mb-10 mb-lg-0">
+                  <Link
+                    className="nav-link d-flex justify-content-center"
+                    to="/contrib"
+                    onClick={() => {
+                      // 手機版點擊後收起選單
+                      const navbarCollapse =
+                        document.getElementById("navbarNav");
+                      if (navbarCollapse && window.innerWidth < 992) {
+                        navbarCollapse.classList.remove("show");
+                      }
+                    }}
+                  >
                     <div className="header-post-btn me-1 d-none d-lg-block"></div>
                     <img
                       src="./images/decoration.png"
@@ -415,12 +465,81 @@ function Header() {
                     我要投稿
                   </Link>
                 </li>
+
+                {/* <!-- 手機版會員中心(僅登入後顯示) --> */}
+                {user && (
+                  <li className="nav-item mb-10 mb-lg-0 d-lg-none">
+                    <Link
+                      className="nav-link d-flex justify-content-center"
+                      to="/member"
+                      onClick={() => {
+                        // 手機版點擊後收起選單
+                        const navbarCollapse =
+                          document.getElementById("navbarNav");
+                        if (navbarCollapse && window.innerWidth < 992) {
+                          navbarCollapse.classList.remove("show");
+                        }
+                      }}
+                    >
+                      <img
+                        src="./images/decoration.png"
+                        alt="decoration"
+                        className="align-bottom me-1"
+                      />
+                      會員中心
+                    </Link>
+                  </li>
+                )}
+
+                {/* <!-- 手機版登入/使用者資訊 --> */}
+                <li className="nav-item d-lg-none mt-auto">
+                  {!user ? (
+                    <a
+                      className="nav-link header-log p-1 d-flex justify-content-center py-6"
+                      href="#"
+                      data-bs-toggle="modal"
+                      data-bs-target="#loginModal"
+                    >
+                      <span className="header-pet material-symbols-outlined align-bottom me-2">
+                        pets
+                      </span>
+                      註冊 / 登入
+                    </a>
+                  ) : (
+                    <div className="mobile-user-menu">
+                      {/* 使用者資訊區塊 */}
+                      <div className="text-center py-4 border-bottom">
+                        <p className="mb-1 text-neutral-800 fw-bold">
+                          {user.nickname || "使用者"}
+                        </p>
+                        <p className="mb-0 text-neutral-600 fs-7">
+                          {user.email}
+                        </p>
+                      </div>
+
+                      {/* 登出 */}
+                      <a
+                        className="nav-link d-flex align-items-center justify-content-center py-4"
+                        href="#"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleLogout();
+                        }}
+                      >
+                        <span className="material-symbols-outlined me-2">
+                          logout
+                        </span>
+                        登出
+                      </a>
+                    </div>
+                  )}
+                </li>
               </ul>
 
-              {/* <!-- 註冊登入 --> */}
+              {/* <!-- 電腦版註冊登入 --> */}
               {!user ? (
                 <a
-                  className="nav-link header-log p-lg-1 d-flex justify-content-center mt-auto py-6"
+                  className="nav-link header-log p-lg-1 d-none d-lg-flex justify-content-center py-6 flex-shrink-0"
                   href="#"
                   data-bs-toggle="modal"
                   data-bs-target="#loginModal"
@@ -431,9 +550,9 @@ function Header() {
                   註冊 / 登入
                 </a>
               ) : (
-                <div className="dropdown">
+                <div className="dropdown d-none d-lg-block flex-shrink-0">
                   <a
-                    className="nav-link header-log p-lg-1 d-flex justify-content-center mt-auto py-6"
+                    className="nav-link header-log p-lg-1 d-flex justify-content-center py-6 text-nowrap"
                     href="#"
                     id="dropdownMenuMember"
                     data-bs-toggle="dropdown"
@@ -445,7 +564,7 @@ function Header() {
                     {user.nickname}
                   </a>
                   <ul
-                    class="dropdown-menu p-3 dropdown-menu-end mt-5 rounded-0"
+                    className="dropdown-menu p-3 dropdown-menu-end mt-5 rounded-0"
                     aria-labelledby="dropdownMenuMember"
                   >
                     <li>
@@ -466,7 +585,11 @@ function Header() {
                         className="dropdown-item d-flex align-items-center p-3 pe-12"
                         to="/member"
                       >
-                        <img src="./images/member/history.png" alt="history" className="me-3" />
+                        <img
+                          src="./images/member/history.png"
+                          alt="history"
+                          className="me-3"
+                        />
                         會員紀錄
                       </Link>
                     </li>
@@ -481,28 +604,32 @@ function Header() {
                           handleLogout();
                         }}
                       >
-                        <img src="./images/member/logout.png" alt="logout" className="me-3" />
+                        <img
+                          src="./images/member/logout.png"
+                          alt="logout"
+                          className="me-3"
+                        />
                         登出
                       </Link>
                       {/* <!-- Modal --> */}
                       <div
-                        class="modal fade"
+                        className="modal fade"
                         id="logoutModal"
-                        tabindex="-1"
+                        tabIndex="-1"
                         aria-labelledby="logoutModalLabel"
                         aria-hidden="true"
                       >
-                        <div class="modal-dialog">
-                          <div class="modal-content p-5">
-                            <div class="modal-header">
+                        <div className="modal-dialog">
+                          <div className="modal-content p-5">
+                            <div className="modal-header">
                               <button
                                 type="button"
-                                class="btn-close"
+                                className="btn-close"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
                               ></button>
                             </div>
-                            <div class="modal-body text-center mt-3 text-neutral-800">
+                            <div className="modal-body text-center mt-3 text-neutral-800">
                               您已成功登出
                             </div>
                           </div>
@@ -557,13 +684,22 @@ function Header() {
                             id="loginfloatingInput"
                             name="loginfloatingInput"
                             placeholder="name@example.com"
-                            {...register("email", { required: "這個欄位是必填" })}
+                            {...register("email", {
+                              required: "這個欄位是必填",
+                            })}
                           />
-                          <span className="ms-1" style={{ fontSize: "8pt", color: "red" }}>
+                          <span
+                            className="ms-1"
+                            style={{ fontSize: "8pt", color: "red" }}
+                          >
                             {errors.email ? errors.email.message : ""}
                           </span>
-                          <label className="text-neutral-500 fs-7" htmlFor="loginfloatingInput">
-                            <i className="bi bi-search text-white"></i>輸入電子信箱
+                          <label
+                            className="text-neutral-500 fs-7"
+                            htmlFor="loginfloatingInput"
+                          >
+                            <i className="bi bi-search text-white"></i>
+                            輸入電子信箱
                           </label>
                         </div>
                         <div className="form-floating">
@@ -573,12 +709,20 @@ function Header() {
                             id="loginfloatingPassword"
                             name="loginfloatingPassword"
                             placeholder="Password"
-                            {...register("password", { required: "這個欄位是必填" })}
+                            {...register("password", {
+                              required: "這個欄位是必填",
+                            })}
                           />
-                          <span className="ms-1" style={{ fontSize: "8pt", color: "red" }}>
+                          <span
+                            className="ms-1"
+                            style={{ fontSize: "8pt", color: "red" }}
+                          >
                             {errors.password ? errors.password.message : ""}
                           </span>
-                          <label className="text-neutral-500" htmlFor="loginfloatingPassword">
+                          <label
+                            className="text-neutral-500"
+                            htmlFor="loginfloatingPassword"
+                          >
                             輸入密碼
                           </label>
                         </div>

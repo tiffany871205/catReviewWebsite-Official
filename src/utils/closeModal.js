@@ -20,6 +20,7 @@ function closeModal(modalId) {
       document.body.classList.remove("modal-open");
       document.body.style.removeProperty("padding-right");
       document.body.classList.add("overflow-auto");
+      document.body.style.overflow("auto");
     }
   } catch (err) {
     console.log(`關閉 Modal (${modalId}) 時發生錯誤:`, err);

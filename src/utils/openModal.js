@@ -13,6 +13,9 @@ function openModal(modalId) {
       modalElement.classList.add("show");
       modalElement.style.display = "block";
       document.body.classList.add("modal-open");
+      document.body.classList.remove("overflow-auto");
+      document.body.classList.add("overflow-hidden");
+      document.body.style.overflow("hidden");
 
       const backdrop = document.createElement("div");
       backdrop.className = "modal-backdrop fade show";

@@ -49,7 +49,7 @@ function SignUp() {
 
   return (
     <>
-      <div className="container mb-11 px-11">
+      <div className="container mb-11 px-11 signup-container">
         <h1 className="text-center fs-4 mt-11 mb-11 text-neutral-800">註冊會員帳號</h1>
 
         {/* 顯示註冊錯誤訊息 */}
@@ -59,7 +59,7 @@ function SignUp() {
           </div>
         )}
 
-        <form className="px-11" onSubmit={handleRegisterSubmit(onRegister)}>
+        <form onSubmit={handleRegisterSubmit(onRegister)}>
           {/* 輸入名字 */}
           <div className="form-floating mb-3">
             <input

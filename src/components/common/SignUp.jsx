@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import axios from "axios";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 function SignUp() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function SignUp() {
       // 清除之前的錯誤訊息
       setRegisterError("");
 
-      const response = await axios.post(`http://localhost:3000/register`, {
+      const response = await axios.post(`${API_BASE}}/register`, {
         nickname: data.nickname,
         email: data.email,
         password: data.password,

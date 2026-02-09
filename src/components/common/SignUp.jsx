@@ -5,6 +5,7 @@ import axios from "axios";
 
 function SignUp() {
   const navigate = useNavigate();
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const {
     register: registerForm,
@@ -33,7 +34,13 @@ function SignUp() {
       // 重置註冊表單
       resetRegister();
 
-      navigate("/index");
+      // 顯示成功 Modal
+      setShowSuccessModal(true);
+
+      // 3 秒後導向首頁
+      setTimeout(() => {
+        navigate("/index");
+      }, 1000);
     } catch (error) {
       console.error("註冊錯誤:", error);
       // 顯示錯誤訊息
@@ -156,35 +163,36 @@ function SignUp() {
           <button
             type="submit"
             className="btn btn-primary-500 mt-8 text-white w-100 py-1"
-            data-bs-toggle="modal"
-            data-bs-target="#signUpSuccessModal"
             style={{ width: "10px" }}
           >
             註冊
           </button>
         </form>
         {/* <!-- Modal --> */}
-        <div
-          className="modal fade"
-          id="signUpSuccessModal"
-          tabIndex="-1"
-          aria-labelledby="signUpSuccessModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog">
-            <div className="modal-content p-5">
-              <div className="modal-header">
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
+        {showSuccessModal && (
+          <div
+            className="modal fade show"
+            id="signUpSuccessModal"
+            tabIndex="-1"
+            aria-labelledby="signUpSuccessModalLabel"
+            aria-hidden="false"
+            style={{ display: "block" }}
+          >
+            <div className="modal-dialog">
+              <div className="modal-content p-5">
+                <div className="modal-header">
+                  <button
+                    type="button"
+                    className="btn-close"
+                    onClick={() => setShowSuccessModal(false)}
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body text-center mt-3 text-neutral-800">您已成功註冊</div>
               </div>
-              <div className="modal-body text-center mt-3 text-neutral-800">您已成功註冊</div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

@@ -2,22 +2,28 @@
   max-width: 100%;
 }
 
-.search-test-btn {
-  max-width: 100%;
-  button {
-    transform: translate(-10%, -115%);
-  }
+// .search-test-btn {
+//   max-width: 100%;
+//   button {
+//     transform: translate(-10%, -115%);
+//   }
+// }
+
+// .knowledge-banner {
+//   background-image: url("/public/images/knowledge/knowBanner.png");
+//   background-size: cover;
+//   background-position: center center;
+//   background-repeat: no-repeat;
+//   padding-top: 96px;
+//   padding-bottom: 396px;
+//   max-height: 532px;
+// }
+.knowledge-banner {
+  background: url("/images/knowledge/knowBanner.png") center/cover no-repeat;
+  padding: 96px 0 200px;
+  height: 532px;
 }
 
-.knowledge-banner {
-  background-image: url("/public/images/knowledge/knowBanner.png");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  padding-top: 96px;
-  padding-bottom: 396px;
-  max-height: 532px;
-}
 .food-title-color {
   color: $secondary-100;
 }
@@ -27,8 +33,9 @@
     background-image: url("/public/images/knowledge/rwdKnowBanner.jpg");
     padding-top: 56px;
     padding-bottom: 374px;
-    max-height: 600px;
+    height: 600px;
   }
+
   .food-title-color {
     color: $primary-800;
   }
@@ -36,11 +43,16 @@
 
 .search-position-relative {
   position: relative;
+  width: 100%;
 }
 .search-position-absolute {
   position: absolute;
-  top: 10%;
-  right: 3%;
+  top: 50%;
+  right: 8%;
+  transform: translateY(-50%);
+  border: none;
+  padding: 4px 12px;
+  z-index: 5;
 }
 
 .knowledge-search {

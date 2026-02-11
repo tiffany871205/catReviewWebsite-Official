@@ -1,0 +1,130 @@
+.search-test {
+  max-width: 100%;
+}
+
+// .search-test-btn {
+//   max-width: 100%;
+//   button {
+//     transform: translate(-10%, -115%);
+//   }
+// }
+
+// .knowledge-banner {
+//   background-image: url("/public/images/knowledge/knowBanner.png");
+//   background-size: cover;
+//   background-position: center center;
+//   background-repeat: no-repeat;
+//   padding-top: 96px;
+//   padding-bottom: 396px;
+//   max-height: 532px;
+// }
+.knowledge-banner {
+  background: url("/images/knowledge/knowBanner.png") center/cover no-repeat;
+  padding: 96px 0 200px;
+  height: 532px;
+}
+
+.food-title-color {
+  color: $secondary-100;
+}
+
+@media (max-width: 996px) {
+  .knowledge-banner {
+    background-image: url("/public/images/knowledge/rwdKnowBanner.jpg");
+    padding-top: 56px;
+    padding-bottom: 374px;
+    height: 600px;
+  }
+
+  .food-title-color {
+    color: $primary-800;
+  }
+}
+
+.search-position-relative {
+  position: relative;
+  width: 100%;
+}
+.search-position-absolute {
+  position: absolute;
+  top: 50%;
+  right: 8%;
+  transform: translateY(-50%);
+  border: none;
+  padding: 4px 12px;
+  z-index: 5;
+}
+
+.knowledge-search {
+  width: 416px;
+}
+
+@media (max-width: 996px) {
+  .knowledge-search {
+    width: 351px;
+  }
+}
+
+.knowledge-card {
+  width: 290px;
+}
+
+.knowledge-card-1 {
+  width: 290px;
+}
+
+@media (max-width: 767px) {
+  .knowledge-card {
+    width: 351px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.knowledge-card:hover {
+  border: solid 8px white;
+  box-shadow: 10px 5px 5px #b8966880;
+  img {
+    opacity: 0.5;
+  }
+  .button {
+    display: block;
+  }
+  .newspaper-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.button {
+  display: none;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 50px;
+}
+
+.truncate-multi {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.knowledge-tag {
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.knowledge-btn:hover {
+  color: $primary-800;
+  background-color: $primary-200;
+}
+
+.dropdown-item:hover {
+  color: #ffffff;
+  background-color: $primary-500;
+}

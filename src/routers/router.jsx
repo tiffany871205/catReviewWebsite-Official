@@ -4,6 +4,7 @@ import Food from "../pages/Food.jsx";
 import Knowledge from "../pages/Knowledge.jsx";
 import Contrib from "../pages/Contrib.jsx";
 import Member from "../pages/Member.jsx";
+import SignUp from "../components/common/SignUp.jsx";
 
 const routes = [
   {
@@ -29,6 +30,10 @@ const routes = [
       {
         path: "member",
         element: <Member />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
       },
     ],
   },

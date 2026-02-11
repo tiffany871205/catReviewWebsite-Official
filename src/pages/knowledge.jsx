@@ -1,106 +1,8 @@
-// import { useState } from "react";
-// import { Modal, Popover } from "bootstrap";
-
-// function KnowledgeBanner() {
-//   const [keyword, setKeyword] = useState("");
-
-//   /*1-1. banner部分 - 搜尋框 🔥🔥🔥 */
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     alert(`你搜尋的是：${keyword}`); // 先用 alert 立即確認有沒有觸發
-//   };
-//   /*1-1. banner部分 - 搜尋框 🔥🔥 */
-
-//   return (
-//     <>
-//       {/*1. banner部分*/}
-//       <section className="knowledge-banner">
-//         <div className="container">
-//           <div className="row justify-content-lg-end">
-//             <div className="col-lg-4 col-12">
-//               <div className="d-flex flex-column">
-//                 <img
-//                   src="public/images/index/section02_decoration.svg"
-//                   alt="deco"
-//                   className="mb-lg-10 mb-6 align-self-center"
-//                 />
-
-//                 {/* 桌機版標題 */}
-//                 <img
-//                   src="public/images/knowledge/knowledge-banner-title.png"
-//                   alt="banner-title"
-//                   className="mb-lg-5 align-self-center d-lg-block d-none"
-//                 />
-
-//                 {/* 手機版標題 */}
-//                 <img
-//                   src="public/images/knowledge/rwdknowledge-banner-title.png"
-//                   alt="banner-title"
-//                   className="mb-2 align-self-center d-lg-none d-block"
-//                 />
-
-//                 <h1 className="fs-lg-5 fs-7 mb-lg-10 mb-6 text-secondary-100 align-self-center">
-//                   讓你更懂你的喵皇！
-//                 </h1>
-//               </div>
-
-//               <div className="justify-content-center w-100">
-//                 <form
-//                   onSubmit={handleSubmit}
-//                   className="position-relative w-100"
-//                 >
-//                   <input
-//                     type="text"
-//                     className="form-control rounded-pill py-2 ps-3 pe-5"
-//                     placeholder="＃搜尋文章主題"
-//                     value={keyword}
-//                     onChange={(e) => setKeyword(e.target.value)}
-//                   />
-//                   <button
-//                     className="btn btn-primary-600 rounded position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center"
-//                     type="submit"
-//                   >
-//                     <i
-//                       className="bi bi-search text-white"
-//                       style={{ fontSize: "1.2rem" }}
-//                     ></i>
-//                   </button>
-//                 </form>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </section>
-//       123
-//     </>
-//   );
-// }
-
-// export default function Knowledge() {
-//   return (
-//     <>
-//       <KnowledgeBanner /> {/* 在這裡呼叫上面的 Banner */}
-//       <div className="container mt-5">
-//         <h1>我是專欄區內容</h1>
-//         <p>這裡可以放文章列表...</p>
-//       </div>
-//     </>
-//   );
-// }
-
 import { useEffect, useMemo, useState } from "react";
 import { Popover } from "bootstrap";
 
-/**
- * 注意：
- * 1) 你要確保有載入 bootstrap 的 JS（bootstrap.bundle.min.js）
- *    才能讓 Modal / Popover 的 data-bs-* 生效
- * 2) React 裡 public 的圖片路徑通常用 "/assets/..." 或 "/images/..."
- *    你原本 "../assets/..." 建議改成 "/assets/..."
- */
-
 /* -----------------------------
-   1) 上方 Banner（你前面那段改成可控 props 版本）
+   1) 最上方 Banner（你前面那段改成可控 props 版本）
 ------------------------------ */
 function KnowledgeBanner({ keyword, setKeyword, onSubmit }) {
   const handleSubmit = (e) => {
@@ -672,7 +574,7 @@ function Pagination({ page, totalPages, setPage }) {
 }
 
 /* -----------------------------
-   6) 主頁：合併所有元件 + 共用狀態（不衝突的關鍵）
+   6) 主頁：合併所有元件 + 共用狀態
 ------------------------------ */
 export default function Knowledge() {
   // 共用狀態：banner / sidebar / mobile 都吃同一份
@@ -681,7 +583,7 @@ export default function Knowledge() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [page, setPage] = useState(1);
 
-  // 你的 dropdown 選項
+  // dropdown 選項 🔥待調整 - 等有時間再來製作互動部分🔥
   const topics = [
     "所有主題",
     "貓咪飲食指南",
@@ -702,7 +604,7 @@ export default function Knowledge() {
     "養貓前準備",
   ];
 
-  // 文章資料陣列（可以換成 API 回來的 list）
+  // 文章資料陣列（之後可以換成 API 回來的 list）
   const articles = [
     {
       id: 1,
@@ -1101,8 +1003,6 @@ export default function Knowledge() {
   );
 
   const onBannerSubmit = () => {
-    // 你原本用 alert 確認觸發：這裡保留也行
-    // alert(`你搜尋的是：${keyword}`);
     setPage(1);
   };
 
@@ -1115,7 +1015,7 @@ export default function Knowledge() {
         onSubmit={onBannerSubmit}
       />
 
-      {/* 2) 你提供的 section 改成 React 版本 */}
+      {/* 2) 原本的section 改成 React 版本 */}
       <section className="bg-secondary-100 pt-lg-11 pb-0 pb-lg-12 pb-11">
         {/* Mobile filter bar */}
         <MobileFilterBar

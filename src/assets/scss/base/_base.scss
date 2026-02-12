@@ -33,3 +33,13 @@ li {
   margin: 0;
   padding: 0;
 }
+
+/* 強制覆蓋 Bootstrap 的 overflow */
+body.modal-open {
+  overflow: hidden !important;
+}
+
+body:not(.modal-open) {
+  overflow: auto !important;
+  padding-right: 0 !important;
+}

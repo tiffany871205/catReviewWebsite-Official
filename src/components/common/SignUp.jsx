@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import axios from "axios";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 function SignUp() {
   const navigate = useNavigate();
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const {
     register: registerForm,
@@ -21,7 +23,7 @@ function SignUp() {
       // 清除之前的錯誤訊息
       setRegisterError("");
 
-      const response = await axios.post(`http://localhost:3000/register`, {
+      const response = await axios.post(`${API_BASE}}/register`, {
         nickname: data.nickname,
         email: data.email,
         password: data.password,
@@ -33,7 +35,13 @@ function SignUp() {
       // 重置註冊表單
       resetRegister();
 
-      navigate("/index");
+      // 顯示成功 Modal
+      setShowSuccessModal(true);
+
+      // 3 秒後導向首頁
+      setTimeout(() => {
+        navigate("/index");
+      }, 1000);
     } catch (error) {
       console.error("註冊錯誤:", error);
       // 顯示錯誤訊息
@@ -49,7 +57,7 @@ function SignUp() {
 
   return (
     <>
-      <div className="container mb-11 px-11">
+      <div className="container mb-11 px-11 signup-container">
         <h1 className="text-center fs-4 mt-11 mb-11 text-neutral-800">註冊會員帳號</h1>
 
         {/* 顯示註冊錯誤訊息 */}
@@ -59,7 +67,7 @@ function SignUp() {
           </div>
         )}
 
-        <form className="px-11" onSubmit={handleRegisterSubmit(onRegister)}>
+        <form onSubmit={handleRegisterSubmit(onRegister)}>
           {/* 輸入名字 */}
           <div className="form-floating mb-3">
             <input
@@ -156,35 +164,36 @@ function SignUp() {
           <button
             type="submit"
             className="btn btn-primary-500 mt-8 text-white w-100 py-1"
-            data-bs-toggle="modal"
-            data-bs-target="#signUpSuccessModal"
             style={{ width: "10px" }}
           >
             註冊
           </button>
         </form>
         {/* <!-- Modal --> */}
-        <div
-          className="modal fade"
-          id="signUpSuccessModal"
-          tabIndex="-1"
-          aria-labelledby="signUpSuccessModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog">
-            <div className="modal-content p-5">
-              <div className="modal-header">
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
+        {showSuccessModal && (
+          <div
+            className="modal fade show"
+            id="signUpSuccessModal"
+            tabIndex="-1"
+            aria-labelledby="signUpSuccessModalLabel"
+            aria-hidden="false"
+            style={{ display: "block" }}
+          >
+            <div className="modal-dialog">
+              <div className="modal-content p-5">
+                <div className="modal-header">
+                  <button
+                    type="button"
+                    className="btn-close"
+                    onClick={() => setShowSuccessModal(false)}
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body text-center mt-3 text-neutral-800">您已成功註冊</div>
               </div>
-              <div className="modal-body text-center mt-3 text-neutral-800">您已成功註冊</div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </>
   );

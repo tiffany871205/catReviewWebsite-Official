@@ -15,6 +15,7 @@
   "dependencies": {
     "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
     "json-server": "^0.17.1",
     "json-server-auth": "^2.1.0",
     "quill": "^2.0.3",

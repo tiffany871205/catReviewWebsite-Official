@@ -20,21 +20,21 @@ function KnowledgeBanner({ keyword, setKeyword, onSubmit }) {
             <div className="col-lg-4 col-12">
               <div className="d-flex flex-column">
                 <img
-                  src="public/images/index/section02_decoration.svg"
+                  src="./images/index/section02_decoration.svg"
                   alt="deco"
                   className="mb-lg-10 mb-6 align-self-center"
                 />
 
                 {/* 桌機版標題 */}
                 <img
-                  src="public/images/knowledge/knowledge-banner-title.png"
+                  src="./images/knowledge/knowledge-banner-title.png"
                   alt="banner-title"
                   className="mb-lg-5 align-self-center d-lg-block d-none"
                 />
 
                 {/* 手機版標題 */}
                 <img
-                  src="public/images/knowledge/rwdknowledge-banner-title.png"
+                  src="./images/knowledge/rwdknowledge-banner-title.png"
                   alt="banner-title"
                   className="mb-2 align-self-center d-lg-none d-block"
                 />
@@ -108,7 +108,7 @@ function MobileFilterBar({
 
           {/* 功能用途說明 icon（開 modal） */}
           <img
-            src="public/images/knowledge/info-tip.svg"
+            src="./images/knowledge/info-tip.svg"
             alt="information-circle"
             className="mx-1"
             tabIndex={0}
@@ -183,7 +183,7 @@ function MobileFilterBar({
 
           {/* 漢堡（篩選 modal） */}
           <img
-            src="public/images/knowledge/adjustment.svg"
+            src="./images/knowledge/adjustment.svg"
             alt="adjustment"
             className="me-1"
             tabIndex={0}
@@ -300,10 +300,7 @@ function MobileFilterBar({
                     data-bs-dismiss="modal"
                     onClick={onClear}
                   >
-                    <img
-                      src="public/images/knowledge/trash.svg"
-                      alt="trash-icon"
-                    />{" "}
+                    <img src="./images/knowledge/trash.svg" alt="trash-icon" />{" "}
                     清除重填
                   </button>
 
@@ -315,7 +312,7 @@ function MobileFilterBar({
                     data-bs-dismiss="modal"
                   >
                     <img
-                      src="public/images/knowledge/funnel.svg"
+                      src="./images/knowledge/funnel.svg"
                       alt="funnel-icon"
                     />{" "}
                     篩選
@@ -366,7 +363,7 @@ function DesktopFilterSidebar({
         <div className="d-flex ps-2 pe-2 align-items-center">
           <p className="fs-8 pb-1 me-auto">搜尋主題</p>
           <img
-            src="public/images/knowledge/info-tip.svg"
+            src="./images/knowledge/info-tip.svg"
             alt="information-circle"
             tabIndex={0}
             role="button"
@@ -392,7 +389,7 @@ function DesktopFilterSidebar({
         <div className="d-flex ps-2 pe-2 align-items-center">
           <p className="fs-8 pb-1 me-auto">主題</p>
           <img
-            src="public/images/knowledge/info-tip.svg"
+            src="./images/knowledge/info-tip.svg"
             alt="information-circle"
             tabIndex={0}
             role="button"
@@ -439,7 +436,7 @@ function DesktopFilterSidebar({
         <div className="d-flex ps-2 pe-2 align-items-center">
           <p className="fs-8 pb-1 me-auto">知識類別</p>
           <img
-            src="public/images/knowledge/info-tip.svg"
+            src="./images/knowledge/info-tip.svg"
             alt="information-circle"
             tabIndex={0}
             role="button"
@@ -497,7 +494,7 @@ function KnowledgeCard({ article }) {
 
         <p className="button border-pill position-absolute top-50 start-50 translate-middle">
           <img
-            src="public/images/knowledge/newspaper_hover.png"
+            src="./images/knowledge/newspaper_hover.png"
             className="newspaper-icon"
             alt=""
           />
@@ -667,7 +664,7 @@ export default function Knowledge() {
   //       "貓咪雖然不會說話，但牠們肯定能用其他方式表達自己的感受。你的貓咪生氣的時候可能會有一些超明顯的...",
   //     topicId: 3,
   //     categoryId: 302,
-  //     tags: ["行為與心理", "情緒觀 //     img: "public/images/knowledge/know-img1.png",
+  //     tags: ["行為與心理", "情緒觀 //     img: "./images/knowledge/know-img1.png",
   //     herf: "#",
   //     createdAt: "2026-01-01",
   //     updatedAt: "2026-01-01",
@@ -680,7 +677,7 @@ export default function Knowledge() {
   //     topicId: 1,
   //     categoryId: 101,
   //     tags: ["貓咪飲食指南", "糧食類型解析"],
-  //mg: "public/images/knowledge/know-img2.png",
+  //mg: "./images/knowledge/know-img2.png",
   //     herf: "#",
   //     createdAt: "2026-01-02",
   //     updatedAt: "2026-01-02",
@@ -693,7 +690,7 @@ export default function Knowledge() {
   //     topicId: 1,
   //     categoryId: 102,
   //     tags: ["貓咪飲食指南", "成份與標籤知識"],
-  //mg: "public/images/knowledge/know-img3.png",
+  //mg: "./images/knowledge/know-img3.png",
   //     herf: "#",
   //     createdAt: "2026-01-03",
   //     updatedAt: "2026-01-03",
@@ -705,7 +702,7 @@ export default function Knowledge() {
   //       "貓咪真是奇妙的生物。牠們那雙靈活的爪子除了伸縮自如，竟然還是排汗的管道？讓我們揭開肉墊...",
   //     topicId: 3,
   //     categoryId: 301,
-  //     tags: ["行為與心理", "行為解 //     img: "public/images/knowledge/know-img4.png",
+  //     tags: ["行為與心理", "行為解 //     img: "./images/knowledge/know-img4.png",
   //     herf: "#",
   //     createdAt: "2026-01-04",
   //     updatedAt: "2026-01-04",
@@ -717,7 +714,7 @@ export default function Knowledge() {
   //       "從尾巴、耳朵到鬍鬚，每個小動作都在傳達不同的訊息。學會解讀這些訊號，你就能更了解主子在...",
   //     topicId: 3,
   //     categoryId: 301,
-  //     tags: ["行為與心理", "行為解 //     img: "public/images/knowledge/know-img5.png",
+  //     tags: ["行為與心理", "行為解 //     img: "./images/knowledge/know-img5.png",
   //     herf: "#",
   //     createdAt: "2026-01-05",
   //     updatedAt: "2026-01-05",
@@ -730,7 +727,7 @@ export default function Knowledge() {
   //     topicId: 4,
   //     categoryId: 401,
   //     tags: ["新手貓奴入門", "幼貓照護"],
-  //mg: "public/images/knowledge/know-img6.png",
+  //mg: "./images/knowledge/know-img6.png",
   //     herf: "#",
   //     createdAt: "2026-01-06",
   //     updatedAt: "2026-01-06",
@@ -742,7 +739,7 @@ export default function Knowledge() {
   //       "貓咪進入熟齡期後，身體需求大不同。了解腎臟、關節等常見問題，陪主子優雅老去是貓奴最重要...",
   //     topicId: 2,
   //     categoryId: 205,
-  //     tags: ["健康與疾病", "老貓照 //     img: "public/images/knowledge/know-img7.png",
+  //     tags: ["健康與疾病", "老貓照 //     img: "./images/knowledge/know-img7.png",
   //     herf: "#",
   //     createdAt: "2026-01-07",
   //     updatedAt: "2026-01-07",
@@ -755,7 +752,7 @@ export default function Knowledge() {
   //     topicId: 3,
   //     categoryId: 303,
   //     tags: ["行為與心理", "行為問題解決"],
-  //mg: "public/images/knowledge/know-img8.png",
+  //mg: "./images/knowledge/know-img8.png",
   //     herf: "#",
   //     createdAt: "2026-01-08",
   //     updatedAt: "2026-01-08",
@@ -767,7 +764,7 @@ export default function Knowledge() {
   //       "新貓加入該如何隔離？如何分配貓砂盆資源？讓每隻貓都有自己的空間，打造不打架的多貓幸福...",
   //     topicId: 3,
   //     categoryId: 304,
-  //     tags: ["行為與心理", "多貓家 //     img: "public/images/knowledge/know-img9.png",
+  //     tags: ["行為與心理", "多貓家 //     img: "./images/knowledge/know-img9.png",
   //     herf: "#",
   //     createdAt: "2026-01-09",
   //     updatedAt: "2026-01-09",
@@ -779,7 +776,7 @@ export default function Knowledge() {
   //       "買了一堆玩具，主子卻只愛紙箱？選對玩具不只能讓貓咪開心，還能消耗精力。這篇教你如何根據狩獵本能挑選最適合的玩具！",
   //     topicId: 3,
   //     categoryId: 305,
-  //     tags: ["行為與心理", "遊戲建 //     img: "public/images/knowledge/know-img10.png",
+  //     tags: ["行為與心理", "遊戲建 //     img: "./images/knowledge/know-img10.png",
   //     herf: "#",
   //     createdAt: "2026-01-10",
   //     updatedAt: "2026-01-10",
@@ -792,7 +789,7 @@ export default function Knowledge() {
   //     topicId: 4,
   //     categoryId: 402,
   //     tags: ["新手貓奴入門", "初養用品"],
-  //mg: "public/images/knowledge/know-img11.png",
+  //mg: "./images/knowledge/know-img11.png",
   //     herf: "#",
   //     createdAt: "2026-01-11",
   //     updatedAt: "2026-01-11",
@@ -804,7 +801,7 @@ export default function Knowledge() {
   //       "疫苗是保護貓咪健康的重要防線。貓三合一、狂犬病哪些必打？多久補強一次？這篇一次帶你了解核心與非核心疫苗的差異。",
   //     topicId: 2,
   //     categoryId: 201,
-  //     tags: ["健康與疾病", "健康照 //     img: "public/images/knowledge/know-img12.png",
+  //     tags: ["健康與疾病", "健康照 //     img: "./images/knowledge/know-img12.png",
   //     herf: "#",
   //     createdAt: "2026-01-12",
   //     updatedAt: "2026-01-12",
@@ -816,7 +813,7 @@ export default function Knowledge() {
   //       "80%的成貓都有牙齒問題！口臭不只是味道難聞，更可能影響心腎功能。學習正確的刷牙與居家照護，讓主子擁有一口好牙。",
   //     topicId: 2,
   //     categoryId: 201,
-  //     tags: ["健康與疾病", "健康照 //     img: "public/images/knowledge/know-img13.png",
+  //     tags: ["健康與疾病", "健康照 //     img: "./images/knowledge/know-img13.png",
   //     herf: "#",
   //     createdAt: "2026-01-13",
   //     updatedAt: "2026-01-13",
@@ -828,7 +825,7 @@ export default function Knowledge() {
   //       "肥貓雖然可愛，但糖尿病與關節炎更可怕！教你如何透過 BCS 評分判斷貓咪體態，並制定科學的減重計畫，守護主子健康。",
   //     topicId: 2,
   //     categoryId: 203,
-  //     tags: ["健康與疾病", "身體警 //     img: "public/images/knowledge/know-img14.png",
+  //     tags: ["健康與疾病", "身體警 //     img: "./images/knowledge/know-img14.png",
   //     herf: "#",
   //     createdAt: "2026-01-14",
   //     updatedAt: "2026-01-14",
@@ -840,7 +837,7 @@ export default function Knowledge() {
   //       "搬家、新成員、作息變動都可能讓敏感的貓咪壓力爆表。辨識過度理毛等壓力訊號，提供安全的躲藏空間，打造紓壓低敏環境。",
   //     topicId: 3,
   //     categoryId: 302,
-  //     tags: ["行為與心理", "情緒觀 //     img: "public/images/knowledge/know-img15.png",
+  //     tags: ["行為與心理", "情緒觀 //     img: "./images/knowledge/know-img15.png",
   //     herf: "#",
   //     createdAt: "2026-01-15",
   //     updatedAt: "2026-01-15",
@@ -852,7 +849,7 @@ export default function Knowledge() {
   //       "預防勝於治療！深入了解泌尿系統疾病、慢性腎病與糖尿病的徵兆。7歲以上老貓如何透過定期健檢及早發現病灶？",
   //     topicId: 2,
   //     categoryId: 202,
-  //     tags: ["健康與疾病", "常見疾 //     img: "public/images/knowledge/know-img16.png",
+  //     tags: ["健康與疾病", "常見疾 //     img: "./images/knowledge/know-img16.png",
   //     herf: "#",
   //     createdAt: "2026-01-16",
   //     updatedAt: "2026-01-16",
@@ -865,7 +862,7 @@ export default function Knowledge() {
   //     topicId: 4,
   //     categoryId: 404,
   //     tags: ["新手貓奴入門", "環境設置"],
-  //mg: "public/images/knowledge/know-img17.png",
+  //mg: "./images/knowledge/know-img17.png",
   //     herf: "#",
   //     createdAt: "2026-01-17",
   //     updatedAt: "2026-01-17",
@@ -878,7 +875,7 @@ export default function Knowledge() {
   //     topicId: 4,
   //     categoryId: 402,
   //     tags: ["新手貓奴入門", "初養用品"],
-  //mg: "public/images/knowledge/know-img18.png",
+  //mg: "./images/knowledge/know-img18.png",
   //     herf: "#",
   //     createdAt: "2026-01-18",
   //     updatedAt: "2026-01-18",
@@ -891,7 +888,7 @@ export default function Knowledge() {
   //     topicId: 4,
   //     categoryId: 403,
   //     tags: ["新手貓奴入門", "外出準備"],
-  //mg: "public/images/knowledge/know-img19.png",
+  //mg: "./images/knowledge/know-img19.png",
   //     herf: "#",
   //     createdAt: "2026-01-19",
   //     updatedAt: "2026-01-19",
@@ -903,7 +900,7 @@ export default function Knowledge() {
   //       "百合、黃金葛竟是貓咪殺手？許多常見居家綠植對貓具備致命毒性。這篇教你辨識危險植物，並推薦適合貓咪啃食的室內綠化方案。",
   //     topicId: 2,
   //     categoryId: 204,
-  //     tags: ["健康與疾病", "居家安 //     img: "public/images/knowledge/know-img20.png",
+  //     tags: ["健康與疾病", "居家安 //     img: "./images/knowledge/know-img20.png",
   //     herf: "#",
   //     createdAt: "2026-01-20",
   //     updatedAt: "2026-01-20",
@@ -915,7 +912,7 @@ export default function Knowledge() {
   //       "當主子意外誤食或哈姆立克急救時該怎麼辦？掌握黃金救治時間，學會基礎的心肺復甦術與傷口止血處理，是每位稱職貓奴的必修課。",
   //     topicId: 2,
   //     categoryId: 206,
-  //     tags: ["健康與疾病", "急救知 //     img: "public/images/knowledge/know-img21.png",
+  //     tags: ["健康與疾病", "急救知 //     img: "./images/knowledge/know-img21.png",
   //     herf: "#",
   //     createdAt: "2026-01-21",
   //     updatedAt: "2026-01-21",
@@ -927,7 +924,7 @@ export default function Knowledge() {
   //       "為什麼有的貓對貓薄荷沒反應？深入解析這些「貓界大麻」的原理與差異。正確給予紓壓小物，能有效緩解貓咪焦慮並增加運動量。",
   //     topicId: 3,
   //     categoryId: 306,
-  //     tags: ["行為與心理", "紓壓小 //     img: "public/images/knowledge/know-img22.png",
+  //     tags: ["行為與心理", "紓壓小 //     img: "./images/knowledge/know-img22.png",
   //     herf: "#",
   //     createdAt: "2026-01-22",
   //     updatedAt: "2026-01-22",
@@ -940,7 +937,7 @@ export default function Knowledge() {
   //     topicId: 4,
   //     categoryId: 404,
   //     tags: ["新手貓奴入門", "環境設置"],
-  //mg: "public/images/knowledge/know-img23.png",
+  //mg: "./images/knowledge/know-img23.png",
   //     herf: "#",
   //     createdAt: "2026-01-23",
   //     updatedAt: "2026-01-23",
@@ -953,7 +950,7 @@ export default function Knowledge() {
   //     topicId: 4,
   //     categoryId: 405,
   //     tags: ["新手貓奴入門", "科技照護"],
-  //mg: "public/images/knowledge/know-img24.png",
+  //mg: "./images/knowledge/know-img24.png",
   //     herf: "#",
   //     createdAt: "2026-01-24",
   //     updatedAt: "2026-01-24",
@@ -965,7 +962,7 @@ export default function Knowledge() {
   //       "一年兩次的換毛大戰又要開始了？除了勤快吸地，如何透過飲食調整減少廢毛產生，並正確選用梳具防止貓咪因舔毛過度引發腸胃阻塞。",
   //     topicId: 2,
   //     categoryId: 203,
-  //     tags: ["健康與疾病", "日常照 //     img: "public/images/knowledge/know-img25.png",
+  //     tags: ["健康與疾病", "日常照 //     img: "./images/knowledge/know-img25.png",
   //     herf: "#",
   //     createdAt: "2026-01-25",
   //     updatedAt: "2026-01-25",
@@ -977,7 +974,7 @@ export default function Knowledge() {
   //       "呼嚕聲不代表一定開心？受傷或疼痛時，貓咪也會透過低頻震動來自我療癒。深入研究貓咪獨特的生理頻率與其傳達的情緒密碼。",
   //     topicId: 3,
   //     categoryId: 301,
-  //     tags: ["行為與心理", "行為解 //     img: "public/images/knowledge/know-img26.png",
+  //     tags: ["行為與心理", "行為解 //     img: "./images/knowledge/know-img26.png",
   //     herf: "#",
   //     createdAt: "2026-01-26",
   //     updatedAt: "2026-01-26",
@@ -990,7 +987,7 @@ export default function Knowledge() {
   //     topicId: 4,
   //     categoryId: 404,
   //     tags: ["新手貓奴入門", "日常護理"],
-  //mg: "public/images/knowledge/know-img27.png",
+  //mg: "./images/knowledge/know-img27.png",
   //     herf: "#",
   //     createdAt: "2026-01-27",
   //     updatedAt: "2026-01-27",

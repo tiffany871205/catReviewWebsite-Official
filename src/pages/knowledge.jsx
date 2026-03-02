@@ -578,7 +578,6 @@ function Pagination({ page, totalPages, setPage }) {
    6) 主頁
 ------------------------------ */
 export default function Knowledge() {
-  // 共用狀態：banner / sidebar / mobile 都吃同一份
   const [keyword, setKeyword] = useState("");
   const [selectedTopic, setSelectedTopic] = useState("所有主題");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -592,30 +591,33 @@ export default function Knowledge() {
     "行為與心理",
     "新手貓奴入門",
   ];
-  const categories = [
-    "所有知識類別",
-    "糧食類型解析",
-    "成份與標籤知識",
-    "換糧指南",
-    "特殊處方糧",
-    "自製食物",
-    "飲水與水分攝取",
-    "情緒觀察",
-    "多貓家庭",
-    "養貓前準備",
-  ];
 
   const categoryMapping = {
     所有主題: [
-      "糧食類型解析",
-      "成份與標籤知識",
-      "換糧指南",
-      "特殊處方糧",
-      "自製食物",
-      "飲水與水分攝取",
-      "情緒觀察",
-      "多貓家庭",
-      "養貓前準備",
+      // "糧食類型解析",
+      // "成份與標籤知識",
+      // "換糧指南",
+      // "特殊處方糧",
+      // "自製食物",
+      // "飲水與水分攝取",
+      // "健康照護",
+      // "常見疾病",
+      // "身體警訊",
+      // "居家安全",
+      // "老貓照護",
+      // "急救知識",
+      // "行為解讀",
+      // "情緒觀察",
+      // "行為問題解決",
+      // "多貓家庭",
+      // "遊戲建議",
+      // "紓壓小物",
+      // "幼貓照護",
+      // "養貓前準備",
+      // "初養用品",
+      // "環境設置",
+      // "日常護理",
+      // "科技照護",
     ],
     貓咪飲食指南: [
       "糧食類型解析",
@@ -642,357 +644,33 @@ export default function Knowledge() {
       "紓壓小物",
     ],
     新手貓奴入門: [
+      "幼貓照護",
       "養貓前準備",
       "初養用品",
-      "外出準備",
       "環境設置",
       "日常護理",
       "科技照護",
     ],
   };
 
+  // const categories = [
+  //   "所有知識類別",
+  //   "糧食類型解析",
+  //   "成份與標籤知識",
+  //   "換糧指南",
+  //   "特殊處方糧",
+  //   "自製食物",
+  //   "飲水與水分攝取",
+  //   "情緒觀察",
+  //   "多貓家庭",
+  //   "養貓前準備",
+  // ];
+
   // dropdown 選項 🔥待調整 - 等有時間再來製作互動部分-end🔥
 
-  // 文章資料陣列（之後可以換成 API 回來的 list）
+  // 文章資料陣列
 
   const articles = db.knowledge;
-  // const articles = [
-  //   {
-  //     id: 1,
-  //     title: "如何判斷貓咪是否生氣？",
-  //     excerpt:
-  //       "貓咪雖然不會說話，但牠們肯定能用其他方式表達自己的感受。你的貓咪生氣的時候可能會有一些超明顯的...",
-  //     topicId: 3,
-  //     categoryId: 302,
-  //     tags: ["行為與心理", "情緒觀 //     img: "./images/knowledge/know-img1.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-01",
-  //     updatedAt: "2026-01-01",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "各式糧食類型大解析",
-  //     excerpt:
-  //       "市面貓糧種類繁多，乾糧、濕糧、生食、冷凍乾燥差在哪？掌握各類糧食特色、優缺，才能為毛孩挑...",
-  //     topicId: 1,
-  //     categoryId: 101,
-  //     tags: ["貓咪飲食指南", "糧食類型解析"],
-  //mg: "./images/knowledge/know-img2.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-02",
-  //     updatedAt: "2026-01-02",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "如何閱讀貓糧成分？",
-  //     excerpt:
-  //       "我們都想給貓咪餵食營養豐富的食物，但閱讀貓糧標籤卻並非易事。市售貓糧包裝上琳瑯滿目，真相其實...",
-  //     topicId: 1,
-  //     categoryId: 102,
-  //     tags: ["貓咪飲食指南", "成份與標籤知識"],
-  //mg: "./images/knowledge/know-img3.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-03",
-  //     updatedAt: "2026-01-03",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "關於貓爪的10個有趣事情",
-  //     excerpt:
-  //       "貓咪真是奇妙的生物。牠們那雙靈活的爪子除了伸縮自如，竟然還是排汗的管道？讓我們揭開肉墊...",
-  //     topicId: 3,
-  //     categoryId: 301,
-  //     tags: ["行為與心理", "行為解 //     img: "./images/knowledge/know-img4.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-04",
-  //     updatedAt: "2026-01-04",
-  //   },
-  //   {
-  //     id: 5,
-  //     title: "貓咪肢體語言解密",
-  //     excerpt:
-  //       "從尾巴、耳朵到鬍鬚，每個小動作都在傳達不同的訊息。學會解讀這些訊號，你就能更了解主子在...",
-  //     topicId: 3,
-  //     categoryId: 301,
-  //     tags: ["行為與心理", "行為解 //     img: "./images/knowledge/know-img5.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-05",
-  //     updatedAt: "2026-01-05",
-  //   },
-  //   {
-  //     id: 6,
-  //     title: "幼貓照護指南",
-  //     excerpt:
-  //       "剛帶回家的小奶貓又萌又脆弱！從飲食代奶、環境安全到健康疫苗管理，新手貓奴必看的成...",
-  //     topicId: 4,
-  //     categoryId: 401,
-  //     tags: ["新手貓奴入門", "幼貓照護"],
-  //mg: "./images/knowledge/know-img6.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-06",
-  //     updatedAt: "2026-01-06",
-  //   },
-  //   {
-  //     id: 7,
-  //     title: "老年貓照護要點",
-  //     excerpt:
-  //       "貓咪進入熟齡期後，身體需求大不同。了解腎臟、關節等常見問題，陪主子優雅老去是貓奴最重要...",
-  //     topicId: 2,
-  //     categoryId: 205,
-  //     tags: ["健康與疾病", "老貓照 //     img: "./images/knowledge/know-img7.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-07",
-  //     updatedAt: "2026-01-07",
-  //   },
-  //   {
-  //     id: 8,
-  //     title: "貓咪行為問題解決法",
-  //     excerpt:
-  //       "亂尿尿、破壞家具、半夜暴走？這些行為背後都有原因。找出問題根源，用對方法，才能跟主子...",
-  //     topicId: 3,
-  //     categoryId: 303,
-  //     tags: ["行為與心理", "行為問題解決"],
-  //mg: "./images/knowledge/know-img8.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-08",
-  //     updatedAt: "2026-01-08",
-  //   },
-  //   {
-  //     id: 9,
-  //     title: "多貓家庭和諧指南",
-  //     excerpt:
-  //       "新貓加入該如何隔離？如何分配貓砂盆資源？讓每隻貓都有自己的空間，打造不打架的多貓幸福...",
-  //     topicId: 3,
-  //     categoryId: 304,
-  //     tags: ["行為與心理", "多貓家 //     img: "./images/knowledge/know-img9.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-09",
-  //     updatedAt: "2026-01-09",
-  //   },
-  //   {
-  //     id: 10,
-  //     title: "貓咪玩具選購指南",
-  //     excerpt:
-  //       "買了一堆玩具，主子卻只愛紙箱？選對玩具不只能讓貓咪開心，還能消耗精力。這篇教你如何根據狩獵本能挑選最適合的玩具！",
-  //     topicId: 3,
-  //     categoryId: 305,
-  //     tags: ["行為與心理", "遊戲建 //     img: "./images/knowledge/know-img10.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-10",
-  //     updatedAt: "2026-01-10",
-  //   },
-  //   {
-  //     id: 11,
-  //     title: "貓砂選擇全解析",
-  //     excerpt:
-  //       "豆腐砂、礦砂、木屑砂怎麼選？沒有完美的貓砂，只有最適合你和主子的選擇。這篇幫你分析各種貓砂優缺點，告別粉塵與異味！",
-  //     topicId: 4,
-  //     categoryId: 402,
-  //     tags: ["新手貓奴入門", "初養用品"],
-  //mg: "./images/knowledge/know-img11.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-11",
-  //     updatedAt: "2026-01-11",
-  //   },
-  //   {
-  //     id: 12,
-  //     title: "貓咪疫苗接種指南",
-  //     excerpt:
-  //       "疫苗是保護貓咪健康的重要防線。貓三合一、狂犬病哪些必打？多久補強一次？這篇一次帶你了解核心與非核心疫苗的差異。",
-  //     topicId: 2,
-  //     categoryId: 201,
-  //     tags: ["健康與疾病", "健康照 //     img: "./images/knowledge/know-img12.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-12",
-  //     updatedAt: "2026-01-12",
-  //   },
-  //   {
-  //     id: 13,
-  //     title: "貓咪口腔保健",
-  //     excerpt:
-  //       "80%的成貓都有牙齒問題！口臭不只是味道難聞，更可能影響心腎功能。學習正確的刷牙與居家照護，讓主子擁有一口好牙。",
-  //     topicId: 2,
-  //     categoryId: 201,
-  //     tags: ["健康與疾病", "健康照 //     img: "./images/knowledge/know-img13.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-13",
-  //     updatedAt: "2026-01-13",
-  //   },
-  //   {
-  //     id: 14,
-  //     title: "貓咪體重管理",
-  //     excerpt:
-  //       "肥貓雖然可愛，但糖尿病與關節炎更可怕！教你如何透過 BCS 評分判斷貓咪體態，並制定科學的減重計畫，守護主子健康。",
-  //     topicId: 2,
-  //     categoryId: 203,
-  //     tags: ["健康與疾病", "身體警 //     img: "./images/knowledge/know-img14.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-14",
-  //     updatedAt: "2026-01-14",
-  //   },
-  //   {
-  //     id: 15,
-  //     title: "貓咪壓力管理",
-  //     excerpt:
-  //       "搬家、新成員、作息變動都可能讓敏感的貓咪壓力爆表。辨識過度理毛等壓力訊號，提供安全的躲藏空間，打造紓壓低敏環境。",
-  //     topicId: 3,
-  //     categoryId: 302,
-  //     tags: ["行為與心理", "情緒觀 //     img: "./images/knowledge/know-img15.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-15",
-  //     updatedAt: "2026-01-15",
-  //   },
-  //   {
-  //     id: 16,
-  //     title: "貓咪常見疾病預防",
-  //     excerpt:
-  //       "預防勝於治療！深入了解泌尿系統疾病、慢性腎病與糖尿病的徵兆。7歲以上老貓如何透過定期健檢及早發現病灶？",
-  //     topicId: 2,
-  //     categoryId: 202,
-  //     tags: ["健康與疾病", "常見疾 //     img: "./images/knowledge/know-img16.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-16",
-  //     updatedAt: "2026-01-16",
-  //   },
-  //   {
-  //     id: 17,
-  //     title: "貓咪美容照護",
-  //     excerpt:
-  //       "梳毛不只是美觀，還能預防毛球症。這篇提供梳毛、剪指甲、清眼耳的完整攻略，讓主子在日常美容中感受到滿滿的愛。",
-  //     topicId: 4,
-  //     categoryId: 404,
-  //     tags: ["新手貓奴入門", "環境設置"],
-  //mg: "./images/knowledge/know-img17.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-17",
-  //     updatedAt: "2026-01-17",
-  //   },
-  //   {
-  //     id: 18,
-  //     title: "新手養貓準備清單",
-  //     excerpt:
-  //       "決定養貓了卻不知從何下手？從食碗材質選擇、貓砂盆擺放位置到居家環境安全檢查，這份清單幫你一次搞定！",
-  //     topicId: 4,
-  //     categoryId: 402,
-  //     tags: ["新手貓奴入門", "初養用品"],
-  //mg: "./images/knowledge/know-img18.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-18",
-  //     updatedAt: "2026-01-18",
-  //   },
-  //   {
-  //     id: 19,
-  //     title: "貓咪外出減壓與訓練",
-  //     excerpt:
-  //       "出門看醫生總是像打仗？透過減敏訓練讓貓咪愛上提籠。從外出的安全胸背帶挑選，到建立熟悉的外出儀式，讓旅行不再恐懼。",
-  //     topicId: 4,
-  //     categoryId: 403,
-  //     tags: ["新手貓奴入門", "外出準備"],
-  //mg: "./images/knowledge/know-img19.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-19",
-  //     updatedAt: "2026-01-19",
-  //   },
-  //   {
-  //     id: 20,
-  //     title: "居家有毒植物大清查",
-  //     excerpt:
-  //       "百合、黃金葛竟是貓咪殺手？許多常見居家綠植對貓具備致命毒性。這篇教你辨識危險植物，並推薦適合貓咪啃食的室內綠化方案。",
-  //     topicId: 2,
-  //     categoryId: 204,
-  //     tags: ["健康與疾病", "居家安 //     img: "./images/knowledge/know-img20.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-20",
-  //     updatedAt: "2026-01-20",
-  //   },
-  //   {
-  //     id: 21,
-  //     title: "貓咪急救入門手冊",
-  //     excerpt:
-  //       "當主子意外誤食或哈姆立克急救時該怎麼辦？掌握黃金救治時間，學會基礎的心肺復甦術與傷口止血處理，是每位稱職貓奴的必修課。",
-  //     topicId: 2,
-  //     categoryId: 206,
-  //     tags: ["健康與疾病", "急救知 //     img: "./images/knowledge/know-img21.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-21",
-  //     updatedAt: "2026-01-21",
-  //   },
-  //   {
-  //     id: 22,
-  //     title: "貓草、貓薄荷與木天蓼",
-  //     excerpt:
-  //       "為什麼有的貓對貓薄荷沒反應？深入解析這些「貓界大麻」的原理與差異。正確給予紓壓小物，能有效緩解貓咪焦慮並增加運動量。",
-  //     topicId: 3,
-  //     categoryId: 306,
-  //     tags: ["行為與心理", "紓壓小 //     img: "./images/knowledge/know-img22.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-22",
-  //     updatedAt: "2026-01-22",
-  //   },
-  //   {
-  //     id: 23,
-  //     title: "垂直空間與環境豐富化",
-  //     excerpt:
-  //       "地坪大小不是重點，高度才是！利用貓跳台、牆面層板打造「貓咪高速公路」，能顯著減少多貓衝突並提升室內貓的心理健康。",
-  //     topicId: 4,
-  //     categoryId: 404,
-  //     tags: ["新手貓奴入門", "環境設置"],
-  //mg: "./images/knowledge/know-img23.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-23",
-  //     updatedAt: "2026-01-23",
-  //   },
-  //   {
-  //     id: 24,
-  //     title: "智能寵物用品挑選心得",
-  //     excerpt:
-  //       "自動餵食器、智能貓砂盆真的好用嗎？分析科技產品在遠端照護上的優勢，以及在使用時可能被忽略的衛生與安全細節。",
-  //     topicId: 4,
-  //     categoryId: 405,
-  //     tags: ["新手貓奴入門", "科技照護"],
-  //mg: "./images/knowledge/know-img24.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-24",
-  //     updatedAt: "2026-01-24",
-  //   },
-  //   {
-  //     id: 25,
-  //     title: "貓咪換毛季應對全書",
-  //     excerpt:
-  //       "一年兩次的換毛大戰又要開始了？除了勤快吸地，如何透過飲食調整減少廢毛產生，並正確選用梳具防止貓咪因舔毛過度引發腸胃阻塞。",
-  //     topicId: 2,
-  //     categoryId: 203,
-  //     tags: ["健康與疾病", "日常照 //     img: "./images/knowledge/know-img25.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-25",
-  //     updatedAt: "2026-01-25",
-  //   },
-  //   {
-  //     id: 26,
-  //     title: "解讀貓咪的呼嚕聲",
-  //     excerpt:
-  //       "呼嚕聲不代表一定開心？受傷或疼痛時，貓咪也會透過低頻震動來自我療癒。深入研究貓咪獨特的生理頻率與其傳達的情緒密碼。",
-  //     topicId: 3,
-  //     categoryId: 301,
-  //     tags: ["行為與心理", "行為解 //     img: "./images/knowledge/know-img26.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-26",
-  //     updatedAt: "2026-01-26",
-  //   },
-  //   {
-  //     id: 27,
-  //     title: "如何幫貓咪剪指甲不流血",
-  //     excerpt:
-  //       "剪指甲像打仗？這篇教你如何辨識指甲裡的「快肉（Quick）」，配合適當的零食獎勵與保定技巧，讓主子乖乖配合修剪不再掙扎。",
-  //     topicId: 4,
-  //     categoryId: 404,
-  //     tags: ["新手貓奴入門", "日常護理"],
-  //mg: "./images/knowledge/know-img27.png",
-  //     herf: "#",
-  //     createdAt: "2026-01-27",
-  //     updatedAt: "2026-01-27",
-  //   },
-  // ];
 
   const currentCategories = useMemo(() => {
     const list = categoryMapping[selectedTopic] || categoryMapping["所有主題"];
@@ -1011,10 +689,12 @@ export default function Knowledge() {
     return () => instances.forEach((p) => p.dispose());
   }, []);
 
+  const DEFAULT_TOPIC = "所有主題";
+  const DEFAULT_CATEGORY = "";
   const onClear = () => {
     setKeyword("");
-    setSelectedTopic("");
-    setSelectedCategory("");
+    setSelectedTopic(DEFAULT_TOPIC);
+    setSelectedCategory(DEFAULT_CATEGORY);
     setPage(1);
   };
 

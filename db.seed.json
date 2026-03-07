@@ -326,107 +326,103 @@
 
   "knowledge": [
     {
-      "articles": [
-        {
-          "id": 1,
-          "title": "如何判斷貓咪是否生氣？",
-          "excerpt": "貓咪雖然不會說話，但牠們肯定能用其他方式表達自己的感受。你的貓咪生氣的時候可能會有一些超明顯的...",
-          "topicId": 3,
-          "categoryId": 302,
-          "tags": ["行為與心理", "情緒觀察"],
-          "cover": "/images/articles/001.jpg",
-          "createdAt": "2026-01-01",
-          "updatedAt": "2026-01-01"
-        },
-        {
-          "id": 2,
-          "title": "各式糧食類型大解析",
-          "excerpt": "市面貓糧種類繁多，乾糧、濕糧、生食、冷凍乾燥差在哪？掌握各類糧食特色、優缺，才能為毛孩挑...",
-          "topicId": 1,
-          "categoryId": 101,
-          "tags": ["貓咪飲食指南", "糧食類型解析"],
-          "cover": "/images/articles/002.jpg",
-          "createdAt": "2026-01-02",
-          "updatedAt": "2026-01-02"
-        },
-        {
-          "id": 3,
-          "title": "如何閱讀貓糧成分？",
-          "excerpt": "我們都想給貓咪餵食營養豐富的食物，但閱讀貓糧標籤卻並非易事。市售貓糧包裝上琳瑯滿目，真相其實...",
-          "topicId": 1,
-          "categoryId": 102,
-          "tags": ["貓咪飲食指南", "成份與標籤知識"],
-          "cover": "/images/articles/003.jpg",
-          "createdAt": "2026-01-03",
-          "updatedAt": "2026-01-03"
-        },
-        {
-          "id": 4,
-          "title": "關於貓爪的10個有趣事情",
-          "excerpt": "貓咪真是奇妙的生物。牠們那雙靈活的爪子除了伸縮自如，竟然還是排汗的管道？讓我們揭開肉墊...",
-          "topicId": 3,
-          "categoryId": 301,
-          "tags": ["行為與心理", "行為解讀"],
-          "cover": "/images/articles/004.jpg",
-          "createdAt": "2026-01-04",
-          "updatedAt": "2026-01-04"
-        },
-        {
-          "id": 5,
-          "title": "貓咪肢體語言解密",
-          "excerpt": "從尾巴、耳朵到鬍鬚，每個小動作都在傳達不同的訊息。學會解讀這些訊號，你就能更了解主子在...",
-          "topicId": 3,
-          "categoryId": 301,
-          "tags": ["行為與心理", "行為解讀"],
-          "cover": "/images/articles/005.jpg",
-          "createdAt": "2026-01-05",
-          "updatedAt": "2026-01-05"
-        },
-        {
-          "id": 6,
-          "title": "幼貓照護指南",
-          "excerpt": "剛帶回家的小奶貓又萌又脆弱！從飲食代奶、環境安全到健康疫苗管理，新手貓奴必看的成...",
-          "topicId": 4,
-          "categoryId": 401,
-          "tags": ["新手貓奴入門", "幼貓照護"],
-          "cover": "/images/articles/006.jpg",
-          "createdAt": "2026-01-06",
-          "updatedAt": "2026-01-06"
-        },
-        {
-          "id": 7,
-          "title": "老年貓照護要點",
-          "excerpt": "貓咪進入熟齡期後，身體需求大不同。了解腎臟、關節等常見問題，陪主子優雅老去是貓奴最重要...",
-          "topicId": 2,
-          "categoryId": 205,
-          "tags": ["健康與疾病", "老貓照護"],
-          "cover": "/images/articles/007.jpg",
-          "createdAt": "2026-01-07",
-          "updatedAt": "2026-01-07"
-        },
-        {
-          "id": 8,
-          "title": "貓咪行為問題解決法",
-          "excerpt": "亂尿尿、破壞家具、半夜暴走？這些行為背後都有原因。找出問題根源，用對方法，才能跟主子...",
-          "topicId": 3,
-          "categoryId": 303,
-          "tags": ["行為與心理", "行為問題解決"],
-          "cover": "/images/articles/008.jpg",
-          "createdAt": "2026-01-08",
-          "updatedAt": "2026-01-08"
-        },
-        {
-          "id": 9,
-          "title": "多貓家庭和諧指南",
-          "excerpt": "新貓加入該如何隔離？如何分配貓砂盆資源？讓每隻貓都有自己的空間，打造不打架的多貓幸福...",
-          "topicId": 3,
-          "categoryId": 304,
-          "tags": ["行為與心理", "多貓家庭"],
-          "cover": "/images/articles/009.jpg",
-          "createdAt": "2026-01-09",
-          "updatedAt": "2026-01-09"
-        }
-      ]
+      "id": 1,
+      "title": "如何判斷貓咪是否生氣？",
+      "excerpt": "貓咪雖然不會說話，但牠們肯定能用其他方式表達自己的感受。你的貓咪生氣的時候可能會有一些超明顯的...",
+      "topicId": 3,
+      "categoryId": 302,
+      "tags": ["行為與心理", "情緒觀察"],
+      "cover": "/images/articles/001.jpg",
+      "createdAt": "2026-01-01",
+      "updatedAt": "2026-01-01"
+    },
+    {
+      "id": 2,
+      "title": "各式糧食類型大解析",
+      "excerpt": "市面貓糧種類繁多，乾糧、濕糧、生食、冷凍乾燥差在哪？掌握各類糧食特色、優缺，才能為毛孩挑...",
+      "topicId": 1,
+      "categoryId": 101,
+      "tags": ["貓咪飲食指南", "糧食類型解析"],
+      "cover": "/images/articles/002.jpg",
+      "createdAt": "2026-01-02",
+      "updatedAt": "2026-01-02"
+    },
+    {
+      "id": 3,
+      "title": "如何閱讀貓糧成分？",
+      "excerpt": "我們都想給貓咪餵食營養豐富的食物，但閱讀貓糧標籤卻並非易事。市售貓糧包裝上琳瑯滿目，真相其實...",
+      "topicId": 1,
+      "categoryId": 102,
+      "tags": ["貓咪飲食指南", "成份與標籤知識"],
+      "cover": "/images/articles/003.jpg",
+      "createdAt": "2026-01-03",
+      "updatedAt": "2026-01-03"
+    },
+    {
+      "id": 4,
+      "title": "關於貓爪的10個有趣事情",
+      "excerpt": "貓咪真是奇妙的生物。牠們那雙靈活的爪子除了伸縮自如，竟然還是排汗的管道？讓我們揭開肉墊...",
+      "topicId": 3,
+      "categoryId": 301,
+      "tags": ["行為與心理", "行為解讀"],
+      "cover": "/images/articles/004.jpg",
+      "createdAt": "2026-01-04",
+      "updatedAt": "2026-01-04"
+    },
+    {
+      "id": 5,
+      "title": "貓咪肢體語言解密",
+      "excerpt": "從尾巴、耳朵到鬍鬚，每個小動作都在傳達不同的訊息。學會解讀這些訊號，你就能更了解主子在...",
+      "topicId": 3,
+      "categoryId": 301,
+      "tags": ["行為與心理", "行為解讀"],
+      "cover": "/images/articles/005.jpg",
+      "createdAt": "2026-01-05",
+      "updatedAt": "2026-01-05"
+    },
+    {
+      "id": 6,
+      "title": "幼貓照護指南",
+      "excerpt": "剛帶回家的小奶貓又萌又脆弱！從飲食代奶、環境安全到健康疫苗管理，新手貓奴必看的成...",
+      "topicId": 4,
+      "categoryId": 401,
+      "tags": ["新手貓奴入門", "幼貓照護"],
+      "cover": "/images/articles/006.jpg",
+      "createdAt": "2026-01-06",
+      "updatedAt": "2026-01-06"
+    },
+    {
+      "id": 7,
+      "title": "老年貓照護要點",
+      "excerpt": "貓咪進入熟齡期後，身體需求大不同。了解腎臟、關節等常見問題，陪主子優雅老去是貓奴最重要...",
+      "topicId": 2,
+      "categoryId": 205,
+      "tags": ["健康與疾病", "老貓照護"],
+      "cover": "/images/articles/007.jpg",
+      "createdAt": "2026-01-07",
+      "updatedAt": "2026-01-07"
+    },
+    {
+      "id": 8,
+      "title": "貓咪行為問題解決法",
+      "excerpt": "亂尿尿、破壞家具、半夜暴走？這些行為背後都有原因。找出問題根源，用對方法，才能跟主子...",
+      "topicId": 3,
+      "categoryId": 303,
+      "tags": ["行為與心理", "行為問題解決"],
+      "cover": "/images/articles/008.jpg",
+      "createdAt": "2026-01-08",
+      "updatedAt": "2026-01-08"
+    },
+    {
+      "id": 9,
+      "title": "多貓家庭和諧指南",
+      "excerpt": "新貓加入該如何隔離？如何分配貓砂盆資源？讓每隻貓都有自己的空間，打造不打架的多貓幸福...",
+      "topicId": 3,
+      "categoryId": 304,
+      "tags": ["行為與心理", "多貓家庭"],
+      "cover": "/images/articles/009.jpg",
+      "createdAt": "2026-01-09",
+      "updatedAt": "2026-01-09"
     }
   ],
 

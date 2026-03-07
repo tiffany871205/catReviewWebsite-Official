@@ -1,12 +1,27 @@
-import { useSearchParams } from "react-router";
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router";
 import db from "../../db.seed.json";
 import KnowledgeCard from "../components/knowledges/KnowledgeCard";
 
 function Member() {
-  const [searchParams] = useSearchParams();
-  const activeTab = searchParams.get("tab") === "record" ? "record" : "account";
+  const navigate = useNavigate();
+  const location = useLocation();
+  const getTabFromHash = (hash) => (hash === "#record" ? "record" : "account");
+  const activeTab = getTabFromHash(location.hash);
   const isAccountTab = activeTab === "account";
   const isRecordTab = activeTab === "record";
+
+  const handleTabClick = (tab) => {
+    navigate(`/member#${tab}`);
+  };
+
+  useEffect(() => {
+    const queryTab = new URLSearchParams(location.search).get("tab");
+
+    if (queryTab === "account" || queryTab === "record") {
+      navigate(`/member#${queryTab}`, { replace: true });
+    }
+  }, [location.search, navigate]);
 
   // const article = db?.knowledge?.[0];
 
@@ -36,6 +51,7 @@ function Member() {
                 role="tab"
                 aria-controls="account"
                 aria-selected={isAccountTab}
+                onClick={() => handleTabClick("account")}
               >
                 <span class="me-3 tab-icon"></span>
                 <span>帳號管理</span>
@@ -54,6 +70,7 @@ function Member() {
                 role="tab"
                 aria-controls="record"
                 aria-selected={isRecordTab}
+                onClick={() => handleTabClick("record")}
               >
                 <span class="me-3 tab-icon"></span>
                 <span>會員紀錄</span>
@@ -81,6 +98,7 @@ function Member() {
                 role="tab"
                 aria-controls="account"
                 aria-selected={isAccountTab}
+                onClick={() => handleTabClick("account")}
               >
                 <span class="me-3 tab-icon"></span>
                 <span>帳號管理</span>
@@ -99,6 +117,7 @@ function Member() {
                 role="tab"
                 aria-controls="record"
                 aria-selected={isRecordTab}
+                onClick={() => handleTabClick("record")}
               >
                 <span class="me-3 tab-icon"></span>
                 <span>會員紀錄</span>
@@ -209,40 +228,6 @@ function Member() {
                   </label>
                 </div>
                 <div class="mb-3 mb-md-8">
-                  <label for="columnContent" class="w-100">
-                    <p class="px-2 d-flex mb-1 mb-md-2">
-                      <span class="contrib-font-size-sm neutral-900">
-                        3. 內文欄位（詳細撰寫專欄內文，可插入連結、圖片及影片）
-                      </span>
-                      <span class="contrib-font-size-sm text-highlight">*</span>
-                      <span class="contrib-font-size-xs text-highlight ms-auto">必填</span>
-                    </p>
-                    <div id="columnContent">
-                      {/* <!-- 工具列 --> */}
-                      <div id="toolbar" class="px-4 py-2">
-                        <select class="ql-size me-2"></select>
-                        <select class="ql-color me-2"></select>
-                        <button class="ql-bold me-2"></button>
-                        <button class="ql-italic me-2"></button>
-                        <button class="ql-underline me-2"></button>
-                        <button class="ql-link me-2"></button>
-                        <button class="ql-image me-2"></button>
-                        <button class="ql-video me-2"></button>
-                      </div>
-
-                      {/* <!-- 編輯器 --> */}
-                      <div id="editor-container" class="px-4 py-2"></div>
-
-                      {/* <!-- 隱藏欄位：存 HTML 內容 --> */}
-                      <input type="hidden" name="content" id="editor-content" required />
-
-                      <p class="invalid-feedback px-2 mt-2">
-                        請輸入專欄內文（總字數不得少於200字，不得多於2,000字）
-                      </p>
-                    </div>
-                  </label>
-                </div>
-                <div class="mb-3 mb-md-8">
                   <label for="topicSelect" class="w-100">
                     <p class="px-2 d-flex mb-1 mb-md-2">
                       <span class="contrib-font-size-sm neutral-900">4. 選擇文章主題</span>
@@ -309,71 +294,6 @@ function Member() {
                     </div>
                   </label>
                 </div>
-                <div id="extra-reading-container" class="mb-3 mb-md-8">
-                  <div class="reading-item mb-md-8 mb-sm-3 w-100 d-flex align-items-end">
-                    <label for="furtherReading0" class="w-100 me-6 mb-3 mb-sm-0">
-                      <p class="px-2 d-flex mb-1 mb-md-2">
-                        <span class="contrib-font-size-sm neutral-900">
-                          7. 延伸閱讀（最多新增三筆連結）
-                        </span>
-                        <span class="contrib-font-size-xs neutral-600 ms-auto">選填</span>
-                      </p>
-                      <div>
-                        <input
-                          type="url"
-                          class="form-control border-radius contrib-input-heigh px-4"
-                          id="furtherReading0"
-                          placeholder="請列出相關延伸閱讀網址"
-                        />
-                      </div>
-                    </label>
-                    <button
-                      type="button"
-                      class="btn contrib-delete-area contrib-delete-btn border-radius mb-3 mb-sm-0"
-                    >
-                      <img src="../assets/images/contrib/trash.png" alt="trash" />
-                    </button>
-                  </div>
-                  <div>
-                    <button
-                      id="addExtraReadingBtn"
-                      type="button"
-                      class="btn border-none contrib-add-btn"
-                    >
-                      <img
-                        src="../assets/images/contrib/plus-circle.png"
-                        alt="plus-circle"
-                        class="me-1"
-                      />
-                      <span class="text-secondary-800">新增更多延伸閱讀欄位</span>
-                    </button>
-                  </div>
-                </div>
-                <div class="mb-3 mb-md-8">
-                  <p class="px-2 d-flex mb-1 mb-md-2 w-100">
-                    <span class="contrib-font-size-sm neutral-900">8. 上傳封面圖片</span>
-                    <span class="contrib-font-size-xs neutral-600 ms-auto">選填</span>
-                  </p>
-                  <label
-                    for="bannerUpload"
-                    class="btn align-bottom px-6 py-9 w-100 contrib-add-img-btn"
-                  >
-                    <img src="../assets/images/contrib/photo.png" alt="photo" />
-                    <p class="font-weight-bold">將圖片拖曳到此處，或點擊上傳</p>
-                    <p class="contrib-font-size-sm neutral-600">
-                      支援 .jpg .png，檔案大小不得超過10MB
-                      <br />
-                      解析度高於1280*720 px
-                    </p>
-                    <input
-                      type="file"
-                      name="bannerUpload"
-                      id="bannerUpload"
-                      class="d-none"
-                      accept="image/*"
-                    />
-                  </label>
-                </div>
                 <div class="mb-11 mb-md-12">
                   <p class="px-2 d-flex mb-1 mb-md-2">
                     <span class="contrib-font-size-sm neutral-900">9. 聲明欄位</span>
@@ -393,109 +313,6 @@ function Member() {
                         刊登規範
                       </a>
                     </label>
-                  </div>
-                  {/* <!-- Modal --> */}
-                  <div
-                    class="modal fade"
-                    id="columnPublicationSpeci"
-                    tabindex="-1"
-                    aria-labelledby="columnPublicationSpeciLabel"
-                    aria-hidden="true"
-                  >
-                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                      <div class="modal-content p-3">
-                        <div class="modal-header pb-3 border-bottom border-secondary-300">
-                          <h3 class="me-3 neutral-900" id="columnPublicationSpeciLabel">
-                            專欄文章投稿刊登規範
-                          </h3>
-                          <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                          ></button>
-                        </div>
-                        <div class="modal-body">
-                          <p class="mb-4">
-                            為維護平台品質與保障使用者權益，所有投稿（包含文章、圖片、影音等內容）須遵守以下規範：
-                          </p>
-                          <div class="mb-4">
-                            <h5 class="mb-2">一、投稿內容範圍</h5>
-                            <p>
-                              1. 內容須與
-                              <span class="font-weight-bold">貓咪飼養</span>、
-                              <span class="font-weight-bold">健康</span>、
-                              <span class="font-weight-bold">飲食</span>、
-                              <span class="font-weight-bold">行為</span>、
-                              <span class="font-weight-bold">照護經驗</span>或
-                              <span class="font-weight-bold">貓食產品分享</span>相關。
-                            </p>
-                            <p>
-                              2.
-                              圖文可包含：飼養心得、專欄文章、貓食開箱與評測、營養知識分享、貓咪日常照護等。
-                            </p>
-                            <p>3. 嚴禁發表與主題無關或廣告性質過強的內容。</p>
-                          </div>
-                          <div class="mb-4">
-                            <h5 class="mb-2">二、圖片與文字規範</h5>
-                            <p>1. 投稿圖片需清晰，內容健康正向，避免過度修飾或侵犯他人著作權。</p>
-                            <p>
-                              2. 若使用非本人拍攝之圖片，須事先取得版權或合理使用授權，並標註來源。
-                            </p>
-                            <p>3. 文字內容應真實、客觀，不得誇大或捏造。</p>
-                          </div>
-                          <div class="mb-4">
-                            <h5 class="mb-2">三、貓食產品相關規範</h5>
-                            <p>
-                              1. 所有涉及
-                              <span class="font-weight-bold">貓食品牌</span>、
-                              <span class="font-weight-bold">產品</span>
-                              的內容，須基於真實使用經驗，不得含有惡意誤導或抹黑競爭者。
-                            </p>
-                            <p>2. 分享產品營養成分時，應依據官方標示或可靠資料來源。</p>
-                            <p>3. 禁止推薦或宣傳來路不明、未經檢驗或具爭議的食品。</p>
-                          </div>
-                          <div class="mb-4">
-                            <h5 class="mb-2">四、禁止行為</h5>
-                            <p>
-                              1. 不得張貼涉及
-                              <span class="font-weight-bold">暴力</span>、
-                              <span class="font-weight-bold">虐貓</span>、
-                              <span class="font-weight-bold">色情</span>、
-                              <span class="font-weight-bold">賭博</span>、
-                              <span class="font-weight-bold">政治或違法</span>
-                              的內容。
-                            </p>
-                            <p>2. 不得使用含有攻擊性、歧視或人身攻擊的言論。</p>
-                            <p>3. 禁止張貼垃圾訊息、商業廣告、詐騙連結。</p>
-                          </div>
-                          <div class="mb-4">
-                            <h5 class="mb-2">五、審核與下架機制</h5>
-                            <p>
-                              1. 平台有權對所有投稿進行審核，若不符合規範，將拒絕刊登或移除內容。
-                            </p>
-                            <p>
-                              2.
-                              若經查證內容涉及侵權、虛假資訊或違法，平台有權隨時下架，並保留追究責任的權利。
-                            </p>
-                            <p>3. 使用者如屢次違反規範，平台有權限制其投稿或停權。</p>
-                          </div>
-                          <div>
-                            <h5 class="mb-2">六、其他</h5>
-                            <p>
-                              1.
-                              投稿者需確保所提供內容不侵犯任何第三方權利，若因侵權產生法律糾紛，責任由投稿者自行承擔。
-                            </p>
-                            <p>2. 平台保留調整、修改本規範的權利，並於公告後生效。</p>
-                          </div>
-                        </div>
-                        <div class="modal-footer pt-3 border-top border-secondary-300">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            關閉
-                          </button>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </div>
                 {/* <!-- 提交&清除表單欄位 --> */}

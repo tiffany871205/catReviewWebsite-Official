@@ -30,53 +30,55 @@ function Member() {
   return (
     <>
       {/* <KnowledgeCard article={article} />; */}
-      <div class="d-lg-flex">
+      <div className="d-lg-flex">
         {/* <!-- 投稿選單: lg --> */}
-        <div class="d-none d-lg-block member-side-menu member-position-relative">
-          <ul
-            class="nav d-flex flex-column justify-content-center align-items-center"
-            id="myTab"
-            role="tablist"
-          >
-            {/* <!-- 帳號管理按鍵 --> */}
-            <li class="nav-item w-100" role="presentation">
-              <button
-                class={`nav-link p-3 w-100 text-start d-flex align-center ${
-                  isAccountTab ? "active" : ""
-                }`}
-                id="account-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#account"
-                type="button"
-                role="tab"
-                aria-controls="account"
-                aria-selected={isAccountTab}
-                onClick={() => handleTabClick("account")}
-              >
-                <span class="me-3 tab-icon"></span>
-                <span>帳號管理</span>
-              </button>
-            </li>
-            {/* <!-- 會員紀錄按鍵 --> */}
-            <li class="nav-item w-100" role="presentation">
-              <button
-                class={`nav-link p-3 w-100 text-start d-flex align-center ${
-                  isRecordTab ? "active" : ""
-                }`}
-                id="record-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#record"
-                type="button"
-                role="tab"
-                aria-controls="record"
-                aria-selected={isRecordTab}
-                onClick={() => handleTabClick("record")}
-              >
-                <span class="me-3 tab-icon"></span>
-                <span>會員紀錄</span>
-              </button>
-            </li>
-          </ul>
+        <div class="d-none d-lg-block member-side-menu">
+          <div className=" position-relative ">
+            <ul
+              class="nav d-flex flex-column justify-content-center align-items-center w-100 position-fixed top-50 start-0 translate-middle-y mx-3"
+              id="myTab"
+              role="tablist"
+            >
+              {/* <!-- 帳號管理按鍵 --> */}
+              <li class="nav-item w-100" role="presentation">
+                <button
+                  class={`nav-link p-3 w-100 text-start d-flex align-center ${
+                    isAccountTab ? "active" : ""
+                  }`}
+                  id="account-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#account"
+                  type="button"
+                  role="tab"
+                  aria-controls="account"
+                  aria-selected={isAccountTab}
+                  onClick={() => handleTabClick("account")}
+                >
+                  <span class="me-3 tab-icon"></span>
+                  <span>帳號管理</span>
+                </button>
+              </li>
+              {/* <!-- 會員紀錄按鍵 --> */}
+              <li class="nav-item w-100" role="presentation">
+                <button
+                  class={`nav-link p-3 w-100 text-start d-flex align-center ${
+                    isRecordTab ? "active" : ""
+                  }`}
+                  id="record-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#record"
+                  type="button"
+                  role="tab"
+                  aria-controls="record"
+                  aria-selected={isRecordTab}
+                  onClick={() => handleTabClick("record")}
+                >
+                  <span class="me-3 tab-icon"></span>
+                  <span>會員紀錄</span>
+                </button>
+              </li>
+            </ul>
+          </div>
         </div>
         {/* <!-- 投稿選單: sm --> */}
         <div class="d-block d-lg-none contrib-top-menu contrib-position-relative">
@@ -126,45 +128,110 @@ function Member() {
           </ul>
         </div>
         {/* <!-- 撰寫投稿 --> */}
-        <div class="member-tab-content bg-secondary-100 py-12" id="myTabContent">
+        <div class="member-tab-content bg-secondary-100" id="myTabContent">
           {/* <!-- 帳號管理頁面 --> */}
           <div
-            class={`member-tab-pane px-2 px-md-12 fade ${isAccountTab ? "show active" : ""}`}
+            class={`bg-white m-0 member-tab-pane m-6 py-11 px-md-12 fade ${isAccountTab ? "show active" : ""}`}
             id="account"
           >
-            <form class="needs-validation" novalidate>
-              {/* <!-- １. 基本資訊 --> */}
-              <div class="mb-11 mb-md-12">
-                <div class="d-flex align-items-baseline pb-3 pb-md-8 border-bottom border-secondary-300 mb-3 mb-md-8">
-                  <h3 class="me-3 neutral-900 d-none d-md-block">１. 基本資訊</h3>
-                  <h5 class="me-3 neutral-900 d-block d-md-none">１. 基本資訊</h5>
-                  <p>
-                    <span class="neutral-600">(</span>
-                    <span class="text-highlight">*</span>
-                    <span class="neutral-600">為必填欄位)</span>
-                  </p>
-                </div>
-                <div class="mb-3 mb-md-8">
-                  <label for="foodName" class="w-100">
-                    <p class="px-2 d-flex mb-1 mb-md-2">
-                      <span class="contrib-font-size-sm neutral-900">食品名稱</span>
-                      <span class="contrib-font-size-sm text-highlight ms-1">*</span>
-                      <span class="contrib-font-size-xs text-highlight ms-auto">必填</span>
-                    </p>
-                    <div>
-                      <input
-                        type="text"
-                        class="form-control border-radius contrib-input-heigh px-4"
-                        id="foodName"
-                        placeholder="請輸入食品名稱"
-                        required
-                      />
-                      <p class="invalid-feedback px-2 mt-2">請輸入食品名稱</p>
-                    </div>
-                  </label>
-                </div>
+            <div className="form-container my-0 mx-auto">
+              <h3 className="pb-lg-8 border-bottom border-secondary-300">貓奴檔案</h3>
+              <div className="d-flex flex-column align-items-center my-6">
+                <p className="text-center text-secondary-500">
+                  為​了​侍奉​主子，​ <br />
+                  你​的​所有​資料​都​整齊​放​在​這裡​了～
+                </p>
+                <img className="mt-3" src="./public/images/favicon.ico" alt="logo" />
               </div>
-            </form>
+              <form class="needs-validation" novalidate>
+                {/* 使用者帳號 */}
+                <div className="mb-8">
+                  <label className="fs-8 ms-2 mb-1" htmlFor="username">
+                    使用者帳號
+                  </label>
+                  <br />
+                  <div className="d-flex align-items-center">
+                    <input
+                      className="account-input bg-neutral-100 border-neutral-300 py-2 px-6 border-1 rounded-2"
+                      type="email"
+                      id="username"
+                      name="username"
+                      disabled
+                    />
+                    <a href="#" className="d-flex align-items-center px-3 py-1 ms-2">
+                      <i className="bi bi-copy me-1 text-secondary-300"></i>
+                      <p className="text-neutral-700">複製</p>
+                    </a>
+                  </div>
+                </div>
+                {/* 密碼 */}
+                <div className="mb-8">
+                  <label className="fs-8 ms-2 mb-1" htmlFor="password">
+                    密碼
+                  </label>
+                  <br />
+                  <div className="d-flex align-items-center">
+                    <input
+                      className="account-input bg-neutral-100 border-neutral-300 py-2 px-6 border-1 rounded-2"
+                      type="password"
+                      id="password"
+                      name="password"
+                      disabled
+                    />
+                    <a href="#" className=" d-flex align-items-center px-3 py-1 ms-2">
+                      <i className="bi bi-pencil-square me-1 text-secondary-300"></i>
+                      <p className="text-neutral-700">變更密碼</p>
+                    </a>
+                  </div>
+                </div>
+                {/* 使用者名稱 */}
+                <div className="mb-8">
+                  <label className="fs-8 ms-2 mb-1" htmlFor="nickname">
+                    使用者名稱
+                  </label>
+                  <br />
+                  <div className="d-flex align-items-center">
+                    <input
+                      className="account-input bg-white border-neutral-300 py-2 px-6 border-1 rounded-2"
+                      type="text"
+                      id="nickname"
+                      name="nickname"
+                    />
+                  </div>
+                </div>
+                {/* 電話 */}
+                <div>
+                  <label className="fs-8 ms-2 mb-1" htmlFor="tel">
+                    手機號碼
+                  </label>
+                  <br />
+                  <div className="d-flex align-items-center">
+                    <input
+                      className="account-input bg-white border-neutral-300 py-2 px-6 border-1 rounded-2"
+                      type="tel"
+                      id="tel"
+                      name="tel"
+                    />
+                    <a href="#" className=" d-flex align-items-center px-3 py-1 ms-2">
+                      <i className="bi bi-arrow-repeat me-1 text-secondary-300"></i>
+                      <p className="text-neutral-700">變更驗證</p>
+                    </a>
+                  </div>
+                </div>
+                {/* 按鈕 */}
+                <div className="d-flex mt-12">
+                  <button type="button" className="btn text-neutral-700 px-4 py-1">
+                    取消更新
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn btn-primary-500 account-submit-btn text-white ms-6"
+                  >
+                    確認更新
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
           {/* <!-- 會員紀錄頁面 --> */}
           <div
@@ -300,20 +367,6 @@ function Member() {
                     <span class="contrib-font-size-sm text-highlight ms-1">*</span>
                     <span class="contrib-font-size-xs text-highlight ms-auto">必填</span>
                   </p>
-                  <div id="columnPublicationSpeciForm">
-                    <label class="btn align-center columnPublicationSpeci px-3 py-2">
-                      <input type="checkbox" id="agreeColumnCheckbox" disabled />
-                      我已閱讀並同意平台審核且遵守
-                      <a
-                        href="#"
-                        class="text-secondary-800 text-decoration-none font-weight-bold"
-                        data-bs-toggle="modal"
-                        data-bs-target="#columnPublicationSpeci"
-                      >
-                        刊登規範
-                      </a>
-                    </label>
-                  </div>
                 </div>
                 {/* <!-- 提交&清除表單欄位 --> */}
                 <div class="d-flex justify-content-between justify-content-md-none">

@@ -220,11 +220,13 @@ function Member() {
         <div className="member-tab-content bg-secondary-100" id="myTabContent">
           {/* <!-- 帳號管理頁面 --> */}
           <div
-            className={`bg-white m-0 member-tab-pane m-6 py-11 px-md-12 fade ${isAccountTab ? "show active" : ""}`}
+            className={`bg-white m-0 member-tab-pane m-lg-6 py-lg-11 px-lg-12 p-6 fade ${isAccountTab ? "show active" : ""}`}
             id="account"
           >
             <div className="form-container my-0 mx-auto">
-              <h3 className="pb-lg-8 border-bottom border-secondary-300">貓奴檔案</h3>
+              <h3 className="fs-5 fs-lg-4 pb-lg-8 border-bottom border-secondary-300 pb-3">
+                貓奴檔案
+              </h3>
               <div className="d-flex flex-column align-items-center my-6">
                 <p className="text-center text-secondary-500">
                   為​了​侍奉​主子，​ <br />
@@ -234,12 +236,12 @@ function Member() {
               </div>
               <form className="needs-validation" novalidate>
                 {/* 使用者帳號 */}
-                <div className="mb-8">
+                <div className="mb-lg-8 mb-6">
                   <label className="fs-8 ms-2 mb-1" htmlFor="username">
                     使用者帳號
                   </label>
                   <br />
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
                     <input
                       className="account-input"
                       type="email"
@@ -247,19 +249,22 @@ function Member() {
                       name="username"
                       disabled
                     />
-                    <a href="#" className="d-flex align-items-center px-3 py-1 ms-2">
+                    <a
+                      href="#"
+                      className="d-flex align-items-center px-3 py-1 account-inline-action"
+                    >
                       <i className="bi bi-copy me-1 text-secondary-300"></i>
                       <p className="text-neutral-700">複製</p>
                     </a>
                   </div>
                 </div>
                 {/* 密碼 */}
-                <div className="mb-8">
+                <div className="mb-lg-8 mb-6">
                   <label className="fs-8 ms-2 mb-1" htmlFor="password">
                     密碼
                   </label>
                   <br />
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
                     <input
                       className="account-input"
                       type="password"
@@ -269,7 +274,7 @@ function Member() {
                     />
                     <button
                       type="button"
-                      className="btn d-flex align-items-center px-3 py-1 ms-2"
+                      className="btn d-flex align-items-center px-3 py-1 account-inline-action"
                       onClick={openChangePasswordModal}
                     >
                       <i className="bi bi-pencil-square me-1 text-secondary-300"></i>
@@ -278,31 +283,42 @@ function Member() {
                   </div>
                 </div>
                 {/* 使用者名稱 */}
-                <div className="mb-8">
-                  <label className="fs-8 ms-2 mb-1" htmlFor="nickname">
-                    使用者名稱
-                  </label>
+                <div className="mb-lg-8 mb-6">
+                  <div className="d-flex account-required-row">
+                    <label className="fs-8 ms-2 mb-1" htmlFor="nickname">
+                      使用者名稱
+                      <span className="text-highlight-500">*</span>
+                    </label>
+                    <span className="fs-8 text-highlight-500 ms-auto">必填</span>
+                  </div>
                   <br />
-                  <div className="d-flex align-items-center">
+                  <div className="d-lg-flex d-block align-items-center">
                     <input className="account-input" type="text" id="nickname" name="nickname" />
                   </div>
                 </div>
                 {/* 電話 */}
                 <div>
-                  <label className="fs-8 ms-2 mb-1" htmlFor="tel">
-                    手機號碼
-                  </label>
+                  <div className="d-flex account-required-row">
+                    <label className="fs-8 ms-2 mb-1" htmlFor="tel">
+                      手機號碼
+                      <span className="text-highlight-500">*</span>
+                    </label>
+                    <span className="fs-8 text-highlight-500 ms-auto">必填</span>
+                  </div>
                   <br />
-                  <div className="d-flex align-items-center">
+                  <div className="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
                     <input className="account-input" type="tel" id="tel" name="tel" />
-                    <a href="#" className=" d-flex align-items-center px-3 py-1 ms-2">
+                    <a
+                      href="#"
+                      className="d-flex align-items-center px-3 py-1 account-inline-action"
+                    >
                       <i className="bi bi-arrow-repeat me-1 text-secondary-300"></i>
                       <p className="text-neutral-700">變更驗證</p>
                     </a>
                   </div>
                 </div>
                 {/* 按鈕 */}
-                <div className="d-flex mt-12">
+                <div className="d-flex mt-lg-12 mt-11 justify-content-center justify-content-lg-start">
                   <button type="button" className="btn text-neutral-700 px-4 py-1">
                     取消更新
                   </button>

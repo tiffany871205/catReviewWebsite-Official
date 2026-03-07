@@ -48,38 +48,6 @@
   padding: 48px 0;
 }
 
-.form-control::placeholder {
-  color: rgba(173, 181, 189, 1);
-}
-.form-check.form-control {
-  padding-left: 40px;
-  gap: 8px;
-}
-.radio {
-  &:hover {
-    background-color: $secondary-300;
-  }
-  &:active {
-    background-color: $secondary-500;
-  }
-}
-.form-check-input {
-  width: 20px;
-  height: 20px;
-  margin-top: 0.375rem;
-}
-.form-check-label {
-  margin-top: 0.25rem;
-}
-
-.contrib-submit-btn {
-  background-color: $primary-500;
-  &:hover {
-    background-color: $primary-800;
-    border: 1px solid $neutral-900;
-  }
-}
-
 .member-tab-pane {
   display: none;
 }
@@ -88,7 +56,32 @@
 }
 .account-input {
   width: 622px;
-  height: 48px;
+  height: 56px;
+  border: 1px solid $neutral-300;
+  border-radius: 999px;
+  background-color: $white;
+  padding: 0 24px;
+  color: $neutral-700;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &::placeholder {
+    color: $neutral-500;
+  }
+
+  &:focus,
+  &:focus-visible {
+    border-color: $primary-500;
+    box-shadow: 0 0 0 3px $primary-100;
+    outline: 0;
+  }
+
+  &:disabled {
+    background-color: $neutral-100;
+    color: $neutral-600;
+    cursor: not-allowed;
+  }
 }
 
 .form-container {
@@ -97,6 +90,74 @@
 
 .account-submit-btn {
   padding: 8px 85px;
+}
+
+.change-password-modal {
+  .modal-dialog {
+    max-width: 540px;
+  }
+
+  .modal-content {
+    background-color: $white;
+  }
+}
+
+.member-modal-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: $neutral-200;
+  opacity: 1;
+}
+
+.member-password-input {
+  height: 56px;
+  border-radius: 999px;
+  border-color: $neutral-300;
+  padding-left: 48px;
+  padding-right: 48px;
+
+  &::placeholder {
+    color: $neutral-500;
+  }
+}
+
+.member-password-icon-start,
+.member-password-icon-end {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $neutral-400;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.member-password-icon-start {
+  left: 16px;
+}
+
+.member-password-icon-end {
+  right: 16px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.member-modal-btn {
+  flex: 1;
+  border-radius: 999px;
+  padding: 12px 0;
+}
+
+.member-modal-btn-cancel {
+  background-color: $neutral-200;
+  color: $neutral-700;
+}
+
+.member-modal-btn-submit {
+  background-color: $primary-500;
+  color: $white;
 }
 
 /* RWD */

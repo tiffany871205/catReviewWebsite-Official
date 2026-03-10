@@ -2,6 +2,22 @@
   max-width: 100%;
 }
 
+// .search-test-btn {
+//   max-width: 100%;
+//   button {
+//     transform: translate(-10%, -115%);
+//   }
+// }
+
+// .knowledge-banner {
+//   background-image: url("/public/images/knowledge/knowBanner.png");
+//   background-size: cover;
+//   background-position: center center;
+//   background-repeat: no-repeat;
+//   padding-top: 96px;
+//   padding-bottom: 396px;
+//   max-height: 532px;
+// }
 .knowledge-banner {
   background: url("/images/knowledge/knowBanner.png") center/cover no-repeat;
   padding: 96px 0 200px;
@@ -14,7 +30,7 @@
 
 @media (max-width: 996px) {
   .knowledge-banner {
-    background-image: url("/images/knowledge/rwdKnowBanner.jpg");
+    background-image: url("/public/images/knowledge/rwdKnowBanner.jpg");
     padding-top: 56px;
     padding-bottom: 374px;
     height: 600px;

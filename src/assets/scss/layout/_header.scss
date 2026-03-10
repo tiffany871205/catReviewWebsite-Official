@@ -93,11 +93,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.dropdown-menu .header-dropdown-item:hover {
-  background-color: $secondary-200;
-  border-radius: 0px;
-}
-
 @media (min-width: 992px) {
   .header-navbar-nav {
     height: unset;

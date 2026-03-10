@@ -1,4 +1,5 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from "react-router";
+
 import signUp from "./utils/signUp.js";
 import Header from "./components/common/Header.jsx";
 import Footer from "./components/common/Footer.jsx";

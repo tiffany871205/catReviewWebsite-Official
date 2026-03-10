@@ -1,11 +1,10 @@
 import App from "../App.jsx";
 import Index from "../pages/Index.jsx";
 import Food from "../pages/Food.jsx";
+import Knowledge from "../pages/Knowledge.jsx";
 import Contrib from "../pages/Contrib.jsx";
 import Member from "../pages/Member.jsx";
 import SignUp from "../components/common/SignUp.jsx";
-import Knowledge from "../pages/knowledge.jsx";
-import KnowledgeArticle from "../pages/article.jsx";
 
 const routes = [
   {
@@ -23,10 +22,6 @@ const routes = [
       {
         path: "knowledge",
         element: <Knowledge />,
-      },
-      {
-        path: "knowledge/article/:id",
-        element: <KnowledgeArticle />,
       },
       {
         path: "contrib",

@@ -1,8 +1,11 @@
+import { Navigate } from "react-router";
 import App from "../App.jsx";
 import Index from "../pages/Index.jsx";
 import Food from "../pages/Food.jsx";
 import Contrib from "../pages/Contrib.jsx";
-import Member from "../pages/Member.jsx";
+import Member from "../pages/member.jsx";
+import Account from "../pages/member/Account.jsx";
+import Record from "../pages/member/Record.jsx";
 import SignUp from "../components/common/SignUp.jsx";
 import Knowledge from "../pages/knowledge.jsx";
 import KnowledgeArticle from "../pages/article.jsx";
@@ -35,6 +38,20 @@ const routes = [
       {
         path: "member",
         element: <Member />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to="account" replace />,
+          },
+          {
+            path: "account",
+            element: <Account />,
+          },
+          {
+            path: "record",
+            element: <Record />,
+          },
+        ],
       },
       {
         path: "signup",

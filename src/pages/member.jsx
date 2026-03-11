@@ -2,8 +2,8 @@ import { Link, Outlet, useLocation } from "react-router";
 
 function Member() {
   const location = useLocation();
-  const isAccountTab = location.pathname.endsWith("/account");
-  const isRecordTab = location.pathname.endsWith("/record");
+  const isAccountTab = location.pathname.startsWith("/member/account");
+  const isRecordTab = location.pathname.startsWith("/member/record");
 
   return (
     <>

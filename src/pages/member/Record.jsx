@@ -1,89 +1,77 @@
+import { NavLink, Outlet } from "react-router";
+
 function Record() {
   return (
     <div className="member-tab-pane px-2 px-md-12 fade show active">
-      <div>
-        <form className="needs-validation" noValidate>
-          <div className="d-flex align-items-baseline pb-3 pb-md-8 border-bottom border-secondary-300 mb-3 mb-md-8">
-            <h3 className="me-3 neutral-900 d-none d-md-block">1. 專欄資訊</h3>
-            <h5 className="me-3 neutral-900 d-block d-md-none">1. 專欄資訊</h5>
-            <p>
-              <span className="neutral-600">(</span>
-              <span className="text-highlight">*</span>
-              <span className="neutral-600">為必填欄位)</span>
-            </p>
-          </div>
-          <div className="mb-3 mb-md-8">
-            <label htmlFor="columnTitle" className="w-100">
-              <p className="px-2 d-flex mb-1 mb-md-2">
-                <span className="contrib-font-size-sm neutral-900">1. 標題名稱</span>
-                <span className="contrib-font-size-sm text-highlight ms-1">*</span>
-                <span className="contrib-font-size-xs text-highlight ms-auto">必填</span>
-              </p>
-              <div>
-                <input
-                  type="text"
-                  className="form-control border-radius contrib-input-heigh px-4"
-                  id="columnTitle"
-                  placeholder="請輸入文章標題（例如: 如何改善貓咪挑食問題）"
-                  required
-                />
-                <p className="invalid-feedback px-2 mt-2">
-                  請輸入文章標題（例如: 如何改善貓咪挑食問題）
-                </p>
-              </div>
-            </label>
-          </div>
-          <div className="mb-3 mb-md-8">
-            <label htmlFor="columnAbstract" className="w-100">
-              <p className="px-2 d-flex mb-1 mb-md-2">
-                <span className="contrib-font-size-sm neutral-900">
-                  2. 文章摘要（簡短介紹該文章內容）
-                </span>
-                <span className="contrib-font-size-sm text-highlight">*</span>
-                <span className="contrib-font-size-xs text-highlight ms-auto">必填</span>
-              </p>
-              <div>
-                <input
-                  type="text"
-                  className="form-control border-radius contrib-input-heigh px-4"
-                  id="columnAbstract"
-                  placeholder="請輸入文章摘要（總字數不得少於20字，不得多於100字）"
-                  required
-                />
-                <p className="invalid-feedback px-2 mt-2">
-                  請輸入文章摘要（總字數不得少於20字，不得多於100字）
-                </p>
-              </div>
-            </label>
-          </div>
-          <div className="mb-3 mb-md-8">
-            <label htmlFor="topicSelect" className="w-100">
-              <p className="px-2 d-flex mb-1 mb-md-2">
-                <span className="contrib-font-size-sm neutral-900">4. 選擇文章主題</span>
-                <span className="contrib-font-size-sm text-highlight ms-1">*</span>
-                <span className="contrib-font-size-xs text-highlight ms-auto">必填</span>
-              </p>
-              <div>
-                <select
-                  id="topicSelect"
-                  className="form-select border-radius contrib-input-heigh px-4"
-                  aria-label="Default select example"
-                  required
-                  defaultValue=""
-                >
-                  <option value="">請選擇</option>
-                  <option value="Diet">貓咪飲食指南</option>
-                  <option value="Health">健康與疾病</option>
-                  <option value="Behavior">行為與心理</option>
-                  <option value="Ownership">新手貓奴入門</option>
-                  <option value="Others">其他</option>
-                </select>
-                <p className="invalid-feedback px-2 mt-2">請選擇文章主題</p>
-              </div>
-            </label>
-          </div>
-        </form>
+      <div className="record-container my-0 mx-auto">
+        {/* 上方btn */}
+        <ul className="nav nav-pills justify-content-between align-items-center mb-6">
+          <li className="nav-item">
+            <NavLink
+              className={({ isActive }) =>
+                `nav-link record-btn d-flex align-items-center ${isActive ? "active" : ""}`
+              }
+              to="comment"
+              end
+            >
+              <i className="text-secondary-300 bi bi-chat-dots me-1"></i>
+              <p className="text-neutral-900">留言評分</p>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className={({ isActive }) =>
+                `nav-link record-btn d-flex align-items-center ${isActive ? "active" : ""}`
+              }
+              to="favorite"
+            >
+              <i className="text-secondary-300 bi bi-bookmark me-1"></i>
+              <p className="text-neutral-900">珍藏</p>
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink
+              className={({ isActive }) =>
+                `nav-link record-btn d-flex align-items-center ${isActive ? "active" : ""}`
+              }
+              to="contribution"
+            >
+              <i className="text-secondary-300 bi bi-newspaper me-1"></i>
+              <p className="text-neutral-900">投稿</p>
+            </NavLink>
+          </li>
+        </ul>
+        {/* 內容 */}
+        <Outlet />
       </div>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam veritatis aliquam nesciunt
+        fuga quae. Natus eius architecto, sed iusto fugiat iure similique laborum temporibus placeat
+        maxime culpa dignissimos corrupti fugit. Harum, eius? Distinctio quod et corrupti
+        voluptatum, architecto nam quaerat perferendis non voluptas ab minus placeat, tenetur illo
+        nulla, perspiciatis similique! Perspiciatis, aut vero. Tempora mollitia velit repellendus
+        vero dolore. At ex in, sit quos nostrum amet qui porro fugiat provident rem? Similique
+        quaerat quasi nam, debitis commodi in! Voluptate quis obcaecati ut tempore explicabo
+        molestiae alias consequatur porro ratione. Exercitationem libero placeat numquam sequi,
+        cumque nam illo laboriosam assumenda odit deserunt, consequuntur saepe. Doloremque, dolorum
+        odio. Quis, accusantium saepe unde rerum, laborum iusto facilis aut debitis commodi
+        consequuntur officia? Totam cumque, debitis officiis molestiae minus aliquam atque nulla
+        exercitationem iure nesciunt minima. Dicta ex excepturi saepe, nemo architecto ipsa
+        perferendis ea ab consequatur temporibus asperiores officiis odio fugit id! Officiis
+        incidunt, similique numquam animi nesciunt beatae fugit voluptas sequi nam sit, quas alias
+        aut in ducimus aliquam quasi eius omnis molestiae rerum quos, dolor libero blanditiis.
+        Deleniti, suscipit veritatis? Quis iure nobis aspernatur explicabo totam ipsa vitae veniam
+        ipsam nam tempore possimus vel incidunt quaerat aliquid, harum natus, voluptatem, tempora
+        fugit eligendi est! Tenetur placeat quidem fugit minus maxime. Voluptates, ipsum at!
+        Repudiandae veritatis iste laudantium, ducimus accusamus quae possimus id sequi inventore,
+        praesentium quis nulla suscipit natus error eveniet minus mollitia fugiat ipsum? Incidunt
+        aliquid animi cum eum. Numquam, natus explicabo. Veniam sit ullam facere nam amet nesciunt
+        enim obcaecati eum tenetur minus, a, dignissimos saepe, beatae perferendis odio explicabo?
+        Voluptatum suscipit sit exercitationem delectus vel in magni! Itaque facilis consectetur
+        fuga, similique eos ipsum! Laboriosam quod esse deserunt voluptates? Consectetur libero
+        tempora fugit, minus dolore esse quam ullam error, vero doloribus mollitia quaerat eos
+        veritatis ex quos?
+      </p>
     </div>
   );
 }

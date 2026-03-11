@@ -170,6 +170,35 @@ button.account-inline-action:focus-visible {
   padding: 12px 0;
 }
 
+.record-container {
+  max-width: 768px;
+}
+
+.record-container .nav .record-btn {
+  padding: 12px 72px;
+  background-color: #fff;
+  border: 1px solid $neutral-300;
+
+  &:hover {
+    background-color: $secondary-200;
+  }
+
+  &:focus-visible {
+    background-color: $secondary-200;
+    border: 1px solid $secondary-300;
+    box-shadow: 0 0 0 2px rgba(184, 150, 104, 0.4);
+  }
+
+  &.active,
+  &.active:hover,
+  &.active:focus,
+  &.active:focus-visible {
+    background-color: $secondary-200;
+    border: 1px solid $secondary-300;
+    box-shadow: 0 0 0 2px rgba(184, 150, 104, 0.4);
+  }
+}
+
 /* RWD */
 @media (max-width: 991.98px) {
   .member-tab-content {

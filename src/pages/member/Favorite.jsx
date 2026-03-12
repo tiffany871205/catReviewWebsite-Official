@@ -159,7 +159,6 @@ const mockKnowledgeRecords = [
 ];
 
 function Favorite() {
-  // 路由 query 參數可切換空狀態預覽。
   const location = useLocation();
   const memberImageBaseUrl = `${import.meta.env.BASE_URL}images/member/`;
   const knowledgeImageBaseUrl = `${import.meta.env.BASE_URL}images/knowledge/`;
@@ -199,47 +198,90 @@ function Favorite() {
     );
   }
 
-  // 上半區塊（膳食珍藏）依關鍵字篩選。
+  // 上半區塊（膳食珍藏）搜尋
   const filteredRecords = foodFavoriteBaseRecords.filter((record) =>
     `${record.title}${record.brand}${record.desc}`
       .toLowerCase()
       .includes(searchTerm.trim().toLowerCase())
   );
 
+  // 排序篩選：依照新舊
   const sortedRecords = [...filteredRecords].sort((a, b) => {
     const aDate = new Date(a.date).getTime();
     const bDate = new Date(b.date).getTime();
     return sortBy === "newest" ? bDate - aDate : aDate - bDate;
   });
 
+  // 初始顯示 4 筆，點擊載入更多一次增加 4 筆
   const visibleRecords = sortedRecords.slice(0, visibleCount);
   const hasMore = visibleCount < sortedRecords.length;
 
-  // 下半區塊（專欄珍藏）依關鍵字篩選。
+  // 下半區塊（專欄珍藏）搜尋
   const filteredKnowledgeRecords = knowledgeFavoriteBaseRecords.filter((record) =>
     `${record.title}${record.excerpt}${(record.tags ?? []).join("")}`
       .toLowerCase()
       .includes(knowledgeSearchTerm.trim().toLowerCase())
   );
 
+  // 排序篩選：依照新舊
   const sortedKnowledgeRecords = [...filteredKnowledgeRecords].sort((a, b) => {
     const aDate = new Date(a.date).getTime();
     const bDate = new Date(b.date).getTime();
     return knowledgeSortBy === "newest" ? bDate - aDate : aDate - bDate;
   });
-
+  // 初始顯示 4 筆，點擊載入更多一次增加 4 筆
   const visibleKnowledgeRecords = sortedKnowledgeRecords.slice(0, knowledgeVisibleCount);
   const hasMoreKnowledge = knowledgeVisibleCount < sortedKnowledgeRecords.length;
 
   return (
     <>
       {/* 區塊一：膳食珍藏紀錄 */}
-      <h2 className="fs-4 pb-8 border-bottom border-secondary-300 mb-6 mt-6">膳食珍藏紀錄</h2>
+      {/* 這是電腦版：區塊標題 */}
+      <h2 className="d-none d-lg-block fs-4 pb-8 border-bottom border-secondary-300 mb-6 mt-6">
+        膳食珍藏紀錄
+      </h2>
+
+      {/* 這是手機板：區塊標題與排序按鈕 */}
+      <div className="d-flex d-lg-none justify-content-between align-items-center pb-3 border-bottom border-secondary-300 mb-3 mt-6">
+        <h2 className="fs-6 mb-0">膳食珍藏紀錄</h2>
+        <div className="dropdown ms-2 flex-shrink-0">
+          <button
+            type="button"
+            className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <span className="material-symbols-outlined me-1">tune</span>
+            <span>排序依據</span>
+          </button>
+
+          <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm member-sort-menu">
+            {sortOptions.map((option) => (
+              <li key={`mobile-food-sort-${option.key}`}>
+                <button
+                  type="button"
+                  className="dropdown-item d-flex align-items-center"
+                  onClick={() => {
+                    setSortBy(option.key);
+                    setVisibleCount(4);
+                  }}
+                >
+                  <i
+                    className={`bi bi-check-lg me-2 ${sortBy === option.key ? "" : "invisible"}`}
+                  />
+                  <span>{option.label}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
       {hasFoodFavoriteBase ? (
         <>
-          <div className="d-flex justify-content-between align-items-center gap-3 flex-wrap member-record-toolbar">
+          {/* 這是電腦版：搜尋與排序工具列 */}
+          <div className="d-none d-lg-flex justify-content-between align-items-center gap-3 flex-wrap member-record-toolbar">
             <div className="justify-content-center member-record-search-wrap">
-              <form className="position-relative w-100 record-search">
+              <form className="position-relative w-100 record-search member-record-search-mobile">
                 <input
                   type="text"
                   className="form-control rounded-pill py-2 ps-3 pe-5"
@@ -290,6 +332,28 @@ function Favorite() {
             </div>
           </div>
 
+          {/* 這是手機板：搜尋列 */}
+          <div className="d-lg-none member-record-toolbar mb-3">
+            <div className="member-record-search-wrap">
+              <form className="position-relative w-100 record-search member-record-search-mobile">
+                <input
+                  type="text"
+                  className="form-control rounded-pill py-2 ps-3 pe-5"
+                  placeholder="搜尋珍藏紀錄"
+                  value={searchTerm}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setVisibleCount(4);
+                  }}
+                />
+                <i
+                  className="bi bi-search text-neutral-500 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center me-2"
+                  style={{ fontSize: "1.2rem" }}
+                />
+              </form>
+            </div>
+          </div>
+
           {filteredRecords.length === 0 ? (
             <MemberEmptyState
               compact
@@ -302,7 +366,7 @@ function Favorite() {
               }}
             />
           ) : (
-            <div className="row row-cols-2 g-3 mt-1 member-record-grid">
+            <div className="row row-cols-lg-2 row-cols-1 g-3 mt-1 member-record-grid">
               {visibleRecords.map((record) => (
                 <div key={record.id} className="col">
                   <Link
@@ -316,27 +380,27 @@ function Favorite() {
                         className="w-100 member-record-card-image"
                       />
 
-                      <div className="p-3 pb-2 member-record-card-body">
-                        <div className="d-flex justify-content-between align-items-start gap-2 mb-2">
+                      <div className="p-3 member-record-card-body">
+                        <div className="d-flex justify-content-between align-items-start gap-2 mb-3">
                           <h3 className="member-record-card-title mb-0">{record.title}</h3>
                           <p className="member-record-brand mb-0 text-nowrap">{record.brand}</p>
                         </div>
 
-                        <div className="d-flex gap-4 mb-2">
+                        <div className="d-flex gap-4 mb-3">
                           <div>
-                            <p className="member-record-label mb-1">每罐價格</p>
-                            <p className="member-record-value mb-0">{record.price}</p>
+                            <p className="member-record-label mb-1">參考價格</p>
+                            <h5 className="member-record-value mb-0">{record.price}</h5>
                           </div>
                           <div>
                             <p className="member-record-label mb-1">重量</p>
-                            <p className="member-record-value mb-0">{record.weight}</p>
+                            <h5 className="member-record-value mb-0">{record.weight}</h5>
                           </div>
                         </div>
 
                         <p className="member-record-desc mb-0">{record.desc}</p>
                       </div>
 
-                      <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-2">
+                      <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-5">
                         <p className="member-record-date mb-0">{record.date}</p>
                       </div>
                     </article>
@@ -347,13 +411,13 @@ function Favorite() {
           )}
 
           {filteredRecords.length > 0 && hasMore && (
-            <div className="text-center mt-5">
+            <div className="text-center mt-6">
               <button
                 type="button"
-                className="btn btn-neutral-100 rounded-pill px-4 py-2 member-load-more"
+                className="rounded-pill px-3 py-1 member-load-more text-neutral-700"
                 onClick={() => setVisibleCount((prev) => prev + 4)}
               >
-                <i className="bi bi-arrow-repeat me-2" />
+                <i className="bi bi-arrow-repeat me-1 text-secondary-300" />
                 載入更多珍藏紀錄
               </button>
             </div>
@@ -363,12 +427,52 @@ function Favorite() {
         <MemberEmptyState compact title="您尚未新增膳食珍藏" buttonText="前往探索" to="/food" />
       )}
 
-      <h2 className="fs-4 pb-8 border-bottom border-secondary-300 mb-6 mt-10">專欄珍藏紀錄</h2>
+      {/* 這是電腦版：區塊標題 */}
+      <h2 className="d-none d-lg-block fs-4 pb-8 border-bottom border-secondary-300 mb-6 mt-10">
+        專欄珍藏紀錄
+      </h2>
+
+      {/* 這是手機板：區塊標題與排序按鈕 */}
+      <div className="d-flex d-lg-none justify-content-between align-items-center pb-3 border-bottom border-secondary-300 mb-3 mt-10">
+        <h2 className="fs-4 mb-0">專欄珍藏紀錄</h2>
+        <div className="dropdown ms-2 flex-shrink-0">
+          <button
+            type="button"
+            className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <span className="material-symbols-outlined me-1">tune</span>
+            <span>排序依據</span>
+          </button>
+
+          <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm member-sort-menu">
+            {sortOptions.map((option) => (
+              <li key={`mobile-knowledge-sort-${option.key}`}>
+                <button
+                  type="button"
+                  className="dropdown-item d-flex align-items-center"
+                  onClick={() => {
+                    setKnowledgeSortBy(option.key);
+                    setKnowledgeVisibleCount(4);
+                  }}
+                >
+                  <i
+                    className={`bi bi-check-lg me-2 ${knowledgeSortBy === option.key ? "" : "invisible"}`}
+                  />
+                  <span>{option.label}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
       {/* 區塊二：專欄珍藏紀錄 */}
 
       {hasKnowledgeFavoriteBase ? (
         <>
-          <div className="d-flex justify-content-between align-items-center gap-3 flex-wrap member-record-toolbar">
+          {/* 這是電腦版：搜尋與排序工具列 */}
+          <div className="d-none d-lg-flex justify-content-between align-items-center gap-3 flex-wrap member-record-toolbar">
             <div className="justify-content-center member-record-search-wrap">
               <form className="position-relative w-100 record-search">
                 <input
@@ -421,6 +525,28 @@ function Favorite() {
             </div>
           </div>
 
+          {/* 這是手機板：搜尋列 */}
+          <div className="d-lg-none member-record-toolbar mb-3">
+            <div className="member-record-search-wrap">
+              <form className="position-relative w-100 record-search">
+                <input
+                  type="text"
+                  className="form-control rounded-pill py-2 ps-3 pe-5"
+                  placeholder="搜尋珍藏紀錄"
+                  value={knowledgeSearchTerm}
+                  onChange={(e) => {
+                    setKnowledgeSearchTerm(e.target.value);
+                    setKnowledgeVisibleCount(4);
+                  }}
+                />
+                <i
+                  className="bi bi-search text-neutral-500 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center me-2"
+                  style={{ fontSize: "1.2rem" }}
+                />
+              </form>
+            </div>
+          </div>
+
           {filteredKnowledgeRecords.length === 0 ? (
             <MemberEmptyState
               compact
@@ -433,7 +559,7 @@ function Favorite() {
               }}
             />
           ) : (
-            <div className="row row-cols-2 g-3 mt-1 member-record-grid">
+            <div className="row row-cols-lg-2 row-cols-1 g-3 mt-1 member-record-grid">
               {visibleKnowledgeRecords.map((record) => (
                 <div key={record.id} className="col">
                   <Link
@@ -447,11 +573,11 @@ function Favorite() {
                         className="w-100 member-knowledge-record-card-image"
                       />
 
-                      <div className="p-3 pb-2 member-record-card-body">
-                        <h3 className="member-knowledge-record-card-title mb-2">{record.title}</h3>
+                      <div className="p-3 member-record-card-body">
+                        <h3 className="member-knowledge-record-card-title mb-1">{record.title}</h3>
                         <p className="member-knowledge-record-excerpt mb-3">{record.excerpt}</p>
 
-                        <div className="d-flex gap-2 flex-wrap mb-2">
+                        <div className="d-flex gap-2 flex-wrap mb-3">
                           {(record.tags ?? []).map((tag) => (
                             <span key={`${record.id}-${tag}`} className="member-knowledge-tag">
                               #{tag}
@@ -471,13 +597,13 @@ function Favorite() {
           )}
 
           {filteredKnowledgeRecords.length > 0 && hasMoreKnowledge && (
-            <div className="text-center mt-5">
+            <div className="text-center mt-6">
               <button
                 type="button"
-                className="btn btn-neutral-100 rounded-pill px-4 py-2 member-load-more"
+                className="rounded-pill px-3 py-1 member-load-more text-neutral-700"
                 onClick={() => setKnowledgeVisibleCount((prev) => prev + 4)}
               >
-                <i className="bi bi-arrow-repeat me-2" />
+                <i className="bi bi-arrow-repeat me-1 text-secondary-300" />
                 載入更多珍藏紀錄
               </button>
             </div>

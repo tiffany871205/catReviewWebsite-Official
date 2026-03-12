@@ -102,6 +102,12 @@
   align-self: flex-end;
 }
 
+.account-inline-action--disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 button.account-inline-action,
 button.account-inline-action:hover,
 button.account-inline-action:active,
@@ -246,31 +252,29 @@ button.account-inline-action:focus-visible {
 }
 
 .member-record-card-image {
-  height: 170px;
+  height: 209px;
   object-fit: cover;
 }
 
 .member-knowledge-record-card-image {
-  height: 300px;
+  height: 372px;
   object-fit: cover;
 }
 
 .member-record-card-title {
   font-size: 24px;
-  line-height: 1.2;
-  font-weight: 400;
   color: $neutral-900;
 }
 
 .member-knowledge-record-card-title {
-  font-size: 40px;
+  font-size: 20px;
   line-height: 1.2;
   font-weight: 400;
   color: $neutral-900;
 }
 
 .member-knowledge-record-excerpt {
-  font-size: 18px;
+  font-size: 14px;
   line-height: 1.4;
   color: $neutral-500;
   overflow: hidden;
@@ -284,7 +288,7 @@ button.account-inline-action:focus-visible {
   font-size: 14px;
   color: #c76358;
   border: 1px solid #e8a19a;
-  padding: 3px 8px;
+  padding: 4px 8px;
   line-height: 1;
 }
 
@@ -295,20 +299,15 @@ button.account-inline-action:focus-visible {
 
 .member-record-label {
   font-size: 12px;
-  line-height: 1.2;
-  color: $secondary-300;
+  color: $secondary-500;
 }
 
 .member-record-value {
-  font-size: 28px;
-  line-height: 1;
-  color: $neutral-900;
+  font-size: 20px;
 }
 
 .member-record-desc {
-  font-size: 13px;
-  line-height: 1.4;
-  color: $neutral-500;
+  color: $neutral-600;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -345,8 +344,12 @@ button.account-inline-action:focus-visible {
 }
 
 .member-load-more {
-  font-size: 14px;
-  color: $neutral-500;
+  background-color: #fff;
+  border: 0;
+
+  &:hover {
+    background-color: $secondary-200;
+  }
 }
 
 .member-empty-state {
@@ -384,14 +387,8 @@ button.account-inline-action:focus-visible {
   }
 }
 
-.member-comment-grid {
-  margin-bottom: 8px;
-}
-
 .member-comment-card {
-  background-color: $white;
   border: 1px solid $neutral-300;
-  padding: 18px;
   position: relative;
   cursor: pointer;
   transition:
@@ -413,27 +410,13 @@ button.account-inline-action:focus-visible {
   }
 }
 
-.member-comment-name {
-  font-size: 24px;
-  color: $neutral-900;
-  font-weight: 500;
-}
-
 .member-comment-title-one-line {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.member-comment-time {
-  font-size: 14px;
-  color: $neutral-500;
-}
-
 .member-comment-content {
-  font-size: 18px;
-  line-height: 1.55;
-  color: $neutral-900;
   overflow: hidden;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -518,6 +501,38 @@ a:hover .member-record-card {
     padding: 8px 65.6px;
   }
 
+  .account-action-row {
+    width: 100%;
+    gap: 12px;
+
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    .account-submit-btn {
+      margin-left: 0 !important;
+    }
+  }
+
+  .account-delete-row {
+    width: 100%;
+
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .account-two-char-wrap-text {
+    display: inline-block;
+    width: 2em;
+    line-height: 1.25;
+    text-align: center;
+    white-space: normal;
+    word-break: break-all;
+  }
+
   .member-record-mobile-group {
     border: 1px solid $secondary-300;
     border-radius: 999px;
@@ -587,6 +602,10 @@ a:hover .member-record-card {
     }
   }
 
+  .member-record-search-mobile {
+    max-width: 100%;
+  }
+
   .member-record-toolbar {
     .btn {
       font-size: 14px;
@@ -600,23 +619,19 @@ a:hover .member-record-card {
   }
 
   .member-record-card-image {
-    height: 128px;
+    height: 197px;
   }
 
   .member-knowledge-record-card-image {
-    height: 168px;
+    height: 351px;
   }
 
   .member-record-card-body {
-    padding: 10px !important;
-  }
-
-  .member-record-card-title {
-    font-size: 28px;
+    padding: 16px !important;
   }
 
   .member-knowledge-record-card-title {
-    font-size: 28px;
+    font-size: 20px;
   }
 
   .member-record-brand {
@@ -625,7 +640,7 @@ a:hover .member-record-card {
   }
 
   .member-record-value {
-    font-size: 28px;
+    font-size: 20px;
   }
 
   .member-record-desc {
@@ -662,6 +677,20 @@ a:hover .member-record-card {
 }
 
 @media (min-width: 992px) {
+  .account-two-char-wrap-text {
+    width: auto;
+    white-space: nowrap;
+  }
+
+  .account-action-row,
+  .account-delete-row {
+    width: auto;
+
+    .btn {
+      width: auto;
+    }
+  }
+
   .account-inline-action {
     margin-top: 0;
     margin-left: 8px;

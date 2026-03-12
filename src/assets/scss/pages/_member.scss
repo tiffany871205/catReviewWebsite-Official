@@ -92,6 +92,26 @@
   padding: 8px 85px;
 }
 
+.account-required-row {
+  width: 622px;
+  max-width: 100%;
+}
+
+.account-inline-action {
+  margin-top: 4px;
+  align-self: flex-end;
+}
+
+button.account-inline-action,
+button.account-inline-action:hover,
+button.account-inline-action:active,
+button.account-inline-action:focus,
+button.account-inline-action:focus-visible {
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+}
+
 .change-password-modal {
   .modal-dialog {
     max-width: 540px;
@@ -150,14 +170,33 @@
   padding: 12px 0;
 }
 
-.member-modal-btn-cancel {
-  background-color: $neutral-200;
-  color: $neutral-700;
+.record-container {
+  max-width: 768px;
 }
 
-.member-modal-btn-submit {
-  background-color: $primary-500;
-  color: $white;
+.record-container .nav .record-btn {
+  padding: 12px 72px;
+  background-color: #fff;
+  border: 1px solid $neutral-300;
+
+  &:hover {
+    background-color: $secondary-200;
+  }
+
+  &:focus-visible {
+    background-color: $secondary-200;
+    border: 1px solid $secondary-300;
+    box-shadow: 0 0 0 2px rgba(184, 150, 104, 0.4);
+  }
+
+  &.active,
+  &.active:hover,
+  &.active:focus,
+  &.active:focus-visible {
+    background-color: $secondary-200;
+    border: 1px solid $secondary-300;
+    box-shadow: 0 0 0 2px rgba(184, 150, 104, 0.4);
+  }
 }
 
 /* RWD */
@@ -169,10 +208,21 @@
     background-color: white;
     border-bottom: 2px solid $secondary-500;
   }
+  .account-input {
+    width: 100%;
+  }
+  .account-required-row {
+    width: 100%;
+  }
+  .account-submit-btn {
+    padding: 8px 65.6px;
+  }
 }
 
-@media (max-width: 768px) {
-  .contrib-submit-btn {
-    width: calc((100% - 24px) / 2);
+@media (min-width: 992px) {
+  .account-inline-action {
+    margin-top: 0;
+    margin-left: 8px;
+    align-self: auto;
   }
 }

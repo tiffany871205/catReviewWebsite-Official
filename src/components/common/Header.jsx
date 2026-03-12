@@ -10,7 +10,6 @@ import { isAuthenticated, setAuth, clearAuth } from "../../utils/auth";
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 function Header() {
-  // 統一管理 header 內會用到的靜態資源路徑。
   const imageBaseUrl = `${import.meta.env.BASE_URL}images/`;
 
   const [user, setUser] = useState(null);
@@ -26,7 +25,7 @@ function Header() {
     reset,
   } = useForm();
 
-  // 每次路由切換時同步一次登入狀態，避免 UI 顯示舊資料。
+  // 每次路由切換時同步一次登入狀態
   useEffect(() => {
     try {
       const userData = isAuthenticated();
@@ -36,7 +35,7 @@ function Header() {
       setUser(null);
     }
   }, [location.pathname]);
-  // 控制登入 modal 開關時的 body 滾動行為。
+  // 控制 Modal 開閉時的 body overflow
   useEffect(() => {
     if (showLoginModal) {
       document.body.style.cssText = "overflow: hidden !important; padding-right: 15px !important;";
@@ -129,12 +128,12 @@ function Header() {
     navigate("/index");
   };
 
-  // 手機斷點判斷（navbar 收合控制使用）。
+  //定義手機板寬度判斷
   function isMobile() {
     return window.innerWidth < 992;
   }
 
-  // 手機版點選功能後主動收起漢堡選單。
+  // 手機版點擊後收起選單
   function closeNavbarOnMobile() {
     const navbarCollapse = document.getElementById("navbarNav");
 
@@ -153,7 +152,6 @@ function Header() {
 
   return (
     <>
-      {/* 網站主導覽：桌機/手機共用一份資料流，不同呈現。 */}
       <nav>
         <div className="navbar navbar-expand-lg navbar-light">
           <div className="container">

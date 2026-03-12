@@ -1,10 +1,8 @@
 import { Link } from "react-router";
 function Index() {
-  // 首頁所有視覺素材共用基底路徑。
   const imageBaseUrl = `${import.meta.env.BASE_URL}images/`;
 
   return (
-    // 首頁切版由多個 section 組成，依序呈現品牌故事與核心功能。
     <main>
       <div className="container-fluid p-0">
         {/* <!-- banner section1 --> */}

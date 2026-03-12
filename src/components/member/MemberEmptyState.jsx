@@ -8,7 +8,7 @@ function MemberEmptyState({
   compact = false,
   showIllustration = true,
 }) {
-  // 會員紀錄共用空狀態：可切整頁/區塊版，並可選導頁或執行動作。
+  // 會員紀錄共用空狀態：可切整頁/區塊版，並可選導頁或執行動作
   const imageBaseUrl = `${import.meta.env.BASE_URL}images/member/`;
 
   return (

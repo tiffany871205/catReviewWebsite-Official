@@ -317,42 +317,44 @@ function Contribution() {
           const isRejected = record.status === "rejected";
 
           const card = (
-            <article className={`member-record-card bg-white h-100 ${isRejected ? "member-record-card--disabled" : ""}`}>
-                <img
-                  src={`${memberImageBaseUrl}${record.image}`}
-                  alt={record.title}
-                  className="w-100 member-record-card-image"
-                />
+            <article
+              className={`member-record-card bg-white h-100 ${isRejected ? "member-record-card--disabled" : ""}`}
+            >
+              <img
+                src={`${memberImageBaseUrl}${record.image}`}
+                alt={record.title}
+                className="w-100 member-record-card-image"
+              />
 
-                <div className="p-3 pb-2 member-record-card-body">
-                  <div className="d-flex justify-content-between align-items-start gap-2 mb-2">
-                    <h3 className="member-record-card-title mb-0">{record.title}</h3>
-                    <p className="member-record-brand mb-0 text-nowrap">{record.brand}</p>
-                  </div>
-
-                  <div className="d-flex gap-4 mb-2">
-                    <div>
-                      <p className="member-record-label mb-1">每罐價格</p>
-                      <p className="member-record-value mb-0">{record.price}</p>
-                    </div>
-                    <div>
-                      <p className="member-record-label mb-1">重量</p>
-                      <p className="member-record-value mb-0">{record.weight}</p>
-                    </div>
-                  </div>
-
-                  <p className="member-record-desc mb-0">{record.desc}</p>
+              <div className="p-3 pb-2 member-record-card-body">
+                <div className="d-flex justify-content-between align-items-start gap-2 mb-2">
+                  <h3 className="member-record-card-title mb-0">{record.title}</h3>
+                  <p className="member-record-brand mb-0 text-nowrap">{record.brand}</p>
                 </div>
 
-                <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-2">
-                  <p className="member-record-date mb-0">{record.date}</p>
-                  <span
-                    className={`member-record-status${record.status !== "pending" ? ` member-record-status--${record.status}` : ""}`}
-                  >
-                    {record.statusLabel}
-                  </span>
+                <div className="d-flex gap-4 mb-2">
+                  <div>
+                    <p className="member-record-label mb-1">每罐價格</p>
+                    <p className="member-record-value mb-0">{record.price}</p>
+                  </div>
+                  <div>
+                    <p className="member-record-label mb-1">重量</p>
+                    <p className="member-record-value mb-0">{record.weight}</p>
+                  </div>
                 </div>
-              </article>
+
+                <p className="member-record-desc mb-0">{record.desc}</p>
+              </div>
+
+              <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-2">
+                <p className="member-record-date mb-0">{record.date}</p>
+                <span
+                  className={`member-record-status${record.status !== "pending" ? ` member-record-status--${record.status}` : ""}`}
+                >
+                  {record.statusLabel}
+                </span>
+              </div>
+            </article>
           );
 
           return (
@@ -360,7 +362,10 @@ function Contribution() {
               {isRejected ? (
                 <div className="d-block h-100">{card}</div>
               ) : (
-                <Link to={record.targetPath} className="text-decoration-none text-reset d-block h-100">
+                <Link
+                  to={record.targetPath}
+                  className="text-decoration-none text-reset d-block h-100"
+                >
                   {card}
                 </Link>
               )}
@@ -476,35 +481,37 @@ function Contribution() {
           const isRejected = record.status === "rejected";
 
           const card = (
-            <article className={`member-record-card bg-white h-100 ${isRejected ? "member-record-card--disabled" : ""}`}>
-                <img
-                  src={`${knowledgeImageBaseUrl}${record.image}`}
-                  alt={record.title}
-                  className="w-100 member-knowledge-record-card-image"
-                />
+            <article
+              className={`member-record-card bg-white h-100 ${isRejected ? "member-record-card--disabled" : ""}`}
+            >
+              <img
+                src={`${knowledgeImageBaseUrl}${record.image}`}
+                alt={record.title}
+                className="w-100 member-knowledge-record-card-image"
+              />
 
-                <div className="p-3 pb-2 member-record-card-body">
-                  <h3 className="member-knowledge-record-card-title mb-2">{record.title}</h3>
-                  <p className="member-knowledge-record-excerpt mb-3">{record.excerpt}</p>
+              <div className="p-3 pb-2 member-record-card-body">
+                <h3 className="member-knowledge-record-card-title mb-2">{record.title}</h3>
+                <p className="member-knowledge-record-excerpt mb-3">{record.excerpt}</p>
 
-                  <div className="d-flex gap-2 flex-wrap mb-2">
-                    {(record.tags ?? []).map((tag) => (
-                      <span key={`${record.id}-${tag}`} className="member-knowledge-tag">
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
+                <div className="d-flex gap-2 flex-wrap mb-2">
+                  {(record.tags ?? []).map((tag) => (
+                    <span key={`${record.id}-${tag}`} className="member-knowledge-tag">
+                      #{tag}
+                    </span>
+                  ))}
                 </div>
+              </div>
 
-                <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-2">
-                  <p className="member-record-date mb-0">{record.date}</p>
-                  <span
-                    className={`member-record-status${record.status !== "pending" ? ` member-record-status--${record.status}` : ""}`}
-                  >
-                    {record.statusLabel}
-                  </span>
-                </div>
-              </article>
+              <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-2">
+                <p className="member-record-date mb-0">{record.date}</p>
+                <span
+                  className={`member-record-status${record.status !== "pending" ? ` member-record-status--${record.status}` : ""}`}
+                >
+                  {record.statusLabel}
+                </span>
+              </div>
+            </article>
           );
 
           return (
@@ -512,7 +519,10 @@ function Contribution() {
               {isRejected ? (
                 <div className="d-block h-100">{card}</div>
               ) : (
-                <Link to={record.targetPath} className="text-decoration-none text-reset d-block h-100">
+                <Link
+                  to={record.targetPath}
+                  className="text-decoration-none text-reset d-block h-100"
+                >
                   {card}
                 </Link>
               )}

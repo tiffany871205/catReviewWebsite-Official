@@ -1,5 +1,6 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useState } from "react";
+import MemberEmptyState from "../../components/member/MemberEmptyState";
 
 const mockRecords = [
   {
@@ -158,6 +159,8 @@ const mockKnowledgeRecords = [
 ];
 
 function Contribution() {
+  // 路由 query 參數可切換空狀態預覽。
+  const location = useLocation();
   const memberImageBaseUrl = `${import.meta.env.BASE_URL}images/member/`;
   const knowledgeImageBaseUrl = `${import.meta.env.BASE_URL}images/knowledge/`;
   const [sortBy, setSortBy] = useState("newest");
@@ -181,7 +184,24 @@ function Contribution() {
     { key: "rejected", label: "未通過" },
   ];
 
-  const filteredRecords = mockRecords.filter((record) => {
+  // 空狀態預覽開關：?empty=all|food|knowledge。
+  const emptyPreview = new URLSearchParams(location.search).get("empty");
+  const forceFoodEmpty = emptyPreview === "all" || emptyPreview === "food";
+  const forceKnowledgeEmpty = emptyPreview === "all" || emptyPreview === "knowledge";
+  const foodContributionBaseRecords = forceFoodEmpty ? [] : mockRecords;
+  const knowledgeContributionBaseRecords = forceKnowledgeEmpty ? [] : mockKnowledgeRecords;
+
+  const hasAnyContributionRecord =
+    foodContributionBaseRecords.length > 0 || knowledgeContributionBaseRecords.length > 0;
+  const hasFoodContributionBase = foodContributionBaseRecords.length > 0;
+  const hasKnowledgeContributionBase = knowledgeContributionBaseRecords.length > 0;
+
+  if (!hasAnyContributionRecord) {
+    return <MemberEmptyState title="您無任何投稿項目" buttonText="前往投稿" to="/contrib" />;
+  }
+
+  // 上半區塊（膳食投稿）依關鍵字與狀態篩選。
+  const filteredRecords = foodContributionBaseRecords.filter((record) => {
     const matchesSearch = `${record.title}${record.brand}${record.desc}`
       .toLowerCase()
       .includes(searchTerm.trim().toLowerCase());
@@ -200,7 +220,8 @@ function Contribution() {
   const visibleRecords = sortedRecords.slice(0, visibleCount);
   const hasMore = visibleCount < sortedRecords.length;
 
-  const filteredKnowledgeRecords = mockKnowledgeRecords.filter((record) => {
+  // 下半區塊（專欄投稿）依關鍵字與狀態篩選。
+  const filteredKnowledgeRecords = knowledgeContributionBaseRecords.filter((record) => {
     const matchesSearch = `${record.title}${record.excerpt}${(record.tags ?? []).join("")}`
       .toLowerCase()
       .includes(knowledgeSearchTerm.trim().toLowerCase());
@@ -222,326 +243,368 @@ function Contribution() {
 
   return (
     <>
+      {/* 區塊一：膳食投稿紀錄 */}
       <h2 className="fs-4 pb-8 border-bottom border-secondary-300 mb-6 mt-6">膳食投稿記錄</h2>
-      {/* 搜尋與排序 */}
-      <div className="d-flex justify-content-between align-items-center gap-3 flex-wrap member-record-toolbar">
-        {/* 搜尋 */}
-        <div className="justify-content-center member-record-search-wrap">
-          <form className="position-relative w-100 record-search">
-            <input
-              type="text"
-              className="form-control rounded-pill py-2 ps-3 pe-5"
-              placeholder="搜尋投稿紀錄"
-              value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
+      {hasFoodContributionBase ? (
+        <>
+          {/* 搜尋與排序 */}
+          <div className="d-flex justify-content-between align-items-center gap-3 flex-wrap member-record-toolbar">
+            {/* 搜尋 */}
+            <div className="justify-content-center member-record-search-wrap">
+              <form className="position-relative w-100 record-search">
+                <input
+                  type="text"
+                  className="form-control rounded-pill py-2 ps-3 pe-5"
+                  placeholder="搜尋投稿紀錄"
+                  value={searchTerm}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setVisibleCount(4);
+                  }}
+                />
+                <i
+                  className="bi bi-search text-neutral-500 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center me-2"
+                  style={{ fontSize: "1.2rem" }}
+                />
+              </form>
+            </div>
+            {/* 狀態篩選 + 排序 */}
+            <div className="d-flex align-items-center gap-2 ms-auto flex-shrink-0">
+              <div className="dropdown">
+                <button
+                  type="button"
+                  className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="bi bi-funnel me-1" />
+                  <span>狀態篩選</span>
+                </button>
+
+                <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm member-sort-menu">
+                  {statusOptions.map((option) => (
+                    <li key={option.key}>
+                      <button
+                        type="button"
+                        className="dropdown-item d-flex align-items-center"
+                        onClick={() => {
+                          setStatusFilter(option.key);
+                          setVisibleCount(4);
+                        }}
+                      >
+                        <i
+                          className={`bi bi-check-lg me-2 ${statusFilter === option.key ? "" : "invisible"}`}
+                        />
+                        <span>{option.label}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="dropdown">
+                <button
+                  type="button"
+                  className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span className="material-symbols-outlined me-1">tune</span>
+                  <span>排序依據</span>
+                </button>
+
+                <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm member-sort-menu">
+                  {sortOptions.map((option) => (
+                    <li key={option.key}>
+                      <button
+                        type="button"
+                        className="dropdown-item d-flex align-items-center"
+                        onClick={() => {
+                          setSortBy(option.key);
+                          setVisibleCount(4);
+                        }}
+                      >
+                        <i
+                          className={`bi bi-check-lg me-2 ${sortBy === option.key ? "" : "invisible"}`}
+                        />
+                        <span>{option.label}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {filteredRecords.length === 0 ? (
+            <MemberEmptyState
+              compact
+              title="找不到符合條件的膳食投稿"
+              buttonText="清除篩選"
+              showIllustration={false}
+              onAction={() => {
+                setSearchTerm("");
+                setStatusFilter("all");
                 setVisibleCount(4);
               }}
             />
-            <i
-              className="bi bi-search text-neutral-500 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center me-2"
-              style={{ fontSize: "1.2rem" }}
-            />
-          </form>
-        </div>
-        {/* 狀態篩選 + 排序 */}
-        <div className="d-flex align-items-center gap-2 ms-auto flex-shrink-0">
-          <div className="dropdown">
-            <button
-              type="button"
-              className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i className="bi bi-funnel me-1" />
-              <span>狀態篩選</span>
-            </button>
+          ) : (
+            <div className="row row-cols-2 g-3 mt-1 member-record-grid">
+              {visibleRecords.map((record) => {
+                const isRejected = record.status === "rejected";
 
-            <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm member-sort-menu">
-              {statusOptions.map((option) => (
-                <li key={option.key}>
-                  <button
-                    type="button"
-                    className="dropdown-item d-flex align-items-center"
-                    onClick={() => {
-                      setStatusFilter(option.key);
-                      setVisibleCount(4);
-                    }}
+                const card = (
+                  <article
+                    className={`member-record-card bg-white h-100 ${isRejected ? "member-record-card--disabled" : ""}`}
                   >
-                    <i
-                      className={`bi bi-check-lg me-2 ${statusFilter === option.key ? "" : "invisible"}`}
+                    <img
+                      src={`${memberImageBaseUrl}${record.image}`}
+                      alt={record.title}
+                      className="w-100 member-record-card-image"
                     />
-                    <span>{option.label}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
 
-          <div className="dropdown">
-            <button
-              type="button"
-              className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span className="material-symbols-outlined me-1">tune</span>
-              <span>排序依據</span>
-            </button>
+                    <div className="p-3 pb-2 member-record-card-body">
+                      <div className="d-flex justify-content-between align-items-start gap-2 mb-2">
+                        <h3 className="member-record-card-title mb-0">{record.title}</h3>
+                        <p className="member-record-brand mb-0 text-nowrap">{record.brand}</p>
+                      </div>
 
-            <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm member-sort-menu">
-              {sortOptions.map((option) => (
-                <li key={option.key}>
-                  <button
-                    type="button"
-                    className="dropdown-item d-flex align-items-center"
-                    onClick={() => {
-                      setSortBy(option.key);
-                      setVisibleCount(4);
-                    }}
-                  >
-                    <i
-                      className={`bi bi-check-lg me-2 ${sortBy === option.key ? "" : "invisible"}`}
-                    />
-                    <span>{option.label}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+                      <div className="d-flex gap-4 mb-2">
+                        <div>
+                          <p className="member-record-label mb-1">每罐價格</p>
+                          <p className="member-record-value mb-0">{record.price}</p>
+                        </div>
+                        <div>
+                          <p className="member-record-label mb-1">重量</p>
+                          <p className="member-record-value mb-0">{record.weight}</p>
+                        </div>
+                      </div>
 
-      <div className="row row-cols-2 g-3 mt-1 member-record-grid">
-        {visibleRecords.map((record) => {
-          const isRejected = record.status === "rejected";
+                      <p className="member-record-desc mb-0">{record.desc}</p>
+                    </div>
 
-          const card = (
-            <article
-              className={`member-record-card bg-white h-100 ${isRejected ? "member-record-card--disabled" : ""}`}
-            >
-              <img
-                src={`${memberImageBaseUrl}${record.image}`}
-                alt={record.title}
-                className="w-100 member-record-card-image"
-              />
+                    <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-2">
+                      <p className="member-record-date mb-0">{record.date}</p>
+                      <span
+                        className={`member-record-status${record.status !== "pending" ? ` member-record-status--${record.status}` : ""}`}
+                      >
+                        {record.statusLabel}
+                      </span>
+                    </div>
+                  </article>
+                );
 
-              <div className="p-3 pb-2 member-record-card-body">
-                <div className="d-flex justify-content-between align-items-start gap-2 mb-2">
-                  <h3 className="member-record-card-title mb-0">{record.title}</h3>
-                  <p className="member-record-brand mb-0 text-nowrap">{record.brand}</p>
-                </div>
-
-                <div className="d-flex gap-4 mb-2">
-                  <div>
-                    <p className="member-record-label mb-1">每罐價格</p>
-                    <p className="member-record-value mb-0">{record.price}</p>
+                return (
+                  <div key={record.id} className="col">
+                    {isRejected ? (
+                      <div className="d-block h-100">{card}</div>
+                    ) : (
+                      <Link
+                        to={record.targetPath}
+                        className="text-decoration-none text-reset d-block h-100"
+                      >
+                        {card}
+                      </Link>
+                    )}
                   </div>
-                  <div>
-                    <p className="member-record-label mb-1">重量</p>
-                    <p className="member-record-value mb-0">{record.weight}</p>
-                  </div>
-                </div>
-
-                <p className="member-record-desc mb-0">{record.desc}</p>
-              </div>
-
-              <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-2">
-                <p className="member-record-date mb-0">{record.date}</p>
-                <span
-                  className={`member-record-status${record.status !== "pending" ? ` member-record-status--${record.status}` : ""}`}
-                >
-                  {record.statusLabel}
-                </span>
-              </div>
-            </article>
-          );
-
-          return (
-            <div key={record.id} className="col">
-              {isRejected ? (
-                <div className="d-block h-100">{card}</div>
-              ) : (
-                <Link
-                  to={record.targetPath}
-                  className="text-decoration-none text-reset d-block h-100"
-                >
-                  {card}
-                </Link>
-              )}
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
+          )}
 
-      {hasMore && (
-        <div className="text-center mt-5">
-          <button
-            type="button"
-            className="btn btn-neutral-100 rounded-pill px-4 py-2 member-load-more"
-            onClick={() => setVisibleCount((prev) => prev + 4)}
-          >
-            <i className="bi bi-arrow-repeat me-2" />
-            載入更多投稿紀錄
-          </button>
-        </div>
+          {filteredRecords.length > 0 && hasMore && (
+            <div className="text-center mt-5">
+              <button
+                type="button"
+                className="btn btn-neutral-100 rounded-pill px-4 py-2 member-load-more"
+                onClick={() => setVisibleCount((prev) => prev + 4)}
+              >
+                <i className="bi bi-arrow-repeat me-2" />
+                載入更多投稿紀錄
+              </button>
+            </div>
+          )}
+        </>
+      ) : (
+        <MemberEmptyState compact title="您尚未新增膳食投稿" buttonText="前往投稿" to="/contrib" />
       )}
 
       <h2 className="fs-4 pb-8 border-bottom border-secondary-300 mb-6 mt-10">專欄投稿紀錄</h2>
+      {/* 區塊二：專欄投稿紀錄 */}
 
-      <div className="d-flex justify-content-between align-items-center gap-3 flex-wrap member-record-toolbar">
-        <div className="justify-content-center member-record-search-wrap">
-          <form className="position-relative w-100 record-search">
-            <input
-              type="text"
-              className="form-control rounded-pill py-2 ps-3 pe-5"
-              placeholder="搜尋投稿紀錄"
-              value={knowledgeSearchTerm}
-              onChange={(e) => {
-                setKnowledgeSearchTerm(e.target.value);
+      {hasKnowledgeContributionBase ? (
+        <>
+          <div className="d-flex justify-content-between align-items-center gap-3 flex-wrap member-record-toolbar">
+            <div className="justify-content-center member-record-search-wrap">
+              <form className="position-relative w-100 record-search">
+                <input
+                  type="text"
+                  className="form-control rounded-pill py-2 ps-3 pe-5"
+                  placeholder="搜尋投稿紀錄"
+                  value={knowledgeSearchTerm}
+                  onChange={(e) => {
+                    setKnowledgeSearchTerm(e.target.value);
+                    setKnowledgeVisibleCount(4);
+                  }}
+                />
+                <i
+                  className="bi bi-search text-neutral-500 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center me-2"
+                  style={{ fontSize: "1.2rem" }}
+                />
+              </form>
+            </div>
+
+            <div className="d-flex align-items-center gap-2 ms-auto flex-shrink-0">
+              <div className="dropdown">
+                <button
+                  type="button"
+                  className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <i className="bi bi-funnel me-1" />
+                  <span>狀態篩選</span>
+                </button>
+
+                <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm member-sort-menu">
+                  {statusOptions.map((option) => (
+                    <li key={`knowledge-status-${option.key}`}>
+                      <button
+                        type="button"
+                        className="dropdown-item d-flex align-items-center"
+                        onClick={() => {
+                          setKnowledgeStatusFilter(option.key);
+                          setKnowledgeVisibleCount(4);
+                        }}
+                      >
+                        <i
+                          className={`bi bi-check-lg me-2 ${knowledgeStatusFilter === option.key ? "" : "invisible"}`}
+                        />
+                        <span>{option.label}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="dropdown">
+                <button
+                  type="button"
+                  className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span className="material-symbols-outlined me-1">tune</span>
+                  <span>排序依據</span>
+                </button>
+
+                <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm member-sort-menu">
+                  {sortOptions.map((option) => (
+                    <li key={`knowledge-sort-${option.key}`}>
+                      <button
+                        type="button"
+                        className="dropdown-item d-flex align-items-center"
+                        onClick={() => {
+                          setKnowledgeSortBy(option.key);
+                          setKnowledgeVisibleCount(4);
+                        }}
+                      >
+                        <i
+                          className={`bi bi-check-lg me-2 ${knowledgeSortBy === option.key ? "" : "invisible"}`}
+                        />
+                        <span>{option.label}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {filteredKnowledgeRecords.length === 0 ? (
+            <MemberEmptyState
+              compact
+              title="找不到符合條件的專欄投稿"
+              buttonText="清除篩選"
+              showIllustration={false}
+              onAction={() => {
+                setKnowledgeSearchTerm("");
+                setKnowledgeStatusFilter("all");
                 setKnowledgeVisibleCount(4);
               }}
             />
-            <i
-              className="bi bi-search text-neutral-500 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center me-2"
-              style={{ fontSize: "1.2rem" }}
-            />
-          </form>
-        </div>
+          ) : (
+            <div className="row row-cols-2 g-3 mt-1 member-record-grid">
+              {visibleKnowledgeRecords.map((record) => {
+                const isRejected = record.status === "rejected";
 
-        <div className="d-flex align-items-center gap-2 ms-auto flex-shrink-0">
-          <div className="dropdown">
-            <button
-              type="button"
-              className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i className="bi bi-funnel me-1" />
-              <span>狀態篩選</span>
-            </button>
-
-            <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm member-sort-menu">
-              {statusOptions.map((option) => (
-                <li key={`knowledge-status-${option.key}`}>
-                  <button
-                    type="button"
-                    className="dropdown-item d-flex align-items-center"
-                    onClick={() => {
-                      setKnowledgeStatusFilter(option.key);
-                      setKnowledgeVisibleCount(4);
-                    }}
+                const card = (
+                  <article
+                    className={`member-record-card bg-white h-100 ${isRejected ? "member-record-card--disabled" : ""}`}
                   >
-                    <i
-                      className={`bi bi-check-lg me-2 ${knowledgeStatusFilter === option.key ? "" : "invisible"}`}
+                    <img
+                      src={`${knowledgeImageBaseUrl}${record.image}`}
+                      alt={record.title}
+                      className="w-100 member-knowledge-record-card-image"
                     />
-                    <span>{option.label}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
 
-          <div className="dropdown">
-            <button
-              type="button"
-              className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <span className="material-symbols-outlined me-1">tune</span>
-              <span>排序依據</span>
-            </button>
+                    <div className="p-3 pb-2 member-record-card-body">
+                      <h3 className="member-knowledge-record-card-title mb-2">{record.title}</h3>
+                      <p className="member-knowledge-record-excerpt mb-3">{record.excerpt}</p>
 
-            <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm member-sort-menu">
-              {sortOptions.map((option) => (
-                <li key={`knowledge-sort-${option.key}`}>
-                  <button
-                    type="button"
-                    className="dropdown-item d-flex align-items-center"
-                    onClick={() => {
-                      setKnowledgeSortBy(option.key);
-                      setKnowledgeVisibleCount(4);
-                    }}
-                  >
-                    <i
-                      className={`bi bi-check-lg me-2 ${knowledgeSortBy === option.key ? "" : "invisible"}`}
-                    />
-                    <span>{option.label}</span>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
+                      <div className="d-flex gap-2 flex-wrap mb-2">
+                        {(record.tags ?? []).map((tag) => (
+                          <span key={`${record.id}-${tag}`} className="member-knowledge-tag">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
 
-      <div className="row row-cols-2 g-3 mt-1 member-record-grid">
-        {visibleKnowledgeRecords.map((record) => {
-          const isRejected = record.status === "rejected";
+                    <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-2">
+                      <p className="member-record-date mb-0">{record.date}</p>
+                      <span
+                        className={`member-record-status${record.status !== "pending" ? ` member-record-status--${record.status}` : ""}`}
+                      >
+                        {record.statusLabel}
+                      </span>
+                    </div>
+                  </article>
+                );
 
-          const card = (
-            <article
-              className={`member-record-card bg-white h-100 ${isRejected ? "member-record-card--disabled" : ""}`}
-            >
-              <img
-                src={`${knowledgeImageBaseUrl}${record.image}`}
-                alt={record.title}
-                className="w-100 member-knowledge-record-card-image"
-              />
-
-              <div className="p-3 pb-2 member-record-card-body">
-                <h3 className="member-knowledge-record-card-title mb-2">{record.title}</h3>
-                <p className="member-knowledge-record-excerpt mb-3">{record.excerpt}</p>
-
-                <div className="d-flex gap-2 flex-wrap mb-2">
-                  {(record.tags ?? []).map((tag) => (
-                    <span key={`${record.id}-${tag}`} className="member-knowledge-tag">
-                      #{tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-2">
-                <p className="member-record-date mb-0">{record.date}</p>
-                <span
-                  className={`member-record-status${record.status !== "pending" ? ` member-record-status--${record.status}` : ""}`}
-                >
-                  {record.statusLabel}
-                </span>
-              </div>
-            </article>
-          );
-
-          return (
-            <div key={record.id} className="col">
-              {isRejected ? (
-                <div className="d-block h-100">{card}</div>
-              ) : (
-                <Link
-                  to={record.targetPath}
-                  className="text-decoration-none text-reset d-block h-100"
-                >
-                  {card}
-                </Link>
-              )}
+                return (
+                  <div key={record.id} className="col">
+                    {isRejected ? (
+                      <div className="d-block h-100">{card}</div>
+                    ) : (
+                      <Link
+                        to={record.targetPath}
+                        className="text-decoration-none text-reset d-block h-100"
+                      >
+                        {card}
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
+          )}
 
-      {hasMoreKnowledge && (
-        <div className="text-center mt-5">
-          <button
-            type="button"
-            className="btn btn-neutral-100 rounded-pill px-4 py-2 member-load-more"
-            onClick={() => setKnowledgeVisibleCount((prev) => prev + 4)}
-          >
-            <i className="bi bi-arrow-repeat me-2" />
-            載入更多投稿紀錄
-          </button>
-        </div>
+          {filteredKnowledgeRecords.length > 0 && hasMoreKnowledge && (
+            <div className="text-center mt-5">
+              <button
+                type="button"
+                className="btn btn-neutral-100 rounded-pill px-4 py-2 member-load-more"
+                onClick={() => setKnowledgeVisibleCount((prev) => prev + 4)}
+              >
+                <i className="bi bi-arrow-repeat me-2" />
+                載入更多投稿紀錄
+              </button>
+            </div>
+          )}
+        </>
+      ) : (
+        <MemberEmptyState compact title="您尚未新增專欄投稿" buttonText="前往投稿" to="/contrib" />
       )}
     </>
   );

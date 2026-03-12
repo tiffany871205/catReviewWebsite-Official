@@ -1,5 +1,6 @@
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { useState } from "react";
+import MemberEmptyState from "../../components/member/MemberEmptyState";
 
 const mockCommentRecords = [
   {
@@ -137,7 +138,9 @@ const mockKnowledgeCommentRecords = [
 ];
 
 function Comment() {
+  // 路由工具：卡片點擊導頁與 debug query 讀取。
   const navigate = useNavigate();
+  const location = useLocation();
   const [sortBy, setSortBy] = useState("newest");
   const [searchTerm, setSearchTerm] = useState("");
   const [visibleCount, setVisibleCount] = useState(4);
@@ -151,7 +154,32 @@ function Comment() {
   ];
   const memberImageBaseUrl = `${import.meta.env.BASE_URL}images/member/`;
 
-  const filteredRecords = mockCommentRecords.filter((record) =>
+  // 空狀態預覽開關：?empty=all|food|knowledge。
+  const emptyPreview = new URLSearchParams(location.search).get("empty");
+  const forceFoodEmpty = emptyPreview === "all" || emptyPreview === "food";
+  const forceKnowledgeEmpty = emptyPreview === "all" || emptyPreview === "knowledge";
+  const foodCommentBaseRecords = forceFoodEmpty ? [] : mockCommentRecords;
+  const knowledgeCommentBaseRecords = forceKnowledgeEmpty ? [] : mockKnowledgeCommentRecords;
+
+  const hasFoodCommentBase = foodCommentBaseRecords.length > 0;
+  const hasKnowledgeCommentBase = knowledgeCommentBaseRecords.length > 0;
+  const hasAnyCommentRecord = hasFoodCommentBase || hasKnowledgeCommentBase;
+
+  // 全頁資料都不存在時，顯示整頁空狀態。
+  if (!hasAnyCommentRecord) {
+    const isAllEmptyPreview = emptyPreview === "all";
+
+    return (
+      <MemberEmptyState
+        title="您無任何留言評分項目"
+        buttonText={isAllEmptyPreview ? "繼續探索" : "前往探索"}
+        to={isAllEmptyPreview ? "/index" : "/food"}
+      />
+    );
+  }
+
+  // 上半區塊（膳食留言）搜尋結果。
+  const filteredRecords = foodCommentBaseRecords.filter((record) =>
     `${record.foodName}${record.content}`.toLowerCase().includes(searchTerm.trim().toLowerCase())
   );
 
@@ -164,7 +192,8 @@ function Comment() {
   const visibleRecords = sortedRecords.slice(0, visibleCount);
   const hasMore = visibleCount < sortedRecords.length;
 
-  const filteredKnowledgeRecords = mockKnowledgeCommentRecords.filter((record) =>
+  // 下半區塊（專欄留言）搜尋結果。
+  const filteredKnowledgeRecords = knowledgeCommentBaseRecords.filter((record) =>
     `${record.articleTitle}${record.content}`
       .toLowerCase()
       .includes(knowledgeSearchTerm.trim().toLowerCase())
@@ -181,242 +210,289 @@ function Comment() {
 
   return (
     <>
+      {/* 區塊一：膳食留言評分紀錄 */}
       <h2 className="fs-4 pb-8 border-bottom border-secondary-300 mb-6 mt-6">膳食留言評分紀錄</h2>
-      {/* 搜尋與排序 */}
-      <div className="d-flex justify-content-between align-items-center gap-3">
-        {/* 搜尋 */}
-        <div className="justify-content-center w-100">
-          <form className="position-relative w-100 record-search">
-            <input
-              type="text"
-              className="form-control rounded-pill py-2 ps-3 pe-5"
-              placeholder="搜尋留言評分紀錄"
-              value={searchTerm}
-              onChange={(event) => {
-                setSearchTerm(event.target.value);
+      {hasFoodCommentBase ? (
+        <>
+          {/* 搜尋與排序 */}
+          <div className="d-flex justify-content-between align-items-center gap-3">
+            <div className="justify-content-center w-100">
+              <form className="position-relative w-100 record-search">
+                <input
+                  type="text"
+                  className="form-control rounded-pill py-2 ps-3 pe-5"
+                  placeholder="搜尋留言評分紀錄"
+                  value={searchTerm}
+                  onChange={(event) => {
+                    setSearchTerm(event.target.value);
+                    setVisibleCount(4);
+                  }}
+                />
+                <i
+                  className="bi bi-search text-neutral-500 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center me-2"
+                  style={{ fontSize: "1.2rem" }}
+                />
+              </form>
+            </div>
+            <div className="dropdown ms-auto flex-shrink-0">
+              <button
+                type="button"
+                className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span className="material-symbols-outlined me-1">tune</span>
+                <span>排序依據</span>
+              </button>
+
+              <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm">
+                {sortOptions.map((option) => (
+                  <li key={option.key}>
+                    <button
+                      type="button"
+                      className="dropdown-item d-flex align-items-center"
+                      onClick={() => {
+                        setSortBy(option.key);
+                        setVisibleCount(4);
+                      }}
+                    >
+                      <i
+                        className={`bi bi-check-lg me-2 ${sortBy === option.key ? "" : "invisible"}`}
+                      />
+                      <span>{option.label}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {filteredRecords.length === 0 ? (
+            <MemberEmptyState
+              compact
+              title="找不到符合條件的膳食留言"
+              buttonText="清除篩選"
+              showIllustration={false}
+              onAction={() => {
+                setSearchTerm("");
                 setVisibleCount(4);
               }}
             />
-            <i
-              className="bi bi-search text-neutral-500 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center me-2"
-              style={{ fontSize: "1.2rem" }}
-            />
-          </form>
-        </div>
-        {/* 排序 */}
-        <div className="dropdown ms-auto flex-shrink-0">
-          <button
-            type="button"
-            className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <span className="material-symbols-outlined me-1">tune</span>
-            <span>排序依據</span>
-          </button>
+          ) : (
+            <>
+              <div className="row row-cols-1 row-cols-lg-2 g-3 mt-2 member-comment-grid">
+                {visibleRecords.map((record) => {
+                  const visiblePhotos = record.photos.slice(0, 3);
+                  const photoOverflowCount = record.photos.length - visiblePhotos.length;
 
-          <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm">
-            {sortOptions.map((option) => (
-              <li key={option.key}>
-                <button
-                  type="button"
-                  className="dropdown-item d-flex align-items-center"
-                  onClick={() => {
-                    setSortBy(option.key);
-                    setVisibleCount(4);
-                  }}
-                >
-                  <i
-                    className={`bi bi-check-lg me-2 ${sortBy === option.key ? "" : "invisible"}`}
-                  />
-                  <span>{option.label}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+                  return (
+                    <div key={record.id} className="col">
+                      <article
+                        className="member-comment-card h-100"
+                        role="link"
+                        tabIndex={0}
+                        onClick={() => navigate(record.targetPath)}
+                        onKeyDown={(event) => {
+                          if (event.key === "Enter" || event.key === " ") {
+                            event.preventDefault();
+                            navigate(record.targetPath);
+                          }
+                        }}
+                      >
+                        <div className="d-flex justify-content-between align-items-start mb-2">
+                          <div>
+                            <h3 className="member-comment-name mb-1">{record.foodName}</h3>
+                            <p className="member-comment-time mb-0">{record.relativeTime}</p>
+                          </div>
+                        </div>
 
-      <div className="row row-cols-1 row-cols-lg-2 g-3 mt-2 member-comment-grid">
-        {visibleRecords.map((record) => {
-          const visiblePhotos = record.photos.slice(0, 3);
-          const photoOverflowCount = record.photos.length - visiblePhotos.length;
+                        <p className="member-comment-content mb-0">{record.content}</p>
 
-          return (
-            <div key={record.id} className="col">
-              <article
-                className="member-comment-card h-100"
-                role="link"
-                tabIndex={0}
-                onClick={() => navigate(record.targetPath)}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    navigate(record.targetPath);
-                  }
-                }}
-              >
-                <div className="d-flex justify-content-between align-items-start mb-2">
-                  <div>
-                    <h3 className="member-comment-name mb-1">{record.foodName}</h3>
-                    <p className="member-comment-time mb-0">{record.relativeTime}</p>
-                  </div>
-                </div>
+                        {record.canExpand && (
+                          <button
+                            type="button"
+                            className="btn member-comment-expand-btn"
+                            onClick={(event) => event.stopPropagation()}
+                          >
+                            <i className="bi bi-chevron-down me-1" />
+                            展開完整評論
+                          </button>
+                        )}
 
-                <p className="member-comment-content mb-0">{record.content}</p>
+                        {visiblePhotos.length > 0 && (
+                          <div className="member-comment-gallery mt-3">
+                            {visiblePhotos.map((photo, index) => {
+                              const showOverflow =
+                                index === visiblePhotos.length - 1 && photoOverflowCount > 0;
 
-                {record.canExpand && (
+                              return (
+                                <div
+                                  key={`${record.id}-photo-${photo}`}
+                                  className="member-comment-photo-wrap"
+                                >
+                                  <img
+                                    src={`${memberImageBaseUrl}${photo}`}
+                                    alt={`${record.foodName}-評論圖片-${index + 1}`}
+                                    className="member-comment-photo"
+                                  />
+                                  {showOverflow && (
+                                    <span className="member-comment-photo-overlay">
+                                      +{photoOverflowCount}
+                                    </span>
+                                  )}
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </article>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {hasMore && (
+                <div className="text-center mt-5">
                   <button
                     type="button"
-                    className="btn member-comment-expand-btn"
-                    onClick={(event) => event.stopPropagation()}
+                    className="btn btn-neutral-100 rounded-pill px-4 py-2 member-load-more"
+                    onClick={() => setVisibleCount((prev) => prev + 4)}
                   >
-                    <i className="bi bi-chevron-down me-1" />
-                    展開完整評論
+                    <i className="bi bi-arrow-repeat me-2" />
+                    載入更多留言紀錄
                   </button>
-                )}
-
-                {visiblePhotos.length > 0 && (
-                  <div className="member-comment-gallery mt-3">
-                    {visiblePhotos.map((photo, index) => {
-                      const showOverflow =
-                        index === visiblePhotos.length - 1 && photoOverflowCount > 0;
-
-                      return (
-                        <div
-                          key={`${record.id}-photo-${photo}`}
-                          className="member-comment-photo-wrap"
-                        >
-                          <img
-                            src={`${memberImageBaseUrl}${photo}`}
-                            alt={`${record.foodName}-評論圖片-${index + 1}`}
-                            className="member-comment-photo"
-                          />
-                          {showOverflow && (
-                            <span className="member-comment-photo-overlay">
-                              +{photoOverflowCount}
-                            </span>
-                          )}
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </article>
-            </div>
-          );
-        })}
-      </div>
-
-      {hasMore && (
-        <div className="text-center mt-5">
-          <button
-            type="button"
-            className="btn btn-neutral-100 rounded-pill px-4 py-2 member-load-more"
-            onClick={() => setVisibleCount((prev) => prev + 4)}
-          >
-            <i className="bi bi-arrow-repeat me-2" />
-            載入更多留言紀錄
-          </button>
-        </div>
+                </div>
+              )}
+            </>
+          )}
+        </>
+      ) : (
+        <MemberEmptyState compact title="您尚未新增膳食留言評分" buttonText="前往探索" to="/food" />
       )}
 
       <h2 className="fs-4 pb-8 border-bottom border-secondary-300 mb-6 mt-10">專欄留言評分紀錄</h2>
+      {/* 區塊二：專欄留言評分紀錄 */}
 
-      <div className="d-flex justify-content-between align-items-center gap-3">
-        <div className="justify-content-center w-100">
-          <form className="position-relative w-100 record-search">
-            <input
-              type="text"
-              className="form-control rounded-pill py-2 ps-3 pe-5"
-              placeholder="搜尋留言評分紀錄"
-              value={knowledgeSearchTerm}
-              onChange={(event) => {
-                setKnowledgeSearchTerm(event.target.value);
+      {hasKnowledgeCommentBase ? (
+        <>
+          <div className="d-flex justify-content-between align-items-center gap-3">
+            <div className="justify-content-center w-100">
+              <form className="position-relative w-100 record-search">
+                <input
+                  type="text"
+                  className="form-control rounded-pill py-2 ps-3 pe-5"
+                  placeholder="搜尋留言評分紀錄"
+                  value={knowledgeSearchTerm}
+                  onChange={(event) => {
+                    setKnowledgeSearchTerm(event.target.value);
+                    setKnowledgeVisibleCount(4);
+                  }}
+                />
+                <i
+                  className="bi bi-search text-neutral-500 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center me-2"
+                  style={{ fontSize: "1.2rem" }}
+                />
+              </form>
+            </div>
+
+            <div className="dropdown ms-auto flex-shrink-0">
+              <button
+                type="button"
+                className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <span className="material-symbols-outlined me-1">tune</span>
+                <span>排序依據</span>
+              </button>
+
+              <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm">
+                {sortOptions.map((option) => (
+                  <li key={`knowledge-${option.key}`}>
+                    <button
+                      type="button"
+                      className="dropdown-item d-flex align-items-center"
+                      onClick={() => {
+                        setKnowledgeSortBy(option.key);
+                        setKnowledgeVisibleCount(4);
+                      }}
+                    >
+                      <i
+                        className={`bi bi-check-lg me-2 ${knowledgeSortBy === option.key ? "" : "invisible"}`}
+                      />
+                      <span>{option.label}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {filteredKnowledgeRecords.length === 0 ? (
+            <MemberEmptyState
+              compact
+              title="找不到符合條件的專欄留言"
+              buttonText="清除篩選"
+              showIllustration={false}
+              onAction={() => {
+                setKnowledgeSearchTerm("");
                 setKnowledgeVisibleCount(4);
               }}
             />
-            <i
-              className="bi bi-search text-neutral-500 position-absolute end-0 top-50 translate-middle-y me-2 d-flex align-items-center justify-content-center me-2"
-              style={{ fontSize: "1.2rem" }}
-            />
-          </form>
-        </div>
+          ) : (
+            <>
+              <div className="row row-cols-1 row-cols-lg-2 g-3 mt-2 member-comment-grid">
+                {visibleKnowledgeRecords.map((record) => (
+                  <div key={record.id} className="col">
+                    <article
+                      className="member-comment-card h-100"
+                      role="link"
+                      tabIndex={0}
+                      onClick={() => navigate(record.targetPath)}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          navigate(record.targetPath);
+                        }
+                      }}
+                    >
+                      <div className="d-flex justify-content-between align-items-start mb-2">
+                        <div className="w-100">
+                          <h3 className="member-comment-name member-comment-title-one-line mb-1">
+                            {record.articleTitle}
+                          </h3>
+                          <p className="member-comment-time mb-0">{record.relativeTime}</p>
+                        </div>
+                      </div>
 
-        <div className="dropdown ms-auto flex-shrink-0">
-          <button
-            type="button"
-            className="btn btn-neutral-100 py-1 px-3 d-flex align-items-center text-nowrap"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <span className="material-symbols-outlined me-1">tune</span>
-            <span>排序依據</span>
-          </button>
-
-          <ul className="dropdown-menu dropdown-menu-end mt-2 py-1 shadow-sm">
-            {sortOptions.map((option) => (
-              <li key={`knowledge-${option.key}`}>
-                <button
-                  type="button"
-                  className="dropdown-item d-flex align-items-center"
-                  onClick={() => {
-                    setKnowledgeSortBy(option.key);
-                    setKnowledgeVisibleCount(4);
-                  }}
-                >
-                  <i
-                    className={`bi bi-check-lg me-2 ${knowledgeSortBy === option.key ? "" : "invisible"}`}
-                  />
-                  <span>{option.label}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="row row-cols-1 row-cols-lg-2 g-3 mt-2 member-comment-grid">
-        {visibleKnowledgeRecords.map((record) => (
-          <div key={record.id} className="col">
-            <article
-              className="member-comment-card h-100"
-              role="link"
-              tabIndex={0}
-              onClick={() => navigate(record.targetPath)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                  event.preventDefault();
-                  navigate(record.targetPath);
-                }
-              }}
-            >
-              <div className="d-flex justify-content-between align-items-start mb-2">
-                <div className="w-100">
-                  <h3 className="member-comment-name member-comment-title-one-line mb-1">
-                    {record.articleTitle}
-                  </h3>
-                  <p className="member-comment-time mb-0">{record.relativeTime}</p>
-                </div>
+                      <p className="member-comment-content mb-0">{record.content}</p>
+                    </article>
+                  </div>
+                ))}
               </div>
 
-              <p className="member-comment-content mb-0">{record.content}</p>
-            </article>
-          </div>
-        ))}
-      </div>
-
-      {hasMoreKnowledge && (
-        <div className="text-center mt-5">
-          <button
-            type="button"
-            className="btn btn-neutral-100 rounded-pill px-4 py-2 member-load-more"
-            onClick={() => setKnowledgeVisibleCount((prev) => prev + 4)}
-          >
-            <i className="bi bi-arrow-repeat me-2" />
-            載入更多留言紀錄
-          </button>
-        </div>
+              {hasMoreKnowledge && (
+                <div className="text-center mt-5">
+                  <button
+                    type="button"
+                    className="btn btn-neutral-100 rounded-pill px-4 py-2 member-load-more"
+                    onClick={() => setKnowledgeVisibleCount((prev) => prev + 4)}
+                  >
+                    <i className="bi bi-arrow-repeat me-2" />
+                    載入更多留言紀錄
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+        </>
+      ) : (
+        <MemberEmptyState
+          compact
+          title="您尚未新增專欄留言評分"
+          buttonText="前往學堂"
+          to="/knowledge"
+        />
       )}
     </>
   );

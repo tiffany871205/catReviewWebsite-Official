@@ -110,8 +110,7 @@ export const MOCK_KNOWLEDGE_COMMENT_RECORDS = [
     rating: 3,
     date: "2026-02-22T09:00:00",
     relativeTime: "3週前",
-    content:
-      "內容輕鬆好讀，原來肉墊真的會協助散熱。雖然偏知識小品，但很適合新手快速吸收。",
+    content: "內容輕鬆好讀，原來肉墊真的會協助散熱。雖然偏知識小品，但很適合新手快速吸收。",
     targetPath: "/knowledge/article/4",
   },
   {
@@ -120,8 +119,7 @@ export const MOCK_KNOWLEDGE_COMMENT_RECORDS = [
     rating: 5,
     date: "2026-02-15T15:00:00",
     relativeTime: "4週前",
-    content:
-      "這篇直接救了我，買玩具不再亂買，改成輪替制後主子每天都會主動玩，夜間暴衝也明顯減少。",
+    content: "這篇直接救了我，買玩具不再亂買，改成輪替制後主子每天都會主動玩，夜間暴衝也明顯減少。",
     targetPath: "/knowledge/article/10",
   },
   {
@@ -130,8 +128,7 @@ export const MOCK_KNOWLEDGE_COMMENT_RECORDS = [
     rating: 4,
     date: "2026-02-10T11:00:00",
     relativeTime: "1個月前",
-    content:
-      "搬家後貓咪一直躲床底，看完照著做建立固定躲藏點和氣味交換，恢復速度比預期快很多。",
+    content: "搬家後貓咪一直躲床底，看完照著做建立固定躲藏點和氣味交換，恢復速度比預期快很多。",
     targetPath: "/knowledge/article/15",
   },
 ];

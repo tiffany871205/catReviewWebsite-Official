@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import db from "../../db.json";
+// import db from "../../db.json";
+import db from "../../db.seed.json";
 import Swal from "sweetalert2";
 import ArticleBlock from "../components/articles/ArticleBlock";
 import FeedbackActions from "../components/articles/FeedbackActions";
@@ -288,7 +289,7 @@ export default function Article() {
             className="decoration-RT"
           />
 
-          <div className="col-12 head-content">
+          <div className="col-12 head-content container">
             <div className="row knowledge-prod-header">
               {/* 桌面版標題 */}
               <div className="knowledge-text d-md-block d-none">
@@ -306,18 +307,41 @@ export default function Article() {
                   </p>
                 </div>
 
-                <p>
-                  <i
-                    className={`bi ${
-                      voteType === "helpful"
-                        ? "bi-hand-thumbs-up-fill text-primary-700"
-                        : "bi-hand-thumbs-up text-muted"
-                    } pe-1`}
-                  />
-                  {helpfulCount}% 的讀者覺得這篇文章有幫助
+                <p className="d-flex justify-content-between align-items-center">
                   <span>
+                    <i
+                      className={`bi ${
+                        voteType === "helpful"
+                          ? "bi-hand-thumbs-up-fill text-primary-700"
+                          : "bi-hand-thumbs-up text-muted"
+                      } pe-1`}
+                    />
+                    {helpfulCount}% 的讀者覺得這篇文章有幫助
                     <i className="bi bi-chat-dots ms-8"></i> 留言{" "}
                     {localComments.length}
+                  </span>
+                  <span>
+                    <span
+                      onClick={handleShareClick}
+                      style={{ cursor: "pointer" }}
+                      className="me-6"
+                    >
+                      <i className="bi bi-box-arrow-up-right me-1"></i>分享{" "}
+                    </span>
+
+                    <span
+                      onClick={() => setIsBookmarked(!isBookmarked)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <i
+                        className={`bi ${
+                          isBookmarked
+                            ? "bi-bookmark-fill text-primary-700"
+                            : "bi-bookmark"
+                        } me-1`}
+                      ></i>
+                      {isBookmarked ? "已收藏" : "加入收藏"}
+                    </span>
                   </span>
                 </p>
               </div>
@@ -373,7 +397,7 @@ export default function Article() {
                           isBookmarked
                             ? "bi-bookmark-fill text-primary-700"
                             : "bi-bookmark"
-                        }`}
+                        } me-1`}
                       ></i>
                       {isBookmarked ? "已收藏" : "加入收藏"}
                     </p>

@@ -199,7 +199,7 @@ function Header() {
                     <li>
                       <Link
                         className="dropdown-item header-dropdown-item justify-content-start d-flex align-items-center p-3 pe-12"
-                        to="/member#account"
+                        to="/member/account"
                       >
                         <img
                           src="./images/member/user-circle.png"
@@ -212,7 +212,7 @@ function Header() {
                     <li>
                       <Link
                         className="dropdown-item header-dropdown-item justify-content-start d-flex align-items-center p-3 pe-12"
-                        to="/member#record"
+                        to="/member/record"
                       >
                         <img src="./images/member/history.png" alt="history" className="me-3" />
                         會員紀錄

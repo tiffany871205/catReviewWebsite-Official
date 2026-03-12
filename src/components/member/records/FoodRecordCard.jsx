@@ -4,7 +4,7 @@ function FoodRecordCard({ record, imageBaseUrl, showStatus = false, isDisabled =
       className={`member-record-card bg-white h-100 ${isDisabled ? "member-record-card--disabled" : ""}`}
     >
       <img
-        src={`${imageBaseUrl}${record.image}`}
+        src={record.imageUrl || `${imageBaseUrl}${record.image}`}
         alt={record.title}
         className="w-100 member-record-card-image"
       />

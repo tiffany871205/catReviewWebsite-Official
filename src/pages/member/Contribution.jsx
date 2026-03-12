@@ -1,19 +1,23 @@
 import { Link } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MemberEmptyState from "../../components/member/MemberEmptyState";
 import MemberSectionTitle from "../../components/member/records/MemberSectionTitle";
 import MemberSearchForm from "../../components/member/records/MemberSearchForm";
 import MemberFilterDropdown from "../../components/member/records/MemberFilterDropdown";
 import FoodRecordCard from "../../components/member/records/FoodRecordCard";
 import KnowledgeRecordCard from "../../components/member/records/KnowledgeRecordCard";
+import { fetchContributionRecords } from "../../api/memberRecords";
 import useMemberEmptyPreview from "../../hooks/member/useMemberEmptyPreview";
 import useMemberRecordControls from "../../hooks/member/useMemberRecordControls";
-import { MOCK_FOOD_RECORDS, MOCK_KNOWLEDGE_RECORDS } from "./data/mockRecordData";
 import { SORT_OPTIONS, STATUS_OPTIONS } from "./data/recordOptions";
+import { getUserFromLocalStorage } from "../../utils/auth";
 
 function Contribution() {
   const memberImageBaseUrl = `${import.meta.env.BASE_URL}images/member/`;
   const knowledgeImageBaseUrl = `${import.meta.env.BASE_URL}images/knowledge/`;
+  const [foodBaseRecords, setFoodBaseRecords] = useState([]);
+  const [knowledgeBaseRecords, setKnowledgeBaseRecords] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [statusFilter, setStatusFilter] = useState("all");
   const [knowledgeStatusFilter, setKnowledgeStatusFilter] = useState("all");
   const { forceFoodEmpty, forceKnowledgeEmpty } = useMemberEmptyPreview();
@@ -41,8 +45,39 @@ function Contribution() {
   const sortOptions = SORT_OPTIONS;
   const statusOptions = STATUS_OPTIONS;
 
-  const foodContributionBaseRecords = forceFoodEmpty ? [] : MOCK_FOOD_RECORDS;
-  const knowledgeContributionBaseRecords = forceKnowledgeEmpty ? [] : MOCK_KNOWLEDGE_RECORDS;
+  useEffect(() => {
+    const currentUser = getUserFromLocalStorage();
+
+    if (!currentUser?.id) {
+      setFoodBaseRecords([]);
+      setKnowledgeBaseRecords([]);
+      setIsLoading(false);
+      return;
+    }
+
+    const loadRecords = async () => {
+      try {
+        const { foodRecords, knowledgeRecords } = await fetchContributionRecords(currentUser.id);
+        setFoodBaseRecords(foodRecords);
+        setKnowledgeBaseRecords(knowledgeRecords);
+      } catch (error) {
+        console.error("載入投稿紀錄失敗", error);
+        setFoodBaseRecords([]);
+        setKnowledgeBaseRecords([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadRecords();
+  }, []);
+
+  const foodContributionBaseRecords = forceFoodEmpty ? [] : foodBaseRecords;
+  const knowledgeContributionBaseRecords = forceKnowledgeEmpty ? [] : knowledgeBaseRecords;
+
+  if (isLoading) {
+    return <div className="text-center py-8">載入中...</div>;
+  }
 
   const hasAnyContributionRecord =
     foodContributionBaseRecords.length > 0 || knowledgeContributionBaseRecords.length > 0;
@@ -203,6 +238,7 @@ function Contribution() {
             <div className="row row-cols-lg-2 row-cols-1 g-3 mt-1 member-record-grid">
               {visibleRecords.map((record) => {
                 const isRejected = record.status === "rejected";
+                const isApproved = record.status === "approved";
 
                 const card = (
                   <FoodRecordCard
@@ -215,15 +251,15 @@ function Contribution() {
 
                 return (
                   <div key={record.id} className="col">
-                    {isRejected ? (
-                      <div className="d-block h-100">{card}</div>
-                    ) : (
+                    {isApproved ? (
                       <Link
                         to={record.targetPath}
                         className="text-decoration-none text-reset d-block h-100"
                       >
                         {card}
                       </Link>
+                    ) : (
+                      <div className="d-block h-100">{card}</div>
                     )}
                   </div>
                 );
@@ -357,6 +393,7 @@ function Contribution() {
             <div className="row row-cols-lg-2 row-cols-1 g-3 mt-1 member-record-grid">
               {visibleKnowledgeRecords.map((record) => {
                 const isRejected = record.status === "rejected";
+                const isApproved = record.status === "approved";
 
                 const card = (
                   <KnowledgeRecordCard
@@ -369,15 +406,15 @@ function Contribution() {
 
                 return (
                   <div key={record.id} className="col">
-                    {isRejected ? (
-                      <div className="d-block h-100">{card}</div>
-                    ) : (
+                    {isApproved ? (
                       <Link
                         to={record.targetPath}
                         className="text-decoration-none text-reset d-block h-100"
                       >
                         {card}
                       </Link>
+                    ) : (
+                      <div className="d-block h-100">{card}</div>
                     )}
                   </div>
                 );

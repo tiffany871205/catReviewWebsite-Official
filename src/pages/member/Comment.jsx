@@ -1,15 +1,20 @@
 import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
 import MemberEmptyState from "../../components/member/MemberEmptyState";
 import MemberSectionTitle from "../../components/member/records/MemberSectionTitle";
 import MemberSearchForm from "../../components/member/records/MemberSearchForm";
 import MemberFilterDropdown from "../../components/member/records/MemberFilterDropdown";
+import { fetchCommentRecords } from "../../api/memberRecords";
 import useMemberEmptyPreview from "../../hooks/member/useMemberEmptyPreview";
 import useMemberRecordControls from "../../hooks/member/useMemberRecordControls";
-import { MOCK_COMMENT_RECORDS, MOCK_KNOWLEDGE_COMMENT_RECORDS } from "./data/mockCommentData";
 import { SORT_OPTIONS } from "./data/recordOptions";
+import { getUserFromLocalStorage } from "../../utils/auth";
 
 function Comment() {
   const navigate = useNavigate();
+  const [foodBaseRecords, setFoodBaseRecords] = useState([]);
+  const [knowledgeBaseRecords, setKnowledgeBaseRecords] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { forceFoodEmpty, forceKnowledgeEmpty, isAllEmptyPreview } = useMemberEmptyPreview();
   const {
     sortBy,
@@ -33,8 +38,39 @@ function Comment() {
   const sortOptions = SORT_OPTIONS;
   const memberImageBaseUrl = `${import.meta.env.BASE_URL}images/member/`;
 
-  const foodCommentBaseRecords = forceFoodEmpty ? [] : MOCK_COMMENT_RECORDS;
-  const knowledgeCommentBaseRecords = forceKnowledgeEmpty ? [] : MOCK_KNOWLEDGE_COMMENT_RECORDS;
+  useEffect(() => {
+    const currentUser = getUserFromLocalStorage();
+
+    if (!currentUser?.id) {
+      setFoodBaseRecords([]);
+      setKnowledgeBaseRecords([]);
+      setIsLoading(false);
+      return;
+    }
+
+    const loadRecords = async () => {
+      try {
+        const { foodRecords, knowledgeRecords } = await fetchCommentRecords(currentUser);
+        setFoodBaseRecords(foodRecords);
+        setKnowledgeBaseRecords(knowledgeRecords);
+      } catch (error) {
+        console.error("載入留言紀錄失敗", error);
+        setFoodBaseRecords([]);
+        setKnowledgeBaseRecords([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadRecords();
+  }, []);
+
+  const foodCommentBaseRecords = forceFoodEmpty ? [] : foodBaseRecords;
+  const knowledgeCommentBaseRecords = forceKnowledgeEmpty ? [] : knowledgeBaseRecords;
+
+  if (isLoading) {
+    return <div className="text-center py-8">載入中...</div>;
+  }
 
   const hasFoodCommentBase = foodCommentBaseRecords.length > 0;
   const hasKnowledgeCommentBase = knowledgeCommentBaseRecords.length > 0;

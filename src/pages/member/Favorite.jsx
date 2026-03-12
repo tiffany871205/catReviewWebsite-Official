@@ -1,18 +1,23 @@
 import { Link } from "react-router";
+import { useEffect, useState } from "react";
 import MemberEmptyState from "../../components/member/MemberEmptyState";
 import MemberSectionTitle from "../../components/member/records/MemberSectionTitle";
 import MemberSearchForm from "../../components/member/records/MemberSearchForm";
 import MemberFilterDropdown from "../../components/member/records/MemberFilterDropdown";
 import FoodRecordCard from "../../components/member/records/FoodRecordCard";
 import KnowledgeRecordCard from "../../components/member/records/KnowledgeRecordCard";
+import { fetchFavoriteRecords } from "../../api/memberRecords";
 import useMemberEmptyPreview from "../../hooks/member/useMemberEmptyPreview";
 import useMemberRecordControls from "../../hooks/member/useMemberRecordControls";
-import { MOCK_FOOD_RECORDS, MOCK_KNOWLEDGE_RECORDS } from "./data/mockRecordData";
 import { SORT_OPTIONS } from "./data/recordOptions";
+import { getUserFromLocalStorage } from "../../utils/auth";
 
 function Favorite() {
   const memberImageBaseUrl = `${import.meta.env.BASE_URL}images/member/`;
   const knowledgeImageBaseUrl = `${import.meta.env.BASE_URL}images/knowledge/`;
+  const [foodBaseRecords, setFoodBaseRecords] = useState([]);
+  const [knowledgeBaseRecords, setKnowledgeBaseRecords] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { forceFoodEmpty, forceKnowledgeEmpty, isAllEmptyPreview } = useMemberEmptyPreview();
   const {
     sortBy,
@@ -35,8 +40,39 @@ function Favorite() {
 
   const sortOptions = SORT_OPTIONS;
 
-  const foodFavoriteBaseRecords = forceFoodEmpty ? [] : MOCK_FOOD_RECORDS;
-  const knowledgeFavoriteBaseRecords = forceKnowledgeEmpty ? [] : MOCK_KNOWLEDGE_RECORDS;
+  useEffect(() => {
+    const currentUser = getUserFromLocalStorage();
+
+    if (!currentUser?.id) {
+      setFoodBaseRecords([]);
+      setKnowledgeBaseRecords([]);
+      setIsLoading(false);
+      return;
+    }
+
+    const loadRecords = async () => {
+      try {
+        const { foodRecords, knowledgeRecords } = await fetchFavoriteRecords(currentUser.id);
+        setFoodBaseRecords(foodRecords);
+        setKnowledgeBaseRecords(knowledgeRecords);
+      } catch (error) {
+        console.error("載入珍藏紀錄失敗", error);
+        setFoodBaseRecords([]);
+        setKnowledgeBaseRecords([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadRecords();
+  }, []);
+
+  const foodFavoriteBaseRecords = forceFoodEmpty ? [] : foodBaseRecords;
+  const knowledgeFavoriteBaseRecords = forceKnowledgeEmpty ? [] : knowledgeBaseRecords;
+
+  if (isLoading) {
+    return <div className="text-center py-8">載入中...</div>;
+  }
 
   const hasAnyFavoriteRecord =
     foodFavoriteBaseRecords.length > 0 || knowledgeFavoriteBaseRecords.length > 0;

@@ -9,6 +9,8 @@ import { isAuthenticated, setAuth, clearAuth } from "../../utils/auth";
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 function Header() {
+  const imageBaseUrl = `${import.meta.env.BASE_URL}images/`;
+
   const [user, setUser] = useState(null);
   const [loginError, setLoginError] = useState("");
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -127,14 +129,14 @@ function Header() {
           <div className="container">
             {/* <!-- logo --> */}
             <Link to="/index" className="navbar-brand d-none d-lg-block">
-              <img src="./images/logo.svg" alt="logo" className="me-72" />
+              <img src={`${imageBaseUrl}logo.svg`} alt="logo" className="me-72" />
             </Link>
 
             {/* <!-- 手機板header --> */}
             <div className="navbar-header d-lg-none w-100 d-flex justify-content-between align-items-center py-1 flex-shrink-0">
               {/* <!-- logo --> */}
               <Link className="navbar-brand" to="/index">
-                <img src="./images/logo.svg" alt="logo" className="me-72" />
+                <img src={`${imageBaseUrl}logo.svg`} alt="logo" className="me-72" />
               </Link>
               {/* <!-- 漢堡按鈕 --> */}
               <button
@@ -202,7 +204,7 @@ function Header() {
                         to="/member/account"
                       >
                         <img
-                          src="./images/member/user-circle.png"
+                          src={`${imageBaseUrl}member/user-circle.png`}
                           alt="user-circle"
                           className="me-3"
                         />
@@ -214,7 +216,11 @@ function Header() {
                         className="dropdown-item header-dropdown-item justify-content-start d-flex align-items-center p-3 pe-12"
                         to="/member/record"
                       >
-                        <img src="./images/member/history.png" alt="history" className="me-3" />
+                        <img
+                          src={`${imageBaseUrl}member/history.png`}
+                          alt="history"
+                          className="me-3"
+                        />
                         會員紀錄
                       </Link>
                     </li>
@@ -229,7 +235,11 @@ function Header() {
                           handleLogout();
                         }}
                       >
-                        <img src="./images/member/logout.png" alt="logout" className="me-3" />
+                        <img
+                          src={`${imageBaseUrl}member/logout.png`}
+                          alt="logout"
+                          className="me-3"
+                        />
                         登出
                       </Link>
                       {/* <!-- Modal --> */}

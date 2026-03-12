@@ -2,6 +2,8 @@ import * as bootstrap from "bootstrap";
 import { useEffect, useRef, useState } from "react";
 
 function Account() {
+  const imageBaseUrl = `${import.meta.env.BASE_URL}images/`;
+
   const [passwordVisible, setPasswordVisible] = useState({
     oldPassword: false,
     newPassword: false,
@@ -100,7 +102,7 @@ function Account() {
             為了侍奉主子， <br />
             你的所有資料都整齊放在這裡了~
           </p>
-          <img className="mt-3" src="./public/images/favicon.ico" alt="logo" />
+          <img className="mt-3" src={`${imageBaseUrl}favicon.ico`} alt="logo" />
         </div>
         <form className="needs-validation" noValidate>
           <div className="mb-lg-8 mb-6">

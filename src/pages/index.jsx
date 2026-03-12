@@ -1,5 +1,7 @@
 import { Link } from "react-router";
 function Index() {
+  const imageBaseUrl = `${import.meta.env.BASE_URL}images/`;
+
   return (
     <main>
       <div className="container-fluid p-0">
@@ -12,19 +14,19 @@ function Index() {
                 <div className="d-flex flex-column">
                   <img
                     className="mb-lg-11 mb-9 align-self-center"
-                    src="./images/index/herotitle_frame_top.svg"
+                    src={`${imageBaseUrl}index/herotitle_frame_top.svg`}
                     alt="herotitle_frame_top"
                   />
                   <h1 className="fs-2 fs-lg-1 mb-lg-7 mb-3 text-secondary-200 align-self-center">
                     想給主子最好的
                   </h1>
                   <div className="d-flex mb-lg-7 mb-9 align-items-center justify-content-center">
-                    <img src="./images/logotype.svg" alt="logotype" />
+                    <img src={`${imageBaseUrl}logotype.svg`} alt="logotype" />
                     <h3 className="fs-7 fs-lg-5 text-secondary-200 ms-2">來幫忙</h3>
                   </div>
                   <img
                     className="mt-lg-7 mb-lg-8 mb-9 align-self-center"
-                    src="./images/index/herotitle_frame_bottom.svg"
+                    src={`${imageBaseUrl}index/herotitle_frame_bottom.svg`}
                     alt="herotitle_frame_bottom"
                   />
                   {/* <!-- cta btn --> */}
@@ -45,7 +47,7 @@ function Index() {
             {/* <!-- 下方圓弧 --> */}
             <img
               className="position-absolute bottom-0 start-50 translate-middle-x z-1 w-100"
-              src="./images/index/section01_border.png"
+              src={`${imageBaseUrl}index/section01_border.png`}
               alt="section01_border"
             />
             {/* <!-- 內容 --> */}
@@ -55,7 +57,7 @@ function Index() {
               <div className="col-6">
                 <img
                   className="girl-hug-desktop position-absolute top-50 translate-middle-y d-none d-lg-block"
-                  src="./images/index/section01_image.png"
+                  src={`${imageBaseUrl}index/section01_image.png`}
                   alt="girl-hug"
                 />
               </div>
@@ -68,12 +70,13 @@ function Index() {
                   <div className="index-section2-words-bg position-relative">
                     <picture>
                       <source
-                        srcSet="
-                          ./images/index/section01_card_desktop.svg
-                        "
+                        srcSet={`${imageBaseUrl}index/section01_card_desktop.svg`}
                         media="(min-width: 1200px)"
                       />
-                      <img src="./images/index/section01_card_mobile.svg" alt="card_desktop" />
+                      <img
+                        src={`${imageBaseUrl}index/section01_card_mobile.svg`}
+                        alt="card_desktop"
+                      />
                     </picture>
                     <div className="index-section-2-words position-absolute">
                       <p className="text-neutral-900 mb-6">
@@ -116,7 +119,7 @@ function Index() {
                 {/* <!-- 女孩mobile --> */}
                 <img
                   className="girl-hug-mobile d-lg-none position-absolute bottom-0 start-50 translate-middle-x"
-                  src="./images/index/section01_image.png"
+                  src={`${imageBaseUrl}index/section01_image.png`}
                   alt="girl-hug"
                 />
               </div>
@@ -130,7 +133,7 @@ function Index() {
             <div className="section3-title d-flex flex-column align-items-center mb-lg-12 mb-11">
               <img
                 className="mb-lg-11 mb-6"
-                src="./images/index/section02_decoration.svg"
+                src={`${imageBaseUrl}index/section02_decoration.svg`}
                 alt="section02_decoration"
               />
               <h2 className="fs-lg-2 fs-4 text-center text-secondary-800">
@@ -142,7 +145,11 @@ function Index() {
             <div className="row gx-lg-3">
               <div className="col-lg-4 p-lg-0 mb-6">
                 <div className="index-service-card">
-                  <img className="mb-2" src="./images/index/section2-item1.png" alt="膳食探索" />
+                  <img
+                    className="mb-2"
+                    src={`${imageBaseUrl}index/section2-item1.png`}
+                    alt="膳食探索"
+                  />
                   <h4 className="fs-5 text-lg-neutral-900 text-secondary-800 text-center mb-2">
                     膳食探索
                   </h4>
@@ -153,7 +160,11 @@ function Index() {
               </div>
               <div className="col-lg-4 p-lg-0 mb-6">
                 <div className="index-service-card">
-                  <img className="mb-2" src="./images/index/section2-item2.png" alt="喵皇學堂" />
+                  <img
+                    className="mb-2"
+                    src={`${imageBaseUrl}index/section2-item2.png`}
+                    alt="喵皇學堂"
+                  />
                   <h4 className="fs-5 text-lg-neutral-900 text-secondary-800 text-center mb-2">
                     喵皇學堂
                   </h4>
@@ -164,7 +175,11 @@ function Index() {
               </div>
               <div className="col-lg-4 p-lg-0">
                 <div className="index-service-card">
-                  <img className="mb-2" src="./images/index/section2-item3.png" alt="會員制度" />
+                  <img
+                    className="mb-2"
+                    src={`${imageBaseUrl}index/section2-item3.png`}
+                    alt="會員制度"
+                  />
                   <h4 className="fs-5 text-lg-neutral-900 text-secondary-800 text-center mb-2">
                     會員制度
                   </h4>
@@ -204,7 +219,11 @@ function Index() {
                       href="foodmain.html"
                     >
                       前往探索
-                      <img className="ms-3" src="./images/arrow_right.png" alt="arrow_right" />
+                      <img
+                        className="ms-3"
+                        src={`${imageBaseUrl}arrow_right.png`}
+                        alt="arrow_right"
+                      />
                     </a>
                   </div>
                 </div>
@@ -243,7 +262,11 @@ function Index() {
                       href="knowledge.html"
                     >
                       前往學堂
-                      <img className="ms-3" src="./images/arrow_right.png" alt="arrow_right" />
+                      <img
+                        className="ms-3"
+                        src={`${imageBaseUrl}arrow_right.png`}
+                        alt="arrow_right"
+                      />
                     </a>
                   </div>
                 </div>
@@ -270,29 +293,33 @@ function Index() {
                     className="index-post-share btn rounded-pill mt-lg-1 d-flex align-items-center px-lg-6 py-lg-2 px-3 py-1"
                     to="/contrib"
                   >
-                    <img className="quill-pen" src="./images/index/quill-pen.png" alt="quill-pen" />
+                    <img
+                      className="quill-pen"
+                      src={`${imageBaseUrl}index/quill-pen.png`}
+                      alt="quill-pen"
+                    />
                     <p className="text-white ms-1">分享好料</p>
                   </Link>
                 </div>
                 {/* <!-- 裝飾 --> */}
                 <img
                   className="index-post-deco position-absolute top-0 start-0 p-3"
-                  src="./images/index/section05_decoration_lt.svg"
+                  src={`${imageBaseUrl}index/section05_decoration_lt.svg`}
                   alt="deco"
                 />
                 <img
                   className="index-post-deco position-absolute bottom-0 start-0 p-3"
-                  src="./images/index/section05_decoration_lb.svg"
+                  src={`${imageBaseUrl}index/section05_decoration_lb.svg`}
                   alt="deco"
                 />
                 <img
                   className="index-post-deco position-absolute top-0 end-0 p-3"
-                  src="./images/index/section05_decoration_rt.svg"
+                  src={`${imageBaseUrl}index/section05_decoration_rt.svg`}
                   alt="deco"
                 />
                 <img
                   className="index-post-deco position-absolute bottom-0 end-0 p-3"
-                  src="./images/index/section05_decoration_rb.svg"
+                  src={`${imageBaseUrl}index/section05_decoration_rb.svg`}
                   alt="deco"
                 />
               </div>

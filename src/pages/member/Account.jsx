@@ -9,7 +9,6 @@ import { clearAuth, isAuthenticated } from "../../utils/auth";
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 function Account() {
-  // 帳號頁資源與導頁工具。
   const imageBaseUrl = `${import.meta.env.BASE_URL}images/`;
   const navigate = useNavigate();
   const [initialProfile, setInitialProfile] = useState({
@@ -47,7 +46,7 @@ function Account() {
   const changePasswordModalElementRef = useRef(null);
   const changePasswordModalRef = useRef(null);
 
-  // 密碼 modal 開關控制。
+  // 密碼 modal 開關控制
   const openChangePasswordModal = () => {
     changePasswordModalRef.current?.show();
   };
@@ -56,7 +55,7 @@ function Account() {
     changePasswordModalRef.current?.hide();
   };
 
-  // 切換密碼欄位顯示/隱藏。
+  // 切換密碼欄位顯示/隱藏
   const handleTogglePasswordVisible = (field) => {
     setPasswordVisible((prev) => ({
       ...prev,
@@ -76,7 +75,7 @@ function Account() {
     }
   };
 
-  // 清除密碼 modal 的暫存輸入狀態。
+  // 清除密碼 modal 暫存
   const resetChangePasswordForm = () => {
     setPasswordForm({
       oldPassword: "",
@@ -91,7 +90,7 @@ function Account() {
     setPasswordError("");
   };
 
-  // 變更密碼送出：本地驗證 -> 驗舊密碼 -> 更新新密碼。
+  // 變更密碼送出
   const handleChangePasswordSubmit = async (event) => {
     event.preventDefault();
 
@@ -129,12 +128,12 @@ function Account() {
     setIsChangingPassword(true);
 
     try {
-      // Verify current password before changing it.
+      // 確認舊密碼
       await axios.post(`${API_BASE}/login`, {
         email: initialProfile.email,
         password: oldPassword,
       });
-
+      // 更新密碼
       await axios.patch(`${API_BASE}/users/${currentUserId}`, {
         password: newPassword,
       });
@@ -162,7 +161,7 @@ function Account() {
     }
   };
 
-  // 會員資料送出：更新 nickname / tel 並同步 localStorage。
+  // 確認更新
   const handleAccountSubmit = async (formValues) => {
     if (!currentUserId) {
       await Swal.fire({
@@ -236,7 +235,7 @@ function Account() {
     }
   };
 
-  // 表單驗證失敗時提示使用者先修正欄位。
+  // 表單驗證失敗時提示使用者先修正欄位
   const handleAccountInvalidSubmit = async () => {
     await Swal.fire({
       icon: "warning",
@@ -246,12 +245,12 @@ function Account() {
     });
   };
 
-  // 還原表單到最新已儲存資料。
+  // 取消更新
   const resetAccountForm = () => {
     reset(initialProfile);
   };
 
-  // 複製使用者帳號（email）到剪貼簿。
+  // 複製使用者帳號（email）
   const handleCopyEmail = async () => {
     const email = initialProfile.email?.trim();
 
@@ -355,7 +354,7 @@ function Account() {
     }
   };
 
-  // 初次進頁載入會員資料：先讀 auth 再向 API 取最新資料。
+  // 初次進頁載入會員資料：先讀 auth 再向 API 取最新資料
   useEffect(() => {
     const currentUser = isAuthenticated();
 
@@ -395,7 +394,7 @@ function Account() {
     fetchUserProfile();
   }, [reset]);
 
-  // 綁定 Bootstrap modal lifecycle，關閉時重置密碼表單。
+  //  Bootstrap modal 關閉問題初始化
   useEffect(() => {
     const modalElement = changePasswordModalElementRef.current;
 
@@ -407,6 +406,7 @@ function Account() {
       if (document.activeElement instanceof HTMLElement) {
         document.activeElement.blur();
       }
+      // 重置密碼表單狀態
       resetChangePasswordForm();
     };
 
@@ -422,7 +422,7 @@ function Account() {
   return (
     <div className="bg-white m-0 member-tab-pane m-lg-6 py-lg-11 px-lg-12 p-6 fade show active">
       <div className="form-container my-0 mx-auto">
-        {/* 帳號資料主表單 */}
+        {/* 帳號資料 */}
         <h3 className="fs-5 fs-lg-4 pb-lg-8 border-bottom border-secondary-300 pb-3">貓奴檔案</h3>
         <div className="d-flex flex-column align-items-center my-6">
           <p className="text-center text-secondary-500">
@@ -539,10 +539,13 @@ function Account() {
                   },
                 })}
               />
-              <a href="#" className="d-flex align-items-center px-3 py-1 account-inline-action">
+              <span
+                className="d-flex align-items-center px-3 py-1 account-inline-action account-inline-action--disabled"
+                aria-disabled="true"
+              >
                 <i className="bi bi-arrow-repeat me-1 text-secondary-300"></i>
                 <p className="text-neutral-700">變更驗證</p>
-              </a>
+              </span>
             </div>
             {errors.tel ? (
               <p className="text-danger fs-8 mt-2 mb-0" role="alert">
@@ -550,22 +553,22 @@ function Account() {
               </p>
             ) : null}
           </div>
-          <div className="d-flex mt-lg-12 mt-11 justify-content-center justify-content-lg-start">
+          <div className="d-flex mt-lg-12 mt-11 justify-content-center justify-content-lg-start account-action-row">
             <button
               type="button"
-              className="btn text-neutral-700 px-4 py-1"
+              className="btn btn-neutral-100 text-neutral-700 px-4 py-1 account-two-char-wrap"
               onClick={resetAccountForm}
             >
-              取消更新
+              <span className="account-two-char-wrap-text">取消更新</span>
             </button>
             <button
               type="submit"
-              className="btn btn-primary-500 account-submit-btn text-white ms-6"
+              className="btn btn-primary-500 account-submit-btn text-white ms-6 account-two-char-wrap"
             >
-              確認更新
+              <span className="account-two-char-wrap-text">確認更新</span>
             </button>
           </div>
-          <div className="mt-7 d-flex justify-content-center justify-content-lg-start">
+          <div className="mt-7 d-flex justify-content-center justify-content-lg-start account-delete-row">
             <button
               type="button"
               className="btn btn-outline-danger px-4 py-1"
@@ -586,7 +589,7 @@ function Account() {
         aria-hidden="true"
         ref={changePasswordModalElementRef}
       >
-        {/* 變更密碼彈窗 */}
+        {/* 變更密碼modal */}
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content border-0 rounded-0 p-8 p-md-10">
             <div className="d-flex justify-content-end mb-2">
@@ -721,9 +724,12 @@ function Account() {
 
               <p className="text-center text-neutral-500 mb-0">
                 忘記舊密碼了嗎？
-                <a href="#" className="text-primary-500 ms-1" aria-disabled="true">
+                <span
+                  className="text-primary-500 ms-1 account-inline-action--disabled"
+                  aria-disabled="true"
+                >
                   點此重新寄送驗證碼
-                </a>
+                </span>
               </p>
             </form>
           </div>

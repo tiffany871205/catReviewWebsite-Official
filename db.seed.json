@@ -9,49 +9,126 @@
     }
   ],
   "foodContrib": [],
-
   "foodFav": [],
-
   "foodComment": [],
-
   "foodID": {
     "flavors": [
-      { "id": 101, "name": "雞肉" },
-      { "id": 102, "name": "牛肉" },
-      { "id": 103, "name": "鴨肉" },
-      { "id": 104, "name": "羊肉" },
-      { "id": 105, "name": "海鮮" },
-      { "id": 106, "name": "火雞肉" },
-      { "id": 107, "name": "鹿肉" },
-      { "id": 108, "name": "其他" }
+      {
+        "id": 101,
+        "name": "雞肉"
+      },
+      {
+        "id": 102,
+        "name": "牛肉"
+      },
+      {
+        "id": 103,
+        "name": "鴨肉"
+      },
+      {
+        "id": 104,
+        "name": "羊肉"
+      },
+      {
+        "id": 105,
+        "name": "海鮮"
+      },
+      {
+        "id": 106,
+        "name": "火雞肉"
+      },
+      {
+        "id": 107,
+        "name": "鹿肉"
+      },
+      {
+        "id": 108,
+        "name": "其他"
+      }
     ],
     "contentTypes": [
-      { "id": 201, "name": "泥狀" },
-      { "id": 202, "name": "肉塊" },
-      { "id": 203, "name": "膠狀" },
-      { "id": 204, "name": "湯罐" },
-      { "id": 205, "name": "乾糧" },
-      { "id": 206, "name": "凍乾" },
-      { "id": 207, "name": "肉泥" }
+      {
+        "id": 201,
+        "name": "泥狀"
+      },
+      {
+        "id": 202,
+        "name": "肉塊"
+      },
+      {
+        "id": 203,
+        "name": "膠狀"
+      },
+      {
+        "id": 204,
+        "name": "湯罐"
+      },
+      {
+        "id": 205,
+        "name": "乾糧"
+      },
+      {
+        "id": 206,
+        "name": "凍乾"
+      },
+      {
+        "id": 207,
+        "name": "肉泥"
+      }
     ],
     "specialFormulas": [
-      { "id": 301, "name": "減重" },
-      { "id": 302, "name": "腸胃敏感" },
-      { "id": 303, "name": "腎臟保健" },
-      { "id": 304, "name": "強化免疫力" },
-      { "id": 305, "name": "改善皮膚毛髮" },
-      { "id": 306, "name": "無穀" },
-      { "id": 307, "name": "骨骼保健" },
-      { "id": 308, "name": "無" }
+      {
+        "id": 301,
+        "name": "減重"
+      },
+      {
+        "id": 302,
+        "name": "腸胃敏感"
+      },
+      {
+        "id": 303,
+        "name": "腎臟保健"
+      },
+      {
+        "id": 304,
+        "name": "強化免疫力"
+      },
+      {
+        "id": 305,
+        "name": "改善皮膚毛髮"
+      },
+      {
+        "id": 306,
+        "name": "無穀"
+      },
+      {
+        "id": 307,
+        "name": "骨骼保健"
+      },
+      {
+        "id": 308,
+        "name": "無"
+      }
     ],
     "targets": [
-      { "id": 401, "name": "幼貓" },
-      { "id": 402, "name": "成貓" },
-      { "id": 403, "name": "熟齡貓" },
-      { "id": 404, "name": "全齡貓" }
+      {
+        "id": 401,
+        "name": "幼貓"
+      },
+      {
+        "id": 402,
+        "name": "成貓"
+      },
+      {
+        "id": 403,
+        "name": "熟齡貓"
+      },
+      {
+        "id": 404,
+        "name": "全齡貓"
+      }
     ]
   },
-
   "food": [
     {
       "id": 1,
@@ -153,7 +230,6 @@
       "price": 1050
     }
   ],
-
   "foodDetail": [
     {
       "id": 1,
@@ -166,8 +242,14 @@
         "../assets/images/food/food-img1.png",
         "../assets/images/food/food-img2.png"
       ],
-      "meta": { "author": "Cool Meow", "publishDate": "2025-07-30" },
-      "basicInfo": { "brand": "NUTRIPE 紐萃寶", "origin": "紐西蘭" },
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2025-07-30"
+      },
+      "basicInfo": {
+        "brand": "NUTRIPE 紐萃寶",
+        "origin": "紐西蘭"
+      },
       "ingredients": {
         "flavorId": 101,
         "contentTypeId": 203,
@@ -182,9 +264,21 @@
         "containsGum": false
       },
       "extraNutrition": [
-        { "id": "ex1-1", "name": "鈣", "value": "1.8%" },
-        { "id": "ex1-2", "name": "磷", "value": "1.2%" },
-        { "id": "ex1-3", "name": "牛磺酸", "value": "0.1%" }
+        {
+          "id": "ex1-1",
+          "name": "鈣",
+          "value": "1.8%"
+        },
+        {
+          "id": "ex1-2",
+          "name": "磷",
+          "value": "1.2%"
+        },
+        {
+          "id": "ex1-3",
+          "name": "牛磺酸",
+          "value": "0.1%"
+        }
       ]
     },
     {
@@ -194,9 +288,17 @@
       "price": 420,
       "category": "主食罐",
       "coverImage": "../assets/images/food/food-img3.png",
-      "images": ["../assets/images/food/food-img3.png"],
-      "meta": { "author": "Cool Meow", "publishDate": "2025-08-02" },
-      "basicInfo": { "brand": "Ocean Fresh", "origin": "台灣" },
+      "images": [
+        "../assets/images/food/food-img3.png"
+      ],
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2025-08-02"
+      },
+      "basicInfo": {
+        "brand": "Ocean Fresh",
+        "origin": "台灣"
+      },
       "ingredients": {
         "flavorId": 105,
         "contentTypeId": 202,
@@ -211,8 +313,16 @@
         "containsGum": false
       },
       "extraNutrition": [
-        { "id": "ex2-1", "name": "DHA", "value": "0.3%" },
-        { "id": "ex2-2", "name": "EPA", "value": "0.2%" }
+        {
+          "id": "ex2-1",
+          "name": "DHA",
+          "value": "0.3%"
+        },
+        {
+          "id": "ex2-2",
+          "name": "EPA",
+          "value": "0.2%"
+        }
       ]
     },
     {
@@ -222,9 +332,17 @@
       "price": 980,
       "category": "乾糧",
       "coverImage": "../assets/images/food/food-img4.png",
-      "images": ["../assets/images/food/food-img4.png"],
-      "meta": { "author": "Cool Meow", "publishDate": "2025-08-05" },
-      "basicInfo": { "brand": "Wild Farm", "origin": "澳洲" },
+      "images": [
+        "../assets/images/food/food-img4.png"
+      ],
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2025-08-05"
+      },
+      "basicInfo": {
+        "brand": "Wild Farm",
+        "origin": "澳洲"
+      },
       "ingredients": {
         "flavorId": 104,
         "contentTypeId": 205,
@@ -239,8 +357,16 @@
         "containsGum": false
       },
       "extraNutrition": [
-        { "id": "ex3-1", "name": "維生素E", "value": "150 IU/kg" },
-        { "id": "ex3-2", "name": "鋅", "value": "120 mg/kg" }
+        {
+          "id": "ex3-1",
+          "name": "維生素E",
+          "value": "150 IU/kg"
+        },
+        {
+          "id": "ex3-2",
+          "name": "鋅",
+          "value": "120 mg/kg"
+        }
       ]
     },
     {
@@ -250,9 +376,17 @@
       "price": 280,
       "category": "凍乾",
       "coverImage": "../assets/images/food/food-img5.png",
-      "images": ["../assets/images/food/food-img5.png"],
-      "meta": { "author": "Cool Meow", "publishDate": "2025-08-07" },
-      "basicInfo": { "brand": "Pure Freeze", "origin": "日本" },
+      "images": [
+        "../assets/images/food/food-img5.png"
+      ],
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2025-08-07"
+      },
+      "basicInfo": {
+        "brand": "Pure Freeze",
+        "origin": "日本"
+      },
       "ingredients": {
         "flavorId": 105,
         "contentTypeId": 206,
@@ -266,7 +400,13 @@
         "protein": "高於80%",
         "containsGum": false
       },
-      "extraNutrition": [{ "id": "ex4-1", "name": "蝦紅素", "value": "0.05%" }]
+      "extraNutrition": [
+        {
+          "id": "ex4-1",
+          "name": "蝦紅素",
+          "value": "0.05%"
+        }
+      ]
     },
     {
       "id": 5,
@@ -275,9 +415,17 @@
       "price": 560,
       "category": "餐包",
       "coverImage": "../assets/images/food/food-img6.png",
-      "images": ["../assets/images/food/food-img6.png"],
-      "meta": { "author": "Cool Meow", "publishDate": "2025-08-10" },
-      "basicInfo": { "brand": "Happy Bowl", "origin": "台灣" },
+      "images": [
+        "../assets/images/food/food-img6.png"
+      ],
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2025-08-10"
+      },
+      "basicInfo": {
+        "brand": "Happy Bowl",
+        "origin": "台灣"
+      },
       "ingredients": {
         "flavorId": 102,
         "contentTypeId": 201,
@@ -292,51 +440,166 @@
         "containsGum": true
       },
       "extraNutrition": [
-        { "id": "ex5-1", "name": "維生素C", "value": "80 mg/kg" }
+        {
+          "id": "ex5-1",
+          "name": "維生素C",
+          "value": "80 mg/kg"
+        }
       ]
     }
   ],
-
   "knowledgeID": {
     "topics": [
-      { "id": 1, "name": "貓咪飲食指南" },
-      { "id": 2, "name": "健康與疾病" },
-      { "id": 3, "name": "行為與心理" },
-      { "id": 4, "name": "新手貓奴入門" }
+      {
+        "id": 1,
+        "name": "貓咪飲食指南"
+      },
+      {
+        "id": 2,
+        "name": "健康與疾病"
+      },
+      {
+        "id": 3,
+        "name": "行為與心理"
+      },
+      {
+        "id": 4,
+        "name": "新手貓奴入門"
+      }
     ],
     "categories": [
-      { "id": 101, "topicId": 1, "name": "糧食類型解析" },
-      { "id": 102, "topicId": 1, "name": "成份與標籤知識" },
-      { "id": 103, "topicId": 1, "name": "換糧指南" },
-      { "id": 104, "topicId": 1, "name": "特殊處方糧" },
-      { "id": 105, "topicId": 1, "name": "自製食物" },
-      { "id": 106, "topicId": 1, "name": "飲水與水分攝取" },
-
-      { "id": 201, "topicId": 2, "name": "健康照護" },
-      { "id": 202, "topicId": 2, "name": "常見疾病" },
-      { "id": 203, "topicId": 2, "name": "身體警訊" },
-      { "id": 204, "topicId": 2, "name": "居家安全" },
-      { "id": 205, "topicId": 2, "name": "老貓照護" },
-      { "id": 206, "topicId": 2, "name": "急救知識" },
-      { "id": 207, "topicId": 2, "name": "日常照護" },
-
-      { "id": 301, "topicId": 3, "name": "行為解讀" },
-      { "id": 302, "topicId": 3, "name": "情緒觀察" },
-      { "id": 303, "topicId": 3, "name": "行為問題解決" },
-      { "id": 304, "topicId": 3, "name": "多貓家庭" },
-      { "id": 305, "topicId": 3, "name": "遊戲建議" },
-      { "id": 306, "topicId": 3, "name": "紓壓小物" },
-
-      { "id": 401, "topicId": 4, "name": "幼貓照護" },
-      { "id": 402, "topicId": 4, "name": "養貓前準備" },
-      { "id": 403, "topicId": 4, "name": "初養用品" },
-      { "id": 404, "topicId": 4, "name": "環境設置" },
-      { "id": 405, "topicId": 4, "name": "日常護理" },
-      { "id": 406, "topicId": 4, "name": "科技照護" },
-      { "id": 407, "topicId": 4, "name": "外出準備" }
+      {
+        "id": 101,
+        "topicId": 1,
+        "name": "糧食類型解析"
+      },
+      {
+        "id": 102,
+        "topicId": 1,
+        "name": "成份與標籤知識"
+      },
+      {
+        "id": 103,
+        "topicId": 1,
+        "name": "換糧指南"
+      },
+      {
+        "id": 104,
+        "topicId": 1,
+        "name": "特殊處方糧"
+      },
+      {
+        "id": 105,
+        "topicId": 1,
+        "name": "自製食物"
+      },
+      {
+        "id": 106,
+        "topicId": 1,
+        "name": "飲水與水分攝取"
+      },
+      {
+        "id": 201,
+        "topicId": 2,
+        "name": "健康照護"
+      },
+      {
+        "id": 202,
+        "topicId": 2,
+        "name": "常見疾病"
+      },
+      {
+        "id": 203,
+        "topicId": 2,
+        "name": "身體警訊"
+      },
+      {
+        "id": 204,
+        "topicId": 2,
+        "name": "居家安全"
+      },
+      {
+        "id": 205,
+        "topicId": 2,
+        "name": "老貓照護"
+      },
+      {
+        "id": 206,
+        "topicId": 2,
+        "name": "急救知識"
+      },
+      {
+        "id": 207,
+        "topicId": 2,
+        "name": "日常照護"
+      },
+      {
+        "id": 301,
+        "topicId": 3,
+        "name": "行為解讀"
+      },
+      {
+        "id": 302,
+        "topicId": 3,
+        "name": "情緒觀察"
+      },
+      {
+        "id": 303,
+        "topicId": 3,
+        "name": "行為問題解決"
+      },
+      {
+        "id": 304,
+        "topicId": 3,
+        "name": "多貓家庭"
+      },
+      {
+        "id": 305,
+        "topicId": 3,
+        "name": "遊戲建議"
+      },
+      {
+        "id": 306,
+        "topicId": 3,
+        "name": "紓壓小物"
+      },
+      {
+        "id": 401,
+        "topicId": 4,
+        "name": "幼貓照護"
+      },
+      {
+        "id": 402,
+        "topicId": 4,
+        "name": "養貓前準備"
+      },
+      {
+        "id": 403,
+        "topicId": 4,
+        "name": "初養用品"
+      },
+      {
+        "id": 404,
+        "topicId": 4,
+        "name": "環境設置"
+      },
+      {
+        "id": 405,
+        "topicId": 4,
+        "name": "日常護理"
+      },
+      {
+        "id": 406,
+        "topicId": 4,
+        "name": "科技照護"
+      },
+      {
+        "id": 407,
+        "topicId": 4,
+        "name": "外出準備"
+      }
     ]
   },
-
   "knowledge": [
     {
       "id": 1,
@@ -344,7 +607,10 @@
       "excerpt": "貓咪雖然不會說話，但牠們肯定能用其他方式表達自己的感受。你的貓咪生氣的時候可能會有一些超明顯的...",
       "topicId": 3,
       "categoryId": 302,
-      "tags": ["行為與心理", "情緒觀察"],
+      "tags": [
+        "行為與心理",
+        "情緒觀察"
+      ],
       "img": "./images/knowledge/know-img1.png",
       "href": "#",
       "createdAt": "2026-01-01",
@@ -356,7 +622,10 @@
       "excerpt": "市面貓糧種類繁多，乾糧、濕糧、生食、冷凍乾燥差在哪？掌握各類糧食特色、優缺，才能為毛孩挑...",
       "topicId": 1,
       "categoryId": 101,
-      "tags": ["貓咪飲食指南", "糧食類型解析"],
+      "tags": [
+        "貓咪飲食指南",
+        "糧食類型解析"
+      ],
       "img": "./images/knowledge/know-img2.png",
       "href": "#",
       "createdAt": "2026-01-02",
@@ -368,7 +637,10 @@
       "excerpt": "我們都想給貓咪餵食營養豐富的食物，但閱讀貓糧標籤卻並非易事。市售貓糧包裝上琳瑯滿目，真相其實...",
       "topicId": 1,
       "categoryId": 102,
-      "tags": ["貓咪飲食指南", "成份與標籤知識"],
+      "tags": [
+        "貓咪飲食指南",
+        "成份與標籤知識"
+      ],
       "img": "./images/knowledge/know-img3.png",
       "href": "#",
       "createdAt": "2026-01-03",
@@ -380,7 +652,10 @@
       "excerpt": "貓咪真是奇妙的生物。牠們那雙靈活的爪子除了伸縮自如，竟然還是排汗的管道？讓我們揭開肉墊...",
       "topicId": 3,
       "categoryId": 301,
-      "tags": ["行為與心理", "行為解讀"],
+      "tags": [
+        "行為與心理",
+        "行為解讀"
+      ],
       "img": "./images/knowledge/know-img4.png",
       "href": "#",
       "createdAt": "2026-01-04",
@@ -392,7 +667,10 @@
       "excerpt": "從尾巴、耳朵到鬍鬚，每個小動作都在傳達不同的訊息。學會解讀這些訊號，你就能更了解主子在...",
       "topicId": 3,
       "categoryId": 301,
-      "tags": ["行為與心理", "行為解讀"],
+      "tags": [
+        "行為與心理",
+        "行為解讀"
+      ],
       "img": "./images/knowledge/know-img5.png",
       "href": "#",
       "createdAt": "2026-01-05",
@@ -404,7 +682,10 @@
       "excerpt": "剛帶回家的小奶貓又萌又脆弱！從飲食代奶、環境安全到健康疫苗管理，新手貓奴必看的成...",
       "topicId": 4,
       "categoryId": 401,
-      "tags": ["新手貓奴入門", "幼貓照護"],
+      "tags": [
+        "新手貓奴入門",
+        "幼貓照護"
+      ],
       "img": "./images/knowledge/know-img6.png",
       "href": "#",
       "createdAt": "2026-01-06",
@@ -416,7 +697,10 @@
       "excerpt": "貓咪進入熟齡期後，身體需求大不同。了解腎臟、關節等常見問題，陪主子優雅老去是貓奴最重要...",
       "topicId": 2,
       "categoryId": 205,
-      "tags": ["健康與疾病", "老貓照護"],
+      "tags": [
+        "健康與疾病",
+        "老貓照護"
+      ],
       "img": "./images/knowledge/know-img7.png",
       "href": "#",
       "createdAt": "2026-01-07",
@@ -428,7 +712,10 @@
       "excerpt": "亂尿尿、破壞家具、半夜暴走？這些行為背後都有原因。找出問題根源，用對方法，才能跟主子...",
       "topicId": 3,
       "categoryId": 303,
-      "tags": ["行為與心理", "行為問題解決"],
+      "tags": [
+        "行為與心理",
+        "行為問題解決"
+      ],
       "img": "./images/knowledge/know-img8.png",
       "href": "#",
       "createdAt": "2026-01-08",
@@ -440,7 +727,10 @@
       "excerpt": "新貓加入該如何隔離？如何分配貓砂盆資源？讓每隻貓都有自己的空間，打造不打架的多貓幸福...",
       "topicId": 3,
       "categoryId": 304,
-      "tags": ["行為與心理", "多貓家庭"],
+      "tags": [
+        "行為與心理",
+        "多貓家庭"
+      ],
       "img": "./images/knowledge/know-img9.png",
       "href": "#",
       "createdAt": "2026-01-09",
@@ -452,7 +742,10 @@
       "excerpt": "買了一堆玩具，主子卻只愛紙箱？選對玩具不只能讓貓咪開心，還能消耗精力。這篇教你如何根據狩獵本能挑選最適合的玩具！",
       "topicId": 3,
       "categoryId": 305,
-      "tags": ["行為與心理", "遊戲建議"],
+      "tags": [
+        "行為與心理",
+        "遊戲建議"
+      ],
       "img": "./images/knowledge/know-img10.png",
       "href": "#",
       "createdAt": "2026-01-10",
@@ -464,7 +757,10 @@
       "excerpt": "豆腐砂、礦砂、木屑砂怎麼選？沒有完美的貓砂，只有最適合你和主子的選擇。這篇幫你分析各種貓砂優缺點，告別粉塵與異味！",
       "topicId": 4,
       "categoryId": 403,
-      "tags": ["新手貓奴入門", "初養用品"],
+      "tags": [
+        "新手貓奴入門",
+        "初養用品"
+      ],
       "img": "./images/knowledge/know-img11.png",
       "href": "#",
       "createdAt": "2026-01-11",
@@ -476,7 +772,10 @@
       "excerpt": "疫苗是保護貓咪健康的重要防線。貓三合一、狂犬病哪些必打？多久補強一次？這篇一次帶你了解核心與非核心疫苗的差異。",
       "topicId": 2,
       "categoryId": 201,
-      "tags": ["健康與疾病", "健康照護"],
+      "tags": [
+        "健康與疾病",
+        "健康照護"
+      ],
       "img": "./images/knowledge/know-img12.png",
       "href": "#",
       "createdAt": "2026-01-12",
@@ -488,7 +787,10 @@
       "excerpt": "80%的成貓都有牙齒問題！口臭不只是味道難聞，更可能影響心腎功能。學習正確的刷牙與居家照護，讓主子擁有一口好牙。",
       "topicId": 2,
       "categoryId": 201,
-      "tags": ["健康與疾病", "健康照護"],
+      "tags": [
+        "健康與疾病",
+        "健康照護"
+      ],
       "img": "./images/knowledge/know-img13.png",
       "href": "#",
       "createdAt": "2026-01-13",
@@ -500,7 +802,10 @@
       "excerpt": "肥貓雖然可愛，但糖尿病與關節炎更可怕！教你如何透過 BCS 評分判斷貓咪體態，並制定科學的減重計畫，守護主子健康。",
       "topicId": 2,
       "categoryId": 203,
-      "tags": ["健康與疾病", "身體警訊"],
+      "tags": [
+        "健康與疾病",
+        "身體警訊"
+      ],
       "img": "./images/knowledge/know-img14.png",
       "href": "#",
       "createdAt": "2026-01-14",
@@ -512,7 +817,10 @@
       "excerpt": "搬家、新成員、作息變動都可能讓敏感的貓咪壓力爆表。辨識過度理毛等壓力訊號，提供安全的躲藏空間，打造紓壓低敏環境。",
       "topicId": 3,
       "categoryId": 302,
-      "tags": ["行為與心理", "情緒觀察"],
+      "tags": [
+        "行為與心理",
+        "情緒觀察"
+      ],
       "img": "./images/knowledge/know-img15.png",
       "href": "#",
       "createdAt": "2026-01-15",
@@ -524,7 +832,10 @@
       "excerpt": "預防勝於治療！深入了解泌尿系統疾病、慢性腎病與糖尿病的徵兆。7歲以上老貓如何透過定期健檢及早發現病灶？",
       "topicId": 2,
       "categoryId": 202,
-      "tags": ["健康與疾病", "常見疾病"],
+      "tags": [
+        "健康與疾病",
+        "常見疾病"
+      ],
       "img": "./images/knowledge/know-img16.png",
       "href": "#",
       "createdAt": "2026-01-16",
@@ -536,7 +847,10 @@
       "excerpt": "梳毛不只是美觀，還能預防毛球症。這篇提供梳毛、剪指甲、清眼耳的完整攻略，讓主子在日常美容中感受到滿滿的愛。",
       "topicId": 4,
       "categoryId": 404,
-      "tags": ["新手貓奴入門", "環境設置"],
+      "tags": [
+        "新手貓奴入門",
+        "環境設置"
+      ],
       "img": "./images/knowledge/know-img17.png",
       "href": "#",
       "createdAt": "2026-01-17",
@@ -548,7 +862,10 @@
       "excerpt": "決定養貓了卻不知從何下手？從食碗材質選擇、貓砂盆擺放位置到居家環境安全檢查，這份清單幫你一次搞定！",
       "topicId": 4,
       "categoryId": 403,
-      "tags": ["新手貓奴入門", "初養用品"],
+      "tags": [
+        "新手貓奴入門",
+        "初養用品"
+      ],
       "img": "./images/knowledge/know-img18.png",
       "href": "#",
       "createdAt": "2026-01-18",
@@ -560,7 +877,10 @@
       "excerpt": "出門看醫生總是像打仗？透過減敏訓練讓貓咪愛上提籠。從外出的安全胸背帶挑選，到建立熟悉的外出儀式，讓旅行不再恐懼。",
       "topicId": 4,
       "categoryId": 407,
-      "tags": ["新手貓奴入門", "外出準備"],
+      "tags": [
+        "新手貓奴入門",
+        "外出準備"
+      ],
       "img": "./images/knowledge/know-img19.png",
       "href": "#",
       "createdAt": "2026-01-19",
@@ -572,7 +892,10 @@
       "excerpt": "百合、黃金葛竟是貓咪殺手？許多常見居家綠植對貓具備致命毒性。這篇教你辨識危險植物，並推薦適合貓咪啃食的室內綠化方案。",
       "topicId": 2,
       "categoryId": 204,
-      "tags": ["健康與疾病", "居家安全"],
+      "tags": [
+        "健康與疾病",
+        "居家安全"
+      ],
       "img": "./images/knowledge/know-img20.png",
       "href": "#",
       "createdAt": "2026-01-20",
@@ -584,7 +907,10 @@
       "excerpt": "當主子意外誤食或哈姆立克急救時該怎麼辦？掌握黃金救治時間，學會基礎的心肺復甦術與傷口止血處理，是每位稱職貓奴的必修課。",
       "topicId": 2,
       "categoryId": 206,
-      "tags": ["健康與疾病", "急救知識"],
+      "tags": [
+        "健康與疾病",
+        "急救知識"
+      ],
       "img": "./images/knowledge/know-img21.png",
       "href": "#",
       "createdAt": "2026-01-21",
@@ -596,7 +922,10 @@
       "excerpt": "為什麼有的貓對貓薄荷沒反應？深入解析這些「貓界大麻」的原理與差異。正確給予紓壓小物，能有效緩解貓咪焦慮並增加運動量。",
       "topicId": 3,
       "categoryId": 306,
-      "tags": ["行為與心理", "紓壓小物"],
+      "tags": [
+        "行為與心理",
+        "紓壓小物"
+      ],
       "img": "./images/knowledge/know-img22.png",
       "href": "#",
       "createdAt": "2026-01-22",
@@ -608,7 +937,10 @@
       "excerpt": "地坪大小不是重點，高度才是！利用貓跳台、牆面層板打造「貓咪高速公路」，能顯著減少多貓衝突並提升室內貓的心理健康。",
       "topicId": 4,
       "categoryId": 404,
-      "tags": ["新手貓奴入門", "環境設置"],
+      "tags": [
+        "新手貓奴入門",
+        "環境設置"
+      ],
       "img": "./images/knowledge/know-img23.png",
       "href": "#",
       "createdAt": "2026-01-23",
@@ -620,7 +952,10 @@
       "excerpt": "自動餵食器、智能貓砂盆真的好用嗎？分析科技產品在遠端照護上的優勢，以及在使用時可能被忽略的衛生與安全細節。",
       "topicId": 4,
       "categoryId": 406,
-      "tags": ["新手貓奴入門", "科技照護"],
+      "tags": [
+        "新手貓奴入門",
+        "科技照護"
+      ],
       "img": "./images/knowledge/know-img24.png",
       "href": "#",
       "createdAt": "2026-01-24",
@@ -632,7 +967,10 @@
       "excerpt": "一年兩次的換毛大戰又要開始了？除了勤快吸地，如何透過飲食調整減少廢毛產生，並正確選用梳具防止貓咪因舔毛過度引發腸胃阻塞。",
       "topicId": 2,
       "categoryId": 207,
-      "tags": ["健康與疾病", "日常照護"],
+      "tags": [
+        "健康與疾病",
+        "日常照護"
+      ],
       "img": "./images/knowledge/know-img25.png",
       "href": "#",
       "createdAt": "2026-01-25",
@@ -644,7 +982,10 @@
       "excerpt": "呼嚕聲不代表一定開心？受傷或疼痛時，貓咪也會透過低頻震動來自我療癒。深入研究貓咪獨特的生理頻率與其傳達的情緒密碼。",
       "topicId": 3,
       "categoryId": 301,
-      "tags": ["行為與心理", "行為解讀"],
+      "tags": [
+        "行為與心理",
+        "行為解讀"
+      ],
       "img": "./images/knowledge/know-img26.png",
       "href": "#",
       "createdAt": "2026-01-26",
@@ -656,14 +997,16 @@
       "excerpt": "剪指甲像打仗？這篇教你如何辨識指甲裡的「快肉（Quick）」，配合適當的零食獎勵與保定技巧，讓主子乖乖配合修剪不再掙扎。",
       "topicId": 4,
       "categoryId": 404,
-      "tags": ["新手貓奴入門", "日常護理"],
+      "tags": [
+        "新手貓奴入門",
+        "日常護理"
+      ],
       "img": "./images/knowledge/know-img27.png",
       "href": "#",
       "createdAt": "2026-01-27",
       "updatedAt": "2026-01-27"
     }
   ],
-
   "knowledgeDetail": [
     {
       "id": 1,
@@ -745,7 +1088,10 @@
       "intro": "市面貓糧種類繁多，乾糧、濕糧、生食、冷凍乾燥差在哪？掌握各類糧食特色、優缺，才能為愛貓選出最合適的每日餐點！了解不同類型的貓糧，才能為主子挑選最適合的飲食。以下是市面上常見的幾種貓糧類型解析：",
       "heroImage": "./images/knowledge/article/articleImg-02.PNG",
       "image": "./images/knowledge/article/articleImg-02.PNG",
-      "meta": { "author": "Cool Meow", "publishDate": "2025-07-30" },
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2025-07-30"
+      },
       "blocks": [
         {
           "id": "art2-p0",
@@ -813,7 +1159,10 @@
       "intro": "面對寵物店琳瑯滿目的貓糧，包裝上的「天然」、「無穀」、「頂級」常讓人眼花繚亂。其實，真正的答案都藏在背面那行微小的「成分表」中。學會解碼成分排序、辨識原料品質並計算乾物比，是每位貓奴在行銷話術之外，給予愛貓最實質的健康守護。本指南將帶你從頭到尾拆解標籤背後的真相，確保主子吃進去的是支撐生命的營養，而非廉價的填充物。",
       "heroImage": "../image/knowledge/know-img3.png",
       "image": "./images/knowledge/know-img3.png",
-      "meta": { "author": "Cool Meow", "publishDate": "2026-01-15" },
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-15"
+      },
       "blocks": [
         {
           "id": "art3-l1",
@@ -868,7 +1217,10 @@
       "intro": "貓咪的爪子不只是武器，更是集狩獵、通訊、溫測於一身的精密感官器官。讓我們一起揭開隱藏在可愛肉墊下的 10 個驚人祕密！",
       "heroImage": "./images/knowledge/know-img4.png",
       "image": "./images/knowledge/know-img4.png",
-      "meta": { "author": "Cool Meow", "publishDate": "2026-02-01" },
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-02-01"
+      },
       "blocks": [
         {
           "id": "art4-l1",
@@ -926,7 +1278,10 @@
       "intro": "貓咪是天生的情緒表達高手，只是牠們不使用語言。對貓而言，身體的每一個角度、鬍鬚的擺放位置，甚至是瞳孔的微小變化，都是在向外界傳遞訊息。了解這些細微的肢體信號，不僅能讓你避開主子的雷區，減少被「賞巴掌」的機會，更能讓你建立起超越言語的深厚信任，成為真正懂貓的靈魂伴侶。",
       "heroImage": "./images/knowledge/know-img5.png",
       "image": "./images/knowledge/know-img5.png",
-      "meta": { "author": "Cool Meow", "publishDate": "2026-02-10" },
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-02-10"
+      },
       "blocks": [
         {
           "id": "art5-l1",
@@ -971,9 +1326,851 @@
           ]
         }
       ]
+    },
+    {
+      "id": 6,
+      "topicId": 4,
+      "categoryId": 401,
+      "title": "幼貓照護全指南",
+      "subtitle": "新手貓奴必看的黃金成長期撇步",
+      "intro": "迎接小幼貓回家是件開心的事，但 1 歲前的成長期決定了牠一輩子的健康與性格。這段期間，你需要扮演好守護者的角色。",
+      "heroImage": "./images/knowledge/know-img6.png",
+      "image": "./images/knowledge/know-img6.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-02-20"
+      },
+      "blocks": [
+        {
+          "id": "art6-l1",
+          "type": "list",
+          "title": "1. 營養攝取重點",
+          "items": [
+            "需求：幼貓需要比成貓高兩倍的能量，以及大量的優質蛋白質與鈣磷比。",
+            "方式：建議採取「少量多餐」，確保腸胃能負荷並穩定成長。",
+            "注意：嚴禁給幼貓喝人類牛奶，以免造成嚴重下痢。"
+          ]
+        },
+        {
+          "id": "art6-l2",
+          "type": "list",
+          "title": "2. 環境安全檢查",
+          "items": [
+            "重點：幼貓好奇心重且體型小，容易鑽入家具縫隙或咬食電線。",
+            "防護：封鎖窗戶、收好藥品與易碎品，並移除百合等對貓有毒的植物。"
+          ]
+        },
+        {
+          "id": "art6-l3",
+          "type": "list",
+          "title": "3. 社交黃金期培養",
+          "items": [
+            "關鍵期：2–7 週是建立性格的關鍵。應多讓幼貓接觸不同聲音、氣味與溫和的人際互動。",
+            "影響：良好的社交能降低未來貓咪產生攻擊性或過度膽小的風險。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "topicId": 2,
+      "categoryId": 205,
+      "title": "老年貓照護要點",
+      "subtitle": "陪伴貓主子優雅且舒適地老去",
+      "intro": "貓咪進入 7-10 歲後便步入熟齡。雖然牠們的外表可能沒變，但生理機能正緩慢衰退。調整照護方式，能顯著提升老貓的生活品質。",
+      "heroImage": "./images/knowledge/know-img7.png",
+      "image": "./images/knowledge/know-img7.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-03-01"
+      },
+      "blocks": [
+        {
+          "id": "art7-l1",
+          "type": "list",
+          "title": "1. 常見的老年疾病預防",
+          "items": [
+            "重點：慢性腎臟病、牙周病、甲狀腺亢進是老貓的三大殺手。",
+            "徵兆：若發現飲水量暴增、體重驟降、口臭，請立即就醫檢查。",
+            "頻率：建議 7 歲後每半年進行一次全身血液檢查。"
+          ]
+        },
+        {
+          "id": "art7-l2",
+          "type": "list",
+          "title": "2. 友善環境的微調",
+          "items": [
+            "調整：老貓關節退化，建議加裝貓跳台斜坡，並使用低邊牆的貓砂盆以便進出。",
+            "保暖：由於代謝減緩，冬天需提供溫暖的睡墊與穩定的室溫。"
+          ]
+        },
+        {
+          "id": "art7-l3",
+          "type": "list",
+          "title": "3. 飲食與補水策略",
+          "items": [
+            "重點：增加濕糧（罐頭）比例以強迫補水，減輕腎臟負擔。",
+            "營養：視醫生建議補充葡萄糖胺或 Q10 等心血管與關節保養品。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "topicId": 3,
+      "categoryId": 303,
+      "title": "貓咪行為問題處方箋",
+      "subtitle": "解決亂尿尿與破壞行為的根源",
+      "intro": "貓咪的「脫序行為」往往是求救訊號。斥責通常無效，找出背後的心理或生理壓力才是根本解法。",
+      "heroImage": "./images/knowledge/know-img8.png",
+      "image": "./images/knowledge/know-img8.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-03-05"
+      },
+      "blocks": [
+        {
+          "id": "art8-l1",
+          "type": "list",
+          "title": "1. 亂尿尿與噴尿問題",
+          "items": [
+            "排除：先請獸醫排除尿道炎或結石。若生理健康，則可能是對貓砂盆不滿。",
+            "準則：貓砂盆數量必須是「貓數 + 1」，並放置於通風、安靜且有退路的角落。"
+          ]
+        },
+        {
+          "id": "art8-l2",
+          "type": "list",
+          "title": "2. 家具破壞者（亂抓行為）",
+          "items": [
+            "成因：磨爪是天性，也是為了標記領地與伸展筋骨。",
+            "解法：在家具旁放置多個材質（劍麻、瓦楞紙）與擺向（橫式、立式）不同的抓板。"
+          ]
+        },
+        {
+          "id": "art8-l3",
+          "type": "list",
+          "title": "3. 夜間嚎叫與奔跑",
+          "items": [
+            "原因：貓是晨昏狩獵動物。若白天活動不足，半夜就會精力過盛。",
+            "解法：睡前進行 15 分鐘的高強度逗貓棒互動，模擬狩獵成功後再餵食「宵夜」。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "topicId": 3,
+      "categoryId": 304,
+      "title": "多貓家庭的和諧攻略",
+      "subtitle": "讓主子們從「相殺」變「相愛」",
+      "intro": "多貓家庭不只是多一隻貓那麼簡單，而是重新構建領地。透過正確的環境規劃，能大幅減少貓咪間的資源競爭與壓力。",
+      "heroImage": "./images/knowledge/know-img9.png",
+      "image": "./images/knowledge/know-img9.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-03-10"
+      },
+      "blocks": [
+        {
+          "id": "art9-l1",
+          "type": "list",
+          "title": "1. 資源不患寡而患不均",
+          "items": [
+            "重點：確保食物碗、水碗、砂盆與貓窩分布在不同房間。",
+            "關鍵：避免所有資源都放在同一區，防止「路霸」貓咪阻斷弱勢貓的生路。"
+          ]
+        },
+        {
+          "id": "art9-l2",
+          "type": "list",
+          "title": "2. 垂直空間的重要性",
+          "items": [
+            "功能：增加貓跳台、頂天柱或牆面層板。",
+            "意義：在高處俯瞰能給予貓咪強大的安全感，也能有效化解地面空間的肢體衝突。"
+          ]
+        },
+        {
+          "id": "art9-l3",
+          "type": "list",
+          "title": "3. 新貓引進的隔離與介紹",
+          "items": [
+            "流程：絕對嚴禁直接面對面！需經過氣味交換、隔門餵食、視線接觸三階段。",
+            "耐心：這個過程可能長達數週甚至數月，建立第一印象的好感度至關重要。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "topicId": 3,
+      "categoryId": 305,
+      "title": "貓咪玩具選購指南",
+      "subtitle": "讓主子玩得像在自然界狩獵",
+      "intro": "選購玩具的核心不在於價格，而是在於能否模擬完整的「狩獵流程」：發現、追蹤、捕捉與咬碎。透過不同類型的玩具組合，能有效預防貓咪因無聊產生的行為問題。",
+      "heroImage": "./images/knowledge/know-img10.png",
+      "image": "./images/knowledge/know-img10.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-10"
+      },
+      "blocks": [
+        {
+          "id": "art10-l1",
+          "type": "list",
+          "title": "1. 互動型玩具（釣竿與逗貓棒）",
+          "items": [
+            "特點：由飼主操控，最能模擬獵物的躲藏與突襲。",
+            "技巧：不要只是在貓面前揮動，要模擬小鳥跳動或老鼠鑽入沙發縫隙的感覺。",
+            "好處：強化與飼主的情感連結，並徹底消耗貓咪體能。"
+          ]
+        },
+        {
+          "id": "art10-l2",
+          "type": "list",
+          "title": "2. 自得其樂型（滾動與噴射玩具）",
+          "items": [
+            "特點：如小球、彈簧或自動旋轉雷射。",
+            "注意：雷射筆雖好用，但因貓咪永遠「抓不到」實體，長期玩可能導致焦慮，建議最後用實體玩具收尾。",
+            "適合對象：飼主忙碌時，提供貓咪基礎的視覺刺激。"
+          ]
+        },
+        {
+          "id": "art10-l3",
+          "type": "list",
+          "title": "3. 益智藏食玩具（腦力開發）",
+          "items": [
+            "特點：需動動腦或撥動關卡才能獲取乾糧或零食。",
+            "功能：減緩進食速度，並滿足貓咪在野外需要「尋找食物」的本能需求。",
+            "建議：從簡單難度開始，避免貓咪產生挫折感而放棄。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "topicId": 4,
+      "categoryId": 403,
+      "title": "貓砂選擇全解析",
+      "subtitle": "豆腐砂、礦砂、木屑砂到底哪種好？",
+      "intro": "貓砂盆是貓咪每天使用頻率最高的地方。沒有完美的貓砂，只有最適合你家主子習慣與飼主清理頻率的選擇。以下解析市面常見種類：",
+      "heroImage": "./images/knowledge/know-img11.png",
+      "image": "./images/knowledge/know-img11.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-11"
+      },
+      "blocks": [
+        {
+          "id": "art11-l1",
+          "type": "list",
+          "title": "1. 礦砂（Clay Sand）",
+          "items": [
+            "優點：觸感最接近戶外沙土，貓咪接受度最高；凝結力強。",
+            "缺點：粉塵較多易造成呼吸道負擔；重量重且不可沖馬桶。",
+            "適合：剛接回家的幼貓或對觸感挑剔的貓。"
+          ]
+        },
+        {
+          "id": "art11-l2",
+          "type": "list",
+          "title": "2. 豆腐砂（Tofu Sand）",
+          "items": [
+            "優點：天然成分製成，誤食風險低；重量輕且多數可沖馬桶。",
+            "缺點：受潮易發霉或發酸，夏季需勤更換；除臭力略遜於高品質礦砂。",
+            "適合：追求環保、便利，且居住在公寓的飼主。"
+          ]
+        },
+        {
+          "id": "art11-l3",
+          "type": "list",
+          "title": "3. 木屑/紙砂（Wood/Paper Sand）",
+          "items": [
+            "優點：環保且粉塵極低，適合術後或呼吸道敏感的貓。",
+            "缺點：崩解型木屑砂需使用雙層貓砂盆，清理邏輯不同。",
+            "適合：偏好低粉塵、能忍受淡淡木頭味的家庭。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "topicId": 2,
+      "categoryId": 201,
+      "title": "貓咪疫苗接種指南",
+      "subtitle": "核心與非核心疫苗的必要性差異",
+      "intro": "疫苗是對抗傳染病的最強防線。了解「核心」與「非核心」的分別，能幫你與獸醫共同討論出最符合愛貓生活型態的免疫計畫。",
+      "heroImage": "./images/knowledge/know-img12.png",
+      "image": "./images/knowledge/know-img12.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-12"
+      },
+      "blocks": [
+        {
+          "id": "art12-l1",
+          "type": "list",
+          "title": "1. 核心疫苗（全貓必打）",
+          "items": [
+            "種類：三合一疫苗（貓瘟、貓鼻支氣管炎、貓卡里西病毒）及狂犬病疫苗。",
+            "原因：這些疾病傳染力極強且死亡率高，即使是不出門的室內貓也可能透過飼主衣服接觸病毒。",
+            "週期：幼貓完成基礎劑後，通常改為每 1-3 年補強一次。"
+          ]
+        },
+        {
+          "id": "art12-l2",
+          "type": "list",
+          "title": "2. 非核心疫苗（視風險補打）",
+          "items": [
+            "種類：貓白血病（FeLV）、貓腹膜炎（FIP）等。",
+            "考量：若家中會接觸流浪貓，或多貓環境且成員流動大，建議接種。",
+            "注意：施打前應先進行篩檢確認是否已有抗體或染疫。"
+          ]
+        },
+        {
+          "id": "art12-l3",
+          "type": "list",
+          "title": "3. 接種後的觀察重點",
+          "items": [
+            "症狀：輕微精神沉鬱、食慾稍減為正常反應。",
+            "警訊：若出現眼臉紅腫、呼吸困難或全身劇烈瘙癢，可能是疫苗過敏，需立即返院。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "topicId": 2,
+      "categoryId": 201,
+      "title": "貓咪口腔保健",
+      "subtitle": "口臭不是小事，而是牙周病的警訊",
+      "intro": "超過 70% 的貓咪在三歲後都有牙周問題。細菌不僅會造成疼痛導致拒食，還可能經由血液傷害腎臟與心臟。居家刷牙是唯一能有效預防牙結石的方法。",
+      "heroImage": "./images/knowledge/know-img13.png",
+      "image": "./images/knowledge/know-img13.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-13"
+      },
+      "blocks": [
+        {
+          "id": "art13-l1",
+          "type": "list",
+          "title": "1. 三階段減敏訓練",
+          "items": [
+            "階段一：觸摸嘴唇。餵食零食時順便摸摸嘴角，讓貓習慣被碰觸口腔。",
+            "階段二：嘗試指套或紗布。沾一點貓用牙膏（通常有肉味），讓貓舔食並輕擦牙齒表面。",
+            "階段三：正式使用牙刷。以 45 度角刷拭牙齦與牙齒交界處。"
+          ]
+        },
+        {
+          "id": "art13-l2",
+          "type": "list",
+          "title": "2. 潔牙輔助工具",
+          "items": [
+            "潔牙噴霧/凝膠：適合極度抗拒刷牙的貓，透過酵素分解部分牙菌斑。",
+            "潔牙零食：僅能輔助摩擦牙冠，無法取代刷牙對牙齦溝的清潔。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "topicId": 2,
+      "categoryId": 203,
+      "title": "貓咪體重管理",
+      "subtitle": "學會用 BCS 判斷「穠纖合度」",
+      "intro": "圓滾滾雖然可愛，但肥胖會增加糖尿病、關節炎與脂肪肝的風險。減重並非「節食」，而是科學的熱量管理與行為引導。",
+      "heroImage": "./images/knowledge/know-img14.png",
+      "image": "./images/knowledge/know-img14.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-14"
+      },
+      "blocks": [
+        {
+          "id": "art14-l1",
+          "type": "list",
+          "title": "1. BCS (Body Condition Score) 檢測",
+          "items": [
+            "標準：俯瞰時有腰身、觸摸胸側能輕易感覺到肋骨、側面看腹部收緊。",
+            "肥胖：摸不到肋骨、肚子下垂（非原始袋）、俯瞰呈水滴型。"
+          ]
+        },
+        {
+          "id": "art14-l2",
+          "type": "list",
+          "title": "2. 科學減重策略",
+          "items": [
+            "熱量計算：根據貓咪的理想體重計算 RER（靜止能量需求），不要盲目減半餵食。",
+            "工具：使用藏食玩具增加進食難度，讓貓咪為了吃而「動起來」。",
+            "速度：每週減去體重的 1-2% 為限，過快減重可能誘發肝脂質沉積症。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "topicId": 3,
+      "categoryId": 302,
+      "title": "貓咪壓力管理",
+      "subtitle": "為敏感的主子打造「低刺激」防護網",
+      "intro": "搬家、家中添新成員甚至是更換家具位置，都可能讓貓產生巨大壓力。長期的壓力會導致自發性膀胱炎或過度舔毛，環境穩定是首要任務。",
+      "heroImage": "./images/knowledge/know-img15.png",
+      "image": "./images/knowledge/know-img15.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-15"
+      },
+      "blocks": [
+        {
+          "id": "art15-l1",
+          "type": "list",
+          "title": "1. 打造「可退後」的避風港",
+          "items": [
+            "設置：提供多個高處平台或封閉式紙箱。",
+            "原則：當貓躲進去時，任何人（包括小孩）都嚴禁打擾，建立絕對的安全領地。"
+          ]
+        },
+        {
+          "id": "art15-l2",
+          "type": "list",
+          "title": "2. 嗅覺穩定法",
+          "items": [
+            "物品：搬家時保留舊家的氣味毯子，暫時不要清洗。",
+            "科技：使用合成貓費洛蒙噴霧（如 Feliway），模擬貓咪安心的環境訊號。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "topicId": 2,
+      "categoryId": 202,
+      "title": "貓咪常見疾病預防",
+      "subtitle": "從居家觀察捕捉「沉默的求救」",
+      "intro": "貓咪是忍痛高手，當牠表現出不舒服時，病情往往已非初期。透過日常三項核心指標的監控，你能更早與醫生合作介入療程。",
+      "heroImage": "./images/knowledge/know-img16.png",
+      "image": "./images/knowledge/know-img16.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-16"
+      },
+      "blocks": [
+        {
+          "id": "art16-l1",
+          "type": "list",
+          "title": "1. 居家三大核心監控",
+          "items": [
+            "食慾與飲水：飲水量突然增加可能是腎臟或糖尿病徵兆；食慾下降則是萬病之始。",
+            "排泄行為：頻繁進出砂盆卻無尿（急症！）、糞便乾硬或帶血。",
+            "精神體態：活動力驟減、體重在一個月內變動超過 5%。"
+          ]
+        },
+        {
+          "id": "art16-l2",
+          "type": "list",
+          "title": "2. 分齡健檢建議",
+          "items": [
+            "成貓（1-7歲）：每年一次基礎理學檢查與疫苗補強。",
+            "老貓（7歲以上）：每半年一次，應包含血檢、尿檢、血壓與超音波追蹤。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "topicId": 4,
+      "categoryId": 404,
+      "title": "貓咪美容照護",
+      "subtitle": "不只是漂亮，更是健康的日常檢查",
+      "intro": "幫貓咪梳毛不只是為了環境整潔，更是預防毛球症與檢查皮膚病的好時機。正確的工具與節奏，能讓美容時間變成主子最愛的按摩時光。",
+      "heroImage": "./images/knowledge/know-img17.png",
+      "image": "./images/knowledge/know-img17.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-17"
+      },
+      "blocks": [
+        {
+          "id": "art17-l1",
+          "type": "list",
+          "title": "1. 針對毛質選對工具",
+          "items": [
+            "短毛貓：使用矽膠刷或鬃毛刷，去除表面廢毛並按摩皮膚。",
+            "長毛貓：必備排梳（層層梳透）與針梳（解開輕微結球），防止廢毛阻塞毛孔。"
+          ]
+        },
+        {
+          "id": "art17-l2",
+          "type": "list",
+          "title": "2. 眼耳鼻的清潔細節",
+          "items": [
+            "眼睛：用生理食鹽水濕潤棉花球，由內向外擦拭淚痕。",
+            "耳朵：使用清耳液滴入耳道，按摩耳根後讓貓自行甩出，嚴禁用棉花棒深入掏挖。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "topicId": 4,
+      "categoryId": 403,
+      "title": "新手養貓準備清單",
+      "subtitle": "把「必要用品」一次備齊的懶人包",
+      "intro": "接主子回家的前 48 小時是關鍵期。準備好這些核心物資，能讓貓咪在來到陌生環境時感受到最大的安全感與便利性。",
+      "heroImage": "./images/knowledge/know-img18.png",
+      "image": "./images/knowledge/know-img18.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-18"
+      },
+      "blocks": [
+        {
+          "id": "art18-l1",
+          "type": "list",
+          "title": "1. 核心生存設備（吃與睡）",
+          "items": [
+            "食碗水碗：推薦陶瓷或不鏽鋼（不易滋生細菌），水碗需多處擺放。",
+            "貓窩與紙箱：比起昂貴貓床，一個能遮蔽的紙箱往往更有安全感。"
+          ]
+        },
+        {
+          "id": "art18-l2",
+          "type": "list",
+          "title": "2. 衛生與娛樂（廁所與舒壓）",
+          "items": [
+            "貓砂盆：長度應為貓身長 1.5 倍，並準備貓咪原本習慣的砂種。",
+            "貓抓板：至少準備一個立式、一個橫式，保護你的沙發免遭毒手。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "topicId": 4,
+      "categoryId": 407,
+      "title": "貓咪外出減壓與訓練",
+      "subtitle": "把提籠從「恐怖刑具」變成「安全基地」",
+      "intro": "很多貓咪一看到提籠就消失，是因為提籠只在看醫生時出現。透過「提籠豐富化」，能大幅降低外出的尖叫與失禁壓力。",
+      "heroImage": "./images/knowledge/know-img19.png",
+      "image": "./images/knowledge/know-img19.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-19"
+      },
+      "blocks": [
+        {
+          "id": "art19-l1",
+          "type": "list",
+          "title": "1. 居家減敏三步驟",
+          "items": [
+            "常態化：平時就將提籠門打開放在客廳，當作睡窩使用。",
+            "正增強：在提籠內餵食高品質零食，建立「進入 = 好事發生」的聯結。",
+            "停留訓練：試著關上門幾秒鐘後開啟並獎勵，逐步拉長時間。"
+          ]
+        },
+        {
+          "id": "art19-l2",
+          "type": "list",
+          "title": "2. 外出時的物理安定",
+          "items": [
+            "遮蔽：用大毛巾完全蓋住提籠（留通風口），阻斷外界視線刺激。",
+            "固定：乘車時確實繫上安全帶，防止急煞導致籠內衝擊。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "topicId": 2,
+      "categoryId": 204,
+      "title": "居家有毒植物大清查",
+      "subtitle": "打造對貓友善的「森林系」居家",
+      "intro": "許多網美植物如百合、黃金葛、虎尾蘭，其實對貓咪具有強烈毒性。在綠化居家前，請務必比對這份危險名單。",
+      "heroImage": "./images/knowledge/know-img20.png",
+      "image": "./images/knowledge/know-img20.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-20"
+      },
+      "blocks": [
+        {
+          "id": "art20-l1",
+          "type": "list",
+          "title": "1. 絕對禁忌名單（高毒性）",
+          "items": [
+            "百合花：極少量花粉即可導致貓咪急性腎衰竭，死亡率極高。",
+            "杜鵑、蘇鐵、夾竹桃：誤食會影響心臟功能或導致嚴重肝受損。"
+          ]
+        },
+        {
+          "id": "art20-l2",
+          "type": "list",
+          "title": "2. 常見家飾植物（中低毒性）",
+          "items": [
+            "黃金葛、龜背芋、虎尾蘭：含草酸鈣結晶，會造成口腔刺痛、流口水與嘔吐。",
+            "聖誕紅：乳汁具刺激性，會導致皮膚紅腫與腸胃不適。"
+          ]
+        },
+        {
+          "id": "art20-l3",
+          "type": "list",
+          "title": "3. 安全替代方案",
+          "items": [
+            "貓草/小麥草：最天然的化毛球與啃咬首選。",
+            "波士頓蕨、袖珍椰子、吊蘭：這幾類植物對貓安全，適合裝點居家。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "topicId": 2,
+      "categoryId": 206,
+      "title": "貓咪急救入門手冊",
+      "subtitle": "掌握關鍵黃金期，穩定傷情等就醫",
+      "intro": "意外發生時，冷靜是飼主最重要的配備。急救的目的不是治癒，而是「穩定生命徵象」直到交給專業獸醫師手中。",
+      "heroImage": "./images/knowledge/know-img21.png",
+      "image": "./images/knowledge/know-img21.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-21"
+      },
+      "blocks": [
+        {
+          "id": "art21-l1",
+          "type": "list",
+          "title": "1. 誤食異物/中毒處理",
+          "items": [
+            "禁忌：不要隨意催吐！如果是強酸強鹼或尖銳物，催吐會造成二次傷害。",
+            "行動：帶著殘餘物或包裝紙，第一時間連絡急診醫院。"
+          ]
+        },
+        {
+          "id": "art21-l2",
+          "type": "list",
+          "title": "2. 外傷止血與創傷",
+          "items": [
+            "壓迫止血：使用乾淨紗布直接壓住出血點，不要隨意翻動傷口。",
+            "防護：受傷的貓會因疼痛而咬人，處理時建議用厚毛巾包裹全身。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "topicId": 3,
+      "categoryId": 306,
+      "title": "貓草、貓薄荷與木天蓼",
+      "subtitle": "選對「紓壓神器」讓主子快樂飛天",
+      "intro": "並非所有貓都對貓薄荷有反應（約 30% 受基因影響無感）。了解不同植物的功效，能幫你更精準地為主子進行環境豐富化與壓力紓解。",
+      "heroImage": "./images/knowledge/know-img22.png",
+      "image": "./images/knowledge/know-img22.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-22"
+      },
+      "blocks": [
+        {
+          "id": "art22-l1",
+          "type": "list",
+          "title": "1. 貓薄荷 (Catnip)",
+          "items": [
+            "作用：含「荊芥內酯」，會誘發貓咪興奮、翻滾與呼嚕。",
+            "用法：灑在抓板或玩具上，適合用來引導貓咪使用新設施。"
+          ]
+        },
+        {
+          "id": "art22-l2",
+          "type": "list",
+          "title": "2. 木天蓼 (Silver Vine)",
+          "items": [
+            "特點：反應率比貓薄荷更高，具有幫助磨牙、增進食慾的效果。",
+            "建議：如果是剛換環境的貓，木天蓼的鎮靜效果往往優於貓薄荷。"
+          ]
+        },
+        {
+          "id": "art22-l3",
+          "type": "list",
+          "title": "3. 貓草 (Cat Grass)",
+          "items": [
+            "功能：新鮮纖維有助於催吐毛球與補充維生素，不具興奮功能。",
+            "注意：不可天天大量餵食，以免造成腸胃過度刺激。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "topicId": 4,
+      "categoryId": 404,
+      "title": "垂直空間與環境豐富化",
+      "subtitle": "把 10 坪套房住成 30 坪的祕訣",
+      "intro": "對貓而言，地坪面積不代表領地大小，「垂直高度」才是核心。透過空間的分層規劃，能顯著降低多貓衝突並提升自信心。",
+      "heroImage": "./images/knowledge/know-img23.png",
+      "image": "./images/knowledge/know-img23.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-23"
+      },
+      "blocks": [
+        {
+          "id": "art23-l1",
+          "type": "list",
+          "title": "1. 「空中走廊」的設計思維",
+          "items": [
+            "重點：重點不是一座跳台，而是「路線的連貫性」。",
+            "規劃：貓能否從櫃子跳上層板、再繞過沙發頂端而不落地？"
+          ]
+        },
+        {
+          "id": "art23-l2",
+          "type": "list",
+          "title": "2. 高處躲藏點的心理效應",
+          "items": [
+            "功能：高度能讓貓俯瞰全域，及早發現威脅（如吸塵器、陌生人）。",
+            "建議：在最高處設置一個封閉的小盒子，這將是貓咪最安心的哨站。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "topicId": 4,
+      "categoryId": 406,
+      "title": "智能寵物用品挑選心得",
+      "subtitle": "解放雙手前，你必須知道的安全防護",
+      "intro": "智能用品能讓遠端照護更便利，但也隱藏著卡貓、斷電或發霉的風險。選購時，「安全性」應永遠排在「功能性」之前。",
+      "heroImage": "./images/knowledge/know-img24.png",
+      "image": "./images/knowledge/know-img24.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-24"
+      },
+      "blocks": [
+        {
+          "id": "art24-l1",
+          "type": "list",
+          "title": "1. 自動餵食器的魔鬼細節",
+          "items": [
+            "清潔：結構是否易拆洗？死角是否會堆積油脂導致黑下巴？",
+            "備援：是否有電池備援，防止跳電時主子餓肚子？"
+          ]
+        },
+        {
+          "id": "art24-l2",
+          "type": "list",
+          "title": "2. 智能貓砂盆的避雷指標",
+          "items": [
+            "安全偵測：必須具備多重防夾感應（紅外線、重量感應）。",
+            "空間限制：對於老貓或胖貓，出入口是否過高、內部空間是否足以轉身？"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "topicId": 2,
+      "categoryId": 207,
+      "title": "貓咪換毛季應對全書",
+      "subtitle": "從外在梳理到內在排毛的完整策略",
+      "intro": "每逢春秋換毛季，貓咪體內積累的廢毛量會暴增。若不介入排毛，可能演變為「毛球症」導致腸阻塞。這是一場內外兼修的長期戰。",
+      "heroImage": "./images/knowledge/know-img25.png",
+      "image": "./images/knowledge/know-img25.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-25"
+      },
+      "blocks": [
+        {
+          "id": "art25-l1",
+          "type": "list",
+          "title": "1. 外部梳理：攔截廢毛",
+          "items": [
+            "頻率：長毛貓每日至少一次；換毛高峰期建議早晚各一次。",
+            "順序：先用排梳深層疏通，再用針梳帶走表面浮毛。"
+          ]
+        },
+        {
+          "id": "art25-l2",
+          "type": "list",
+          "title": "2. 內在排毛：物理性蠕動",
+          "items": [
+            "排毛粉/化毛膏：提供油脂或天然酵素，幫助廢毛隨糞便排出。",
+            "纖維：增加膳食纖維（如南瓜、貓草）攝取，促進腸道蠕動。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "topicId": 3,
+      "categoryId": 301,
+      "title": "解讀貓咪的呼嚕聲",
+      "subtitle": "呼嚕聲不僅是開心的頻率",
+      "intro": "大多數人以為呼嚕代表幸福，但貓咪在重傷、臨終或極度恐懼時也會呼嚕。這是一種具備「自我修復」與「安撫」功能的生理機制。",
+      "heroImage": "./images/knowledge/know-img26.png",
+      "image": "./images/knowledge/know-img26.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-26"
+      },
+      "blocks": [
+        {
+          "id": "art26-l1",
+          "type": "list",
+          "title": "1. 放鬆型呼嚕（最常見）",
+          "items": [
+            "伴隨動作：踏踏、半閉眼、身體攤開。",
+            "含義：主子現在感到非常安全且享受與你的相處。"
+          ]
+        },
+        {
+          "id": "art26-l2",
+          "type": "list",
+          "title": "2. 壓力/止痛型呼嚕（警訊）",
+          "items": [
+            "伴隨動作：蜷縮、躲藏、耳朵向後、拒絕進食。",
+            "含義：貓咪正在透過呼嚕產生的低頻震動來緩解疼痛或安撫情緒。"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "topicId": 4,
+      "categoryId": 405,
+      "title": "如何幫貓咪剪指甲不流血",
+      "subtitle": "辨識快肉、保定技巧與心理建設",
+      "intro": "剪指甲不是要一次剪完十隻指頭。重點在於「快、狠、準」以及在貓咪失去耐心前收手，建立良好的互動經驗循環。",
+      "heroImage": "./images/knowledge/know-img27.png",
+      "image": "./images/knowledge/know-img27.png",
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2026-01-27"
+      },
+      "blocks": [
+        {
+          "id": "art27-l1",
+          "type": "list",
+          "title": "1. 辨識「快肉」(The Quick)",
+          "items": [
+            "結構：指甲內層粉紅色的部分含神經與血管，絕對不可切到。",
+            "安全區域：建議只剪掉指甲尖端透明彎曲處約 2mm 即可。"
+          ]
+        },
+        {
+          "id": "art27-l2",
+          "type": "list",
+          "title": "2. 正確的保定姿勢",
+          "items": [
+            "毛巾大法：對於掙扎激烈的貓，用大毛巾包裹全身只露出一隻腳。",
+            "節奏感：每次只剪兩三根指頭就給零食並放走。不用強求一次完成。"
+          ]
+        }
+      ]
     }
   ],
-
   "knowledgeComment": [
     {
       "id": 1,
@@ -1054,10 +2251,24 @@
       "name": "挑嘴貓領養人",
       "time": "3天前",
       "text": "以前只會看包裝上的『無穀』，讀完才發現原來廠商會用成分拆解術把澱粉排序往後移，這篇真的幫我上了一課，馬上拿起家裡的飼料袋對照！"
+    },
+    {
+      "articleId": 1,
+      "userId": 1,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "貓奴一號",
+      "time": "2026-03-13T09:36:10.801Z",
+      "text": "123 edit",
+      "id": 7
     }
   ],
-
   "knowledgeContrib": [],
-
-  "knowledgeFav": []
+  "knowledgeFav": [
+    {
+      "userId": 1,
+      "articleId": 2,
+      "createdAt": "2026-03-13T12:22:47.083Z",
+      "id": 1
+    }
+  ]
 }

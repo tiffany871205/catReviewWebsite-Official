@@ -604,17 +604,17 @@ pt-pb-md-72 {
 }
 
 .popover.food-popover {
-  --bs-popover-bg: #f4f1e9;
-  --bs-popover-border-color: #b89668;
-  --bs-popover-header-bg: #e8dcc7;
-  --bs-popover-header-color: #5c3d2e;
-  --bs-popover-body-color: #6b584c;
+  --bs-popover-bg: #060606;
+  --bs-popover-border-color: #060606;
+  --bs-popover-header-bg: #060606;
+  --bs-popover-header-color: #f9f9f9;
+  --bs-popover-body-color: #f9f9f9;
   --bs-popover-max-width: 280px;
 
-  border: 1px solid #b89668;
+  border: 1px solid #060606;
   border-radius: 16px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.8;
 }
 

@@ -1,4 +1,4 @@
-import { Outlet, useSearchParams } from "react-router-dom";
+import { Outlet, useSearchParams } from "react-router";
 import { useEffect } from "react";
 import useKnowledgeList from "../hooks/useKnowledgeList";
 import useBootstrapPopovers from "../hooks/useBootstrapPopovers";

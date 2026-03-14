@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router";
 // import db from "../../db.json";
 import db from "../../db.seed.json";
 import Swal from "sweetalert2";

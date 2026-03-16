@@ -3,7 +3,8 @@ import App from "../App.jsx";
 import Index from "../pages/Index.jsx";
 import Food from "../pages/Food.jsx";
 import Contrib from "../pages/Contrib.jsx";
-import Member from "../pages/Member.jsx";
+import Member from "../pages/member.jsx";
+import FoodProductPage from "../components/food/FoodProduct.jsx";
 import Account from "../pages/member/Account.jsx";
 import Record from "../pages/member/Record.jsx";
 import SignUp from "../components/common/SignUp.jsx";
@@ -29,6 +30,10 @@ const routes = [
       {
         path: "food",
         element: <Food />,
+      },
+      {
+        path: "food/product",
+        element: <FoodProductPage />,
       },
       {
         path: "knowledge",

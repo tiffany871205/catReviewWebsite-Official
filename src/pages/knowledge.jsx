@@ -1,17 +1,25 @@
 import { Outlet, useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useKnowledgeList from "../hooks/useKnowledgeList";
 import useBootstrapPopovers from "../hooks/useBootstrapPopovers";
-// import db from "../../db.json";
-import db from "../../db.seed.json";
 import KnowledgeBanner from "../components/knowledges/KnowledgeBanner";
 import MobileFilterBar from "../components/knowledges/MobileFilterBar";
 import DesktopFilterSidebar from "../components/knowledges/DesktopFilterSidebar";
 import Pagination from "../components/knowledges/Pagination";
 import KnowledgeCard from "../components/knowledges/KnowledgeCard";
+import { getKnowledgeArticles, getKnowledgeMeta } from "../api/knowledge";
 
 export default function Knowledge() {
   const [searchParams] = useSearchParams();
+  const [loading, setLoading] = useState(true);
+
+  const [db, setDb] = useState({
+    knowledge: [],
+    knowledgeID: {
+      topics: [],
+      categories: [],
+    },
+  });
 
   const {
     paged,
@@ -32,6 +40,34 @@ export default function Knowledge() {
   useBootstrapPopovers();
 
   useEffect(() => {
+    async function fetchData() {
+      try {
+        const [articles, meta] = await Promise.all([
+          getKnowledgeArticles(),
+          getKnowledgeMeta(),
+        ]);
+
+        setDb({
+          knowledge: articles,
+          knowledgeID: {
+            topics: meta.topics ?? [],
+            categories: meta.categories ?? [],
+          },
+        });
+      } catch (error) {
+        console.error("取得知識文章資料失敗:", error);
+        console.error("status:", error.response?.status);
+        console.error("data:", error.response?.data);
+        console.error("url:", error.config?.url);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
     const topic = searchParams.get("topic") || "";
     const category = searchParams.get("category") || "";
 
@@ -41,6 +77,10 @@ export default function Knowledge() {
   }, [searchParams, setSelectedTopic, setSelectedCategory, setPage]);
 
   const onBannerSubmit = () => setPage(1);
+
+  if (loading) {
+    return <div className="container py-5">載入中...</div>;
+  }
 
   return (
     <>

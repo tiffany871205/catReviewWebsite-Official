@@ -9,7 +9,7 @@ export default function CommentBox({
       <div className="flex-shrink-0 me-3">
         <img
           src={currentUser.avatar}
-          alt="Avatar"
+          alt={currentUser.nickname}
           className="comment-avatar rounded-circle d-md-block d-none"
         />
       </div>
@@ -22,7 +22,7 @@ export default function CommentBox({
             borderRadius: "12px",
             padding: "1rem",
           }}
-          placeholder={`以 ${currentUser.name} 的身份留言⋯`}
+          placeholder={`以 ${currentUser.nickname} 的身份留言⋯`}
           rows={4}
           value={newCommentText}
           onChange={(e) => setNewCommentText(e.target.value)}

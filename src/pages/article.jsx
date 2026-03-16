@@ -1,7 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-// import db from "../../db.json";
-import db from "../../db.seed.json";
 import Swal from "sweetalert2";
 import ArticleBlock from "../components/articles/ArticleBlock";
 import FeedbackActions from "../components/articles/FeedbackActions";
@@ -9,6 +7,20 @@ import CommentBox from "../components/articles/CommentBox";
 import CommentItem from "../components/articles/CommentItem";
 import BackToTopButton from "../components/articles/BackToTopButton";
 import ArticleBreadcrumb from "../components/articles/ArticleBreadcrumb";
+import {
+  getKnowledgeArticleById,
+  getKnowledgeArticleDetail,
+  getKnowledgeComments,
+  getKnowledgeMeta,
+  createKnowledgeComment,
+  updateKnowledgeComment,
+  deleteKnowledgeComment,
+  getKnowledgeFavByUserAndArticle,
+  createKnowledgeFav,
+  deleteKnowledgeFav,
+} from "../api/knowledge";
+import { timeAgo } from "../utils/timeAgo";
+import { isAuthenticated } from "../utils/auth";
 
 export default function Article() {
   const { id } = useParams();
@@ -20,11 +32,22 @@ export default function Article() {
   const [visibleCount, setVisibleCount] = useState(4);
   const [newCommentText, setNewCommentText] = useState("");
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [bookmarkId, setBookmarkId] = useState(null);
+  const [listItem, setListItem] = useState(null);
+  const [detail, setDetail] = useState(null);
+  const [topics, setTopics] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const currentUser = {
-    name: "貓奴一號",
-    avatar: "./images/knowledge/article/user-1.png",
-  };
+  const authUser = isAuthenticated();
+
+  const currentUser = authUser
+    ? {
+        ...authUser,
+        name: authUser.nickname,
+        avatar: authUser.avatar || "./images/knowledge/article/user-1.png",
+      }
+    : null;
 
   // 提醒小框框
   const catAlert = Swal.mixin({
@@ -38,28 +61,113 @@ export default function Article() {
     confirmButtonColor: "#ffb11b",
   });
 
-  // 找列表資料
-  const listItem = useMemo(() => {
-    if (!Number.isFinite(articleId)) return null;
-    return (db.knowledge ?? []).find((a) => a.id === articleId) ?? null;
-  }, [articleId]);
-
-  // 找 detail
-  const detail = useMemo(() => {
-    if (!Number.isFinite(articleId)) return null;
-    return (db.knowledgeDetail ?? []).find((a) => a.id === articleId) ?? null;
-  }, [articleId]);
-
-  // 初始化留言板
+  // // 找列表資料
   useEffect(() => {
-    const filtered = (db.knowledgeComment ?? []).filter(
-      (c) => Number(c.articleId) === Number(articleId)
-    );
-    filtered.sort((a, b) => Number(b.id) - Number(a.id));
+    async function fetchData() {
+      try {
+        const [article, articleDetail, comments, meta] = await Promise.all([
+          getKnowledgeArticleById(articleId),
+          getKnowledgeArticleDetail(articleId),
+          getKnowledgeComments(articleId),
+          getKnowledgeMeta(),
+        ]);
 
-    setLocalComments(filtered);
-    setVisibleCount(4);
-  }, [articleId]);
+        setListItem(article);
+        setDetail(articleDetail);
+        setLocalComments(comments);
+        setTopics(meta.topics ?? []);
+        setCategories(meta.categories ?? []);
+        setVisibleCount(4);
+
+        if (currentUser?.id) {
+          const favList = await getKnowledgeFavByUserAndArticle(
+            currentUser.id,
+            articleId
+          );
+
+          if (favList.length > 0) {
+            setIsBookmarked(true);
+            setBookmarkId(favList[0].id);
+          } else {
+            setIsBookmarked(false);
+            setBookmarkId(null);
+          }
+        } else {
+          setIsBookmarked(false);
+          setBookmarkId(null);
+        }
+      } catch (error) {
+        console.error("取得文章資料失敗:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    if (Number.isFinite(articleId)) {
+      fetchData();
+    }
+  }, [articleId, currentUser?.id]);
+
+  const handleBookmarkToggle = async () => {
+    if (!currentUser) {
+      catAlert.fire({
+        icon: "warning",
+        title: "請先登入",
+        text: "登入後才能收藏文章喔！",
+        confirmButtonText: "我知道了",
+        iconColor: "#ffb11b",
+      });
+      return;
+    }
+
+    try {
+      if (isBookmarked && bookmarkId) {
+        await deleteKnowledgeFav(bookmarkId);
+        setIsBookmarked(false);
+        setBookmarkId(null);
+
+        Swal.fire({
+          icon: "success",
+          title: "已移除收藏",
+          toast: true,
+          position: "top-end",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      } else {
+        const existing = await getKnowledgeFavByUserAndArticle(
+          currentUser.id,
+          articleId
+        );
+
+        if (existing.length > 0) {
+          setIsBookmarked(true);
+          setBookmarkId(existing[0].id);
+          return;
+        }
+
+        const created = await createKnowledgeFav({
+          userId: currentUser.id,
+          articleId,
+          createdAt: new Date().toISOString(),
+        });
+
+        setIsBookmarked(true);
+        setBookmarkId(created.id);
+
+        Swal.fire({
+          icon: "success",
+          title: "已加入收藏",
+          toast: true,
+          position: "top-end",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+      }
+    } catch (error) {
+      console.error("收藏操作失敗:", error);
+    }
+  };
 
   const visibleComments = useMemo(() => {
     return localComments.slice(0, visibleCount);
@@ -69,16 +177,14 @@ export default function Article() {
   const topicName = useMemo(() => {
     const tid = detail?.topicId ?? listItem?.topicId;
     if (!tid) return "";
-    return (db.knowledgeID?.topics ?? []).find((t) => t.id === tid)?.name ?? "";
-  }, [detail, listItem]);
+    return topics.find((t) => t.id === tid)?.name ?? "";
+  }, [topics, detail, listItem]);
 
   const categoryName = useMemo(() => {
     const cid = detail?.categoryId ?? listItem?.categoryId;
     if (!cid) return "";
-    return (
-      (db.knowledgeID?.categories ?? []).find((c) => c.id === cid)?.name ?? ""
-    );
-  }, [detail, listItem]);
+    return categories.find((c) => c.id === cid)?.name ?? "";
+  }, [categories, detail, listItem]);
 
   // meta
   const author = detail?.meta?.author || "Cool Meow";
@@ -89,7 +195,7 @@ export default function Article() {
     if (voteType === "helpful") {
       setHelpfulCount((prev) => prev - 1);
       setVoteType(null);
-      setHasVoted(false);
+      // setHasVoted(false);
     } else {
       Swal.fire({
         icon: "success",
@@ -107,7 +213,6 @@ export default function Article() {
         setHelpfulCount((prev) => Math.min(prev + 1, 100));
       }
       setVoteType("helpful");
-      setHasVoted(true);
     }
   };
 
@@ -116,7 +221,6 @@ export default function Article() {
     if (voteType === "unhelpful") {
       setHelpfulCount((prev) => prev + 1);
       setVoteType(null);
-      setHasVoted(false);
     } else {
       Swal.fire({
         icon: "info",
@@ -134,7 +238,6 @@ export default function Article() {
         setHelpfulCount((prev) => Math.max(prev - 1, 0));
       }
       setVoteType("unhelpful");
-      setHasVoted(true);
     }
   };
 
@@ -169,7 +272,17 @@ export default function Article() {
   };
 
   // 新增留言
-  const handleAddComment = () => {
+  const handleAddComment = async () => {
+    if (!currentUser) {
+      catAlert.fire({
+        icon: "warning",
+        title: "請先登入",
+        text: "登入後才能留言喔！",
+        confirmButtonText: "我知道了",
+        iconColor: "#ffb11b",
+      });
+      return;
+    }
     if (!newCommentText.trim()) {
       catAlert.fire({
         icon: "warning",
@@ -181,48 +294,88 @@ export default function Article() {
       return;
     }
 
-    const newComment = {
-      id: Date.now(),
-      articleId: articleId,
-      avatar: currentUser.avatar,
-      name: currentUser.name,
-      time: "剛剛",
-      text: newCommentText,
-    };
+    try {
+      const created = await createKnowledgeComment({
+        articleId,
+        userId: currentUser.id,
+        avatar: currentUser.avatar,
+        name: currentUser.nickname,
+        time: new Date().toISOString(),
+        text: newCommentText,
+      });
 
-    setLocalComments((prev) => [newComment, ...prev]);
-    setNewCommentText("");
+      setLocalComments((prev) => [created, ...prev]);
+      setNewCommentText("");
 
-    catAlert.fire({
-      icon: "success",
-      title: "留言成功！",
-      text: "感謝你的分享 🐾",
-      toast: true,
-      position: "top-end",
-      timer: 2000,
-      showConfirmButton: false,
-      timerProgressBar: true,
-    });
+      catAlert.fire({
+        icon: "success",
+        title: "留言成功！",
+        text: "感謝你的分享 🐾",
+        toast: true,
+        position: "top-end",
+        timer: 2000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+    } catch (error) {
+      console.error("新增留言失敗:", error);
+    }
   };
 
   // 修改留言
-  const handleUpdateComment = (commentId, newText) => {
-    setLocalComments((prev) =>
-      prev.map((c) => (c.id === commentId ? { ...c, text: newText } : c))
-    );
-    catAlert.fire({
-      icon: "success",
-      title: "修改成功！",
-      toast: true,
-      position: "top-end",
-      timer: 2000,
-      showConfirmButton: false,
-      timerProgressBar: true,
-    });
+  const handleUpdateComment = async (commentId, newText) => {
+    const targetComment = localComments.find((c) => c.id === commentId);
+
+    if (
+      !currentUser ||
+      !targetComment ||
+      targetComment.userId !== currentUser.id
+    ) {
+      catAlert.fire({
+        icon: "error",
+        title: "無法修改",
+        text: "你只能修改自己的留言。",
+      });
+      return;
+    }
+    try {
+      const updated = await updateKnowledgeComment(commentId, {
+        text: newText,
+      });
+
+      setLocalComments((prev) =>
+        prev.map((c) => (c.id === commentId ? updated : c))
+      );
+      catAlert.fire({
+        icon: "success",
+        title: "修改成功！",
+        toast: true,
+        position: "top-end",
+        timer: 2000,
+        showConfirmButton: false,
+        timerProgressBar: true,
+      });
+    } catch (error) {
+      console.error("修改留言失敗:", error);
+    }
   };
 
   // 刪除留言
   const handleDeleteComment = (commentId) => {
+    const targetComment = localComments.find((c) => c.id === commentId);
+
+    if (
+      !currentUser ||
+      !targetComment ||
+      targetComment.userId !== currentUser.id
+    ) {
+      catAlert.fire({
+        icon: "error",
+        title: "無法刪除",
+        text: "你只能刪除自己的留言。",
+      });
+      return;
+    }
     catAlert
       .fire({
         title: "確定要移除這條留言？",
@@ -234,18 +387,27 @@ export default function Article() {
         cancelButtonText: "再留一下",
         background: "#fffaf5",
       })
-      .then((result) => {
+      .then(async (result) => {
         if (result.isConfirmed) {
-          setLocalComments((prev) => prev.filter((c) => c.id !== commentId));
-          catAlert.fire({
-            title: "已成功移除",
-            icon: "success",
-            timer: 1000,
-            showConfirmButton: false,
-          });
+          try {
+            await deleteKnowledgeComment(commentId);
+            setLocalComments((prev) => prev.filter((c) => c.id !== commentId));
+            catAlert.fire({
+              title: "已成功移除",
+              icon: "success",
+              timer: 1000,
+              showConfirmButton: false,
+            });
+          } catch (error) {
+            console.error("刪除留言失敗:", error);
+          }
         }
       });
   };
+
+  if (loading) {
+    return <div className="container py-5">載入中...</div>;
+  }
 
   // 找不到文章
   if (!detail || !listItem) {
@@ -307,7 +469,8 @@ export default function Article() {
                   </p>
                 </div>
 
-                <p className="d-flex justify-content-between align-items-center">
+                <p className="article-meta-row d-flex justify-content-between align-items-center">
+                  {" "}
                   <span>
                     <i
                       className={`bi ${
@@ -330,7 +493,7 @@ export default function Article() {
                     </span>
 
                     <span
-                      onClick={() => setIsBookmarked(!isBookmarked)}
+                      onClick={handleBookmarkToggle}
                       style={{ cursor: "pointer" }}
                     >
                       <i
@@ -389,7 +552,7 @@ export default function Article() {
                       <i className="bi bi-box-arrow-up-right me-1"></i> 分享
                     </p>
                     <p
-                      onClick={() => setIsBookmarked(!isBookmarked)}
+                      onClick={handleBookmarkToggle}
                       style={{ cursor: "pointer" }}
                     >
                       <i
@@ -465,12 +628,18 @@ export default function Article() {
             <h2 className="text-center mb-6">留言版分享區</h2>
             <hr className="my-4 opacity-10 mb-6" />
 
-            <CommentBox
-              currentUser={currentUser}
-              newCommentText={newCommentText}
-              setNewCommentText={setNewCommentText}
-              onSubmit={handleAddComment}
-            />
+            {currentUser ? (
+              <CommentBox
+                currentUser={currentUser}
+                newCommentText={newCommentText}
+                setNewCommentText={setNewCommentText}
+                onSubmit={handleAddComment}
+              />
+            ) : (
+              <div className="text-center py-4">
+                <p className="text-neutral-500 mb-0">請先登入後再留言</p>
+              </div>
+            )}
 
             {/* 動態渲染留言列表 */}
             {localComments.length > 0 ? (
@@ -481,9 +650,9 @@ export default function Article() {
                     id={c.id}
                     avatar={c.avatar}
                     name={c.name}
-                    time={c.time}
+                    time={timeAgo(c.time)}
                     text={c.text}
-                    isAuthor={c.name === currentUser.name}
+                    isAuthor={currentUser && c.userId === currentUser.id}
                     onDelete={handleDeleteComment}
                     onEdit={handleUpdateComment}
                   />

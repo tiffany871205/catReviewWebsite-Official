@@ -1,29 +1,35 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import Swal from "sweetalert2";
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 function SignUp() {
   const navigate = useNavigate();
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
 
   const {
     register: registerForm,
     handleSubmit: handleRegisterSubmit,
     formState: { errors: registerErrors },
     reset: resetRegister,
+    setError,
+    clearErrors,
   } = useForm();
-
-  //註冊處理
-  const [registerError, setRegisterError] = useState("");
 
   const onRegister = async (data) => {
     try {
       // 清除之前的錯誤訊息
-      setRegisterError("");
+      clearErrors("root.serverError");
 
-      const response = await axios.post(`${API_BASE}}/register`, {
+      if (!API_BASE) {
+        setError("root.serverError", {
+          type: "manual",
+          message: "系統設定錯誤，請確認 API 網址設定",
+        });
+        return;
+      }
+
+      const response = await axios.post(`${API_BASE}/register`, {
         nickname: data.nickname,
         email: data.email,
         password: data.password,
@@ -35,22 +41,37 @@ function SignUp() {
       // 重置註冊表單
       resetRegister();
 
-      // 顯示成功 Modal
-      setShowSuccessModal(true);
+      await Swal.fire({
+        icon: "success",
+        title: "註冊成功",
+        text: "歡迎加入喵皇御膳房，開始探索吧。",
+        confirmButtonText: "前往首頁",
+        customClass: {
+          popup: "rounded-4 border-0 shadow-lg",
+          confirmButton: "btn btn-primary-500 text-white px-6",
+        },
+        buttonsStyling: false,
+      });
 
-      // 3 秒後導向首頁
-      setTimeout(() => {
-        navigate("/index");
-      }, 1000);
+      navigate("/index");
     } catch (error) {
       console.error("註冊錯誤:", error);
       // 顯示錯誤訊息
       if (error.response?.status === 400) {
-        setRegisterError("此電子信箱已被使用");
+        setError("root.serverError", {
+          type: "manual",
+          message: "此電子信箱已被使用",
+        });
       } else if (error.response?.data?.message) {
-        setRegisterError(error.response.data.message);
+        setError("root.serverError", {
+          type: "manual",
+          message: error.response.data.message,
+        });
       } else {
-        setRegisterError("註冊失敗，請稍後再試");
+        setError("root.serverError", {
+          type: "manual",
+          message: "註冊失敗，請稍後再試",
+        });
       }
     }
   };
@@ -61,9 +82,9 @@ function SignUp() {
         <h1 className="text-center fs-4 mt-11 mb-11 text-neutral-800">註冊會員帳號</h1>
 
         {/* 顯示註冊錯誤訊息 */}
-        {registerError && (
+        {registerErrors.root?.serverError?.message && (
           <div className="alert alert-danger py-2" role="alert">
-            {registerError}
+            {registerErrors.root.serverError.message}
           </div>
         )}
 
@@ -169,31 +190,6 @@ function SignUp() {
             註冊
           </button>
         </form>
-        {/* <!-- Modal --> */}
-        {showSuccessModal && (
-          <div
-            className="modal fade show"
-            id="signUpSuccessModal"
-            tabIndex="-1"
-            aria-labelledby="signUpSuccessModalLabel"
-            aria-hidden="false"
-            style={{ display: "block" }}
-          >
-            <div className="modal-dialog">
-              <div className="modal-content p-5">
-                <div className="modal-header">
-                  <button
-                    type="button"
-                    className="btn-close"
-                    onClick={() => setShowSuccessModal(false)}
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div className="modal-body text-center mt-3 text-neutral-800">您已成功註冊</div>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </>
   );

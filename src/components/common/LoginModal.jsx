@@ -60,7 +60,6 @@ function LoginModal({
                     {errors.email ? errors.email.message : ""}
                   </span>
                   <label className="text-neutral-500 fs-7" htmlFor="loginfloatingInput">
-                    <i className="bi bi-search text-white"></i>
                     輸入電子信箱
                   </label>
                 </div>
@@ -78,7 +77,7 @@ function LoginModal({
                   <span className="ms-1" style={{ fontSize: "8pt", color: "red" }}>
                     {errors.password ? errors.password.message : ""}
                   </span>
-                  <label className="text-neutral-500" htmlFor="loginfloatingPassword">
+                  <label className="text-neutral-500 fs-7" htmlFor="loginfloatingPassword">
                     輸入密碼
                   </label>
                 </div>

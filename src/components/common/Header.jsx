@@ -1,7 +1,8 @@
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Swal from "sweetalert2";
 import LoginModal from "./LoginModal";
 import NavLinks from "./NavLinks";
 import MobileUserMenu from "./MobileUserMenu";
@@ -9,10 +10,13 @@ import { isAuthenticated, setAuth, clearAuth } from "../../utils/auth";
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 function Header() {
+  const imageBaseUrl = `${import.meta.env.BASE_URL}images/`;
+
   const [user, setUser] = useState(null);
   const [loginError, setLoginError] = useState("");
   const [showLoginModal, setShowLoginModal] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     register,
@@ -21,15 +25,16 @@ function Header() {
     reset,
   } = useForm();
 
+  // 每次路由切換時同步一次登入狀態
   useEffect(() => {
     try {
       const userData = isAuthenticated();
-      if (userData) setUser(userData);
+      setUser(userData || null);
     } catch (err) {
       clearAuth();
       setUser(null);
     }
-  }, []);
+  }, [location.pathname]);
   // 控制 Modal 開閉時的 body overflow
   useEffect(() => {
     if (showLoginModal) {
@@ -39,6 +44,7 @@ function Header() {
     }
   }, [showLoginModal]);
 
+  // 登入送出：打 API、寫入 auth、更新 header 使用者顯示。
   const onSubmit = async (data) => {
     try {
       // 清除之前的錯誤訊息
@@ -67,6 +73,18 @@ function Header() {
 
       setShowLoginModal(false);
 
+      await Swal.fire({
+        icon: "success",
+        title: `歡迎回來，${userData.nickname || "貓奴"}`,
+        text: "登入成功，開始今天的探索吧。",
+        confirmButtonText: "開始逛逛",
+        customClass: {
+          popup: "rounded-4 border-0 shadow-lg",
+          confirmButton: "btn btn-primary-500 text-white px-6",
+        },
+        buttonsStyling: false,
+      });
+
       // 關閉手機版漢堡選單
       try {
         closeNavbarOnMobile();
@@ -88,11 +106,23 @@ function Header() {
     }
   };
 
-  // 登出處理
-  const handleLogout = () => {
+  // 登出流程：清除 auth 後提示並導回首頁。
+  const handleLogout = async () => {
     // 清除認證相關資訊
     clearAuth();
     setUser(null);
+
+    await Swal.fire({
+      icon: "success",
+      title: "已成功登出",
+      text: "下次再回來幫主子挑好料、學新知。",
+      confirmButtonText: "回到首頁",
+      customClass: {
+        popup: "rounded-4 border-0 shadow-lg",
+        confirmButton: "btn btn-primary-500 text-white px-6",
+      },
+      buttonsStyling: false,
+    });
 
     // 導向首頁
     navigate("/index");
@@ -127,14 +157,14 @@ function Header() {
           <div className="container">
             {/* <!-- logo --> */}
             <Link to="/index" className="navbar-brand d-none d-lg-block">
-              <img src="./images/logo.svg" alt="logo" className="me-72" />
+              <img src={`${imageBaseUrl}logo.svg`} alt="logo" className="me-72" />
             </Link>
 
             {/* <!-- 手機板header --> */}
             <div className="navbar-header d-lg-none w-100 d-flex justify-content-between align-items-center py-1 flex-shrink-0">
               {/* <!-- logo --> */}
               <Link className="navbar-brand" to="/index">
-                <img src="./images/logo.svg" alt="logo" className="me-72" />
+                <img src={`${imageBaseUrl}logo.svg`} alt="logo" className="me-72" />
               </Link>
               {/* <!-- 漢堡按鈕 --> */}
               <button
@@ -202,7 +232,7 @@ function Header() {
                         to="/member/account"
                       >
                         <img
-                          src="./images/member/user-circle.png"
+                          src={`${imageBaseUrl}member/user-circle.png`}
                           alt="user-circle"
                           className="me-3"
                         />
@@ -214,7 +244,11 @@ function Header() {
                         className="dropdown-item header-dropdown-item justify-content-start d-flex align-items-center p-3 pe-12"
                         to="/member/record"
                       >
-                        <img src="./images/member/history.png" alt="history" className="me-3" />
+                        <img
+                          src={`${imageBaseUrl}member/history.png`}
+                          alt="history"
+                          className="me-3"
+                        />
                         會員紀錄
                       </Link>
                     </li>
@@ -222,40 +256,18 @@ function Header() {
                       <Link
                         className="dropdown-item header-dropdown-item justify-content-start d-flex align-items-center p-3 pe-12"
                         to="/index"
-                        data-bs-toggle="modal"
-                        data-bs-target="#logoutModal"
-                        onClick={(e) => {
+                        onClick={async (e) => {
                           e.preventDefault();
-                          handleLogout();
+                          await handleLogout();
                         }}
                       >
-                        <img src="./images/member/logout.png" alt="logout" className="me-3" />
+                        <img
+                          src={`${imageBaseUrl}member/logout.png`}
+                          alt="logout"
+                          className="me-3"
+                        />
                         登出
                       </Link>
-                      {/* <!-- Modal --> */}
-                      <div
-                        className="modal fade"
-                        id="logoutModal"
-                        tabIndex="-1"
-                        aria-labelledby="logoutModalLabel"
-                        aria-hidden="true"
-                      >
-                        <div className="modal-dialog">
-                          <div className="modal-content p-5">
-                            <div className="modal-header">
-                              <button
-                                type="button"
-                                className="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                              ></button>
-                            </div>
-                            <div className="modal-body text-center mt-3 text-neutral-800">
-                              您已成功登出
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </li>
                   </ul>
                 </div>

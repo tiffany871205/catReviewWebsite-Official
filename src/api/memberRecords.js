@@ -15,6 +15,13 @@ function formatDate(dateValue) {
   return date.toISOString().slice(0, 10);
 }
 
+function toTimestamp(dateValue) {
+  if (!dateValue) return 0;
+  const date = new Date(dateValue);
+  if (Number.isNaN(date.getTime())) return 0;
+  return date.getTime();
+}
+
 function toPriceLabel(price) {
   if (typeof price !== "number") return "NT$ 0";
   return `NT$ ${price.toLocaleString("zh-TW")}`;
@@ -64,6 +71,7 @@ function toFoodRecord({ relation, food, foodDetail, taxonomyMaps, includeStatus 
     weight: basicInfo.weight ?? food?.weight ?? "-",
     desc: relationDesc || fallbackDesc || "-",
     date: formatDate(relation.createdAt || relation.updatedAt),
+    sortTimestamp: toTimestamp(relation.createdAt || relation.updatedAt),
     status: relation.status ?? "pending",
     statusLabel: STATUS_LABEL_MAP[relation.status] ?? STATUS_LABEL_MAP.pending,
     image: "",
@@ -78,7 +86,7 @@ function toFoodRecord({ relation, food, foodDetail, taxonomyMaps, includeStatus 
 }
 
 function toKnowledgeRecord({ relation, knowledge, includeStatus }) {
-  const articleId = relation.knowledgeId ?? knowledge?.id;
+  const articleId = relation.knowledgeId ?? relation.articleId ?? knowledge?.id;
 
   return {
     id: relation.id,
@@ -86,6 +94,7 @@ function toKnowledgeRecord({ relation, knowledge, includeStatus }) {
     excerpt: relation.excerpt ?? knowledge?.excerpt ?? "",
     tags: relation.tags ?? knowledge?.tags ?? [],
     date: formatDate(relation.createdAt || relation.updatedAt),
+    sortTimestamp: toTimestamp(relation.createdAt || relation.updatedAt),
     status: relation.status ?? "pending",
     statusLabel: STATUS_LABEL_MAP[relation.status] ?? STATUS_LABEL_MAP.pending,
     image: "",
@@ -128,7 +137,7 @@ export async function fetchFavoriteRecords(userId) {
   const knowledgeRecords = (knowledgeFavRes.data ?? []).map((relation) =>
     toKnowledgeRecord({
       relation,
-      knowledge: knowledgeMap.get(relation.knowledgeId),
+      knowledge: knowledgeMap.get(relation.knowledgeId ?? relation.articleId),
       includeStatus: false,
     })
   );
@@ -206,13 +215,15 @@ export async function fetchCommentRecords(currentUser) {
 
   const foodRecords = filteredFoodComments.map((item) => {
     const food = foodMap.get(item.foodId);
+    const commentDate = item.createdAt || item.updatedAt || item.time;
 
     return {
       id: item.id,
       foodName: food?.name ?? "未命名食品",
       rating: item.rating ?? 0,
-      date: formatDate(item.createdAt || item.updatedAt),
-      relativeTime: formatDate(item.createdAt || item.updatedAt),
+      date: formatDate(commentDate),
+      relativeTime: formatDate(commentDate),
+      sortTimestamp: toTimestamp(commentDate),
       content: item.content ?? "",
       photos: item.photos ?? [],
       targetPath: "/food",
@@ -222,15 +233,18 @@ export async function fetchCommentRecords(currentUser) {
   const knowledgeRecords = filteredKnowledgeComments.map((item) => {
     const articleId = item.articleId ?? item.knowledgeId;
     const knowledge = knowledgeMap.get(articleId);
+    const commentDate = item.createdAt || item.updatedAt || item.time;
+    const commentQuery = articleId ? `?commentId=${item.id}` : "";
 
     return {
       id: item.id,
       articleTitle: knowledge?.title ?? "未命名文章",
       rating: item.rating ?? 0,
-      date: formatDate(item.createdAt || item.updatedAt),
-      relativeTime: formatDate(item.createdAt || item.updatedAt),
+      date: formatDate(commentDate),
+      relativeTime: formatDate(commentDate),
+      sortTimestamp: toTimestamp(commentDate),
       content: item.text ?? item.content ?? "",
-      targetPath: articleId ? `/knowledge/article/${articleId}` : "/knowledge",
+      targetPath: articleId ? `/knowledge/article/${articleId}${commentQuery}` : "/knowledge",
     };
   });
 

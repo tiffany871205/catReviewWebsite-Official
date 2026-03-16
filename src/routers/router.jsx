@@ -3,7 +3,7 @@ import App from "../App.jsx";
 import Index from "../pages/Index.jsx";
 import Food from "../pages/Food.jsx";
 import Contrib from "../pages/Contrib.jsx";
-import Member from "../pages/member.jsx";
+import Member from "../pages/Member.jsx";
 import FoodProductPage from "../components/food/FoodProduct.jsx";
 import Account from "../pages/member/Account.jsx";
 import Record from "../pages/member/Record.jsx";

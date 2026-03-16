@@ -1,14 +1,12 @@
 import { Link, Outlet, useLocation } from "react-router";
 
 function Member() {
-  // 依目前路由高亮會員中心側欄標籤。
   const location = useLocation();
   const isAccountTab = location.pathname.startsWith("/member/account");
   const isRecordTab = location.pathname.startsWith("/member/record");
 
   return (
     <>
-      {/* 會員中心主版型：左側導覽 + 右側子頁內容。 */}
       <div className="d-lg-flex">
         {/* 左側選單 */}
         <div className="d-none d-lg-block member-side-menu">

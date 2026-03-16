@@ -95,79 +95,83 @@ function Food() {
   return (
     <>
       {/*<h1>我是食品區</h1>*/}
-        <div className="foodmain-body">
-            <FoodBanner />
+      <div className="foodmain-body">
+        <FoodBanner />
 
-            <main className="container">
-                <div className="row row-cols-2 align-items-stretch">
-                    <div className="col-lg-3 d-flex">
-                        <FoodAside />
+        <main className="container">
+          <div className="row row-cols-2 align-items-stretch">
+            <div className="col-lg-3 d-flex">
+              <FoodAside />
+            </div>
+            <div className="col-lg-9 d-flex justify-content-center flex-wrap ">
+              <div className="row row-cols-3">
+                {foodCards.map((card) => (
+                  <FoodCard
+                    key={card.alt}
+                    href={card.href}
+                    image={card.image}
+                    alt={card.alt}
+                    title={card.title}
+                    price={card.price}
+                    tags={card.tags}
+                    buttonClass={card.buttonClass}
+                  />
+                ))}
+
+                <div className="d-xl-none d-none d-mg-flex">
+                  <div className="card food-card mb-10">
+                    <img src="" alt="" />
+                    <div className="card-body">
+                      <h5 className="card-title" />
+                      <p className="card-text" />
+                      <p className="card-text" />
                     </div>
-                    <div className="col-lg-9 d-flex justify-content-center flex-wrap ">
-                        <div className="row row-cols-3">
-                            {foodCards.map((card) => (
-                                <FoodCard
-                                    key={card.alt}
-                                    href={card.href}
-                                    image={card.image}
-                                    alt={card.alt}
-                                    title={card.title}
-                                    price={card.price}
-                                    tags={card.tags}
-                                    buttonClass={card.buttonClass}
-                                />
-                            ))}
-
-                            <div className="d-xl-none d-none d-mg-flex">
-                                <div className="card food-card mb-10">
-                                    <img src="" alt="" />
-                                    <div className="card-body">
-                                        <h5 className="card-title" />
-                                        <p className="card-text" />
-                                        <p className="card-text" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="m-auto mt-10 ">
-                                <ul className="d-flex justify-content-center align-items-center">
-                                    <li className="page-item me-2">
-                                        <button type="button" className="btn knowledge-btn">
-                                            <i className="bi bi-chevron-left" />
-                                        </button>
-                                    </li>
-                                    <li className="page-item me-2">
-                                        <button
-                                            type="button"
-                                            className="btn knowledge-btn btn-primary-600 text-white active"
-                                        >
-                                            1
-                                        </button>
-                                    </li>
-                                    <li className="page-item me-2">
-                                        <button type="button" className="btn knowledge-btn">2</button>
-                                    </li>
-                                    <li className="page-item me-2">
-                                        <button type="button" className="btn knowledge-btn">...</button>
-                                    </li>
-                                    <li className="page-item me-2">
-                                        <button type="button" className="btn knowledge-btn">8</button>
-                                    </li>
-                                    <li className="page-item">
-                                        <button type="button" className="btn knowledge-btn">
-                                            <i className="bi bi-chevron-right" />
-                                        </button>
-                                    </li>
-                                </ul>
-                            </div>
-                        {/*</div>*/}
-                    </div>
-                    </div>
-
-
+                  </div>
                 </div>
-            </main>
-        </div>
+
+                <div className="m-auto mt-10 ">
+                  <ul className="d-flex justify-content-center align-items-center">
+                    <li className="page-item me-2">
+                      <button type="button" className="btn knowledge-btn">
+                        <i className="bi bi-chevron-left" />
+                      </button>
+                    </li>
+                    <li className="page-item me-2">
+                      <button
+                        type="button"
+                        className="btn knowledge-btn btn-primary-600 text-white active"
+                      >
+                        1
+                      </button>
+                    </li>
+                    <li className="page-item me-2">
+                      <button type="button" className="btn knowledge-btn">
+                        2
+                      </button>
+                    </li>
+                    <li className="page-item me-2">
+                      <button type="button" className="btn knowledge-btn">
+                        ...
+                      </button>
+                    </li>
+                    <li className="page-item me-2">
+                      <button type="button" className="btn knowledge-btn">
+                        8
+                      </button>
+                    </li>
+                    <li className="page-item">
+                      <button type="button" className="btn knowledge-btn">
+                        <i className="bi bi-chevron-right" />
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+                {/*</div>*/}
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
     </>
   );
 }

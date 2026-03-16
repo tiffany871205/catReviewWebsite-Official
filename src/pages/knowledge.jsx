@@ -42,10 +42,7 @@ export default function Knowledge() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const [articles, meta] = await Promise.all([
-          getKnowledgeArticles(),
-          getKnowledgeMeta(),
-        ]);
+        const [articles, meta] = await Promise.all([getKnowledgeArticles(), getKnowledgeMeta()]);
 
         setDb({
           knowledge: articles,
@@ -84,11 +81,7 @@ export default function Knowledge() {
 
   return (
     <>
-      <KnowledgeBanner
-        keyword={keyword}
-        setKeyword={setKeyword}
-        onSubmit={onBannerSubmit}
-      />
+      <KnowledgeBanner keyword={keyword} setKeyword={setKeyword} onSubmit={onBannerSubmit} />
 
       <section className="bg-secondary-100 pt-lg-11 pb-0 pb-lg-12 pb-11">
         <MobileFilterBar
@@ -125,11 +118,7 @@ export default function Knowledge() {
               ))}
 
               <div className="w-100">
-                <Pagination
-                  page={page}
-                  totalPages={totalPages}
-                  setPage={setPage}
-                />
+                <Pagination page={page} totalPages={totalPages} setPage={setPage} />
               </div>
             </div>
           </div>

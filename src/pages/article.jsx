@@ -1,7 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { Link, useParams } from "react-router";
-// import db from "../../db.json";
-import db from "../../db.seed.json";
+import { Link, useLocation, useParams } from "react-router";
 import Swal from "sweetalert2";
 import ArticleBlock from "../components/articles/ArticleBlock";
 import FeedbackActions from "../components/articles/FeedbackActions";
@@ -26,6 +24,7 @@ import { isAuthenticated } from "../utils/auth";
 
 export default function Article() {
   const { id } = useParams();
+  const location = useLocation();
   const articleId = Number(id);
 
   const [helpfulCount, setHelpfulCount] = useState(92);
@@ -35,11 +34,14 @@ export default function Article() {
   const [newCommentText, setNewCommentText] = useState("");
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [bookmarkId, setBookmarkId] = useState(null);
+  const [isBookmarkSubmitting, setIsBookmarkSubmitting] = useState(false);
   const [listItem, setListItem] = useState(null);
   const [detail, setDetail] = useState(null);
   const [topics, setTopics] = useState([]);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [focusedCommentId, setFocusedCommentId] = useState(null);
+  const [lastScrolledCommentId, setLastScrolledCommentId] = useState(null);
 
   const authUser = isAuthenticated();
 
@@ -65,17 +67,46 @@ export default function Article() {
 
   // // 找列表資料
   useEffect(() => {
+    let isMounted = true;
+
     async function fetchData() {
+      setLoading(true);
+
       try {
-        const [article, articleDetail, comments, meta] = await Promise.all([
+        const [article, comments, meta] = await Promise.all([
           getKnowledgeArticleById(articleId),
-          getKnowledgeArticleDetail(articleId),
           getKnowledgeComments(articleId),
           getKnowledgeMeta(),
         ]);
 
+        let articleDetail = null;
+        try {
+          articleDetail = await getKnowledgeArticleDetail(articleId);
+        } catch (error) {
+          if (error.response?.status !== 404) {
+            throw error;
+          }
+        }
+
+        if (!isMounted) return;
+
+        const mergedDetail = articleDetail ?? {
+          id: article?.id,
+          topicId: article?.topicId,
+          categoryId: article?.categoryId,
+          title: article?.title ?? "",
+          subtitle: "",
+          intro: article?.excerpt ?? "",
+          image: article?.img ?? "",
+          blocks: [],
+          meta: {
+            author: "Cool Meow",
+            publishDate: article?.createdAt ?? "",
+          },
+        };
+
         setListItem(article);
-        setDetail(articleDetail);
+        setDetail(mergedDetail);
         setLocalComments(comments);
         setTopics(meta.topics ?? []);
         setCategories(meta.categories ?? []);
@@ -97,17 +128,36 @@ export default function Article() {
         }
       } catch (error) {
         console.error("取得文章資料失敗:", error);
+        if (!isMounted) return;
+        setListItem(null);
+        setDetail(null);
+        setLocalComments([]);
+        setTopics([]);
+        setCategories([]);
+        setIsBookmarked(false);
+        setBookmarkId(null);
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
 
     if (Number.isFinite(articleId)) {
       fetchData();
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, [articleId, currentUser?.id]);
 
-  const handleBookmarkToggle = async () => {
+  const handleBookmarkToggle = async (event) => {
+    event?.preventDefault();
+    event?.stopPropagation();
+
+    if (isBookmarkSubmitting) return;
+
     if (!currentUser) {
       catAlert.fire({
         icon: "warning",
@@ -120,18 +170,19 @@ export default function Article() {
     }
 
     try {
+      setIsBookmarkSubmitting(true);
+
       if (isBookmarked && bookmarkId) {
         await deleteKnowledgeFav(bookmarkId);
         setIsBookmarked(false);
         setBookmarkId(null);
 
-        Swal.fire({
+        await catAlert.fire({
           icon: "success",
           title: "已移除收藏",
-          toast: true,
-          position: "top-end",
-          timer: 1500,
-          showConfirmButton: false,
+          text: "這篇文章已從收藏清單移除。",
+          confirmButtonText: "我知道了",
+          iconColor: "#ffb11b",
         });
       } else {
         const existing = await getKnowledgeFavByUserAndArticle(currentUser.id, articleId);
@@ -139,35 +190,88 @@ export default function Article() {
         if (existing.length > 0) {
           setIsBookmarked(true);
           setBookmarkId(existing[0].id);
+          await catAlert.fire({
+            icon: "info",
+            title: "已在收藏清單",
+            text: "這篇文章你已經收藏過囉。",
+            confirmButtonText: "了解",
+            iconColor: "#ffb11b",
+          });
           return;
         }
 
         const created = await createKnowledgeFav({
           userId: currentUser.id,
-          articleId,
+          knowledgeId: articleId,
           createdAt: new Date().toISOString(),
         });
 
         setIsBookmarked(true);
         setBookmarkId(created.id);
 
-        Swal.fire({
+        await catAlert.fire({
           icon: "success",
           title: "已加入收藏",
-          toast: true,
-          position: "top-end",
-          timer: 1500,
-          showConfirmButton: false,
+          text: "已成功加入你的收藏清單。",
+          confirmButtonText: "太好了",
+          iconColor: "#ffb11b",
         });
       }
     } catch (error) {
       console.error("收藏操作失敗:", error);
+      await catAlert.fire({
+        icon: "error",
+        title: "收藏失敗",
+        text: "目前無法完成收藏操作，請稍後再試。",
+        confirmButtonText: "我知道了",
+      });
+    } finally {
+      setIsBookmarkSubmitting(false);
     }
   };
 
   const visibleComments = useMemo(() => {
     return localComments.slice(0, visibleCount);
   }, [localComments, visibleCount]);
+
+  useEffect(() => {
+    setLastScrolledCommentId(null);
+    setFocusedCommentId(null);
+  }, [articleId, location.search]);
+
+  useEffect(() => {
+    if (loading || localComments.length === 0) return;
+
+    const params = new URLSearchParams(location.search);
+    const commentIdRaw = params.get("commentId");
+    const targetCommentId = Number(commentIdRaw);
+
+    if (!Number.isInteger(targetCommentId) || targetCommentId <= 0) return;
+    if (lastScrolledCommentId === targetCommentId) return;
+
+    const targetIndex = localComments.findIndex((item) => Number(item.id) === targetCommentId);
+    if (targetIndex === -1) return;
+
+    if (visibleCount < targetIndex + 1) {
+      setVisibleCount(targetIndex + 1);
+      return;
+    }
+
+    const targetEl = document.getElementById(`comment-${targetCommentId}`);
+    if (!targetEl) return;
+
+    targetEl.scrollIntoView({ behavior: "smooth", block: "center" });
+    setFocusedCommentId(targetCommentId);
+    setLastScrolledCommentId(targetCommentId);
+
+    const timer = window.setTimeout(() => {
+      setFocusedCommentId(null);
+    }, 2000);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [location.search, loading, localComments, visibleCount, lastScrolledCommentId]);
 
   // 麵包蟹
   const topicName = useMemo(() => {
@@ -291,12 +395,16 @@ export default function Article() {
     }
 
     try {
+      const nowIso = new Date().toISOString();
+
       const created = await createKnowledgeComment({
         articleId,
         userId: currentUser.id,
         avatar: currentUser.avatar,
         name: currentUser.nickname,
-        time: new Date().toISOString(),
+        time: nowIso,
+        createdAt: nowIso,
+        updatedAt: nowIso,
         text: newCommentText,
       });
 
@@ -331,8 +439,11 @@ export default function Article() {
       return;
     }
     try {
+      const nowIso = new Date().toISOString();
+
       const updated = await updateKnowledgeComment(commentId, {
         text: newText,
+        updatedAt: nowIso,
       });
 
       setLocalComments((prev) => prev.map((c) => (c.id === commentId ? updated : c)));
@@ -467,14 +578,20 @@ export default function Article() {
                       <i className="bi bi-box-arrow-up-right me-1"></i>分享{" "}
                     </span>
 
-                    <span onClick={handleBookmarkToggle} style={{ cursor: "pointer" }}>
+                    <button
+                      type="button"
+                      onClick={handleBookmarkToggle}
+                      className="btn p-0 border-0 bg-transparent"
+                      disabled={isBookmarkSubmitting}
+                      style={{ cursor: isBookmarkSubmitting ? "not-allowed" : "pointer" }}
+                    >
                       <i
                         className={`bi ${
                           isBookmarked ? "bi-bookmark-fill text-primary-700" : "bi-bookmark"
                         } me-1`}
                       ></i>
                       {isBookmarked ? "已收藏" : "加入收藏"}
-                    </span>
+                    </button>
                   </span>
                 </p>
               </div>
@@ -520,14 +637,20 @@ export default function Article() {
                     <p onClick={handleShareClick} style={{ cursor: "pointer" }}>
                       <i className="bi bi-box-arrow-up-right me-1"></i> 分享
                     </p>
-                    <p onClick={handleBookmarkToggle} style={{ cursor: "pointer" }}>
+                    <button
+                      type="button"
+                      onClick={handleBookmarkToggle}
+                      className="btn p-0 border-0 bg-transparent"
+                      disabled={isBookmarkSubmitting}
+                      style={{ cursor: isBookmarkSubmitting ? "not-allowed" : "pointer" }}
+                    >
                       <i
                         className={`bi ${
                           isBookmarked ? "bi-bookmark-fill text-primary-700" : "bi-bookmark"
                         } me-1`}
                       ></i>
                       {isBookmarked ? "已收藏" : "加入收藏"}
-                    </p>
+                    </button>
                   </div>
                 </div>
 
@@ -601,10 +724,11 @@ export default function Article() {
                   <CommentItem
                     key={c.id}
                     id={c.id}
-                    avatar={c.avatar}
+                    domId={`comment-${c.id}`}
                     name={c.name}
                     time={timeAgo(c.time)}
                     text={c.text}
+                    highlighted={focusedCommentId === Number(c.id)}
                     isAuthor={currentUser && c.userId === currentUser.id}
                     onDelete={handleDeleteComment}
                     onEdit={handleUpdateComment}
@@ -637,3 +761,4 @@ export default function Article() {
     </>
   );
 }
+// 修改文件大小寫

@@ -188,6 +188,34 @@
   margin-top: 4px;
 }
 
+.comment-item--focus {
+  position: relative;
+}
+
+.comment-item--focus::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 12px;
+  pointer-events: none;
+  animation: comment-focus-blink 1s ease-in-out 2;
+}
+
+@keyframes comment-focus-blink {
+  0% {
+    background-color: transparent;
+    box-shadow: 0 0 0 0 rgba(202, 132, 125, 0);
+  }
+  50% {
+    background-color: rgba(255, 247, 223, 0.7);
+    box-shadow: 0 0 0 2px rgba(202, 132, 125, 0.4);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: 0 0 0 0 rgba(202, 132, 125, 0);
+  }
+}
+
 .btn-send {
   position: absolute;
   right: 15px;

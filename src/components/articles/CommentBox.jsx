@@ -1,19 +1,6 @@
-export default function CommentBox({
-  currentUser,
-  newCommentText,
-  setNewCommentText,
-  onSubmit,
-}) {
+export default function CommentBox({ currentUser, newCommentText, setNewCommentText, onSubmit }) {
   return (
-    <div className="d-flex align-items-start w-100 py-6 mb-8">
-      <div className="flex-shrink-0 me-3">
-        <img
-          src={currentUser.avatar}
-          alt={currentUser.nickname}
-          className="comment-avatar rounded-circle d-md-block d-none"
-        />
-      </div>
-
+    <div className="w-100 py-6 mb-8">
       <div className="comment-box flex-grow-1 position-relative w-100">
         <textarea
           className="form-control border-0 shadow-none"
@@ -29,9 +16,7 @@ export default function CommentBox({
         />
         <button
           type="button"
-          className={`btn btn-send ${
-            !newCommentText.trim() ? "opacity-50" : ""
-          }`}
+          className={`btn btn-send ${!newCommentText.trim() ? "opacity-50" : ""}`}
           onClick={onSubmit}
           disabled={!newCommentText.trim()}
         >

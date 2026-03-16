@@ -8,9 +8,218 @@
       "id": 1
     }
   ],
-  "foodContrib": [],
-  "foodFav": [],
-  "foodComment": [],
+  "foodContrib": [
+    {
+      "id": 1,
+      "userId": 1,
+      "foodId": 1,
+      "status": "pending",
+      "note": "測試投稿：待審核",
+      "basicInfo": {
+        "name": "雞+南瓜主食罐(投稿版)",
+        "brand": "NUTRIPE 紐萃寶",
+        "price": 900,
+        "origin": "紐西蘭",
+        "weight": "600g"
+      },
+      "ingredientProfile": {
+        "flavorId": 101,
+        "contentTypeId": 203,
+        "specialFormulaId": 302,
+        "targetId": 402
+      },
+      "nutrition": {
+        "moisturePercent": 78,
+        "fatPercent": 5.8,
+        "proteinPercent": 11.4,
+        "caloriesPerKg": 980,
+        "carbPercent": 2.1,
+        "containsGum": false,
+        "allergens": "雞肉蛋白"
+      },
+      "images": {
+        "packageImages": [
+          "/images/food/001.jpg"
+        ],
+        "contentImages": [
+          "/images/food/001.jpg"
+        ]
+      },
+      "declarationAgreed": true,
+      "createdAt": "2026-03-13T10:30:00Z",
+      "updatedAt": "2026-03-13T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "foodId": 3,
+      "status": "approved",
+      "note": "測試投稿：審核通過",
+      "basicInfo": {
+        "name": "羊肉莓果乾糧(投稿版)",
+        "brand": "Wild Farm",
+        "price": 980,
+        "origin": "澳洲",
+        "weight": "5kg"
+      },
+      "ingredientProfile": {
+        "flavorId": 104,
+        "contentTypeId": 205,
+        "specialFormulaId": 301,
+        "targetId": 402
+      },
+      "nutrition": {
+        "moisturePercent": 9.5,
+        "fatPercent": 16.2,
+        "proteinPercent": 33.4,
+        "caloriesPerKg": 4100,
+        "carbPercent": 29.1,
+        "containsGum": false,
+        "allergens": "無"
+      },
+      "images": {
+        "packageImages": [
+          "/images/food/003.jpg"
+        ],
+        "contentImages": [
+          "/images/food/003.jpg"
+        ]
+      },
+      "declarationAgreed": true,
+      "createdAt": "2026-03-12T08:20:00Z",
+      "updatedAt": "2026-03-12T11:40:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "foodId": 5,
+      "status": "pending",
+      "note": "測試投稿：等待補圖",
+      "createdAt": "2026-03-11T09:10:00Z",
+      "updatedAt": "2026-03-11T09:10:00Z"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "foodId": 7,
+      "status": "approved",
+      "note": "測試投稿：通過",
+      "createdAt": "2026-03-10T08:00:00Z",
+      "updatedAt": "2026-03-10T12:00:00Z"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "foodId": 9,
+      "status": "rejected",
+      "note": "測試投稿：標示需補充",
+      "createdAt": "2026-03-09T07:00:00Z",
+      "updatedAt": "2026-03-09T11:00:00Z"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "foodId": 2,
+      "status": "approved",
+      "note": "測試投稿：已刊登",
+      "createdAt": "2026-03-08T07:40:00Z",
+      "updatedAt": "2026-03-08T09:30:00Z"
+    }
+  ],
+  "foodFav": [
+    {
+      "id": 1,
+      "userId": 1,
+      "foodId": 2,
+      "createdAt": "2026-03-10T09:00:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "foodId": 7,
+      "createdAt": "2026-03-11T07:00:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "foodId": 1,
+      "createdAt": "2026-03-12T08:40:00Z"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "foodId": 3,
+      "createdAt": "2026-03-12T09:10:00Z"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "foodId": 5,
+      "createdAt": "2026-03-12T09:30:00Z"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "foodId": 9,
+      "createdAt": "2026-03-12T10:00:00Z"
+    }
+  ],
+  "foodComment": [
+    {
+      "id": 1,
+      "userId": 1,
+      "foodId": 1,
+      "rating": 4,
+      "content": "適口性不錯，連續吃了三天都吃光。",
+      "photos": [
+        "contrib-history2-1.png"
+      ],
+      "createdAt": "2026-03-09T12:00:00Z",
+      "updatedAt": "2026-03-09T12:00:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "foodId": 2,
+      "rating": 5,
+      "content": "肉塊比例剛好，貓咪接受度很高。",
+      "photos": [],
+      "createdAt": "2026-03-10T10:30:00Z",
+      "updatedAt": "2026-03-10T10:30:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "foodId": 3,
+      "rating": 4,
+      "content": "乾糧顆粒大小適中，換糧期也很順。",
+      "photos": [],
+      "createdAt": "2026-03-11T08:15:00Z",
+      "updatedAt": "2026-03-11T08:15:00Z"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "foodId": 5,
+      "rating": 3,
+      "content": "適口性中等，搭配溫水後比較願意吃。",
+      "photos": [
+        "contrib-history2-2.png"
+      ],
+      "createdAt": "2026-03-12T13:20:00Z",
+      "updatedAt": "2026-03-12T13:20:00Z"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "foodId": 7,
+      "rating": 5,
+      "content": "吃完精神很好，便便狀況也穩定。",
+      "photos": [],
+      "createdAt": "2026-03-13T07:45:00Z",
+      "updatedAt": "2026-03-13T07:45:00Z"
+    }
+  ],
   "foodID": {
     "flavors": [
       {
@@ -2174,101 +2383,218 @@
   "knowledgeComment": [
     {
       "id": 1,
-      "articleId": 1,
-      "avatar": "./images/knowledge/article/user-1.png",
-      "name": "新手貓奴小明",
-      "time": "2天前",
-      "text": "原來耳朵向後貼平叫『飛機耳』是因為極度焦慮！以前我還覺得這樣很可愛想去揉，難怪每次都被賞貓拳，這篇文章救了我的手。"
-    },
-    {
-      "id": 2,
-      "articleId": 1,
-      "avatar": "./images/knowledge/article/user-2.png",
-      "name": "布丁麻麻",
-      "time": "5天前",
-      "text": "推這篇！我們家主子在吸塵器啟動時真的會秒變『炸毛尾巴』，現在知道那是牠在威懾敵人，我會先帶牠去別的房間避難了。"
-    },
-    {
-      "id": 3,
-      "articleId": 1,
-      "avatar": "./images/knowledge/article/user-3.png",
-      "name": "資深剷屎官",
-      "time": "1週前",
-      "text": "關於聲音訊號那段很準，尤其是『嘶嘶聲』。很多人以為貓咪在開玩笑，但那真的是最後通牒，這時候真的要給牠們空間獨處。"
-    },
-    {
-      "id": 1,
+      "userId": 1,
       "articleId": 2,
       "avatar": "./images/knowledge/article/user-1.png",
       "name": "貓奴一號",
-      "time": "1個月前",
-      "text": "我們家原本都吃乾糧，但看到水分攝取的重要性後開始每天加入一小包濕糧，結果主子超買單，喝水量也明顯上來。"
+      "time": "1天前",
+      "text": "各種糧食比較整理得很清楚，尤其混餵建議很實用。",
+      "createdAt": "2026-03-12T09:30:00Z",
+      "updatedAt": "2026-03-12T09:30:00Z"
     },
     {
       "id": 2,
-      "articleId": 2,
-      "avatar": "./images/knowledge/article/user-2.png",
-      "name": "貓奴二號",
-      "time": "3分鐘前",
-      "text": "之前嘗試冷凍乾燥糧，嗜口性是真的強，不過每天還要加水還原有點麻煩。現在改成乾糧＋濕糧混餵覺得最平衡"
-    },
-    {
-      "id": 3,
-      "articleId": 2,
-      "avatar": "./images/knowledge/article/user-3.png",
-      "name": "貓奴三號",
-      "time": "1小時前",
-      "text": "看完才知道乾糧跟濕糧的差異這麼大，一直以為乾糧就夠了…現在開始固定加入濕糧補水，泌尿問題也不再復發（但我還是有持續看醫生啦）。"
-    },
-    {
-      "id": 4,
-      "articleId": 2,
-      "avatar": "./images/knowledge/article/user-4.png",
-      "name": "貓奴四號",
-      "time": "3個月前",
-      "text": "這篇很清楚！我家貓三種都吃過，最後發現沒有單一最好的糧，就是看主子喜好＋我們能接受的預算，混餵最彈性。"
+      "userId": 1,
+      "articleId": 3,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "貓奴一號",
+      "time": "2天前",
+      "text": "成分拆解那段真的很受用，現在會先看前五項原料。",
+      "createdAt": "2026-03-11T11:00:00Z",
+      "updatedAt": "2026-03-11T11:00:00Z"
     },
     {
       "id": 5,
-      "articleId": 2,
-      "avatar": "./images/knowledge/article/user-3.png",
-      "name": "橘貓經理",
-      "time": "2天前",
-      "text": "之前一直想嘗試生食，但很怕寄生蟲問題。看完分析後決定還是先從主食罐加冷凍乾燥糧開始嘗試，安全第一。"
+      "userId": 1,
+      "articleId": 4,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "貓奴一號",
+      "time": "3天前",
+      "text": "玩具輪替清單很好用，主子晚上比較不暴衝",
+      "createdAt": "2026-03-10T09:00:00Z",
+      "updatedAt": "2026-03-16T08:50:17.712Z"
     },
     {
       "id": 6,
-      "articleId": 2,
-      "avatar": "./images/knowledge/article/user-4.png",
-      "name": "家有五貓",
-      "time": "5天前",
-      "text": "家裡貓多，全濕糧負擔真的很大。我是用高品質乾糧當基底，早晚各補一餐罐頭，這篇提到的『混餵』真的是多貓家庭的救星。"
-    },
-    {
-      "id": 1,
-      "articleId": 3,
+      "userId": 1,
+      "articleId": 5,
       "avatar": "./images/knowledge/article/user-1.png",
-      "name": "挑嘴貓領養人",
-      "time": "3天前",
-      "text": "以前只會看包裝上的『無穀』，讀完才發現原來廠商會用成分拆解術把澱粉排序往後移，這篇真的幫我上了一課，馬上拿起家裡的飼料袋對照！"
+      "name": "貓奴一號",
+      "time": "4天前",
+      "text": "體態評分圖示很清楚，現在每週都會紀錄。",
+      "createdAt": "2026-03-09T16:10:00Z",
+      "updatedAt": "2026-03-09T16:10:00Z"
     },
     {
+      "id": 7,
+      "userId": 1,
       "articleId": 1,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "貓奴一號",
+      "time": "5天前",
+      "text": "原來木天蓼和貓薄荷反應差很多，學到了。",
+      "createdAt": "2026-03-08T10:25:00Z",
+      "updatedAt": "2026-03-08T10:25:00Z"
+    },
+    {
+      "articleId": 6,
       "userId": 1,
       "avatar": "./images/knowledge/article/user-1.png",
       "name": "貓奴一號",
-      "time": "2026-03-13T09:36:10.801Z",
-      "text": "123 edit",
-      "id": 7
+      "time": "2026-03-16T08:56:41.691Z",
+      "createdAt": "2026-03-16T08:56:41.691Z",
+      "updatedAt": "2026-03-16T08:56:41.691Z",
+      "text": "小貓活力超旺盛",
+      "id": 9
+    },
+    {
+      "articleId": 8,
+      "userId": 1,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "貓奴一號",
+      "time": "2026-03-16T08:59:26.224Z",
+      "createdAt": "2026-03-16T08:59:26.224Z",
+      "updatedAt": "2026-03-16T08:59:26.224Z",
+      "text": "謝謝這篇文章",
+      "id": 10
+    },
+    {
+      "articleId": 7,
+      "userId": 1,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "貓奴一號",
+      "time": "2026-03-16T09:06:59.010Z",
+      "text": "感謝分享~",
+      "id": 11
+    },
+    {
+      "articleId": 9,
+      "userId": 1,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "貓奴一號",
+      "time": "2026-03-16T09:25:19.840Z",
+      "createdAt": "2026-03-16T09:25:19.840Z",
+      "updatedAt": "2026-03-16T09:25:19.840Z",
+      "text": "我家的貓就超愛吵架的",
+      "id": 12
     }
   ],
-  "knowledgeContrib": [],
+  "knowledgeContrib": [
+    {
+      "id": 1,
+      "userId": 1,
+      "knowledgeId": 3,
+      "status": "pending",
+      "note": "測試專欄投稿：待審核",
+      "title": "如何閱讀貓糧成分？（投稿版）",
+      "excerpt": "投稿內容聚焦在前五項原料判讀與避開不必要添加物，幫助新手快速篩選。",
+      "tags": [
+        "貓咪飲食指南",
+        "成份與標籤知識"
+      ],
+      "coverImage": "./images/knowledge/know-img3.png",
+      "content": "完整投稿內容（測試）",
+      "declarationAgreed": true,
+      "createdAt": "2026-03-13T10:40:00Z",
+      "updatedAt": "2026-03-13T10:40:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "knowledgeId": 5,
+      "status": "rejected",
+      "note": "測試專欄投稿：內容待補充",
+      "title": "貓咪肢體語言大解密（投稿版）",
+      "excerpt": "補充尾巴與耳朵訊號對照表，讓新手更快掌握情緒判讀。",
+      "tags": [
+        "行為與心理",
+        "行為解讀"
+      ],
+      "coverImage": "./images/knowledge/know-img5.png",
+      "content": "完整投稿內容（測試）",
+      "declarationAgreed": true,
+      "createdAt": "2026-03-08T15:30:00Z",
+      "updatedAt": "2026-03-09T03:20:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "knowledgeId": 4,
+      "status": "approved",
+      "note": "測試專欄投稿：已發布",
+      "title": "關於貓爪的10個有趣真相（投稿版）",
+      "excerpt": "整理肉墊溫度感知、費洛蒙標記與抓地力的觀察重點。",
+      "tags": [
+        "行為與心理",
+        "行為解讀"
+      ],
+      "coverImage": "./images/knowledge/know-img4.png",
+      "content": "完整投稿內容（測試）",
+      "declarationAgreed": true,
+      "createdAt": "2026-03-07T12:00:00Z",
+      "updatedAt": "2026-03-07T15:20:00Z"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "knowledgeId": 1,
+      "status": "pending",
+      "note": "測試專欄投稿：審核中",
+      "title": "如何判斷貓咪是否生氣？（投稿版）",
+      "excerpt": "補充耳朵角度與瞳孔變化的判讀範例，降低互動誤判。",
+      "tags": [
+        "行為與心理",
+        "情緒觀察"
+      ],
+      "coverImage": "./images/knowledge/know-img1.png",
+      "content": "完整投稿內容（測試）",
+      "declarationAgreed": true,
+      "createdAt": "2026-03-06T10:10:00Z",
+      "updatedAt": "2026-03-06T10:10:00Z"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "knowledgeId": 2,
+      "status": "approved",
+      "note": "測試專欄投稿：通過",
+      "title": "各式糧食類型大解析（投稿版）",
+      "excerpt": "補上乾糧、濕糧與凍乾混餵比例建議，方便新手直接套用。",
+      "tags": [
+        "貓咪飲食指南",
+        "糧食類型解析"
+      ],
+      "coverImage": "./images/knowledge/know-img2.png",
+      "content": "完整投稿內容（測試）",
+      "declarationAgreed": true,
+      "createdAt": "2026-03-05T08:30:00Z",
+      "updatedAt": "2026-03-05T11:00:00Z"
+    }
+  ],
   "knowledgeFav": [
     {
       "userId": 1,
-      "articleId": 2,
-      "createdAt": "2026-03-13T12:22:47.083Z",
-      "id": 1
+      "knowledgeId": 9,
+      "createdAt": "2026-03-16T08:44:22.484Z",
+      "id": 4
+    },
+    {
+      "userId": 1,
+      "knowledgeId": 8,
+      "createdAt": "2026-03-16T08:59:10.725Z",
+      "id": 5
+    },
+    {
+      "userId": 1,
+      "knowledgeId": 1,
+      "createdAt": "2026-03-16T09:07:27.246Z",
+      "id": 6
+    },
+    {
+      "userId": 1,
+      "knowledgeId": 26,
+      "createdAt": "2026-03-16T09:25:46.955Z",
+      "id": 7
     }
   ]
 }

@@ -57,23 +57,23 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url("../images/decoration.png");
+  background-image: url("/images/decoration.png");
 
   &:hover {
-    background-image: url("../images/decoration_hover.png");
+    background-image: url("/images/decoration_hover.png");
   }
 }
 
 .nav-link:hover .header-food-btn {
-  background-image: url("../images/decoration_hover.png");
+  background-image: url("/images/decoration_hover.png");
 }
 
 .nav-link:hover .header-knowledge-btn {
-  background-image: url("../images/decoration_hover.png");
+  background-image: url("/images/decoration_hover.png");
 }
 
 .nav-link:hover .header-post-btn {
-  background-image: url("../images/decoration_hover.png");
+  background-image: url("/images/decoration_hover.png");
 }
 
 .header-navbar-nav .nav-link {

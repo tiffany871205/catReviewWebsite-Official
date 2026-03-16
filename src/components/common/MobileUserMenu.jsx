@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 
 function MobileUserMenu({ user, onOpenLogin, handleLogout, closeNavbarOnMobile }) {
+  const imageBaseUrl = `${import.meta.env.BASE_URL}images/`;
+
   return (
     <li className="nav-item d-lg-none mt-auto">
       {!user ? (
@@ -32,7 +34,7 @@ function MobileUserMenu({ user, onOpenLogin, handleLogout, closeNavbarOnMobile }
               closeNavbarOnMobile();
             }}
           >
-            <img src="./images/member/logout.png" alt="logout" className="me-3" />
+            <img src={`${imageBaseUrl}member/logout.png`} alt="logout" className="me-3" />
             登出
           </Link>
         </div>

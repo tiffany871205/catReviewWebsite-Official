@@ -10,7 +10,7 @@ import KnowledgeCard from "../components/knowledges/KnowledgeCard";
 import { getKnowledgeArticles, getKnowledgeMeta } from "../api/knowledge";
 
 export default function Knowledge() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
 
   const [db, setDb] = useState({
@@ -67,13 +67,27 @@ export default function Knowledge() {
   useEffect(() => {
     const topic = searchParams.get("topic") || "";
     const category = searchParams.get("category") || "";
+    const pageParam = Number(searchParams.get("page") || "1");
+    const parsedPage = Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1;
 
     setSelectedTopic(topic);
     setSelectedCategory(category);
-    setPage(1);
+    setPage(parsedPage);
   }, [searchParams, setSelectedTopic, setSelectedCategory, setPage]);
 
-  const onBannerSubmit = () => setPage(1);
+  const handlePageChange = (nextPage) => {
+    setPage(nextPage);
+
+    const nextParams = new URLSearchParams(searchParams);
+    if (nextPage <= 1) {
+      nextParams.delete("page");
+    } else {
+      nextParams.set("page", String(nextPage));
+    }
+    setSearchParams(nextParams, { replace: true });
+  };
+
+  const onBannerSubmit = () => handlePageChange(1);
 
   if (loading) {
     return <div className="container py-5">載入中...</div>;
@@ -118,7 +132,7 @@ export default function Knowledge() {
               ))}
 
               <div className="w-100">
-                <Pagination page={page} totalPages={totalPages} setPage={setPage} />
+                <Pagination page={page} totalPages={totalPages} setPage={handlePageChange} />
               </div>
             </div>
           </div>
@@ -129,3 +143,4 @@ export default function Knowledge() {
     </>
   );
 }
+// 改文件大小寫

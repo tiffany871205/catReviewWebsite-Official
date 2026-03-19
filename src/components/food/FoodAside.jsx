@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { Popover } from "bootstrap";
-import decoration1 from "../../assets/images/food/Decoration1.png";
 
-function FoodAside() {
+const decoration1 = `${import.meta.env.BASE_URL}images/food/Decoration1.png`;
+
+function FoodAside({ foodMeta, filters, onFilterChange }) {
   const popoverRef = useRef(null);
 
   useEffect(() => {
@@ -18,6 +19,41 @@ function FoodAside() {
       popover.dispose();
     };
   }, []);
+
+  const renderDropdown = ({ label, items, filterKey, selectedId }) => (
+    <div className="dropdown pb-7">
+      <button
+        className="btn-outline-primary rounded-pill food-dropdown dropdown-toggle ps-4"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        {items.find((item) => item.id === selectedId)?.name ?? label}
+      </button>
+      <ul className="dropdown-menu food-dropdown-menu">
+        <li>
+          <button
+            type="button"
+            className="dropdown-item"
+            onClick={() => onFilterChange(filterKey, null)}
+          >
+            全部
+          </button>
+        </li>
+        {items.map((item) => (
+          <li key={item.id}>
+            <button
+              type="button"
+              className="dropdown-item"
+              onClick={() => onFilterChange(filterKey, item.id)}
+            >
+              {item.name}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 
   return (
     <aside className="food-aside">
@@ -61,90 +97,42 @@ function FoodAside() {
 
         <div className="px-6">
           <p className="ms-2 pb-2">口味種類</p>
-          <div className="dropdown pb-7  ">
-            <button
-              className="btn-outline-primary rounded-pill food-dropdown dropdown-toggle "
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              口味種類
-            </button>
-            <ul className="dropdown-menu food-dropdown-menu">
-              <li><a className="dropdown-item" href="#">雞肉</a></li>
-              <li><a className="dropdown-item" href="#">牛肉</a></li>
-              <li><a className="dropdown-item" href="#">鴨肉</a></li>
-              <li><a className="dropdown-item" href="#">羊肉</a></li>
-              <li><a className="dropdown-item" href="#">海鮮</a></li>
-              <li><a className="dropdown-item" href="#">火雞肉</a></li>
-              <li><a className="dropdown-item" href="#">鹿肉</a></li>
-              <li><a className="dropdown-item" href="#">其他</a></li>
-            </ul>
-          </div>
+          {renderDropdown({
+            label: "口味種類",
+            items: foodMeta.flavors ?? [],
+            filterKey: "flavorId",
+            selectedId: filters.flavorId,
+          })}
         </div>
 
         <div className="px-6">
           <p className="ms-2 pb-2">內容物類別</p>
-          <div className="dropdown pb-7">
-            <button
-              className="btn-outline-primary rounded-pill food-dropdown dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              內容物類別
-            </button>
-            <ul className="dropdown-menu food-dropdown-menu">
-              <li><a className="dropdown-item" href="#">泥狀</a></li>
-              <li><a className="dropdown-item" href="#">肉塊</a></li>
-              <li><a className="dropdown-item" href="#">膠狀</a></li>
-              <li><a className="dropdown-item" href="#">湯罐</a></li>
-              <li><a className="dropdown-item" href="#">乾飼料</a></li>
-            </ul>
-          </div>
+          {renderDropdown({
+            label: "內容物類別",
+            items: foodMeta.contentTypes ?? [],
+            filterKey: "contentTypeId",
+            selectedId: filters.contentTypeId,
+          })}
         </div>
 
         <div className="px-6">
           <p className="ms-2 pb-2">特殊配方</p>
-          <div className="dropdown pb-7">
-            <button
-              className="btn-outline-primary rounded-pill food-dropdown dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              特殊配方
-            </button>
-            <ul className="dropdown-menu food-dropdown-menu">
-              <li><a className="dropdown-item" href="#">無</a></li>
-              <li><a className="dropdown-item" href="#">減重</a></li>
-              <li><a className="dropdown-item" href="#">腸胃敏感</a></li>
-              <li><a className="dropdown-item" href="#">泌尿道保健</a></li>
-              <li><a className="dropdown-item" href="#">強化免疫力</a></li>
-              <li><a className="dropdown-item" href="#">改善皮膚&amp;毛髮</a></li>
-              <li><a className="dropdown-item" href="#">骨骼保養</a></li>
-            </ul>
-          </div>
+          {renderDropdown({
+            label: "特殊配方",
+            items: foodMeta.specialFormulas ?? [],
+            filterKey: "specialFormulaId",
+            selectedId: filters.specialFormulaId,
+          })}
         </div>
 
         <div className="px-6">
           <p className="ms-2 pb-2">適合年齡</p>
-          <div className="dropdown pb-7">
-            <button
-              className="btn-outline-primary rounded-pill food-dropdown dropdown-toggle"
-              type="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              適合年齡
-            </button>
-            <ul className="dropdown-menu food-dropdown-menu">
-              <li><a className="dropdown-item" href="#">幼貓</a></li>
-              <li><a className="dropdown-item" href="#">成貓</a></li>
-              <li><a className="dropdown-item" href="#">熟齡貓</a></li>
-              <li><a className="dropdown-item" href="#">全齡貓</a></li>
-            </ul>
-          </div>
+          {renderDropdown({
+            label: "適合年齡",
+            items: foodMeta.targets ?? [],
+            filterKey: "targetId",
+            selectedId: filters.targetId,
+          })}
         </div>
       </nav>
     </aside>

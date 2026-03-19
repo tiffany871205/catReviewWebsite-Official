@@ -45,6 +45,11 @@ export async function deleteKnowledgeComment(commentId) {
   return res.data;
 }
 
+export async function getKnowledgeCommentsByUser(userId) {
+  const res = await axios.get(`${API_BASE}/knowledgeComment?userId=${userId}`);
+  return res.data;
+}
+
 // 收藏
 export async function getKnowledgeFavs(userId) {
   const res = await axios.get(`${API_BASE}/knowledgeFav?userId=${userId}`);

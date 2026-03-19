@@ -2464,6 +2464,8 @@
       "avatar": "./images/knowledge/article/user-1.png",
       "name": "貓奴一號",
       "time": "2026-03-16T09:06:59.010Z",
+      "createdAt": "2026-03-16T09:06:59.010Z",
+      "updatedAt": "2026-03-16T09:06:59.010Z",
       "text": "感謝分享~",
       "id": 11
     },

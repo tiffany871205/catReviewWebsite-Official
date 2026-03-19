@@ -91,6 +91,9 @@ function Header() {
       } catch (err) {
         console.log("關閉漢堡選單時發生錯誤（不影響登入）:", err);
       }
+
+      navigate("/index", { replace: true });
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     } catch (error) {
       console.error("登入錯誤:", error);
       console.log(error.response);

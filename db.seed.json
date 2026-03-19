@@ -6,6 +6,13 @@
       "nickname": "貓奴一號",
       "tel": "0912345678",
       "id": 1
+    },
+    {
+      "email": "111111@gmail.com",
+      "password": "$2a$10$dMd6Yjc3dyNRhEPB1JlgZucD1g/9a4f6QkZjJyXp2c3nw7EMluFd.",
+      "nickname": "喵屋",
+      "tel": "0911111111",
+      "id": 2
     }
   ],
   "foodContrib": [
@@ -2479,6 +2486,94 @@
       "updatedAt": "2026-03-16T09:25:19.840Z",
       "text": "我家的貓就超愛吵架的",
       "id": 12
+    },
+    {
+      "articleId": 3,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:13:27.474Z",
+      "createdAt": "2026-03-19T07:13:27.474Z",
+      "updatedAt": "2026-03-19T07:26:26.395Z",
+      "text": "原來有那麼多學問!",
+      "id": 13
+    },
+    {
+      "articleId": 17,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:14:51.368Z",
+      "createdAt": "2026-03-19T07:14:51.368Z",
+      "updatedAt": "2026-03-19T07:26:26.395Z",
+      "text": "主子是長毛貓，剛好不怕陌生人，都直接帶去寵物美容",
+      "id": 14
+    },
+    {
+      "articleId": 7,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:15:51.648Z",
+      "createdAt": "2026-03-19T07:15:51.648Z",
+      "updatedAt": "2026-03-19T07:26:26.395Z",
+      "text": "今年開始要帶主子定期健康檢查了",
+      "id": 15
+    },
+    {
+      "articleId": 8,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:17:02.442Z",
+      "createdAt": "2026-03-19T07:17:02.442Z",
+      "updatedAt": "2026-03-19T07:26:26.395Z",
+      "text": "有看過網路上一個影片，他說他家的貓咪會亂尿尿，但最後結論是他只是太頑皮了哈哈",
+      "id": 16
+    },
+    {
+      "articleId": 1,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:18:08.195Z",
+      "createdAt": "2026-03-19T07:18:08.195Z",
+      "updatedAt": "2026-03-19T07:26:26.395Z",
+      "text": "我家主子超愛看著我的眼睛耶!",
+      "id": 17
+    },
+    {
+      "articleId": 2,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:19:12.010Z",
+      "createdAt": "2026-03-19T07:19:12.010Z",
+      "updatedAt": "2026-03-19T07:26:26.395Z",
+      "text": "推薦乾溼食混餵，營養足夠又有補充水分",
+      "id": 18
+    },
+    {
+      "articleId": 9,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:19:34.690Z",
+      "createdAt": "2026-03-19T07:19:34.690Z",
+      "updatedAt": "2026-03-19T07:26:26.395Z",
+      "text": "還好只養一隻貓",
+      "id": 19
+    },
+    {
+      "articleId": 6,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:20:01.638Z",
+      "createdAt": "2026-03-19T07:20:01.638Z",
+      "updatedAt": "2026-03-19T07:26:26.395Z",
+      "text": "小貓超可愛阿阿阿",
+      "id": 20
     }
   ],
   "knowledgeContrib": [

@@ -13,6 +13,20 @@
       "nickname": "喵屋",
       "tel": "0911111111",
       "id": 2
+    },
+    {
+      "email": "222222@gmail.com",
+      "password": "$2a$10$pfCQM3rz4DGs7jb7M.ZT0uO52bp32FY7k98xsSE46u2zBgHOZ3IVS",
+      "nickname": "安安",
+      "tel": "0922222222",
+      "id": 3
+    },
+    {
+      "email": "333333@gmail.com",
+      "password": "$2a$10$L598U2j6CmzaBq/NY8u17O3nE7uS9bEwfj0j102dDKxEv2LdVwtRa",
+      "nickname": "我是一個奴才",
+      "tel": "0933333333",
+      "id": 4
     }
   ],
   "foodContrib": [
@@ -2417,9 +2431,9 @@
       "avatar": "./images/knowledge/article/user-1.png",
       "name": "貓奴一號",
       "time": "3天前",
-      "text": "玩具輪替清單很好用，主子晚上比較不暴衝",
+      "text": "肉球有夠療癒的",
       "createdAt": "2026-03-10T09:00:00Z",
-      "updatedAt": "2026-03-16T08:50:17.712Z"
+      "updatedAt": "2026-03-19T07:45:34.258Z"
     },
     {
       "id": 6,
@@ -2428,9 +2442,9 @@
       "avatar": "./images/knowledge/article/user-1.png",
       "name": "貓奴一號",
       "time": "4天前",
-      "text": "體態評分圖示很清楚，現在每週都會紀錄。",
+      "text": "我都會對我家貓咪慢慢眨眼",
       "createdAt": "2026-03-09T16:10:00Z",
-      "updatedAt": "2026-03-09T16:10:00Z"
+      "updatedAt": "2026-03-19T07:44:51.364Z"
     },
     {
       "id": 7,
@@ -2439,9 +2453,9 @@
       "avatar": "./images/knowledge/article/user-1.png",
       "name": "貓奴一號",
       "time": "5天前",
-      "text": "原來木天蓼和貓薄荷反應差很多，學到了。",
+      "text": "但炸毛好像松鼠好可愛",
       "createdAt": "2026-03-08T10:25:00Z",
-      "updatedAt": "2026-03-08T10:25:00Z"
+      "updatedAt": "2026-03-19T07:46:21.980Z"
     },
     {
       "articleId": 6,
@@ -2574,6 +2588,215 @@
       "updatedAt": "2026-03-19T07:26:26.395Z",
       "text": "小貓超可愛阿阿阿",
       "id": 20
+    },
+    {
+      "articleId": 26,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:28:56.108Z",
+      "createdAt": "2026-03-19T07:28:56.108Z",
+      "updatedAt": "2026-03-19T07:28:56.108Z",
+      "text": "聽說呼嚕可以幫助骨頭修復",
+      "id": 21
+    },
+    {
+      "articleId": 19,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:29:32.514Z",
+      "createdAt": "2026-03-19T07:29:32.514Z",
+      "updatedAt": "2026-03-19T07:29:32.514Z",
+      "text": "真的需要外出可以跟獸醫要乖乖藥! 但不能常吃",
+      "id": 22
+    },
+    {
+      "articleId": 24,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:30:18.027Z",
+      "createdAt": "2026-03-19T07:30:18.027Z",
+      "updatedAt": "2026-03-19T07:30:18.027Z",
+      "text": "到現在還是不敢用自動貓砂盆...雖然鏟屎很臭很麻煩，但看過太多不好的新聞了",
+      "id": 23
+    },
+    {
+      "articleId": 27,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:30:45.901Z",
+      "createdAt": "2026-03-19T07:30:45.901Z",
+      "updatedAt": "2026-03-19T07:30:45.901Z",
+      "text": "還記得第一次幫主子剪指甲就流血，還好他後來沒有害怕剪指甲",
+      "id": 24
+    },
+    {
+      "articleId": 14,
+      "userId": 2,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "喵屋",
+      "time": "2026-03-19T07:31:14.503Z",
+      "createdAt": "2026-03-19T07:31:14.503Z",
+      "updatedAt": "2026-03-19T07:31:14.503Z",
+      "text": "看來我家主子太胖了",
+      "id": 25
+    },
+    {
+      "articleId": 2,
+      "userId": 4,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "我是一個奴才",
+      "time": "2026-03-19T07:36:31.188Z",
+      "createdAt": "2026-03-19T07:36:31.188Z",
+      "updatedAt": "2026-03-19T07:36:31.188Z",
+      "text": "我每天幫貓貓處理生食，雖然很累但我覺得這樣比較符合他們原本的型態",
+      "id": 26
+    },
+    {
+      "articleId": 6,
+      "userId": 4,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "我是一個奴才",
+      "time": "2026-03-19T07:37:04.549Z",
+      "createdAt": "2026-03-19T07:37:04.549Z",
+      "updatedAt": "2026-03-19T07:37:04.549Z",
+      "text": "幼貓時期是最可愛又最恐怖的xD",
+      "id": 27
+    },
+    {
+      "articleId": 5,
+      "userId": 4,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "我是一個奴才",
+      "time": "2026-03-19T07:37:38.001Z",
+      "createdAt": "2026-03-19T07:37:38.001Z",
+      "updatedAt": "2026-03-19T07:37:38.001Z",
+      "text": "為什麼我家貓貓不會踏踏嗚嗚嗚",
+      "id": 28
+    },
+    {
+      "articleId": 11,
+      "userId": 4,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "我是一個奴才",
+      "time": "2026-03-19T07:38:36.538Z",
+      "createdAt": "2026-03-19T07:38:36.538Z",
+      "updatedAt": "2026-03-19T07:38:36.538Z",
+      "text": "最一開始用礦砂，但真的製造太多垃圾了而且丟垃圾桶好臭\n後來改用豆腐砂，可以沖馬桶超方便!",
+      "id": 29
+    },
+    {
+      "articleId": 9,
+      "userId": 4,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "我是一個奴才",
+      "time": "2026-03-19T07:39:46.725Z",
+      "createdAt": "2026-03-19T07:39:46.725Z",
+      "updatedAt": "2026-03-19T07:39:46.725Z",
+      "text": "有一次帶家裡兩隻貓出門看醫生，遇到其他貓貓才知道原來他們遇到別的貓會那麼生氣!!",
+      "id": 30
+    },
+    {
+      "articleId": 12,
+      "userId": 4,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "我是一個奴才",
+      "time": "2026-03-19T07:40:21.985Z",
+      "createdAt": "2026-03-19T07:40:21.985Z",
+      "updatedAt": "2026-03-19T07:40:21.985Z",
+      "text": "以前規定要打狂犬病，現在好像不用了喔",
+      "id": 31
+    },
+    {
+      "articleId": 24,
+      "userId": 4,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "我是一個奴才",
+      "time": "2026-03-19T07:41:07.936Z",
+      "createdAt": "2026-03-19T07:41:07.936Z",
+      "updatedAt": "2026-03-19T07:41:07.936Z",
+      "text": "都把自動餵食器的鏡頭遮起來，怕被駭客入侵被監視",
+      "id": 32
+    },
+    {
+      "articleId": 19,
+      "userId": 4,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "我是一個奴才",
+      "time": "2026-03-19T07:42:01.953Z",
+      "createdAt": "2026-03-19T07:42:01.953Z",
+      "updatedAt": "2026-03-19T07:42:01.953Z",
+      "text": "看到有人用透明的袋子裝貓貓真的不建議!!!!!",
+      "id": 33
+    },
+    {
+      "articleId": 3,
+      "userId": 4,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "我是一個奴才",
+      "time": "2026-03-19T07:43:01.856Z",
+      "createdAt": "2026-03-19T07:43:01.856Z",
+      "updatedAt": "2026-03-19T07:43:01.856Z",
+      "text": "不只人類的食物充滿添加物，寵物的也是...",
+      "id": 34
+    },
+    {
+      "articleId": 22,
+      "userId": 1,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "貓奴一號",
+      "time": "2026-03-19T07:46:56.338Z",
+      "createdAt": "2026-03-19T07:46:56.338Z",
+      "updatedAt": "2026-03-19T07:46:56.338Z",
+      "text": "原來木天蓼和貓薄荷反應差很多，學到了。",
+      "id": 35
+    },
+    {
+      "articleId": 6,
+      "userId": 3,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "安安",
+      "time": "2026-03-19T07:48:05.631Z",
+      "createdAt": "2026-03-19T07:48:05.631Z",
+      "updatedAt": "2026-03-19T07:48:05.631Z",
+      "text": "剛養貓的我正在被小貓攻擊中",
+      "id": 36
+    },
+    {
+      "articleId": 3,
+      "userId": 3,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "安安",
+      "time": "2026-03-19T07:48:52.778Z",
+      "createdAt": "2026-03-19T07:48:52.778Z",
+      "updatedAt": "2026-03-19T07:48:52.778Z",
+      "text": "感謝分享!!!!剛養貓，這篇文超有幫助",
+      "id": 37
+    },
+    {
+      "articleId": 9,
+      "userId": 3,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "安安",
+      "time": "2026-03-19T07:49:15.368Z",
+      "createdAt": "2026-03-19T07:49:15.368Z",
+      "updatedAt": "2026-03-19T07:49:15.368Z",
+      "text": "那感覺以後要再養一隻的話會很麻煩",
+      "id": 38
+    },
+    {
+      "articleId": 7,
+      "userId": 3,
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "安安",
+      "time": "2026-03-19T07:49:38.036Z",
+      "createdAt": "2026-03-19T07:49:38.036Z",
+      "updatedAt": "2026-03-19T07:49:38.036Z",
+      "text": "想到貓咪會老去就很難過",
+      "id": 39
     }
   ],
   "knowledgeContrib": [

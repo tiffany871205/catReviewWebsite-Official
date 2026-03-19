@@ -5,7 +5,7 @@ ul {
 }
 
 .foodmain-body {
-  background-image: url("../../images/food/secondary_backgroundTexture.jpg");
+  background-image: url("/images/food/secondary_backgroundTexture.jpg");
   background-repeat: repeat;
   z-index: -1; /* 让伪元素在内容下方 */
   padding-bottom: 72px;
@@ -16,7 +16,7 @@ ul {
 }
 
 .index-header {
-  background-image: url("../../images/food/hero/food-hero1.png");
+  background-image: url("/images/food/hero/food-hero1.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -50,7 +50,7 @@ ul {
   }
 
   @media (max-width: 1130px) {
-    background-image: url("../../images/food/hero/food-hero1.png");
+    background-image: url("/images/food/hero/food-hero1.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -359,7 +359,7 @@ ul {
   width: 100%;
   height: 100%;
   background-color: #eeded9;
-  background-image: url("../../images/food/section01_background.png");
+  background-image: url("/images/food/section01_background.png");
   background-repeat: repeat;
   width: 100%;
   z-index: -1; /* 让伪元素在内容下方 */
@@ -519,10 +519,14 @@ ul {
 .food-detail-sections {
   padding-top: 96px !important;
   padding-bottom: 72px !important;
+  padding-left: 96px;
+  padding-right: 96px;
 
   @media (max-width: 768px) {
     padding-top: 40px !important;
     padding-bottom: 56px !important;
+    padding-left: 64px;
+    padding-right: 64px;
   }
 }
 

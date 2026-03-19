@@ -1,5 +1,6 @@
 import React from "react";
-import section02Decoration from "../../assets/images/food/section02_decoration.png";
+
+const section02Decoration = `${import.meta.env.BASE_URL}images/food/section02_decoration.png`;
 
 function FoodBanner() {
   return (

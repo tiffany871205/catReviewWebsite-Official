@@ -1,29 +1,22 @@
 import React, { useEffect, useState } from "react";
-import food0 from "../assets/images/food/food0.png";
-import food1 from "../assets/images/food/food1.png";
-import food2 from "../assets/images/food/food2.png";
-import food3 from "../assets/images/food/food3.png";
-import food4 from "../assets/images/food/food4.png";
-import food5 from "../assets/images/food/food5.png";
-import food6 from "../assets/images/food/food6.png";
-import food7 from "../assets/images/food/food7.png";
-import food8 from "../assets/images/food/food8.png";
 import FoodBanner from "../components/food/FoodBanner.jsx";
 import FoodAside from "../components/food/FoodAside.jsx";
 import FoodCard from "../components/food/FoodCard.jsx";
 import FoodPagination from "../components/food/FoodPagination.jsx";
 import { getFoodMeta, getFoods } from "../api/food";
 
+const foodPublicImageBase = `${import.meta.env.BASE_URL}images/food/`;
+
 const foodImageMap = {
-  1: food0,
-  2: food1,
-  3: food2,
-  4: food3,
-  5: food4,
-  6: food5,
-  7: food6,
-  8: food7,
-  9: food8,
+  1: `${foodPublicImageBase}food0.png`,
+  2: `${foodPublicImageBase}food1.png`,
+  3: `${foodPublicImageBase}food2.png`,
+  4: `${foodPublicImageBase}food3.png`,
+  5: `${foodPublicImageBase}food4.png`,
+  6: `${foodPublicImageBase}food5.png`,
+  7: `${foodPublicImageBase}food6.png`,
+  8: `${foodPublicImageBase}food7.png`,
+  9: `${foodPublicImageBase}food8.png`,
 };
 
 const tallButtonCardIds = new Set([1, 2, 5, 6]);
@@ -66,7 +59,8 @@ function applyFoodFilters(foods = [], filters = {}) {
   return foods.filter((item) => {
     if (filters.flavorId && item.flavorId !== filters.flavorId) return false;
     if (filters.contentTypeId && item.contentTypeId !== filters.contentTypeId) return false;
-    if (filters.specialFormulaId && item.specialFormulaId !== filters.specialFormulaId) return false;
+    if (filters.specialFormulaId && item.specialFormulaId !== filters.specialFormulaId)
+      return false;
     if (filters.targetId && item.targetId !== filters.targetId) return false;
     return true;
   });

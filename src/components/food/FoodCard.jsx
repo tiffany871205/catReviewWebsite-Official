@@ -1,8 +1,17 @@
 import React from "react";
 import { Link } from "react-router";
-import decoration1 from "../../assets/images/food/Decoration1.png";
 
-function FoodCard({ href, image, alt, title, price, tags, buttonClass = "btn btn-outline-primary mt-2" }) {
+const decoration1 = `${import.meta.env.BASE_URL}images/food/Decoration1.png`;
+
+function FoodCard({
+  href,
+  image,
+  alt,
+  title,
+  price,
+  tags,
+  buttonClass = "btn btn-outline-primary mt-2",
+}) {
   const cardContent = (
     <div className="card food-card">
       <img src={image} alt={alt} />
@@ -20,11 +29,7 @@ function FoodCard({ href, image, alt, title, price, tags, buttonClass = "btn btn
     return cardContent;
   }
 
-  return (
-    <Link to={href}>
-      {cardContent}
-    </Link>
-  );
+  return <Link to={href}>{cardContent}</Link>;
 }
 
 export default FoodCard;

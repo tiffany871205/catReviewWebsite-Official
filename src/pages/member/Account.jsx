@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { clearAuth, isAuthenticated } from "../../utils/auth";
+import { getKnowledgeCommentsByUser, updateKnowledgeComment } from "../../api/knowledge";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
@@ -215,6 +216,24 @@ function Account() {
         }
       } catch (error) {
         console.error("同步 localStorage 使用者資料失敗", error);
+      }
+
+      // 若暱稱有變更，同步更新所有已留言的顯示名稱
+      if (formValues.nickname !== initialProfile.nickname) {
+        try {
+          const userComments = await getKnowledgeCommentsByUser(currentUserId);
+          const nowIso = new Date().toISOString();
+          await Promise.all(
+            userComments.map((comment) =>
+              updateKnowledgeComment(comment.id, {
+                name: formValues.nickname,
+                updatedAt: nowIso,
+              })
+            )
+          );
+        } catch (commentUpdateError) {
+          console.error("同步更新留言名稱失敗", commentUpdateError);
+        }
       }
 
       await Swal.fire({

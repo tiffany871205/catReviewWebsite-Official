@@ -1,7 +1,5 @@
 import React from "react";
 import section02Decoration from "../../assets/images/food/section02_decoration.png";
-import "../../assets/scss/pages/_food.scss";
-
 
 function FoodBanner() {
   return (
@@ -24,7 +22,6 @@ function FoodBanner() {
                   <button className="btn btn-primary-500 foodmain-search-btn" type="submit">
                     <i className="bi bi-search" style={{ color: "#eeded9" }} />
                   </button>
-
                 </form>
               </div>
             </div>

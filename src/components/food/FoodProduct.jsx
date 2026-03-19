@@ -4,6 +4,7 @@ import decoration2 from "../../assets/images/food/Decoration2.png";
 import decorationLt from "../../assets/images/food/Decoration-LT.png";
 import decorationRt from "../../assets/images/food/Decoration-RT.png";
 import { getFoodDetailById, getFoodMeta } from "../../api/food";
+import BackToTopButton from "../common/BackToTopButton";
 
 function resolveFoodImagePath(imagePath) {
   if (!imagePath || typeof imagePath !== "string") {
@@ -285,7 +286,10 @@ export default function FoodProductPage() {
           </div>
         </div>
 
-        <div className="container px-96 py-md-72" style={{ backgroundColor: "#F4F1E9" }}>
+        <div
+          className="container px-96 food-detail-sections"
+          style={{ backgroundColor: "#F4F1E9" }}
+        >
           <div className="row">
             {sections.map((section, index) => (
               <Section
@@ -299,9 +303,7 @@ export default function FoodProductPage() {
         </div>
       </div>
 
-      <button type="button" className="btn btn-primary food-back-btn" onClick={handleBackToTop}>
-        <i className="bi bi-arrow-up-circle" /> 回到頂端
-      </button>
+      <BackToTopButton onClick={handleBackToTop} />
     </>
   );
 }

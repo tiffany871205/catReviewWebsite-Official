@@ -176,7 +176,7 @@ ul {
     width: 100%;
     height: 48px;
     border: 1px solid #b89668;
-    border-radius: 4px;
+    border-radius: 30px;
     background-color: white;
   }
 
@@ -184,7 +184,7 @@ ul {
     width: 100%;
     height: 48px;
     border: 1px solid #b89668;
-    border-radius: 4px;
+    border-radius: 30px;
     background-color: white;
   }
 }
@@ -359,7 +359,7 @@ ul {
   width: 100%;
   height: 100%;
   background-color: #eeded9;
-  background-image: url("/images/food/section01_background.png");
+  background-image: url(../../assets/images/food/section01_background.png);
   background-repeat: repeat;
   width: 100%;
   z-index: -1; /* 让伪元素在内容下方 */
@@ -516,20 +516,6 @@ ul {
   }
 }
 
-.food-detail-sections {
-  padding-top: 96px !important;
-  padding-bottom: 72px !important;
-  padding-left: 96px;
-  padding-right: 96px;
-
-  @media (max-width: 768px) {
-    padding-top: 40px !important;
-    padding-bottom: 56px !important;
-    padding-left: 64px;
-    padding-right: 64px;
-  }
-}
-
 .pe-48 {
   padding-right: 48px;
 
@@ -589,6 +575,15 @@ pt-pb-md-72 {
   @media (max-width: 969px) {
     width: 100%;
   }
+}
+
+.food-back-btn {
+  position: fixed;
+  right: 48px;
+  bottom: 48px;
+  background-color: #ca847d;
+  color: white;
+  border-color: #ca847d;
 }
 
 .popover.food-popover {

@@ -8,18 +8,23 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist"
+    "deploy": "vite build && gh-pages -d dist",
+    "api:dev": "npx json-server-auth db.json",
+    "api:seed": "npx json-server-auth db.seed.json"
   },
   "dependencies": {
     "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
-    "json-server": "^0.17.1",
+    "bootstrap-icons": "^1.13.1",
+    "json-server": "^0.17.4",
     "json-server-auth": "^2.1.0",
     "quill": "^2.0.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.71.1",
-    "react-router": "^7.13.0"
+    "react-router": "^7.13.0",
+    "react-router-dom": "^7.13.1",
+    "sweetalert2": "^11.26.21"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

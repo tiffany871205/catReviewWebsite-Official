@@ -517,9 +517,10 @@
       "weight": "480g",
       "price": 420,
       "category": "主食罐",
-      "coverImage": "../assets/images/food/food-img3.png",
+      "coverImage": "../assets/images/food/food2-3.png",
       "images": [
-        "../assets/images/food/food-img3.png"
+        "../assets/images/food/food2-3.png",
+        "../assets/images/food/food2-4.png"
       ],
       "meta": {
         "author": "Cool Meow",
@@ -561,9 +562,10 @@
       "weight": "5kg",
       "price": 980,
       "category": "乾糧",
-      "coverImage": "../assets/images/food/food-img4.png",
+      "coverImage": "../assets/images/food/food2-3.png",
       "images": [
-        "../assets/images/food/food-img4.png"
+        "../assets/images/food/food2-3.png",
+        "../assets/images/food/food2-5.png"
       ],
       "meta": {
         "author": "Cool Meow",
@@ -605,9 +607,10 @@
       "weight": "50g",
       "price": 280,
       "category": "凍乾",
-      "coverImage": "../assets/images/food/food-img5.png",
+      "coverImage": "../assets/images/food/food3-3.png",
       "images": [
-        "../assets/images/food/food-img5.png"
+        "../assets/images/food/food3-3.png",
+        "../assets/images/food/food3-1.png"
       ],
       "meta": {
         "author": "Cool Meow",
@@ -644,9 +647,10 @@
       "weight": "680g",
       "price": 560,
       "category": "餐包",
-      "coverImage": "../assets/images/food/food-img6.png",
+      "coverImage": "../assets/images/food/food4-1.png",
       "images": [
-        "../assets/images/food/food-img6.png"
+        "../assets/images/food/food4-1.png",
+        "../assets/images/food/food4-3.png"
       ],
       "meta": {
         "author": "Cool Meow",
@@ -674,6 +678,166 @@
           "id": "ex5-1",
           "name": "維生素C",
           "value": "80 mg/kg"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "鮪魚雞肝肉泥條",
+      "weight": "280g",
+      "price": 350,
+      "category": "肉泥條",
+      "coverImage": "/images/food/food5-1.png",
+      "images": [
+        "/images/food/food5-1.png",
+        "/images/food/food5-4.png"
+      ],
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2025-08-12"
+      },
+      "basicInfo": {
+        "brand": "Happy Bowl",
+        "origin": "台灣"
+      },
+      "ingredients": {
+        "flavorId": 101,
+        "contentTypeId": 207,
+        "specialFormulaId": 305,
+        "targetId": 404
+      },
+      "nutrition": {
+        "moisture": "高於75%",
+        "calories": "950 cal/kg",
+        "fat": "中等",
+        "protein": "高於30%",
+        "containsGum": true
+      },
+      "extraNutrition": [
+        {
+          "id": "ex6-1",
+          "name": "牛磺酸",
+          "value": "1200 mg/kg"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "白魚海藻無穀乾糧",
+      "weight": "1kg",
+      "price": 780,
+      "category": "乾糧",
+      "coverImage": "/images/food/food6-1.png",
+      "images": [
+        "/images/food/food6-1.png",
+        "/images/food/food6-3.png"
+      ],
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2025-08-15"
+      },
+      "basicInfo": {
+        "brand": "Happy Bowl",
+        "origin": "台灣"
+      },
+      "ingredients": {
+        "flavorId": 105,
+        "contentTypeId": 205,
+        "specialFormulaId": 303,
+        "targetId": 402
+      },
+      "nutrition": {
+        "moisture": "低於10%",
+        "calories": "3800 cal/kg",
+        "fat": "中等",
+        "protein": "高於32%",
+        "containsGum": false
+      },
+      "extraNutrition": [
+        {
+          "id": "ex7-1",
+          "name": "Omega-3",
+          "value": "1.2%"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "鴨肉凍乾小粒",
+      "weight": "80g",
+      "price": 320,
+      "category": "凍乾",
+      "coverImage": "/images/food/food7-1.png",
+      "images": [
+        "/images/food/food7-1.png",
+        "/images/food/food7-5.png"
+      ],
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2025-08-18"
+      },
+      "basicInfo": {
+        "brand": "Happy Bowl",
+        "origin": "台灣"
+      },
+      "ingredients": {
+        "flavorId": 103,
+        "contentTypeId": 206,
+        "specialFormulaId": 308,
+        "targetId": 404
+      },
+      "nutrition": {
+        "moisture": "低於5%",
+        "calories": "4200 cal/kg",
+        "fat": "高",
+        "protein": "高於40%",
+        "containsGum": false
+      },
+      "extraNutrition": [
+        {
+          "id": "ex8-1",
+          "name": "鐵質",
+          "value": "150 mg/kg"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "鴨肉紅薯無穀乾糧",
+      "weight": "2kg",
+      "price": 1050,
+      "category": "乾糧",
+      "coverImage": "/images/food/food8-2.png",
+      "images": [
+        "/images/food/food8-2.png",
+        "/images/food/food8-3.png"
+      ],
+      "meta": {
+        "author": "Cool Meow",
+        "publishDate": "2025-08-20"
+      },
+      "basicInfo": {
+        "brand": "Happy Bowl",
+        "origin": "台灣"
+      },
+      "ingredients": {
+        "flavorId": 103,
+        "contentTypeId": 205,
+        "specialFormulaId": 307,
+        "targetId": 402
+      },
+      "nutrition": {
+        "moisture": "低於10%",
+        "calories": "3700 cal/kg",
+        "fat": "中等",
+        "protein": "高於30%",
+        "containsGum": false
+      },
+      "extraNutrition": [
+        {
+          "id": "ex9-1",
+          "name": "膳食纖維",
+          "value": "3.5%"
         }
       ]
     }

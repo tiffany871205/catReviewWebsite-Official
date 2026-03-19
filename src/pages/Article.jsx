@@ -5,7 +5,7 @@ import ArticleBlock from "../components/articles/ArticleBlock";
 import FeedbackActions from "../components/articles/FeedbackActions";
 import CommentBox from "../components/articles/CommentBox";
 import CommentItem from "../components/articles/CommentItem";
-import BackToTopButton from "../components/articles/BackToTopButton";
+import BackToTopButton from "../components/common/BackToTopButton";
 import ArticleBreadcrumb from "../components/articles/ArticleBreadcrumb";
 import {
   getKnowledgeArticleById,

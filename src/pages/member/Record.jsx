@@ -1,5 +1,5 @@
 import { NavLink, Outlet } from "react-router";
-import BackToTopButton from "../../components/articles/BackToTopButton";
+import BackToTopButton from "../../components/common/BackToTopButton";
 
 function Record() {
   return (

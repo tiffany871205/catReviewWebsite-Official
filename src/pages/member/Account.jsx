@@ -5,6 +5,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 import { clearAuth, isAuthenticated } from "../../utils/auth";
+import {
+  deleteKnowledgeComment,
+  getKnowledgeCommentsByUser,
+  updateKnowledgeComment,
+} from "../../api/knowledge";
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
@@ -217,6 +222,24 @@ function Account() {
         console.error("同步 localStorage 使用者資料失敗", error);
       }
 
+      // 若暱稱有變更，同步更新所有已留言的顯示名稱
+      if (formValues.nickname !== initialProfile.nickname) {
+        try {
+          const userComments = await getKnowledgeCommentsByUser(currentUserId);
+          const nowIso = new Date().toISOString();
+          await Promise.all(
+            userComments.map((comment) =>
+              updateKnowledgeComment(comment.id, {
+                name: formValues.nickname,
+                updatedAt: nowIso,
+              })
+            )
+          );
+        } catch (commentUpdateError) {
+          console.error("同步更新留言名稱失敗", commentUpdateError);
+        }
+      }
+
       await Swal.fire({
         icon: "success",
         title: "更新成功",
@@ -327,6 +350,82 @@ function Account() {
     setIsDeletingAccount(true);
 
     try {
+      const safeGetList = async (url) => {
+        try {
+          const response = await axios.get(url);
+          return response.data ?? [];
+        } catch (error) {
+          if (error.response?.status === 404) return [];
+          throw error;
+        }
+      };
+
+      const [
+        knowledgeCommentsResponse,
+        foodCommentsResponse,
+        knowledgeFavsResponse,
+        foodFavsResponse,
+        foodContribResponse,
+        knowledgeContribResponse,
+      ] = await Promise.all([
+        getKnowledgeCommentsByUser(currentUserId).catch((error) => {
+          if (error.response?.status === 404) return [];
+          throw error;
+        }),
+        safeGetList(`${API_BASE}/foodComment?userId=${currentUserId}`),
+        safeGetList(`${API_BASE}/knowledgeFav?userId=${currentUserId}`),
+        safeGetList(`${API_BASE}/foodFav?userId=${currentUserId}`),
+        safeGetList(`${API_BASE}/foodContrib?userId=${currentUserId}`),
+        safeGetList(`${API_BASE}/knowledgeContrib?userId=${currentUserId}`),
+      ]);
+
+      const knowledgeComments = knowledgeCommentsResponse ?? [];
+      const foodComments = foodCommentsResponse ?? [];
+      const knowledgeFavs = knowledgeFavsResponse ?? [];
+      const foodFavs = foodFavsResponse ?? [];
+      const approvedFoodContribs = (foodContribResponse ?? []).filter(
+        (item) => item.status === "approved"
+      );
+      const approvedKnowledgeContribs = (knowledgeContribResponse ?? []).filter(
+        (item) => item.status === "approved"
+      );
+      const unapprovedFoodContribs = (foodContribResponse ?? []).filter(
+        (item) => item.status !== "approved"
+      );
+      const unapprovedKnowledgeContribs = (knowledgeContribResponse ?? []).filter(
+        (item) => item.status !== "approved"
+      );
+
+      const cleanupResults = await Promise.allSettled([
+        ...knowledgeComments.map((comment) => deleteKnowledgeComment(comment.id)),
+        ...foodComments.map((comment) => axios.delete(`${API_BASE}/foodComment/${comment.id}`)),
+        ...knowledgeFavs.map((fav) => axios.delete(`${API_BASE}/knowledgeFav/${fav.id}`)),
+        ...foodFavs.map((fav) => axios.delete(`${API_BASE}/foodFav/${fav.id}`)),
+        ...approvedFoodContribs.map((item) =>
+          axios.patch(`${API_BASE}/foodContrib/${item.id}`, {
+            userId: `deleted:${currentUserId}`,
+            ownerId: currentUserId,
+            ownerNickname: initialProfile.nickname || "已刪除使用者",
+          })
+        ),
+        ...approvedKnowledgeContribs.map((item) =>
+          axios.patch(`${API_BASE}/knowledgeContrib/${item.id}`, {
+            userId: `deleted:${currentUserId}`,
+            ownerId: currentUserId,
+            ownerNickname: initialProfile.nickname || "已刪除使用者",
+          })
+        ),
+        ...unapprovedFoodContribs.map((item) => axios.delete(`${API_BASE}/foodContrib/${item.id}`)),
+        ...unapprovedKnowledgeContribs.map((item) =>
+          axios.delete(`${API_BASE}/knowledgeContrib/${item.id}`)
+        ),
+      ]);
+
+      const failedCleanupCount = cleanupResults.filter((item) => item.status === "rejected").length;
+      if (failedCleanupCount > 0) {
+        console.warn(`刪帳前清理有 ${failedCleanupCount} 筆失敗，將嘗試繼續刪除帳號`);
+      }
+
       await axios.delete(`${API_BASE}/users/${currentUserId}`);
 
       // 清除登入狀態
@@ -339,14 +438,17 @@ function Account() {
         confirmButtonText: "回到首頁",
       });
 
-      navigate("/index");
+      navigate("/index", { replace: true });
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     } catch (error) {
       console.error("刪除帳號失敗", error);
+      const errorMessage =
+        error.response?.data?.message || error.message || "刪除過程發生問題，請稍後再試。";
 
       await Swal.fire({
         icon: "error",
         title: "刪除失敗",
-        text: "刪除過程發生問題，請稍後再試。",
+        text: errorMessage,
         confirmButtonText: "我知道了",
       });
     } finally {

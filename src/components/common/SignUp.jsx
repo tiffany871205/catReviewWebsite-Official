@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { setAuth } from "../../utils/auth";
 const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
 function SignUp() {
@@ -37,6 +38,12 @@ function SignUp() {
       });
 
       console.log("註冊成功:", response.data);
+
+      // 自動登入
+      setAuth({
+        accessToken: response.data.accessToken,
+        user: response.data.user,
+      });
 
       // 重置註冊表單
       resetRegister();

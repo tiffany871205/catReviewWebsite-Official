@@ -98,8 +98,8 @@ function Favorite() {
 
   // 排序篩選：依照新舊
   const sortedRecords = [...filteredRecords].sort((a, b) => {
-    const aDate = new Date(a.date).getTime();
-    const bDate = new Date(b.date).getTime();
+    const aDate = a.sortTimestamp ?? new Date(a.date).getTime();
+    const bDate = b.sortTimestamp ?? new Date(b.date).getTime();
     return sortBy === "newest" ? bDate - aDate : aDate - bDate;
   });
 
@@ -116,8 +116,8 @@ function Favorite() {
 
   // 排序篩選：依照新舊
   const sortedKnowledgeRecords = [...filteredKnowledgeRecords].sort((a, b) => {
-    const aDate = new Date(a.date).getTime();
-    const bDate = new Date(b.date).getTime();
+    const aDate = a.sortTimestamp ?? new Date(a.date).getTime();
+    const bDate = b.sortTimestamp ?? new Date(b.date).getTime();
     return knowledgeSortBy === "newest" ? bDate - aDate : aDate - bDate;
   });
   // 初始顯示 4 筆，點擊載入更多一次增加 4 筆

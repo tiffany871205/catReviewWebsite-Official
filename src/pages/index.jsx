@@ -214,9 +214,9 @@ function Index() {
                       <br />
                       找到喵皇命定美食！
                     </p>
-                    <a
+                    <Link
                       className="btn border-primary-300 py-lg-5 px-lg-8 py-3 px-6 rounded-pill d-flex align-items-center"
-                      href="foodmain.html"
+                      to="/food"
                     >
                       前往探索
                       <img
@@ -224,7 +224,7 @@ function Index() {
                         src={`${imageBaseUrl}arrow_right.png`}
                         alt="arrow_right"
                       />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 {/* <!-- 裝飾hashtag --> */}
@@ -257,9 +257,9 @@ function Index() {
                       <br />
                       進入學堂告訴你！
                     </p>
-                    <a
+                    <Link
                       className="btn border-primary-300 rounded-pill d-flex align-items-center py-lg-5 px-lg-8 py-3 px-6"
-                      href="knowledge.html"
+                      to="/knowledge"
                     >
                       前往學堂
                       <img
@@ -267,7 +267,7 @@ function Index() {
                         src={`${imageBaseUrl}arrow_right.png`}
                         alt="arrow_right"
                       />
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 {/* <!-- 裝飾hashtag --> */}

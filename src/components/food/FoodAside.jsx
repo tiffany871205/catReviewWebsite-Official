@@ -22,7 +22,7 @@ function FoodAside({ foodMeta, filters, onFilterChange }) {
   const renderDropdown = ({ label, items, filterKey, selectedId }) => (
     <div className="dropdown pb-7">
       <button
-        className="btn-outline-primary rounded-pill food-dropdown dropdown-toggle"
+        className="btn-outline-primary rounded-pill food-dropdown dropdown-toggle ps-4"
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"

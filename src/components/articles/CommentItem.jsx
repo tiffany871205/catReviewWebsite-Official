@@ -1,11 +1,12 @@
-import { useState } from "react";
+﻿import { useState } from "react";
 
 export default function CommentItem({
   id,
-  avatar,
+  domId,
   name,
   time,
   text,
+  highlighted,
   isAuthor,
   onDelete,
   onEdit,
@@ -19,15 +20,12 @@ export default function CommentItem({
   };
 
   return (
-    <div className="comment-item d-flex align-items-start mb-8">
-      <div className="flex-shrink-0 me-3">
-        <img
-          src={avatar}
-          alt={name}
-          className="comment-avatar rounded-circle"
-        />
-      </div>
-
+    <div
+      id={domId}
+      className={`comment-item d-flex align-items-start mb-8 ${
+        highlighted ? "comment-item--focus" : ""
+      }`}
+    >
       <div className="flex-grow-1">
         <div className="d-flex justify-content-between align-items-center mb-1">
           <p className="fw-bold mb-0">{name}</p>
@@ -44,12 +42,14 @@ export default function CommentItem({
             />
             <div className="d-flex gap-2">
               <button
+                type="button"
                 className="btn btn-primary-600 btn-sm text-white"
                 onClick={handleSave}
               >
                 儲存
               </button>
               <button
+                type="button"
                 className="btn btn-outline-secondary btn-sm"
                 onClick={() => setIsEditing(false)}
               >
@@ -73,11 +73,7 @@ export default function CommentItem({
           </button>
           <ul className="dropdown-menu dropdown-menu-start">
             <li>
-              <button
-                className="dropdown-item"
-                type="button"
-                onClick={() => setIsEditing(true)}
-              >
+              <button className="dropdown-item" type="button" onClick={() => setIsEditing(true)}>
                 <img
                   src="./images/knowledge/article/edit_comment.png"
                   alt="edit"

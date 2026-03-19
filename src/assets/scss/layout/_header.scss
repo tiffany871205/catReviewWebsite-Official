@@ -3,7 +3,6 @@
 }
 
 .header-navbar-nav {
-  height: calc(100vh - 210px);
   flex-direction: column;
   align-items: stretch;
 }
@@ -58,23 +57,23 @@
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  background-image: url("../images/decoration.png");
+  background-image: url("/images/decoration.png");
 
   &:hover {
-    background-image: url("../images/decoration_hover.png");
+    background-image: url("/images/decoration_hover.png");
   }
 }
 
 .nav-link:hover .header-food-btn {
-  background-image: url("../images/decoration_hover.png");
+  background-image: url("/images/decoration_hover.png");
 }
 
 .nav-link:hover .header-knowledge-btn {
-  background-image: url("../images/decoration_hover.png");
+  background-image: url("/images/decoration_hover.png");
 }
 
 .nav-link:hover .header-post-btn {
-  background-image: url("../images/decoration_hover.png");
+  background-image: url("/images/decoration_hover.png");
 }
 
 .header-navbar-nav .nav-link {
@@ -82,6 +81,21 @@
   &:hover {
     color: $primary-800;
   }
+}
+
+.modalgreyback {
+  z-index: 1040;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-menu .header-dropdown-item:hover {
+  background-color: $secondary-200;
+  border-radius: 0px;
 }
 
 @media (min-width: 992px) {

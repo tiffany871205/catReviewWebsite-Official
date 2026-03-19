@@ -5,4 +5,9 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   base: "/catReviewWebsite-Official/",
   plugins: [react()],
+  server: {
+    watch: {
+      ignored: ["**/db.json", "**/db.seed.json"],
+    },
+  },
 });

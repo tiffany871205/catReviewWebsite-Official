@@ -8,6 +8,34 @@ const STATUS_LABEL_MAP = {
   rejected: "未通過",
 };
 
+function normalizeImageUrl(imagePath) {
+  if (!imagePath || typeof imagePath !== "string") return "";
+
+  const trimmedPath = imagePath.trim();
+  if (!trimmedPath) return "";
+
+  if (/^https?:\/\//i.test(trimmedPath)) {
+    return trimmedPath;
+  }
+
+  const normalizedPath = /^\/images\/food\/00\d\.jpg$/i.test(trimmedPath)
+    ? trimmedPath.replace(/\.jpg$/i, ".png")
+    : trimmedPath;
+
+  const baseUrl = import.meta.env.BASE_URL || "/";
+  const normalizedBaseUrl = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+
+  if (normalizedPath.startsWith("/")) {
+    return `${normalizedBaseUrl}${normalizedPath.slice(1)}`;
+  }
+
+  if (normalizedPath.startsWith("./")) {
+    return `${normalizedBaseUrl}${normalizedPath.slice(2)}`;
+  }
+
+  return `${normalizedBaseUrl}${normalizedPath}`;
+}
+
 function formatDate(dateValue) {
   if (!dateValue) return "";
   const date = new Date(dateValue);
@@ -75,11 +103,9 @@ function toFoodRecord({ relation, food, foodDetail, taxonomyMaps, includeStatus 
     status: relation.status ?? "pending",
     statusLabel: STATUS_LABEL_MAP[relation.status] ?? STATUS_LABEL_MAP.pending,
     image: "",
-    imageUrl:
-      relation.images?.contentImages?.[0] ||
-      relation.images?.packageImages?.[0] ||
-      food?.coverImage ||
-      "",
+    imageUrl: normalizeImageUrl(
+      relation.images?.contentImages?.[0] || relation.images?.packageImages?.[0] || food?.coverImage
+    ),
     targetPath: "/food",
     showStatus: includeStatus,
   };
@@ -98,7 +124,7 @@ function toKnowledgeRecord({ relation, knowledge, includeStatus }) {
     status: relation.status ?? "pending",
     statusLabel: STATUS_LABEL_MAP[relation.status] ?? STATUS_LABEL_MAP.pending,
     image: "",
-    imageUrl: relation.coverImage ?? knowledge?.img ?? "",
+    imageUrl: normalizeImageUrl(relation.coverImage ?? knowledge?.img),
     targetPath: articleId ? `/knowledge/article/${articleId}` : "/knowledge",
     showStatus: includeStatus,
   };

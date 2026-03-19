@@ -20,20 +20,30 @@ title: 喵皇御膳房 - 開發規範文件
 ### 1.2 主要使用套件
 
 - **Bootstrap 5** - UI 框架
+- **Bootstrap Icons** - 圖示庫
 - **Axios** - HTTP 請求
-- **React Quill** - 富文本編輯器
+- **Quill** - 富文本編輯器
+- **React Hook Form** - 表單管理
 - **React Router** - 路由管理
-- **sass-embedded** - SCSS 編譯
+- **SweetAlert2** - 彈窗提示
+- **sass** - SCSS 編譯
 
 ### 1.3 主要頁面
 
-| 頁面     | 路由         | 說明               |
-| -------- | ------------ | ------------------ |
-| 首頁     | `/`          | 網站首頁           |
-| 膳食探索 | `/food`      | 貓食產品列表與篩選 |
-| 喵皇學堂 | `/knowledge` | 知識文章專區       |
-| 我要投稿 | `/contrib`   | 使用者投稿功能     |
-| 會員中心 | `/member`    | 會員個人資料與收藏 |
+> 本專案採用 **Hash Router**，網址格式為 `/#/路由`。
+
+| 頁面     | 路由                       | 說明                   |
+| -------- | -------------------------- | ---------------------- |
+| 首頁     | `/#/`                      | 網站首頁               |
+| 膳食探索 | `/#/food`                  | 貓食產品列表與篩選     |
+| 食品詳情 | `/#/food/product/:id`      | 單一食品詳細頁面       |
+| 喵皇學堂 | `/#/knowledge`             | 知識文章專區           |
+| 知識文章 | `/#/knowledge/article/:id` | 單篇知識文章詳情       |
+| 我要投稿 | `/#/contrib`               | 使用者投稿功能         |
+| 會員中心 | `/#/member`                | 會員個人資料與收藏     |
+| 帳號管理 | `/#/member/account`        | 帳號設定               |
+| 會員紀錄 | `/#/member/record`         | 留言 / 收藏 / 投稿紀錄 |
+| 註冊頁   | `/#/signup`                | 使用者註冊             |
 
 ---
 
@@ -57,16 +67,16 @@ cd your-project-name
 npm install
 
 # 安裝 SCSS 支援
-npm add -D sass-embedded
+npm install --save-dev sass
 
 # 安裝 Bootstrap
-npm install bootstrap
+npm install bootstrap bootstrap-icons
 
 # 安裝 Axios
 npm install axios
 
 # 安裝其他套件（依需求）
-npm install react-router-dom react-quill
+npm install react-router-dom quill react-hook-form sweetalert2
 ```
 
 ### 2.3 設定 SCSS
@@ -119,16 +129,18 @@ src/
 4. **在 `main.jsx` 引入 SCSS**
 
 ```jsx
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./assets/scss/all.scss";
+import { createRoot } from "react-dom/client";
+import { createHashRouter, RouterProvider } from "react-router";
+import routes from "./routers/router.jsx";
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import "./assets/scss/all.scss";
+import "quill/dist/quill.snow.css";
+import * as bootstrap from "bootstrap";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
+const router = createHashRouter(routes);
+
+createRoot(document.getElementById("root")).render(<RouterProvider router={router} />);
 ```
 
 ### 2.4 設定 GitHub Pages 部署
@@ -140,8 +152,8 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
+  base: "/", // 搭配 Hash Router 使用，不需設定 repo 名稱
   plugins: [react()],
-  base: "/catReviewWebsite-Official/", // GitHub repo 名稱
 });
 ```
 
@@ -202,44 +214,47 @@ catReviewWebsite-Official/
 ├── src/
 │   ├── assets/
 │   │   └── scss/              # SCSS 樣式
-│   │       ├── helpers/       # 變數、工具
+│   │       ├── helper/        # 變數、工具
 │   │       ├── base/          # 基礎樣式
-│   │       ├── components/    # 元件樣式
 │   │       ├── layout/        # 佈局樣式
 │   │       ├── pages/         # 頁面樣式
 │   │       └── all.scss       # 主要 SCSS 入口
 │   │
+│   ├── api/                   # API 請求
+│   │   ├── client.js          # API base URL 設定
+│   │   ├── food.js
+│   │   ├── knowledge.js
+│   │   └── memberRecords.js
+│   │
 │   ├── components/            # React 元件
-│   │   ├── common/            # 共用元件
-│   │   │   ├── submitBtn.jsx
-│   │   │   ├── searchBar.jsx
-│   │   │   └── searchBtn.jsx
+│   │   ├── common/            # 共用元件（Header、Footer、LoginModal 等）
+│   │   ├── articles/          # 文章頁元件
 │   │   ├── food/              # 食品頁面元件
-│   │   │   ├── FoodListCard.jsx
-│   │   │   └── FoodDetail.jsx
-│   │   ├── knowledge/         # 知識頁面元件
+│   │   ├── knowledges         # 知識頁面元件
 │   │   ├── contrib/           # 投稿頁面元件
 │   │   └── member/            # 會員頁面元件
 │   │
-│   ├── routers/                # 路由配置目錄
-│   │   └── router.jsx          # 路由定義文件
+│   ├── hooks/                 # 自訂 Hook
+│   │
+│   ├── routers/               # 路由配置目錄
+│   │   └── router.jsx         # 路由定義文件
 │   │
 │   ├── pages/                 # 頁面元件
 │   │   ├── Index.jsx
 │   │   ├── Food.jsx
 │   │   ├── Knowledge.jsx
+│   │   ├── Article.jsx
 │   │   ├── Contrib.jsx
-│   │   └── Member.jsx
-│   │
-│   ├── api/                   # API 請求
-│   │   └── foodApi.js
+│   │   ├── Member.jsx
+│   │   └── member/            # 會員子頁面
 │   │
 │   ├── utils/                 # 工具函式
-│   │   └── helpers.js
 │   │
 │   ├── App.jsx                # 主要應用元件
 │   └── main.jsx               # 應用程式入口
 │
+├── db.json                    # 個人本機測試用（不納入版控）
+├── db.seed.json               # 共用示範資料（納入版控）
 ├── .gitignore
 ├── index.html
 ├── package.json
@@ -253,9 +268,10 @@ catReviewWebsite-Official/
 | ------------------ | ----------------------------------- |
 | `public/`          | 靜態資源，不經過編譯直接複製到 dist |
 | `src/assets/scss/` | SCSS 樣式檔案                       |
-| `src/components/`  | 可重複使用的 React 元件             |
-| `src/pages/`       | 頁面級別的元件                      |
 | `src/api/`         | API 請求相關函式                    |
+| `src/components/`  | 可重複使用的 React 元件             |
+| `src/hooks/`       | 自訂 React Hook                     |
+| `src/pages/`       | 頁面級別的元件                      |
 | `src/utils/`       | 工具函式                            |
 
 ---
@@ -287,16 +303,16 @@ catReviewWebsite-Official/
 **大駝峰命名法 (PascalCase)**
 
 - 頁面元件：`Index.jsx`, `Food.jsx`, `Knowledge.jsx`
-- 功能元件：`FoodListCard.jsx`, `FoodDetail.jsx`
+- 功能元件：`FoodCard.jsx`, `KnowledgeCard.jsx`
 
 ```jsx
 // ✅ 正確
-FoodListCard.jsx;
+FoodCard.jsx;
 KnowledgeArticle.jsx;
 
 // ❌ 錯誤
-foodListCard.jsx;
-food - list - card.jsx;
+foodCard.jsx;
+food - card.jsx;
 ```
 
 #### b. 共用元件命名
@@ -350,28 +366,27 @@ _FoodList.scss
 #### 命名原則
 
 - **頁面所屬元件**：以頁面為開頭
-  - 例如：`FoodListCard`, `FoodDetail`
+  - 例如：`FoodCard`, `FoodBanner`
 - **共用元件**：以功能為主
   - 例如：`submitBtn`, `searchBar`
 
 #### 元件範例
 
 ```jsx
-// FoodListCard.jsx
+// FoodCard.jsx
 import React from "react";
-import "./FoodListCard.scss";
 
-const FoodListCard = ({ title, price, image }) => {
+const FoodCard = ({ title, price, image }) => {
   return (
     <div className="food-card">
       <img src={image} alt={title} />
       <h3>{title}</h3>
-      <p className="price">${price}</p>
+      <p className="price">{price}</p>
     </div>
   );
 };
 
-export default FoodListCard;
+export default FoodCard;
 ```
 
 ---
@@ -468,20 +483,17 @@ git commit -m "123"
 #### main.jsx
 
 ```jsx
-// 1. React 相關方法
-import React from "react";
-import ReactDOM from "react-dom/client";
+// 1. 路由相關
+import { createHashRouter, RouterProvider } from "react-router";
+import routes from "./routers/router.jsx";
 
-// 2. 第三方套件
-import { BrowserRouter } from "react-router-dom";
-
-// 3. 元件引入
-import App from "./App.jsx";
-
-// 4. 樣式引入
+// 2. 樣式引入
 import "./assets/scss/all.scss";
+import "quill/dist/quill.snow.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
-// 5. 其他資源
+// 3. 第三方套件
+import * as bootstrap from "bootstrap";
 ```
 
 #### 元件檔案 (.jsx)
@@ -492,17 +504,15 @@ import React, { useState, useEffect } from "react";
 
 // 2. 第三方套件
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 // 3. API 引入
-import { getFoodList } from "../api/foodApi";
+import { getFoods } from "../api/food";
 
 // 4. 元件引入
-import FoodListCard from "../components/food/FoodListCard";
-import searchBar from "../components/common/searchBar";
+import FoodCard from "../components/food/FoodCard";
 
-// 5. 樣式引入
-import "./Food.scss";
+// 5. 樣式引入（如有獨立 CSS）
 
 // 6. 資料/常數引入
 import { FOOD_CATEGORIES } from "../data/constants";
@@ -543,16 +553,26 @@ import { FOOD_CATEGORIES } from "../data/constants";
 #### 1. 圖片資源
 
 - 圖片放在 `public/images/` 下
-- 使用相對路徑引入：`/images/food/product1.jpg`
+- 使用 `import.meta.env.BASE_URL` 拼接路徑：
+  ```jsx
+  const imageBase = `${import.meta.env.BASE_URL}images/`;
+  ```
 - 記得壓縮圖片以提升載入速度
 
 #### 2. API 請求
 
-```jsx
-// api/foodApi.js
-import axios from "axios";
+API base URL 統一由 `src/api/client.js` 管理，透過環境變數讀取：
 
-const API_BASE_URL = "http://localhost:3000";
+```js
+// src/api/client.js
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
+export default API_BASE;
+```
+
+```jsx
+// src/api/food.js
+import axios from "axios";
+import API_BASE from "./client";
 
 export const getFoodList = async () => {
   try {
@@ -574,23 +594,21 @@ export const getFoodList = async () => {
 VITE_API_BASE_URL=http://localhost:3000
 ```
 
-```jsx
-// 使用環境變數
-const apiUrl = import.meta.env.VITE_API_BASE_URL;
-```
+> **注意**：`knowledge.js` 與 `memberRecords.js` 直接依賴 `VITE_API_BASE_URL`，請務必建立 `.env` 檔案，否則 API 請求會失敗。
 
-### 3. 啟動 JSON server 終端指令
+### 3. 啟動 JSON Server 終端指令
 
-使用 `npx json-server-auth db.json` 來 JSON server
+使用 `npx json-server-auth db.json` 來啟動 JSON server  
 快捷：
-`npm run api:dev` : 跑db.json
-`npm run api:seed` : 跑db.seed.json
+
+- `npm run api:dev`：跑 `db.json`
+- `npm run api:seed`：跑 `db.seed.json`
 
 **版本跟說明**
 
-本專案使用 `json-server@0.17.1` 和 `json-server-auth@2.1.0`。
+本專案使用 `json-server@0.17.x` 和 `json-server-auth@2.1.0`。
 
-依照目前官方 [json-server-auth](https://github.com/jeremyben/json-server-auth) 的安裝（`npm install -D json-server json-server-auth`），在預設上 json-server 會去安裝最新的版本（目前是 1.0.0-beta.3），這個新版本的核心架構已經拔除原先的 Node Express。
+依照目前官方 [json-server-auth](https://github.com/jeremyben/json-server-auth) 的安裝（`npm install -D json-server json-server-auth`），在預設上 json-server 會去安裝最新的版本（目前是 1.0.0-beta.3），這個新版本的核心架構已經拔除原先的 Node Express。
 
 而 json-server-auth 已經有四年沒有更新，當初這個套件是基於 json-server v0.17.x 搭配 Express 的核心架構來製作的，所以目前會跟移除 Express 的 json-server v1.x 版本不相容。
 
@@ -598,7 +616,7 @@ const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
 ---
 
-### 4.Mock API 資料使用規範（json-server / json-server-auth）
+### 4. Mock API 資料使用規範（json-server / json-server-auth）
 
 本專案使用 **json-server / json-server-auth** 作為假 API 進行前後端開發與測試，資料檔案請依照以下規範使用。
 
@@ -624,7 +642,11 @@ const apiUrl = import.meta.env.VITE_API_BASE_URL;
 📌 請自行由 `db.seed.json` 複製一份建立：
 
 ```bash
+# macOS / Linux
 cp db.seed.json db.json
+
+# Windows PowerShell
+Copy-Item db.seed.json db.json
 ```
 
 ---

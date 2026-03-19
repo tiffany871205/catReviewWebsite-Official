@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Popover } from "bootstrap";
-import decoration1 from "../../assets/images/food/Decoration1.png";
+
+const decoration1 = `${import.meta.env.BASE_URL}images/food/Decoration1.png`;
 
 function FoodAside({ foodMeta, filters, onFilterChange }) {
   const popoverRef = useRef(null);

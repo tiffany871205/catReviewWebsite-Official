@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router";
-import decoration2 from "../../assets/images/food/Decoration2.png";
-import decorationLt from "../../assets/images/food/Decoration-LT.png";
-import decorationRt from "../../assets/images/food/Decoration-RT.png";
 import { getFoodDetailById, getFoodMeta } from "../../api/food";
+import BackToTopButton from "../common/BackToTopButton";
+
+const decoration2 = `${import.meta.env.BASE_URL}images/food/Decoration2.png`;
+const decorationLt = `${import.meta.env.BASE_URL}images/food/Decoration-LT.png`;
+const decorationRt = `${import.meta.env.BASE_URL}images/food/Decoration-RT.png`;
 
 function resolveFoodImagePath(imagePath) {
   if (!imagePath || typeof imagePath !== "string") {
@@ -285,7 +287,7 @@ export default function FoodProductPage() {
           </div>
         </div>
 
-        <div className="container px-96 py-md-72" style={{ backgroundColor: "#F4F1E9" }}>
+        <div className="container food-detail-sections" style={{ backgroundColor: "#F4F1E9" }}>
           <div className="row">
             {sections.map((section, index) => (
               <Section
@@ -299,9 +301,7 @@ export default function FoodProductPage() {
         </div>
       </div>
 
-      <button type="button" className="btn btn-primary food-back-btn" onClick={handleBackToTop}>
-        <i className="bi bi-arrow-up-circle" /> 回到頂端
-      </button>
+      <BackToTopButton onClick={handleBackToTop} />
     </>
   );
 }

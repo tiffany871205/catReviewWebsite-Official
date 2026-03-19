@@ -36,10 +36,7 @@ export async function createKnowledgeComment(payload) {
 }
 
 export async function updateKnowledgeComment(commentId, payload) {
-  const res = await axios.patch(
-    `${API_BASE}/knowledgeComment/${commentId}`,
-    payload
-  );
+  const res = await axios.patch(`${API_BASE}/knowledgeComment/${commentId}`, payload);
   return res.data;
 }
 
@@ -55,10 +52,11 @@ export async function getKnowledgeFavs(userId) {
 }
 
 export async function getKnowledgeFavByUserAndArticle(userId, articleId) {
-  const res = await axios.get(
-    `${API_BASE}/knowledgeFav?userId=${userId}&articleId=${articleId}`
-  );
-  return res.data;
+  // Query once and filter locally to avoid backend filter inconsistencies.
+  const res = await axios.get(`${API_BASE}/knowledgeFav?userId=${userId}`);
+  const favs = res.data ?? [];
+
+  return favs.filter((item) => Number(item.knowledgeId ?? item.articleId) === Number(articleId));
 }
 
 export async function createKnowledgeFav(payload) {

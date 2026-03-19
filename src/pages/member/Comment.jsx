@@ -93,8 +93,8 @@ function Comment() {
   );
 
   const sortedRecords = [...filteredRecords].sort((a, b) => {
-    const aDate = new Date(a.date).getTime();
-    const bDate = new Date(b.date).getTime();
+    const aDate = a.sortTimestamp ?? new Date(a.date).getTime();
+    const bDate = b.sortTimestamp ?? new Date(b.date).getTime();
     return sortBy === "newest" ? bDate - aDate : aDate - bDate;
   });
 
@@ -109,8 +109,8 @@ function Comment() {
   );
 
   const sortedKnowledgeRecords = [...filteredKnowledgeRecords].sort((a, b) => {
-    const aDate = new Date(a.date).getTime();
-    const bDate = new Date(b.date).getTime();
+    const aDate = a.sortTimestamp ?? new Date(a.date).getTime();
+    const bDate = b.sortTimestamp ?? new Date(b.date).getTime();
     return knowledgeSortBy === "newest" ? bDate - aDate : aDate - bDate;
   });
 

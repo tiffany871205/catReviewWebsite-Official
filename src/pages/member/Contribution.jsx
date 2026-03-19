@@ -100,8 +100,8 @@ function Contribution() {
   });
   // 日期排序
   const sortedRecords = [...filteredRecords].sort((a, b) => {
-    const aDate = new Date(a.date).getTime();
-    const bDate = new Date(b.date).getTime();
+    const aDate = a.sortTimestamp ?? new Date(a.date).getTime();
+    const bDate = b.sortTimestamp ?? new Date(b.date).getTime();
     return sortBy === "newest" ? bDate - aDate : aDate - bDate;
   });
   // 初始顯示 4 筆，點「載入更多」每次增加 4 筆
@@ -121,8 +121,8 @@ function Contribution() {
   });
   // 日期排序
   const sortedKnowledgeRecords = [...filteredKnowledgeRecords].sort((a, b) => {
-    const aDate = new Date(a.date).getTime();
-    const bDate = new Date(b.date).getTime();
+    const aDate = a.sortTimestamp ?? new Date(a.date).getTime();
+    const bDate = b.sortTimestamp ?? new Date(b.date).getTime();
     return knowledgeSortBy === "newest" ? bDate - aDate : aDate - bDate;
   });
   // 初始顯示 4 筆，點「載入更多」每次增加 4 筆

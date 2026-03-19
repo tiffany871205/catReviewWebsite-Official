@@ -7,7 +7,7 @@ ul {
 }
 
 .foodmain-body {
-  background-image: url("/images/food/secondary_backgroundTexture.jpg");
+  background-image: url("../../images/food/secondary_backgroundTexture.jpg");
   background-repeat: repeat;
   z-index: -1; /* 让伪元素在内容下方 */
   padding-bottom: 72px;
@@ -18,7 +18,7 @@ ul {
 }
 
 .index-header {
-  background-image: url("/images/food/food-hero1.png");
+  background-image: url("../../images/food/hero/food-hero1.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -52,7 +52,7 @@ ul {
   }
 
   @media (max-width: 1130px) {
-    background-image: url("/images/food/food-hero1.png");
+    background-image: url("../../images/food/hero/food-hero1.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -365,7 +365,7 @@ ul {
   width: 100%;
   height: 100%;
   background-color: #EEDED9;
-  background-image: url(../../assets/images/food/section01_background.png);
+  background-image: url("../../images/food/section01_background.png");
   background-repeat: repeat;
   width: 100%;
   z-index: -1; /* 让伪元素在内容下方 */

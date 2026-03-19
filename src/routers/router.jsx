@@ -32,7 +32,7 @@ const routes = [
         element: <Food />,
       },
       {
-        path: "food/product",
+        path: "food/product/:id",
         element: <FoodProductPage />,
       },
       {

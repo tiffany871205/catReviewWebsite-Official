@@ -1,7 +1,7 @@
 function KnowledgeRecordCard({ record, imageBaseUrl, showStatus = false, isDisabled = false }) {
   return (
     <article
-      className={`member-record-card bg-white h-100 ${isDisabled ? "member-record-card--disabled" : ""}`}
+      className={`member-record-card bg-white h-100 d-flex flex-column ${isDisabled ? "member-record-card--disabled" : ""}`}
     >
       <img
         src={record.imageUrl || `${imageBaseUrl}${record.image}`}
@@ -9,7 +9,7 @@ function KnowledgeRecordCard({ record, imageBaseUrl, showStatus = false, isDisab
         className="w-100 member-knowledge-record-card-image"
       />
 
-      <div className="p-3 member-record-card-body">
+      <div className="p-3 member-record-card-body flex-grow-1">
         <h3 className="member-knowledge-record-card-title mb-1">{record.title}</h3>
         <p className="member-knowledge-record-excerpt mb-3">{record.excerpt}</p>
 
@@ -22,7 +22,7 @@ function KnowledgeRecordCard({ record, imageBaseUrl, showStatus = false, isDisab
         </div>
       </div>
 
-      <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-2">
+      <div className="member-record-footer d-flex justify-content-between align-items-center p-3 pt-2 mt-auto">
         <p className="member-record-date mb-0">{record.date}</p>
         {showStatus ? (
           <span

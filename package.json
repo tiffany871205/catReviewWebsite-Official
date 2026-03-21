@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "deploy": "vite build && gh-pages -d dist",
     "api:dev": "npx json-server-auth db.json",
-    "api:seed": "npx json-server-auth db.seed.json"
+    "api:seed": "npx json-server-auth db.seed.json --port 3002"
   },
   "dependencies": {
     "axios": "^1.13.2",

@@ -1,8 +1,4 @@
 export default function FoodPagination({ page, totalPages, setPage }) {
-  if (totalPages <= 1) {
-    return null;
-  }
-
   const canPrev = page > 1;
   const canNext = page < totalPages;
 

@@ -6,11 +6,239 @@
       "nickname": "貓奴一號",
       "tel": "0912345678",
       "id": 1
+    },
+    {
+      "email": "111111@gmail.com",
+      "password": "$2a$10$dMd6Yjc3dyNRhEPB1JlgZucD1g/9a4f6QkZjJyXp2c3nw7EMluFd.",
+      "nickname": "喵屋",
+      "tel": "0911111111",
+      "id": 2
+    },
+    {
+      "email": "222222@gmail.com",
+      "password": "$2a$10$pfCQM3rz4DGs7jb7M.ZT0uO52bp32FY7k98xsSE46u2zBgHOZ3IVS",
+      "nickname": "安安",
+      "tel": "0922222222",
+      "id": 3
+    },
+    {
+      "email": "333333@gmail.com",
+      "password": "$2a$10$L598U2j6CmzaBq/NY8u17O3nE7uS9bEwfj0j102dDKxEv2LdVwtRa",
+      "nickname": "我是一個奴才",
+      "tel": "0933333333",
+      "id": 4
     }
   ],
-  "foodContrib": [],
-  "foodFav": [],
-  "foodComment": [],
+  "foodContrib": [
+    {
+      "id": 1,
+      "userId": 1,
+      "foodId": 1,
+      "status": "pending",
+      "note": "測試投稿：待審核",
+      "basicInfo": {
+        "name": "雞+南瓜主食罐(投稿版)",
+        "brand": "NUTRIPE 紐萃寶",
+        "price": 900,
+        "origin": "紐西蘭",
+        "weight": "600g"
+      },
+      "ingredientProfile": {
+        "flavorId": 101,
+        "contentTypeId": 203,
+        "specialFormulaId": 302,
+        "targetId": 402
+      },
+      "nutrition": {
+        "moisturePercent": 78,
+        "fatPercent": 5.8,
+        "proteinPercent": 11.4,
+        "caloriesPerKg": 980,
+        "carbPercent": 2.1,
+        "containsGum": false,
+        "allergens": "雞肉蛋白"
+      },
+      "images": {
+        "packageImages": ["/images/food/001.png"],
+        "contentImages": ["/images/food/001.png"]
+      },
+      "declarationAgreed": true,
+      "createdAt": "2026-03-13T10:30:00Z",
+      "updatedAt": "2026-03-13T10:30:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "foodId": 3,
+      "status": "approved",
+      "note": "測試投稿：審核通過",
+      "basicInfo": {
+        "name": "羊肉莓果乾糧(投稿版)",
+        "brand": "Wild Farm",
+        "price": 980,
+        "origin": "澳洲",
+        "weight": "5kg"
+      },
+      "ingredientProfile": {
+        "flavorId": 104,
+        "contentTypeId": 205,
+        "specialFormulaId": 301,
+        "targetId": 402
+      },
+      "nutrition": {
+        "moisturePercent": 9.5,
+        "fatPercent": 16.2,
+        "proteinPercent": 33.4,
+        "caloriesPerKg": 4100,
+        "carbPercent": 29.1,
+        "containsGum": false,
+        "allergens": "無"
+      },
+      "images": {
+        "packageImages": ["/images/food/003.png"],
+        "contentImages": ["/images/food/003.png"]
+      },
+      "declarationAgreed": true,
+      "createdAt": "2026-03-12T08:20:00Z",
+      "updatedAt": "2026-03-12T11:40:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "foodId": 5,
+      "status": "pending",
+      "note": "測試投稿：等待補圖",
+      "createdAt": "2026-03-11T09:10:00Z",
+      "updatedAt": "2026-03-11T09:10:00Z"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "foodId": 7,
+      "status": "approved",
+      "note": "測試投稿：通過",
+      "createdAt": "2026-03-10T08:00:00Z",
+      "updatedAt": "2026-03-10T12:00:00Z"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "foodId": 9,
+      "status": "rejected",
+      "note": "測試投稿：標示需補充",
+      "createdAt": "2026-03-09T07:00:00Z",
+      "updatedAt": "2026-03-09T11:00:00Z"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "foodId": 2,
+      "status": "approved",
+      "note": "測試投稿：已刊登",
+      "createdAt": "2026-03-08T07:40:00Z",
+      "updatedAt": "2026-03-08T09:30:00Z"
+    }
+  ],
+  "foodFav": [
+    {
+      "id": 1,
+      "userId": 1,
+      "foodId": 2,
+      "createdAt": "2026-03-10T09:00:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "foodId": 7,
+      "createdAt": "2026-03-11T07:00:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "foodId": 1,
+      "createdAt": "2026-03-12T08:40:00Z"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "foodId": 3,
+      "createdAt": "2026-03-12T09:10:00Z"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "foodId": 5,
+      "createdAt": "2026-03-12T09:30:00Z"
+    },
+    {
+      "id": 6,
+      "userId": 1,
+      "foodId": 9,
+      "createdAt": "2026-03-12T10:00:00Z"
+    }
+  ],
+  "foodComment": [
+    {
+      "id": 1,
+      "userId": 1,
+      "foodId": 1,
+      "rating": 4,
+      "name": "貓奴一號",
+      "time": "1天前",
+      "content": "適口性不錯，連續吃了三天都吃光。",
+      "photos": ["contrib-history2-1.png"],
+      "createdAt": "2026-03-19T12:00:00Z",
+      "updatedAt": "2026-03-19T12:00:00Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "foodId": 2,
+      "rating": 5,
+      "name": "貓奴一號",
+      "time": "5天前",
+      "content": "肉塊比例剛好，貓咪接受度很高。",
+      "photos": [],
+      "createdAt": "2026-03-10T10:30:00Z",
+      "updatedAt": "2026-03-10T10:30:00Z"
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "foodId": 3,
+      "rating": 4,
+      "name": "喵屋",
+      "time": "1天前",
+      "content": "乾糧顆粒大小適中，換糧期也很順。",
+      "photos": [],
+      "createdAt": "2026-03-11T08:15:00Z",
+      "updatedAt": "2026-03-11T08:15:00Z"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "foodId": 5,
+      "rating": 3,
+      "name": "安安",
+      "time": "1天前",
+      "content": "適口性中等，搭配溫水後比較願意吃。",
+      "photos": ["contrib-history2-2.png"],
+      "createdAt": "2026-03-12T13:20:00Z",
+      "updatedAt": "2026-03-12T13:20:00Z"
+    },
+    {
+      "id": 5,
+      "userId": 1,
+      "foodId": 7,
+      "rating": 5,
+      "name": "喵屋",
+      "time": "1天前",
+      "content": "吃完精神很好，便便狀況也穩定。",
+      "photos": [],
+      "createdAt": "2026-03-13T07:45:00Z",
+      "updatedAt": "2026-03-13T07:45:00Z"
+    }
+  ],
   "foodID": {
     "flavors": [
       {

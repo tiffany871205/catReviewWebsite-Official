@@ -59,8 +59,12 @@
         "allergens": "雞肉蛋白"
       },
       "images": {
-        "packageImages": ["/images/food/001.png"],
-        "contentImages": ["/images/food/001.png"]
+        "packageImages": [
+          "/images/food/001.png"
+        ],
+        "contentImages": [
+          "/images/food/001.png"
+        ]
       },
       "declarationAgreed": true,
       "createdAt": "2026-03-13T10:30:00Z",
@@ -95,8 +99,12 @@
         "allergens": "無"
       },
       "images": {
-        "packageImages": ["/images/food/003.png"],
-        "contentImages": ["/images/food/003.png"]
+        "packageImages": [
+          "/images/food/003.png"
+        ],
+        "contentImages": [
+          "/images/food/003.png"
+        ]
       },
       "declarationAgreed": true,
       "createdAt": "2026-03-12T08:20:00Z",
@@ -141,12 +149,6 @@
   ],
   "foodFav": [
     {
-      "id": 1,
-      "userId": 1,
-      "foodId": 2,
-      "createdAt": "2026-03-10T09:00:00Z"
-    },
-    {
       "id": 2,
       "userId": 1,
       "foodId": 7,
@@ -171,25 +173,13 @@
       "createdAt": "2026-03-12T09:30:00Z"
     },
     {
-      "id": 6,
       "userId": 1,
       "foodId": 9,
-      "createdAt": "2026-03-12T10:00:00Z"
+      "createdAt": "2026-03-27T15:48:29.147Z",
+      "id": 6
     }
   ],
   "foodComment": [
-    {
-      "id": 1,
-      "userId": 1,
-      "foodId": 1,
-      "rating": 4,
-      "name": "貓奴一號",
-      "time": "1天前",
-      "content": "適口性不錯，連續吃了三天都吃光。",
-      "photos": ["contrib-history2-1.png"],
-      "createdAt": "2026-03-19T12:00:00Z",
-      "updatedAt": "2026-03-19T12:00:00Z"
-    },
     {
       "id": 2,
       "userId": 1,
@@ -215,28 +205,14 @@
       "updatedAt": "2026-03-11T08:15:00Z"
     },
     {
-      "id": 4,
+      "foodId": 1,
       "userId": 1,
-      "foodId": 5,
-      "rating": 3,
-      "name": "安安",
-      "time": "1天前",
-      "content": "適口性中等，搭配溫水後比較願意吃。",
-      "photos": ["contrib-history2-2.png"],
-      "createdAt": "2026-03-12T13:20:00Z",
-      "updatedAt": "2026-03-12T13:20:00Z"
-    },
-    {
-      "id": 5,
-      "userId": 1,
-      "foodId": 7,
-      "rating": 5,
-      "name": "喵屋",
-      "time": "1天前",
-      "content": "吃完精神很好，便便狀況也穩定。",
-      "photos": [],
-      "createdAt": "2026-03-13T07:45:00Z",
-      "updatedAt": "2026-03-13T07:45:00Z"
+      "avatar": "./images/knowledge/article/user-1.png",
+      "name": "貓奴一號",
+      "createdAt": "2026-03-27T15:48:07.622Z",
+      "updatedAt": "2026-03-27T15:48:07.622Z",
+      "content": "我家貓咪超愛!!!",
+      "id": 4
     }
   ],
   "foodID": {
@@ -466,7 +442,10 @@
       "price": 900,
       "category": "主食罐",
       "coverImage": "../assets/images/food/food-img1.png",
-      "images": ["../assets/images/food/food-img1.png", "../assets/images/food/food-img2.png"],
+      "images": [
+        "../assets/images/food/food-img1.png",
+        "../assets/images/food/food-img2.png"
+      ],
       "meta": {
         "author": "Cool Meow",
         "publishDate": "2025-07-30"
@@ -513,7 +492,10 @@
       "price": 420,
       "category": "主食罐",
       "coverImage": "../assets/images/food/food2-3.png",
-      "images": ["../assets/images/food/food2-3.png", "../assets/images/food/food2-4.png"],
+      "images": [
+        "../assets/images/food/food2-3.png",
+        "../assets/images/food/food2-4.png"
+      ],
       "meta": {
         "author": "Cool Meow",
         "publishDate": "2025-08-02"
@@ -555,7 +537,10 @@
       "price": 980,
       "category": "乾糧",
       "coverImage": "../assets/images/food/food2-3.png",
-      "images": ["../assets/images/food/food2-3.png", "../assets/images/food/food2-5.png"],
+      "images": [
+        "../assets/images/food/food2-3.png",
+        "../assets/images/food/food2-5.png"
+      ],
       "meta": {
         "author": "Cool Meow",
         "publishDate": "2025-08-05"
@@ -597,7 +582,10 @@
       "price": 280,
       "category": "凍乾",
       "coverImage": "../assets/images/food/food3-3.png",
-      "images": ["../assets/images/food/food3-3.png", "../assets/images/food/food3-1.png"],
+      "images": [
+        "../assets/images/food/food3-3.png",
+        "../assets/images/food/food3-1.png"
+      ],
       "meta": {
         "author": "Cool Meow",
         "publishDate": "2025-08-07"
@@ -634,7 +622,10 @@
       "price": 560,
       "category": "餐包",
       "coverImage": "../assets/images/food/food4-1.png",
-      "images": ["../assets/images/food/food4-1.png", "../assets/images/food/food4-3.png"],
+      "images": [
+        "../assets/images/food/food4-1.png",
+        "../assets/images/food/food4-3.png"
+      ],
       "meta": {
         "author": "Cool Meow",
         "publishDate": "2025-08-10"
@@ -671,7 +662,10 @@
       "price": 350,
       "category": "肉泥條",
       "coverImage": "/images/food/food5-1.png",
-      "images": ["/images/food/food5-1.png", "/images/food/food5-4.png"],
+      "images": [
+        "/images/food/food5-1.png",
+        "/images/food/food5-4.png"
+      ],
       "meta": {
         "author": "Cool Meow",
         "publishDate": "2025-08-12"
@@ -708,7 +702,10 @@
       "price": 780,
       "category": "乾糧",
       "coverImage": "/images/food/food6-1.png",
-      "images": ["/images/food/food6-1.png", "/images/food/food6-3.png"],
+      "images": [
+        "/images/food/food6-1.png",
+        "/images/food/food6-3.png"
+      ],
       "meta": {
         "author": "Cool Meow",
         "publishDate": "2025-08-15"
@@ -745,7 +742,10 @@
       "price": 320,
       "category": "凍乾",
       "coverImage": "/images/food/food7-1.png",
-      "images": ["/images/food/food7-1.png", "/images/food/food7-5.png"],
+      "images": [
+        "/images/food/food7-1.png",
+        "/images/food/food7-5.png"
+      ],
       "meta": {
         "author": "Cool Meow",
         "publishDate": "2025-08-18"
@@ -782,7 +782,10 @@
       "price": 1050,
       "category": "乾糧",
       "coverImage": "/images/food/food8-2.png",
-      "images": ["/images/food/food8-2.png", "/images/food/food8-3.png"],
+      "images": [
+        "/images/food/food8-2.png",
+        "/images/food/food8-3.png"
+      ],
       "meta": {
         "author": "Cool Meow",
         "publishDate": "2025-08-20"
@@ -972,7 +975,10 @@
       "excerpt": "貓咪雖然不會說話，但牠們肯定能用其他方式表達自己的感受。你的貓咪生氣的時候可能會有一些超明顯的...",
       "topicId": 3,
       "categoryId": 302,
-      "tags": ["行為與心理", "情緒觀察"],
+      "tags": [
+        "行為與心理",
+        "情緒觀察"
+      ],
       "img": "./images/knowledge/know-img1.png",
       "href": "#",
       "createdAt": "2026-01-01",
@@ -984,7 +990,10 @@
       "excerpt": "市面貓糧種類繁多，乾糧、濕糧、生食、冷凍乾燥差在哪？掌握各類糧食特色、優缺，才能為毛孩挑...",
       "topicId": 1,
       "categoryId": 101,
-      "tags": ["貓咪飲食指南", "糧食類型解析"],
+      "tags": [
+        "貓咪飲食指南",
+        "糧食類型解析"
+      ],
       "img": "./images/knowledge/know-img2.png",
       "href": "#",
       "createdAt": "2026-01-02",
@@ -996,7 +1005,10 @@
       "excerpt": "我們都想給貓咪餵食營養豐富的食物，但閱讀貓糧標籤卻並非易事。市售貓糧包裝上琳瑯滿目，真相其實...",
       "topicId": 1,
       "categoryId": 102,
-      "tags": ["貓咪飲食指南", "成份與標籤知識"],
+      "tags": [
+        "貓咪飲食指南",
+        "成份與標籤知識"
+      ],
       "img": "./images/knowledge/know-img3.png",
       "href": "#",
       "createdAt": "2026-01-03",
@@ -1008,7 +1020,10 @@
       "excerpt": "貓咪真是奇妙的生物。牠們那雙靈活的爪子除了伸縮自如，竟然還是排汗的管道？讓我們揭開肉墊...",
       "topicId": 3,
       "categoryId": 301,
-      "tags": ["行為與心理", "行為解讀"],
+      "tags": [
+        "行為與心理",
+        "行為解讀"
+      ],
       "img": "./images/knowledge/know-img4.png",
       "href": "#",
       "createdAt": "2026-01-04",
@@ -1020,7 +1035,10 @@
       "excerpt": "從尾巴、耳朵到鬍鬚，每個小動作都在傳達不同的訊息。學會解讀這些訊號，你就能更了解主子在...",
       "topicId": 3,
       "categoryId": 301,
-      "tags": ["行為與心理", "行為解讀"],
+      "tags": [
+        "行為與心理",
+        "行為解讀"
+      ],
       "img": "./images/knowledge/know-img5.png",
       "href": "#",
       "createdAt": "2026-01-05",
@@ -1032,7 +1050,10 @@
       "excerpt": "剛帶回家的小奶貓又萌又脆弱！從飲食代奶、環境安全到健康疫苗管理，新手貓奴必看的成...",
       "topicId": 4,
       "categoryId": 401,
-      "tags": ["新手貓奴入門", "幼貓照護"],
+      "tags": [
+        "新手貓奴入門",
+        "幼貓照護"
+      ],
       "img": "./images/knowledge/know-img6.png",
       "href": "#",
       "createdAt": "2026-01-06",
@@ -1044,7 +1065,10 @@
       "excerpt": "貓咪進入熟齡期後，身體需求大不同。了解腎臟、關節等常見問題，陪主子優雅老去是貓奴最重要...",
       "topicId": 2,
       "categoryId": 205,
-      "tags": ["健康與疾病", "老貓照護"],
+      "tags": [
+        "健康與疾病",
+        "老貓照護"
+      ],
       "img": "./images/knowledge/know-img7.png",
       "href": "#",
       "createdAt": "2026-01-07",
@@ -1056,7 +1080,10 @@
       "excerpt": "亂尿尿、破壞家具、半夜暴走？這些行為背後都有原因。找出問題根源，用對方法，才能跟主子...",
       "topicId": 3,
       "categoryId": 303,
-      "tags": ["行為與心理", "行為問題解決"],
+      "tags": [
+        "行為與心理",
+        "行為問題解決"
+      ],
       "img": "./images/knowledge/know-img8.png",
       "href": "#",
       "createdAt": "2026-01-08",
@@ -1068,7 +1095,10 @@
       "excerpt": "新貓加入該如何隔離？如何分配貓砂盆資源？讓每隻貓都有自己的空間，打造不打架的多貓幸福...",
       "topicId": 3,
       "categoryId": 304,
-      "tags": ["行為與心理", "多貓家庭"],
+      "tags": [
+        "行為與心理",
+        "多貓家庭"
+      ],
       "img": "./images/knowledge/know-img9.png",
       "href": "#",
       "createdAt": "2026-01-09",
@@ -1080,7 +1110,10 @@
       "excerpt": "買了一堆玩具，主子卻只愛紙箱？選對玩具不只能讓貓咪開心，還能消耗精力。這篇教你如何根據狩獵本能挑選最適合的玩具！",
       "topicId": 3,
       "categoryId": 305,
-      "tags": ["行為與心理", "遊戲建議"],
+      "tags": [
+        "行為與心理",
+        "遊戲建議"
+      ],
       "img": "./images/knowledge/know-img10.png",
       "href": "#",
       "createdAt": "2026-01-10",
@@ -1092,7 +1125,10 @@
       "excerpt": "豆腐砂、礦砂、木屑砂怎麼選？沒有完美的貓砂，只有最適合你和主子的選擇。這篇幫你分析各種貓砂優缺點，告別粉塵與異味！",
       "topicId": 4,
       "categoryId": 403,
-      "tags": ["新手貓奴入門", "初養用品"],
+      "tags": [
+        "新手貓奴入門",
+        "初養用品"
+      ],
       "img": "./images/knowledge/know-img11.png",
       "href": "#",
       "createdAt": "2026-01-11",
@@ -1104,7 +1140,10 @@
       "excerpt": "疫苗是保護貓咪健康的重要防線。貓三合一、狂犬病哪些必打？多久補強一次？這篇一次帶你了解核心與非核心疫苗的差異。",
       "topicId": 2,
       "categoryId": 201,
-      "tags": ["健康與疾病", "健康照護"],
+      "tags": [
+        "健康與疾病",
+        "健康照護"
+      ],
       "img": "./images/knowledge/know-img12.png",
       "href": "#",
       "createdAt": "2026-01-12",
@@ -1116,7 +1155,10 @@
       "excerpt": "80%的成貓都有牙齒問題！口臭不只是味道難聞，更可能影響心腎功能。學習正確的刷牙與居家照護，讓主子擁有一口好牙。",
       "topicId": 2,
       "categoryId": 201,
-      "tags": ["健康與疾病", "健康照護"],
+      "tags": [
+        "健康與疾病",
+        "健康照護"
+      ],
       "img": "./images/knowledge/know-img13.png",
       "href": "#",
       "createdAt": "2026-01-13",
@@ -1128,7 +1170,10 @@
       "excerpt": "肥貓雖然可愛，但糖尿病與關節炎更可怕！教你如何透過 BCS 評分判斷貓咪體態，並制定科學的減重計畫，守護主子健康。",
       "topicId": 2,
       "categoryId": 203,
-      "tags": ["健康與疾病", "身體警訊"],
+      "tags": [
+        "健康與疾病",
+        "身體警訊"
+      ],
       "img": "./images/knowledge/know-img14.png",
       "href": "#",
       "createdAt": "2026-01-14",
@@ -1140,7 +1185,10 @@
       "excerpt": "搬家、新成員、作息變動都可能讓敏感的貓咪壓力爆表。辨識過度理毛等壓力訊號，提供安全的躲藏空間，打造紓壓低敏環境。",
       "topicId": 3,
       "categoryId": 302,
-      "tags": ["行為與心理", "情緒觀察"],
+      "tags": [
+        "行為與心理",
+        "情緒觀察"
+      ],
       "img": "./images/knowledge/know-img15.png",
       "href": "#",
       "createdAt": "2026-01-15",
@@ -1152,7 +1200,10 @@
       "excerpt": "預防勝於治療！深入了解泌尿系統疾病、慢性腎病與糖尿病的徵兆。7歲以上老貓如何透過定期健檢及早發現病灶？",
       "topicId": 2,
       "categoryId": 202,
-      "tags": ["健康與疾病", "常見疾病"],
+      "tags": [
+        "健康與疾病",
+        "常見疾病"
+      ],
       "img": "./images/knowledge/know-img16.png",
       "href": "#",
       "createdAt": "2026-01-16",
@@ -1164,7 +1215,10 @@
       "excerpt": "梳毛不只是美觀，還能預防毛球症。這篇提供梳毛、剪指甲、清眼耳的完整攻略，讓主子在日常美容中感受到滿滿的愛。",
       "topicId": 4,
       "categoryId": 404,
-      "tags": ["新手貓奴入門", "環境設置"],
+      "tags": [
+        "新手貓奴入門",
+        "環境設置"
+      ],
       "img": "./images/knowledge/know-img17.png",
       "href": "#",
       "createdAt": "2026-01-17",
@@ -1176,7 +1230,10 @@
       "excerpt": "決定養貓了卻不知從何下手？從食碗材質選擇、貓砂盆擺放位置到居家環境安全檢查，這份清單幫你一次搞定！",
       "topicId": 4,
       "categoryId": 403,
-      "tags": ["新手貓奴入門", "初養用品"],
+      "tags": [
+        "新手貓奴入門",
+        "初養用品"
+      ],
       "img": "./images/knowledge/know-img18.png",
       "href": "#",
       "createdAt": "2026-01-18",
@@ -1188,7 +1245,10 @@
       "excerpt": "出門看醫生總是像打仗？透過減敏訓練讓貓咪愛上提籠。從外出的安全胸背帶挑選，到建立熟悉的外出儀式，讓旅行不再恐懼。",
       "topicId": 4,
       "categoryId": 407,
-      "tags": ["新手貓奴入門", "外出準備"],
+      "tags": [
+        "新手貓奴入門",
+        "外出準備"
+      ],
       "img": "./images/knowledge/know-img19.png",
       "href": "#",
       "createdAt": "2026-01-19",
@@ -1200,7 +1260,10 @@
       "excerpt": "百合、黃金葛竟是貓咪殺手？許多常見居家綠植對貓具備致命毒性。這篇教你辨識危險植物，並推薦適合貓咪啃食的室內綠化方案。",
       "topicId": 2,
       "categoryId": 204,
-      "tags": ["健康與疾病", "居家安全"],
+      "tags": [
+        "健康與疾病",
+        "居家安全"
+      ],
       "img": "./images/knowledge/know-img20.png",
       "href": "#",
       "createdAt": "2026-01-20",
@@ -1212,7 +1275,10 @@
       "excerpt": "當主子意外誤食或哈姆立克急救時該怎麼辦？掌握黃金救治時間，學會基礎的心肺復甦術與傷口止血處理，是每位稱職貓奴的必修課。",
       "topicId": 2,
       "categoryId": 206,
-      "tags": ["健康與疾病", "急救知識"],
+      "tags": [
+        "健康與疾病",
+        "急救知識"
+      ],
       "img": "./images/knowledge/know-img21.png",
       "href": "#",
       "createdAt": "2026-01-21",
@@ -1224,7 +1290,10 @@
       "excerpt": "為什麼有的貓對貓薄荷沒反應？深入解析這些「貓界大麻」的原理與差異。正確給予紓壓小物，能有效緩解貓咪焦慮並增加運動量。",
       "topicId": 3,
       "categoryId": 306,
-      "tags": ["行為與心理", "紓壓小物"],
+      "tags": [
+        "行為與心理",
+        "紓壓小物"
+      ],
       "img": "./images/knowledge/know-img22.png",
       "href": "#",
       "createdAt": "2026-01-22",
@@ -1236,7 +1305,10 @@
       "excerpt": "地坪大小不是重點，高度才是！利用貓跳台、牆面層板打造「貓咪高速公路」，能顯著減少多貓衝突並提升室內貓的心理健康。",
       "topicId": 4,
       "categoryId": 404,
-      "tags": ["新手貓奴入門", "環境設置"],
+      "tags": [
+        "新手貓奴入門",
+        "環境設置"
+      ],
       "img": "./images/knowledge/know-img23.png",
       "href": "#",
       "createdAt": "2026-01-23",
@@ -1248,7 +1320,10 @@
       "excerpt": "自動餵食器、智能貓砂盆真的好用嗎？分析科技產品在遠端照護上的優勢，以及在使用時可能被忽略的衛生與安全細節。",
       "topicId": 4,
       "categoryId": 406,
-      "tags": ["新手貓奴入門", "科技照護"],
+      "tags": [
+        "新手貓奴入門",
+        "科技照護"
+      ],
       "img": "./images/knowledge/know-img24.png",
       "href": "#",
       "createdAt": "2026-01-24",
@@ -1260,7 +1335,10 @@
       "excerpt": "一年兩次的換毛大戰又要開始了？除了勤快吸地，如何透過飲食調整減少廢毛產生，並正確選用梳具防止貓咪因舔毛過度引發腸胃阻塞。",
       "topicId": 2,
       "categoryId": 207,
-      "tags": ["健康與疾病", "日常照護"],
+      "tags": [
+        "健康與疾病",
+        "日常照護"
+      ],
       "img": "./images/knowledge/know-img25.png",
       "href": "#",
       "createdAt": "2026-01-25",
@@ -1272,7 +1350,10 @@
       "excerpt": "呼嚕聲不代表一定開心？受傷或疼痛時，貓咪也會透過低頻震動來自我療癒。深入研究貓咪獨特的生理頻率與其傳達的情緒密碼。",
       "topicId": 3,
       "categoryId": 301,
-      "tags": ["行為與心理", "行為解讀"],
+      "tags": [
+        "行為與心理",
+        "行為解讀"
+      ],
       "img": "./images/knowledge/know-img26.png",
       "href": "#",
       "createdAt": "2026-01-26",
@@ -1284,7 +1365,10 @@
       "excerpt": "剪指甲像打仗？這篇教你如何辨識指甲裡的「快肉（Quick）」，配合適當的零食獎勵與保定技巧，讓主子乖乖配合修剪不再掙扎。",
       "topicId": 4,
       "categoryId": 404,
-      "tags": ["新手貓奴入門", "日常護理"],
+      "tags": [
+        "新手貓奴入門",
+        "日常護理"
+      ],
       "img": "./images/knowledge/know-img27.png",
       "href": "#",
       "createdAt": "2026-01-27",
@@ -2862,7 +2946,10 @@
       "note": "測試專欄投稿：待審核",
       "title": "如何閱讀貓糧成分？（投稿版）",
       "excerpt": "投稿內容聚焦在前五項原料判讀與避開不必要添加物，幫助新手快速篩選。",
-      "tags": ["貓咪飲食指南", "成份與標籤知識"],
+      "tags": [
+        "貓咪飲食指南",
+        "成份與標籤知識"
+      ],
       "coverImage": "./images/knowledge/know-img3.png",
       "content": "完整投稿內容（測試）",
       "declarationAgreed": true,
@@ -2877,7 +2964,10 @@
       "note": "測試專欄投稿：內容待補充",
       "title": "貓咪肢體語言大解密（投稿版）",
       "excerpt": "補充尾巴與耳朵訊號對照表，讓新手更快掌握情緒判讀。",
-      "tags": ["行為與心理", "行為解讀"],
+      "tags": [
+        "行為與心理",
+        "行為解讀"
+      ],
       "coverImage": "./images/knowledge/know-img5.png",
       "content": "完整投稿內容（測試）",
       "declarationAgreed": true,
@@ -2892,7 +2982,10 @@
       "note": "測試專欄投稿：已發布",
       "title": "關於貓爪的10個有趣真相（投稿版）",
       "excerpt": "整理肉墊溫度感知、費洛蒙標記與抓地力的觀察重點。",
-      "tags": ["行為與心理", "行為解讀"],
+      "tags": [
+        "行為與心理",
+        "行為解讀"
+      ],
       "coverImage": "./images/knowledge/know-img4.png",
       "content": "完整投稿內容（測試）",
       "declarationAgreed": true,
@@ -2907,7 +3000,10 @@
       "note": "測試專欄投稿：審核中",
       "title": "如何判斷貓咪是否生氣？（投稿版）",
       "excerpt": "補充耳朵角度與瞳孔變化的判讀範例，降低互動誤判。",
-      "tags": ["行為與心理", "情緒觀察"],
+      "tags": [
+        "行為與心理",
+        "情緒觀察"
+      ],
       "coverImage": "./images/knowledge/know-img1.png",
       "content": "完整投稿內容（測試）",
       "declarationAgreed": true,
@@ -2922,7 +3018,10 @@
       "note": "測試專欄投稿：通過",
       "title": "各式糧食類型大解析（投稿版）",
       "excerpt": "補上乾糧、濕糧與凍乾混餵比例建議，方便新手直接套用。",
-      "tags": ["貓咪飲食指南", "糧食類型解析"],
+      "tags": [
+        "貓咪飲食指南",
+        "糧食類型解析"
+      ],
       "coverImage": "./images/knowledge/know-img2.png",
       "content": "完整投稿內容（測試）",
       "declarationAgreed": true,

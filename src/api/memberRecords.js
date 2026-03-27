@@ -77,6 +77,7 @@ function buildFoodTaxonomyMaps(foodID) {
 
 function toFoodRecord({ relation, food, foodDetail, taxonomyMaps, includeStatus }) {
   const basicInfo = relation.basicInfo ?? {};
+  const foodId = relation.foodId ?? food?.id;
   const relationDesc = toTaxonomyDesc({
     ingredientProfile: relation.ingredientProfile,
     taxonomyMaps,
@@ -106,7 +107,7 @@ function toFoodRecord({ relation, food, foodDetail, taxonomyMaps, includeStatus 
     imageUrl: normalizeImageUrl(
       relation.images?.contentImages?.[0] || relation.images?.packageImages?.[0] || food?.coverImage
     ),
-    targetPath: "/food",
+    targetPath: foodId ? `/food/product/${foodId}` : "/food",
     showStatus: includeStatus,
   };
 }
@@ -242,6 +243,7 @@ export async function fetchCommentRecords(currentUser) {
   const foodRecords = filteredFoodComments.map((item) => {
     const food = foodMap.get(item.foodId);
     const commentDate = item.createdAt || item.updatedAt || item.time;
+    const commentQuery = item.foodId ? `?commentId=${item.id}` : "";
 
     return {
       id: item.id,
@@ -252,7 +254,7 @@ export async function fetchCommentRecords(currentUser) {
       sortTimestamp: toTimestamp(commentDate),
       content: item.content ?? "",
       photos: item.photos ?? [],
-      targetPath: "/food",
+      targetPath: item.foodId ? `/food/product/${item.foodId}${commentQuery}` : "/food",
     };
   });
 

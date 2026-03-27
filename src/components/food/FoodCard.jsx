@@ -29,7 +29,11 @@ function FoodCard({
     return cardContent;
   }
 
-  return <Link to={href}>{cardContent}</Link>;
+  return (
+    <Link to={href} className="d-block w-100 text-decoration-none">
+      {cardContent}
+    </Link>
+  );
 }
 
 export default FoodCard;

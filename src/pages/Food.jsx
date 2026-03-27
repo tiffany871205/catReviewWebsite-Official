@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import FoodBanner from "../components/food/FoodBanner.jsx";
 import FoodAside from "../components/food/FoodAside.jsx";
+import FoodMobileFilterBar from "../components/food/FoodMobileFilterBar.jsx";
 import FoodCard from "../components/food/FoodCard.jsx";
 import FoodPagination from "../components/food/FoodPagination.jsx";
 import { getFoodMeta, getFoods } from "../api/food";
@@ -139,9 +140,28 @@ function Food() {
       <div className="foodmain-body">
         <FoodBanner />
 
+        <FoodMobileFilterBar
+          foodMeta={foodMeta}
+          filters={filters}
+          onFilterChange={(key, value) =>
+            setFilters((prev) => ({
+              ...prev,
+              [key]: value,
+            }))
+          }
+          onClear={() =>
+            setFilters({
+              flavorId: null,
+              contentTypeId: null,
+              specialFormulaId: null,
+              targetId: null,
+            })
+          }
+        />
+
         <main className="container">
-          <div className="row row-cols-2 align-items-stretch">
-            <div className="col-lg-3 d-flex">
+          <div className="row align-items-stretch">
+            <div className="col-lg-3 d-none d-lg-flex">
               <FoodAside
                 foodMeta={foodMeta}
                 filters={filters}
@@ -153,20 +173,21 @@ function Food() {
                 }
               />
             </div>
-            <div className="col-lg-9 d-flex">
+            <div className="col-lg-9 col-12 d-flex">
               <div className="w-100 d-flex flex-column">
-                <div className="row row-cols-3">
+                <div className="row g-3">
                   {pagedFoodCards.map((card) => (
-                    <FoodCard
-                      key={card.id}
-                      href={card.href}
-                      image={card.image}
-                      alt={card.alt}
-                      title={card.title}
-                      price={card.price}
-                      tags={card.tags}
-                      buttonClass={card.buttonClass}
-                    />
+                    <div key={card.id} className="col-12 col-md-6 col-xl-6 col-xxl-4 d-flex">
+                      <FoodCard
+                        href={card.href}
+                        image={card.image}
+                        alt={card.alt}
+                        title={card.title}
+                        price={card.price}
+                        tags={card.tags}
+                        buttonClass={card.buttonClass}
+                      />
+                    </div>
                   ))}
 
                   {foodCards.length === 0 ? (

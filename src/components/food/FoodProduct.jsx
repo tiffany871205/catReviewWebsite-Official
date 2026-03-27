@@ -605,14 +605,20 @@ export default function FoodProductPage() {
                   <span>
                     <i className="bi bi-chat-dots me-1"></i> 留言 {localComments.length}
                   </span>
-                  <span>
-                    <span onClick={handleShareClick} style={{ cursor: "pointer" }} className="me-6">
-                      <i className="bi bi-box-arrow-up-right me-1"></i>分享
-                    </span>
+                  <span className="d-inline-flex align-items-center">
+                    <button
+                      type="button"
+                      onClick={handleShareClick}
+                      className="btn p-0 border-0 bg-transparent me-6 d-inline-flex align-items-center text-neutral-600"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <i className="bi bi-box-arrow-up-right me-1"></i>
+                      分享
+                    </button>
                     <button
                       type="button"
                       onClick={handleBookmarkToggle}
-                      className="btn p-0 border-0 bg-transparent"
+                      className="btn p-0 border-0 bg-transparent d-inline-flex align-items-center text-neutral-600"
                       disabled={isBookmarkSubmitting}
                       style={{ cursor: isBookmarkSubmitting ? "not-allowed" : "pointer" }}
                     >

@@ -141,12 +141,6 @@
   ],
   "foodFav": [
     {
-      "id": 1,
-      "userId": 1,
-      "foodId": 2,
-      "createdAt": "2026-03-10T09:00:00Z"
-    },
-    {
       "id": 2,
       "userId": 1,
       "foodId": 7,
@@ -171,25 +165,13 @@
       "createdAt": "2026-03-12T09:30:00Z"
     },
     {
-      "id": 6,
       "userId": 1,
       "foodId": 9,
-      "createdAt": "2026-03-12T10:00:00Z"
+      "createdAt": "2026-03-27T15:48:29.147Z",
+      "id": 6
     }
   ],
   "foodComment": [
-    {
-      "id": 1,
-      "userId": 1,
-      "foodId": 1,
-      "rating": 4,
-      "name": "貓奴一號",
-      "time": "1天前",
-      "content": "適口性不錯，連續吃了三天都吃光。",
-      "photos": ["contrib-history2-1.png"],
-      "createdAt": "2026-03-19T12:00:00Z",
-      "updatedAt": "2026-03-19T12:00:00Z"
-    },
     {
       "id": 2,
       "userId": 1,
@@ -198,7 +180,6 @@
       "name": "貓奴一號",
       "time": "5天前",
       "content": "肉塊比例剛好，貓咪接受度很高。",
-      "photos": [],
       "createdAt": "2026-03-10T10:30:00Z",
       "updatedAt": "2026-03-10T10:30:00Z"
     },
@@ -207,36 +188,20 @@
       "userId": 1,
       "foodId": 3,
       "rating": 4,
-      "name": "喵屋",
+      "name": "貓奴一號",
       "time": "1天前",
-      "content": "乾糧顆粒大小適中，換糧期也很順。",
-      "photos": [],
+      "content": "乾糧顆粒大小適中，換糧期也很順",
       "createdAt": "2026-03-11T08:15:00Z",
-      "updatedAt": "2026-03-11T08:15:00Z"
+      "updatedAt": "2026-03-27T15:53:44.205Z"
     },
     {
-      "id": 4,
+      "foodId": 1,
       "userId": 1,
-      "foodId": 5,
-      "rating": 3,
-      "name": "安安",
-      "time": "1天前",
-      "content": "適口性中等，搭配溫水後比較願意吃。",
-      "photos": ["contrib-history2-2.png"],
-      "createdAt": "2026-03-12T13:20:00Z",
-      "updatedAt": "2026-03-12T13:20:00Z"
-    },
-    {
-      "id": 5,
-      "userId": 1,
-      "foodId": 7,
-      "rating": 5,
-      "name": "喵屋",
-      "time": "1天前",
-      "content": "吃完精神很好，便便狀況也穩定。",
-      "photos": [],
-      "createdAt": "2026-03-13T07:45:00Z",
-      "updatedAt": "2026-03-13T07:45:00Z"
+      "name": "貓奴一號",
+      "createdAt": "2026-03-27T15:48:07.622Z",
+      "updatedAt": "2026-03-27T15:48:07.622Z",
+      "content": "我家貓咪超愛!!!",
+      "id": 4
     }
   ],
   "foodID": {

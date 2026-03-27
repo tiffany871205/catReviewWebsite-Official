@@ -113,7 +113,10 @@ export default function Article() {
         setVisibleCount(4);
 
         if (currentUser?.id) {
-          const favList = await getKnowledgeFavByUserAndArticle(currentUser.id, articleId);
+          const favList = await getKnowledgeFavByUserAndArticle(
+            currentUser.id,
+            articleId
+          );
 
           if (favList.length > 0) {
             setIsBookmarked(true);
@@ -185,7 +188,10 @@ export default function Article() {
           iconColor: "#ffb11b",
         });
       } else {
-        const existing = await getKnowledgeFavByUserAndArticle(currentUser.id, articleId);
+        const existing = await getKnowledgeFavByUserAndArticle(
+          currentUser.id,
+          articleId
+        );
 
         if (existing.length > 0) {
           setIsBookmarked(true);
@@ -249,7 +255,9 @@ export default function Article() {
     if (!Number.isInteger(targetCommentId) || targetCommentId <= 0) return;
     if (lastScrolledCommentId === targetCommentId) return;
 
-    const targetIndex = localComments.findIndex((item) => Number(item.id) === targetCommentId);
+    const targetIndex = localComments.findIndex(
+      (item) => Number(item.id) === targetCommentId
+    );
     if (targetIndex === -1) return;
 
     if (visibleCount < targetIndex + 1) {
@@ -271,7 +279,13 @@ export default function Article() {
     return () => {
       window.clearTimeout(timer);
     };
-  }, [location.search, loading, localComments, visibleCount, lastScrolledCommentId]);
+  }, [
+    location.search,
+    loading,
+    localComments,
+    visibleCount,
+    lastScrolledCommentId,
+  ]);
 
   // 麵包蟹
   const topicName = useMemo(() => {
@@ -430,7 +444,11 @@ export default function Article() {
   const handleUpdateComment = async (commentId, newText) => {
     const targetComment = localComments.find((c) => c.id === commentId);
 
-    if (!currentUser || !targetComment || targetComment.userId !== currentUser.id) {
+    if (
+      !currentUser ||
+      !targetComment ||
+      targetComment.userId !== currentUser.id
+    ) {
       catAlert.fire({
         icon: "error",
         title: "無法修改",
@@ -446,7 +464,9 @@ export default function Article() {
         updatedAt: nowIso,
       });
 
-      setLocalComments((prev) => prev.map((c) => (c.id === commentId ? updated : c)));
+      setLocalComments((prev) =>
+        prev.map((c) => (c.id === commentId ? updated : c))
+      );
       catAlert.fire({
         icon: "success",
         title: "修改成功！",
@@ -465,7 +485,11 @@ export default function Article() {
   const handleDeleteComment = (commentId) => {
     const targetComment = localComments.find((c) => c.id === commentId);
 
-    if (!currentUser || !targetComment || targetComment.userId !== currentUser.id) {
+    if (
+      !currentUser ||
+      !targetComment ||
+      targetComment.userId !== currentUser.id
+    ) {
       catAlert.fire({
         icon: "error",
         title: "無法刪除",
@@ -513,7 +537,9 @@ export default function Article() {
         <div className="container container-style px-96">
           <div className="bg-white p-5 rounded">
             <h2 className="mb-3">找不到文章</h2>
-            <p className="text-neutral-600 mb-4">文章不存在或網址 id 不正確。</p>
+            <p className="text-neutral-600 mb-4">
+              文章不存在或網址 id 不正確。
+            </p>
             <Link to="/knowledge" className="btn btn-primary-600 text-white">
               回到喵皇學堂
             </Link>
@@ -526,7 +552,11 @@ export default function Article() {
   return (
     <>
       {/* breadcrumb */}
-      <ArticleBreadcrumb topicName={topicName} categoryName={categoryName} title={detail.title} />
+      <ArticleBreadcrumb
+        topicName={topicName}
+        categoryName={categoryName}
+        title={detail.title}
+      />
 
       {/* section-2 */}
       <div className="section-2 pb-144 pt-md-12">
@@ -571,23 +601,36 @@ export default function Article() {
                       } pe-1`}
                     />
                     {helpfulCount}% 的讀者覺得這篇文章有幫助
-                    <i className="bi bi-chat-dots ms-8"></i> 留言 {localComments.length}
+                    <i className="bi bi-chat-dots ms-8"></i> 留言{" "}
+                    {localComments.length}
                   </span>
                   <span>
-                    <span onClick={handleShareClick} style={{ cursor: "pointer" }} className="me-6">
-                      <i className="bi bi-box-arrow-up-right me-1"></i>分享{" "}
-                    </span>
+                    <button
+                      type="button"
+                      onClick={handleShareClick}
+                      className="btn p-0 border-0 bg-transparent me-6 d-inline-flex align-items-center text-neutral-600"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <i className="bi bi-box-arrow-up-right me-1"></i>
+                      分享
+                    </button>
 
                     <button
                       type="button"
                       onClick={handleBookmarkToggle}
-                      className="btn p-0 border-0 bg-transparent"
+                      className="btn p-0 border-0 bg-transparent text-neutral-600"
                       disabled={isBookmarkSubmitting}
-                      style={{ cursor: isBookmarkSubmitting ? "not-allowed" : "pointer" }}
+                      style={{
+                        cursor: isBookmarkSubmitting
+                          ? "not-allowed"
+                          : "pointer",
+                      }}
                     >
                       <i
                         className={`bi ${
-                          isBookmarked ? "bi-bookmark-fill text-primary-700" : "bi-bookmark"
+                          isBookmarked
+                            ? "bi-bookmark-fill text-primary-700"
+                            : "bi-bookmark"
                         } me-1`}
                       ></i>
                       {isBookmarked ? "已收藏" : "加入收藏"}
@@ -630,23 +673,38 @@ export default function Article() {
                     {helpfulCount}% 的讀者覺得這篇文章有幫助
                   </p>
 
-                  <div className="d-flex justify-content-between pb-11">
-                    <p>
-                      <i className="bi bi-chat-dots"></i> 留言 {localComments.length}
+                  <div className="d-flex justify-content-between align-items-center pb-11">
+                    <p className="mb-0 d-inline-flex align-items-center text-neutral-600">
+                      <i className="bi bi-chat-dots me-1"></i>
+                      留言 {localComments.length}
                     </p>
-                    <p onClick={handleShareClick} style={{ cursor: "pointer" }}>
-                      <i className="bi bi-box-arrow-up-right me-1"></i> 分享
-                    </p>
+
+                    <button
+                      type="button"
+                      onClick={handleShareClick}
+                      className="btn p-0 border-0 bg-transparent d-inline-flex align-items-center text-neutral-600"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <i className="bi bi-box-arrow-up-right me-1"></i>
+                      分享
+                    </button>
+
                     <button
                       type="button"
                       onClick={handleBookmarkToggle}
-                      className="btn p-0 border-0 bg-transparent"
+                      className="btn p-0 border-0 bg-transparent d-inline-flex align-items-center text-neutral-600"
                       disabled={isBookmarkSubmitting}
-                      style={{ cursor: isBookmarkSubmitting ? "not-allowed" : "pointer" }}
+                      style={{
+                        cursor: isBookmarkSubmitting
+                          ? "not-allowed"
+                          : "pointer",
+                      }}
                     >
                       <i
                         className={`bi ${
-                          isBookmarked ? "bi-bookmark-fill text-primary-700" : "bi-bookmark"
+                          isBookmarked
+                            ? "bi-bookmark-fill text-primary-700"
+                            : "bi-bookmark"
                         } me-1`}
                       ></i>
                       {isBookmarked ? "已收藏" : "加入收藏"}
@@ -660,14 +718,22 @@ export default function Article() {
                     <div className="article-content">
                       {/* 副標題和介紹 */}
                       {detail.subtitle ? (
-                        <p className="fw-bold text-neutral-900 mb-3">{detail.subtitle}</p>
+                        <p className="fw-bold text-neutral-900 mb-3">
+                          {detail.subtitle}
+                        </p>
                       ) : null}
 
-                      {detail.intro ? <p className="mb-32">{detail.intro}</p> : null}
+                      {detail.intro ? (
+                        <p className="mb-32">{detail.intro}</p>
+                      ) : null}
 
                       <div className="food-type-list">
                         {(detail.blocks ?? []).map((b, idx) => (
-                          <ArticleBlock block={b} index={idx} key={b.id ?? idx} />
+                          <ArticleBlock
+                            block={b}
+                            index={idx}
+                            key={b.id ?? idx}
+                          />
                         ))}
                       </div>
                     </div>
@@ -682,7 +748,8 @@ export default function Article() {
         <div
           className="container px-96 py-md-72"
           style={{
-            backgroundImage: "url('./images/knowledge/article/section3_backgroundTextArea.png')",
+            backgroundImage:
+              "url('./images/knowledge/article/section3_backgroundTextArea.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -691,7 +758,9 @@ export default function Article() {
           <section className="d-flex flex-column align-items-center text-center p-12">
             <h3 className="mb-6">專欄文章回饋滿意度回饋</h3>
             <hr className="my-4 opacity-10 w-100" />
-            <p className="fw-bold text-neutral-600 py-6">這篇文章對你有幫助嗎？</p>
+            <p className="fw-bold text-neutral-600 py-6">
+              這篇文章對你有幫助嗎？
+            </p>
 
             <FeedbackActions
               voteType={voteType}
@@ -750,7 +819,9 @@ export default function Article() {
               </>
             ) : (
               <div className="text-center py-5">
-                <p className="text-neutral-500">目前還沒有留言，快來當第一個沙發吧！🐾</p>
+                <p className="text-neutral-500">
+                  目前還沒有留言，快來當第一個沙發吧！🐾
+                </p>
               </div>
             )}
           </section>

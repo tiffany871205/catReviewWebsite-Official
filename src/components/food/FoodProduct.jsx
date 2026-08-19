@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useLocation, useParams } from "react-router";
 import Swal from "sweetalert2";
 import {
   createFoodComment,
@@ -147,6 +147,7 @@ function Section({ title, items, sectionIndex }) {
 
 export default function FoodProductPage() {
   const { id } = useParams();
+  const location = useLocation();
   const productId = Number(id);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -155,6 +156,8 @@ export default function FoodProductPage() {
   const [localComments, setLocalComments] = useState([]);
   const [visibleCount, setVisibleCount] = useState(4);
   const [newCommentText, setNewCommentText] = useState("");
+  const [focusedCommentId, setFocusedCommentId] = useState(null);
+  const [lastScrolledCommentId, setLastScrolledCommentId] = useState(null);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [bookmarkId, setBookmarkId] = useState(null);
   const [isBookmarkSubmitting, setIsBookmarkSubmitting] = useState(false);
@@ -178,6 +181,44 @@ export default function FoodProductPage() {
     buttonsStyling: false,
     confirmButtonColor: "#ffb11b",
   });
+
+  useEffect(() => {
+    setLastScrolledCommentId(null);
+    setFocusedCommentId(null);
+  }, [productId]);
+
+  useEffect(() => {
+    if (loading || localComments.length === 0) return;
+
+    const params = new URLSearchParams(location.search);
+    const commentIdRaw = params.get("commentId");
+    const targetCommentId = Number(commentIdRaw);
+
+    if (!Number.isInteger(targetCommentId) || targetCommentId <= 0) return;
+    if (lastScrolledCommentId === targetCommentId) return;
+
+    const targetIndex = localComments.findIndex((item) => Number(item.id) === targetCommentId);
+    if (targetIndex === -1) return;
+
+    setVisibleCount((prev) => Math.max(prev, targetIndex + 1));
+
+    const timer = window.setTimeout(() => {
+      const targetEl = document.getElementById(`food-comment-${targetCommentId}`);
+      if (!targetEl) return;
+
+      targetEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      setFocusedCommentId(targetCommentId);
+      setLastScrolledCommentId(targetCommentId);
+
+      window.setTimeout(() => {
+        setFocusedCommentId(null);
+      }, 2600);
+    }, 120);
+
+    return () => {
+      window.clearTimeout(timer);
+    };
+  }, [loading, localComments, location.search, lastScrolledCommentId]);
 
   useEffect(() => {
     let isMounted = true;
@@ -564,14 +605,20 @@ export default function FoodProductPage() {
                   <span>
                     <i className="bi bi-chat-dots me-1"></i> 留言 {localComments.length}
                   </span>
-                  <span>
-                    <span onClick={handleShareClick} style={{ cursor: "pointer" }} className="me-6">
-                      <i className="bi bi-box-arrow-up-right me-1"></i>分享
-                    </span>
+                  <span className="d-inline-flex align-items-center">
+                    <button
+                      type="button"
+                      onClick={handleShareClick}
+                      className="btn p-0 border-0 bg-transparent me-6 d-inline-flex align-items-center text-neutral-600"
+                      style={{ cursor: "pointer" }}
+                    >
+                      <i className="bi bi-box-arrow-up-right me-1"></i>
+                      分享
+                    </button>
                     <button
                       type="button"
                       onClick={handleBookmarkToggle}
-                      className="btn p-0 border-0 bg-transparent"
+                      className="btn p-0 border-0 bg-transparent d-inline-flex align-items-center text-neutral-600"
                       disabled={isBookmarkSubmitting}
                       style={{ cursor: isBookmarkSubmitting ? "not-allowed" : "pointer" }}
                     >
@@ -700,7 +747,7 @@ export default function FoodProductPage() {
                     name={getFoodCommentName(comment)}
                     time={formatFoodCommentTime(comment)}
                     text={comment.content ?? comment.text ?? ""}
-                    highlighted={false}
+                    highlighted={focusedCommentId === Number(comment.id)}
                     isAuthor={currentUser && comment.userId === currentUser.id}
                     onDelete={handleDeleteComment}
                     onEdit={handleUpdateComment}
